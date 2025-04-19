@@ -1,0 +1,53 @@
+{
+  "name": "zeap-fashion",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.2.0",
+    "@reduxjs/toolkit": "^2.6.0",
+    "apexcharts": "^4.5.0",
+    "autoprefixer": "^10.4.20",
+    "crypto-js": "^4.2.0",
+    "cssnano": "^7.0.6",
+    "firebase": "^11.4.0",
+    "flowbite": "^3.1.2",
+    "flowbite-react": "^0.10.2",
+    "framer-motion": "^12.6.0",
+    "javascript-time-ago": "^2.5.11",
+    "lodash": "^4.17.21",
+    "next": "15.2.1",
+    "pluralize": "^8.0.0",
+    "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
+    "react-country-region-selector": "^3.6.1",
+    "react-dom": "^19.0.0",
+    "react-paystack": "^6.0.0",
+    "react-phone-number-input": "^3.4.12",
+    "react-redux": "^9.2.0",
+    "react-time-ago": "^7.3.3",
+    "react-to-print": "^3.0.5",
+    "react-use-measure": "^2.1.7",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^20",
+    "@types/pluralize": "^0.0.33",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5"
+  }
+}

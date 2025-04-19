@@ -1,0 +1,136 @@
+"use client";
+// import { TbBrandPaypal } from "react-icons/tb";
+import ButtonPrimary from "@/shared/Button/ButtonPrimary";
+// import ButtonSecondary from "@/shared/Button/ButtonSecondary";
+import { globalSelectors } from "@/redux/services/global.slice";
+import { useSelector } from "react-redux";
+import zeapApiSlice from "@/redux/services/zeapApi.slice";
+import Skeleton from "@/components/loading/Skeleton";
+import CartItem from "@/components/cart/CartItem";
+import { useState } from "react";
+import { Alert } from "flowbite-react";
+import LoadingDots from "@/components/loading/LoadingDots";
+import { getCurrencySmallSymbol, numberWithCommas } from "@/utils/helpers";
+import ApplyDiscount from "@/components/cart/ApplyDiscount";
+import { useRouter } from "next/navigation";
+import EmptyBasket from "@/components/cart/EmptyBasket";
+
+interface ColInterface {
+  name: string;
+  hex?: string;
+  background?: string;
+}
+
+const CartPage = () => {
+  const router = useRouter();
+  const token = useSelector(globalSelectors.selectAuthToken);
+  const [serverError, setServerError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const productOptionsQuery = zeapApiSlice.useGetProductsOptionsQuery(
+    {},
+    { skip: !token }
+  );
+  const options = productOptionsQuery?.data?.data;
+  const colorOptions: ColInterface[] = options?.readyMadeClothes?.colorEnums;
+  const cartQuery = zeapApiSlice.useGetCartQuery({}, { skip: !token });
+  const cart = cartQuery?.data?.data;
+  const isFulfilled = cartQuery?.status === "fulfilled";
+
+  const basketItems = cart?.basketItems || [];
+  const subTotal = cart?.subTotal;
+  const total = cart?.total;
+
+  return (
+    <div>
+      {(cartQuery.isLoading || productOptionsQuery.isLoading) && (
+        <div className="grid gap-7 md:grid-cols-3 lg:grid-cols-4">
+          {Array.from({ length: 24 }).map((_, i) => (
+            <Skeleton key={i} />
+          ))}
+        </div>
+      )}
+      <main className="container py-6 lg:pb-28  ">
+        <div className="mb-7">
+          <h2 className="block text-2xl font-medium sm:text-3xl lg:text-4xl">
+            My Cart
+          </h2>
+        </div>
+
+        <hr className="my-10 border-neutral-300 xl:my-12" />
+
+        <div className="flex flex-col lg:flex-row">
+          {serverError && <Alert color="failure">{serverError}</Alert>}
+
+          <div className="w-full divide-y divide-neutral-300 lg:w-[60%] xl:w-[55%]">
+            {isFulfilled && basketItems?.length === 0 && <EmptyBasket />}
+            {basketItems?.length > 0 &&
+              [...basketItems]
+                .reverse()
+                .map((item) => (
+                  <CartItem
+                    key={item.sku}
+                    item={item}
+                    cart={cart}
+                    setServerError={setServerError}
+                    setIsLoading={setIsLoading}
+                    colorOptions={colorOptions}
+                  />
+                ))}
+          </div>
+          <div className="my-10 shrink-0 border-t border-neutral-300 lg:mx-10 lg:my-0 lg:border-l lg:border-t-0 xl:mx-16 2xl:mx-20" />
+          <div className="flex-1">
+            <div className="sticky top-28">
+              <h3 className="text-2xl font-semibold">Summary</h3>
+              <div className="mt-7 divide-y divide-neutral-300 text-sm">
+                <div className="flex justify-between pb-4">
+                  <span>Subtotal</span>
+
+                  <span className="font-semibold">
+                    {getCurrencySmallSymbol(cart?.currency)}
+                    {numberWithCommas(subTotal)}
+                  </span>
+                </div>
+                <div className="flex justify-between py-4">
+                  <span>Estimated Delivery & Handling</span>
+                  <span className="font-semibold">Calculated at Checkout</span>
+                </div>
+
+                <div className="flex justify-between pt-4 text-base font-semibold">
+                  <span>Total</span>
+                  <span>
+                    {getCurrencySmallSymbol(cart?.currency)}
+                    {numberWithCommas(total)}
+                  </span>
+                </div>
+              </div>
+              <hr className="my-10 border-neutral-300" />
+              <ApplyDiscount />
+              <hr className="my-10 border-neutral-300" />
+
+              <ButtonPrimary
+                disabled={isLoading || basketItems?.length === 0}
+                onClick={() => router.push("/checkout")}
+                className={`mt-8 w-full ${
+                  isLoading || basketItems?.length === 0
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+              >
+                {isLoading ? <LoadingDots /> : "Checkout Now"}
+              </ButtonPrimary>
+              {/* <ButtonSecondary
+                className="mt-3 inline-flex w-full items-center gap-1 border-2 border-primary text-primary"
+                href="/checkout"
+              >
+                <TbBrandPaypal className="text-2xl" />
+                PayPal
+              </ButtonSecondary> */}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default CartPage;

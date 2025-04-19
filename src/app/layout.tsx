@@ -1,0 +1,54 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import StoreProvider from "@/redux/store/StoreProvider";
+import { AuthProvider } from "@/contexts/authContext";
+
+import { Suspense } from "react";
+import { ThemeProvider } from "@/contexts/themeContext";
+import Loading from "@/components/loading/Loading";
+import DisplayChildren from "./DisplayChildren";
+import { WebSocketProvider } from "@/contexts/webSocketContext";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Zeap Fashion",
+  description: "Zeap Fashion is a fashion store",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <WebSocketProvider>
+      <StoreProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <html lang="en">
+              <body
+                className={` ${geistSans.variable} ${geistMono.variable} antialiased `}
+              >
+                <Suspense fallback={<Loading />}>
+                  <div className="fixed h-full w-full overflow-x-hidden top-0 left-0 ">
+                    <DisplayChildren>{children}</DisplayChildren>
+                  </div>
+                </Suspense>
+              </body>
+            </html>
+          </ThemeProvider>
+        </AuthProvider>
+      </StoreProvider>
+    </WebSocketProvider>
+  );
+}
