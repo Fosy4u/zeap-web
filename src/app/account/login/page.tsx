@@ -20,9 +20,9 @@ const LoginPage = () => {
       </div>
       <SignInSignUpDrawer
         callBack={() => {
-          if (router) {
+         
             router.push("/");
-          }
+        
           return true;
         }}
       />

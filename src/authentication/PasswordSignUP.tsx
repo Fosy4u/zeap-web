@@ -5,7 +5,7 @@ import FormItem from "@/shared/FormItem";
 import Input from "@/shared/Input/Input";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import LoadingDots from "../components/loading/LoadingDots";
-import CryptoJS from "crypto-js";
+// import CryptoJS from "crypto-js";
 import { AuthContext } from "@/contexts/authContext";
 import { useRouter } from "next/navigation";
 

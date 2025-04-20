@@ -109,9 +109,7 @@ const CartPage = () => {
               <ButtonPrimary
                 disabled={isLoading || basketItems?.length === 0}
                 onClick={() => {
-                  if (router) {
-                    router.push("/checkout");
-                  }
+                  router.push("/checkout");
                 }}
                 className={`mt-8 w-full ${
                   isLoading || basketItems?.length === 0

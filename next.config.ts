@@ -2,9 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  reactStrictMode: true,
  
-  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+ 
+ 
   images: {
     domains: [
       "storage.googleapis.com",
