@@ -59,7 +59,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isGuest, setIsGuest] = useState<boolean>(false);
 
   const [user, setUser] = useState<UserInterface | null>();
-  console.log("user in conte", user);
   const [loginError, setLoginError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -109,13 +108,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const accessToken = await getToken();
         if (accessToken) {
           if (currentUser.isAnonymous) {
-            console.log("about to create guest user 1", accessToken);
+  
             setIsGuest(true);
             localStorage.setItem("guestUid", currentUser.uid);
             return creatGuestUser({})
               .unwrap()
               .then((res) => {
-                console.log("res is", res);
+       
                 const newuser = res?.data;
 
                 setUser(newuser);
@@ -144,7 +143,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               await getToken();
 
               setIsGuest(true);
-              console.log("creating guest user");
+ 
             }
             // ...
           })
@@ -189,7 +188,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             mergePasswordLogin({ payload })
               .unwrap()
               .then((result) => {
-                console.log("Convert result", result);
+           
                 const userData = result.data;
                 setUser(userData);
                 localStorage.removeItem("guestUid");
@@ -244,7 +243,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       .then(async (userCredential) => {
         const googleCurrentUser = userCredential.user;
 
-        console.log("google curtrentUser", googleCurrentUser);
+      
         if (googleCurrentUser) {
           await getToken();
           setIsAuthenticated(true);
@@ -252,7 +251,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           setLoading(false);
 
           const guestUid = localStorage.getItem("guestUid");
-          console.log("google guestUid", guestUid);
+     
           if (guestUid) {
             const payload = {
               guestUid,
@@ -260,7 +259,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             mergeGoogleAppleLogin({ payload })
               .unwrap()
               .then((result) => {
-                console.log("Convert result", result);
+             
                 const userData = result.data;
                 setUser(userData);
                 localStorage.removeItem("guestUid");

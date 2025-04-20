@@ -8,9 +8,9 @@ import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import Loading from "@/app/loading";
 import Image from "next/image";
 import { HiCamera } from "react-icons/hi2";
-import MyContactInfo from "./MyContactInfo";
+ import MyContactInfo from "./MyContactInfo";
 import MySocialDetails from "./MySocialDetails";
-import MyOtherInfo from "./MyOtherInfo";
+ import MyOtherInfo from "./MyOtherInfo";
 import MyDeliveryAddresses from "./MyDeliveryAddresses";
 
 const MyProfile = () => {

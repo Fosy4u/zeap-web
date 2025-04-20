@@ -39,10 +39,10 @@ const SectionProducts = () => {
       { skip: !token }
     );
 
-  const mostPopularProductData = mostPopularProductsQuery?.data?.data;
+  const mostPopularProductData = mostPopularProductsQuery?.data?.data || null;
   const mostPopularProducts = mostPopularProductData?.products || [];
 
-  const newestArrivalProductData = newestArrivalProductsQuery?.data?.data;
+  const newestArrivalProductData = newestArrivalProductsQuery?.data?.data || null;
   const newestArrivalProducts = newestArrivalProductData?.products || [];
   const productOptionsQuery = zeapApiSlice.useGetProductsOptionsQuery(
     {},

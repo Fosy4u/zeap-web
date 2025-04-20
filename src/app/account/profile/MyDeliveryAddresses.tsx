@@ -23,7 +23,7 @@ const MyDeliveryAddresses = () => {
   const isLoading = getDeliveryAddressesQuery.isLoading;
 
   const deliveryAddresses = getDeliveryAddressesQuery?.data?.data || [];
-  console.log("deliveryAddresses are", deliveryAddresses);
+
   return (
     <div className="flex flex-col bg-neutral-50 w-full p-1 rounded-md">
       <div className="flex justify-between w-full mb-4">

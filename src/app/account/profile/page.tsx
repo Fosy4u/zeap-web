@@ -12,7 +12,7 @@ const DashboardPage = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user?.isGuest) {
+    if (user?.isGuest && router) {
       router.push("/account/login");
     }
   }, [user, router]);
