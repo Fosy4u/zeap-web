@@ -12,8 +12,8 @@ import { Alert } from "flowbite-react";
 import LoadingDots from "@/components/loading/LoadingDots";
 import { getCurrencySmallSymbol, numberWithCommas } from "@/utils/helpers";
 import ApplyDiscount from "@/components/cart/ApplyDiscount";
-import { useRouter } from "next/navigation";
 import EmptyBasket from "@/components/cart/EmptyBasket";
+import { useRouter } from "next/navigation";
 
 interface ColInterface {
   name: string;
@@ -31,14 +31,13 @@ const CartPage = () => {
     { skip: !token }
   );
   const options = productOptionsQuery?.data?.data;
-  const colorOptions: ColInterface[] = options?.readyMadeClothes?.colorEnums;
+  const colorOptions: ColInterface[] =
+    options?.readyMadeClothes?.colorEnums || [];
   const cartQuery = zeapApiSlice.useGetCartQuery({}, { skip: !token });
-  const cart = cartQuery?.data?.data;
+  const cart = cartQuery?.data?.data || null;
   const isFulfilled = cartQuery?.status === "fulfilled";
 
   const basketItems = cart?.basketItems || [];
-  const subTotal = cart?.subTotal;
-  const total = cart?.total;
 
   return (
     <div>
@@ -87,7 +86,7 @@ const CartPage = () => {
 
                   <span className="font-semibold">
                     {getCurrencySmallSymbol(cart?.currency)}
-                    {numberWithCommas(subTotal)}
+                    {numberWithCommas(cart?.subTotal)}
                   </span>
                 </div>
                 <div className="flex justify-between py-4">
@@ -99,7 +98,7 @@ const CartPage = () => {
                   <span>Total</span>
                   <span>
                     {getCurrencySmallSymbol(cart?.currency)}
-                    {numberWithCommas(total)}
+                    {numberWithCommas(cart?.total)}
                   </span>
                 </div>
               </div>
@@ -109,7 +108,11 @@ const CartPage = () => {
 
               <ButtonPrimary
                 disabled={isLoading || basketItems?.length === 0}
-                onClick={() => router.push("/checkout")}
+                onClick={() => {
+                  if (router) {
+                    router.push("/checkout");
+                  }
+                }}
                 className={`mt-8 w-full ${
                   isLoading || basketItems?.length === 0
                     ? "opacity-50 cursor-not-allowed"
@@ -118,13 +121,6 @@ const CartPage = () => {
               >
                 {isLoading ? <LoadingDots /> : "Checkout Now"}
               </ButtonPrimary>
-              {/* <ButtonSecondary
-                className="mt-3 inline-flex w-full items-center gap-1 border-2 border-primary text-primary"
-                href="/checkout"
-              >
-                <TbBrandPaypal className="text-2xl" />
-                PayPal
-              </ButtonSecondary> */}
             </div>
           </div>
         </div>

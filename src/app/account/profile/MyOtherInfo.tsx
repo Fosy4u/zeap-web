@@ -26,7 +26,7 @@ const MyOtherInfo = () => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
-  console.log("height is", height);
+  ;
   const [shoeSize, setShoeSize] = useState("");
   const [bestOutfit, setBestOutfit] = useState("");
   const [bestColor, setBestColor] = useState("");

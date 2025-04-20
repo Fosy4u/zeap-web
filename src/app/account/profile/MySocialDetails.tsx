@@ -33,7 +33,7 @@ const MySocialDetails = () => {
     updateUser({ payload })
       .then((data) => {
         const user = data?.data?.data;
-        console.log("user isssss", user);
+   
         if (user) {
           setUser(user);
           setEditMode(false);

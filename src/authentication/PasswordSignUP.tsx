@@ -23,7 +23,7 @@ const PasswordSignUP = ({
 }) => {
   const topRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { login, loading } = useContext(AuthContext);
+  const { passwordLogin, loading } = useContext(AuthContext);
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -102,7 +102,7 @@ const PasswordSignUP = ({
         console.log("res", res);
         const newuser = res?.data?.data;
         setCheckedUser(newuser);
-        login(email, password);
+        passwordLogin(email, password);
         setError(null);
         if (callBack) {
           return callBack();
@@ -123,7 +123,7 @@ const PasswordSignUP = ({
     cryptoEncrypt,
     convert,
     setCheckedUser,
-    login,
+    passwordLogin,
     callBack,
     router,
   ]);

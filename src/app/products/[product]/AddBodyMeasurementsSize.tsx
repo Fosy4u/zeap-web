@@ -376,7 +376,6 @@ export function AddBodyMeasurementsSize({
               openExistingBodyMeasurements={openExistingBodyMeasurements}
               setOpenExistingBodyMeasurements={setOpenExistingBodyMeasurements}
               setBodyMeasurements={setBodyMeasurements}
-              bodyMeasurements={bodyMeasurements}
               measurements={measurements}
             />
           </SliderDrawer>

@@ -71,7 +71,6 @@ const Button: FC<ButtonProps> = ({
       disabled={disabled || loading}
       className={`${CLASSES}`}
       onClick={onClick}
-      /* eslint-disable-next-line react/button-has-type */
       type={type}
     >
       {loading && renderLoading()}

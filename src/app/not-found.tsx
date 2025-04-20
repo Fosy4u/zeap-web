@@ -1,9 +1,9 @@
-import React from "react";
+
 
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 import ButtonSecondary from "@/shared/Button/ButtonSecondary";
 
-const Page404 = () => {
+const NotFound = () => {
   return (
     <div className="container">
       <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-5 py-24">
@@ -31,4 +31,4 @@ const Page404 = () => {
   );
 };
 
-export default Page404;
+export default NotFound;

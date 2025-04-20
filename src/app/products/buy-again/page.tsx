@@ -24,7 +24,7 @@ const BuyAgainPage = () => {
     { skip: !token }
   );
 
-  const products = getBuyAgainProductsQuery?.data?.data;
+  const products = getBuyAgainProductsQuery?.data?.data || [];
 
   const isLoading = getBuyAgainProductsQuery.isLoading;
   const isFulfilled = getBuyAgainProductsQuery?.status === "fulfilled";
@@ -32,7 +32,7 @@ const BuyAgainPage = () => {
     {},
     { skip: !token }
   );
-  const options = productOptionsQuery?.data?.data;
+  const options = productOptionsQuery?.data?.data || null;
   const colorOptions: ColInterface[] =
     options?.readyMadeClothes?.colorEnums || [];
   return (
