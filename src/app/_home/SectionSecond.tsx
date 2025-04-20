@@ -24,8 +24,10 @@ const SectionSecond = () => {
         <video
           src={"/home.mp4"}
           autoPlay
-          loop
           muted
+          loop
+          playsInline
+          preload="none"
           className="object-cover w-full h-full rounded-full"
         />
       </div>
