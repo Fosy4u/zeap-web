@@ -198,9 +198,9 @@ const ProductCard = ({
                 {/* {isWLHovered || alreadyWishlisted ? <HeartSolid /> : <Heart />} */}
               </button>
             </div>
-            <div className=" hidden md:block mx-auto mt-2   overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800  ">
+            <div className="w-72 hidden md:block  mt-2   overflow-hidden rounded-lg cursor-pointer">
               <Image
-                className=" w-full h-[34rem]  object-contain transition-transform transform hover:scale-110 duration-1000"
+                className=" w-72 h-80  object-contain transition-transform transform hover:scale-110 duration-1000"
                 src={
                   getClickedColorImage(product) ||
                   getDefaultImageLink(product) ||
@@ -213,7 +213,7 @@ const ProductCard = ({
               />
               <button
                 type="button"
-                className="absolute top-2 right-2 p-1 rounded-full"
+                className="absolute top-2 left-10 p-1 rounded-full"
                 aria-label="Wishlist"
                 onClick={handleWishClick}
                 onMouseOver={() => setIsWLHovered(true)}

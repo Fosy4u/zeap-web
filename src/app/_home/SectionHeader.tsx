@@ -72,7 +72,7 @@ const SectionHeader = () => {
               className="relative h-full"
             >
               <div className="">
-                <div className="text-white bg-primary text-sm font-bold absolute bottom-2 left-10 border-2 border-white px-5 py-2 hover:bg-white hover:text-primary cursor-pointer rounded-md">
+                <div className="text-white z-50 bg-transparent text-sm font-bold absolute bottom-2 left-1 border-2 border-white px-5 py-2 hover:bg-white hover:text-primary cursor-pointer rounded-md">
                   Shop Now
                 </div>
               </div>
