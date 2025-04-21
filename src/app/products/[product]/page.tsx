@@ -48,7 +48,7 @@ const ProductPage = () => {
   const colorOptions: ColInterface[] = options?.readyMadeClothes?.colorEnums;
   const isLoading = productQuery.isLoading || productOptionsQuery.isLoading;
   const product = productQuery?.data?.data;
-  console.log("product", product);
+
 
   const [images, setImages] = useState<string[]>([]);
   const [reviews, setReviews] = useState<ProductReviewInterface[]>([]);
@@ -89,7 +89,7 @@ const ProductPage = () => {
       <div className="container">
         <ButtonCircle3
           onClick={() => router.back()}
-          size="w-10 h-10"
+          size="w-10 h-10 mb-2"
           className="border border-neutral-300"
         >
           <MdArrowBack className="text-2xl" />

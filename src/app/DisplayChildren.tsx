@@ -4,12 +4,17 @@ import Header from "@/components/Header/Header";
 import { ThemeContext } from "@/contexts/themeContext";
 import ToastContainer from "@/shared/toast";
 import { usePathname } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
-  const { theme, dimBackground } = useContext(ThemeContext);
+  const { theme, dimBackground, setDimBackground } = useContext(ThemeContext);
   const pathname = usePathname();
   const isAuthPage = pathname.startsWith("/account/login");
+  useEffect(() => {
+    setDimBackground(false);
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  , [pathname]);
   return (
     <div>
       {!isAuthPage && <Header />}

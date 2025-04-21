@@ -170,10 +170,12 @@ export const getProductDisplaySubMenus = (
     .find((menu) => menu.name === "Product Type")
     ?.options?.map((opt: { value: string; count: number }) => opt.value);
   if (productTypes && productTypes.length > 4) {
+    
     subMenus = (productTypes ?? []).map((item: string) => {
       const productExist = products.find(
         (product) => product.productType === toCamelCaseWithoutSpaces(item)
       );
+     
       if (!productExist) return null;
       return {
         value: item,
@@ -186,6 +188,7 @@ export const getProductDisplaySubMenus = (
     .find((menu) => menu.name === "Main")
     ?.options?.map((opt: { value: string; count: number }) => opt.value);
   if (main && main.length > 6) {
+
     subMenus = main.map((item: string) => {
       const productExist = products.find((product) => {
         const main = product.categories?.main || [];

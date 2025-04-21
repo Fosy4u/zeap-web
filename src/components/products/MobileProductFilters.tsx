@@ -5,7 +5,7 @@ import { Checkbox, Drawer } from "flowbite-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { HiAdjustments, HiMinus, HiPlus } from "react-icons/hi";
-import { HiBars2 } from "react-icons/hi2";
+import { IoMdClose } from "react-icons/io";
 
 const drawerTmem = {
   root: {
@@ -137,9 +137,28 @@ export function MobileProductFilters({
   };
   return (
     <>
+      {!isOpen && (
+        <div
+          onClick={() => {
+            setIsOpen(!isOpen);
+            setSubTitle("");
+          }}
+          className="inline-flex items-center  w-full h-8 px-4 text-sm  md:hidden"
+        >
+          <span className="flex items-center gap-2">
+            <HiAdjustments className="text-lg" />
+            <span className="text-sm font-semibold text-gray-900 dark:text-white">
+              Filters
+            </span>
+          </span>
+          <span className="text-sm font-semibold text-gray-900 dark:text-white">
+            {getSearchParamsNumber() > 0 ? `(${getSearchParamsNumber()})` : ""}
+          </span>
+        </div>
+      )}
       <Drawer
         theme={drawerTmem}
-        edge
+        // edge
         open={isOpen}
         onClose={handleClose}
         position="bottom"
@@ -152,7 +171,7 @@ export function MobileProductFilters({
               : `See ${getSearchParamsNumber()} items`
           }
           titleIcon={HiAdjustments}
-          closeIcon={HiBars2}
+          closeIcon={IoMdClose}
           onClick={() => setIsOpen(!isOpen)}
           className="cursor-pointer text-darkGold px-4 pt-4 hover:bg-gray-50 dark:hover:bg-gray-700"
         />
