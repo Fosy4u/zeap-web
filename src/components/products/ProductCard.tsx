@@ -224,8 +224,8 @@ const ProductCard = ({
               </button>
             </div>
           </div>
-          <div className="p-4 h-25 xl:h-35 ">
-            <p className="mb-2 text-sm  dark:text-white text-gray-900 h-10 overflow-auto ">
+          <div className="p-4 h-25 xl:h-35 md:w-72">
+            <p className=" text-sm   text-gray-900 h-10 overflow-auto truncate ">
               {capitalizeFirstLetter(product?.title?.toLowerCase())}-
               {getColorNameFromLink(
                 getClickedColorImage(product) ||

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 
-import { MobileProductFilters } from "@/components/products/MobileProductFilters";
 import ProductFilters from "@/components/products/ProductFilters";
 
 import ProductCollectionDisplay from "@/components/products/ProductCollectionDisplay";
@@ -54,6 +53,10 @@ const Page = () => {
   const options = productOptionsQuery?.data?.data;
   const colorOptions: ColInterface[] =
     options?.readyMadeClothes?.colorEnums || [];
+  const subMenus =
+    dynamicFilters &&
+    products?.length > 0 &&
+    getProductDisplaySubMenus(dynamicFilters, slug, undefined, products);
 
   return (
     <>
@@ -66,14 +69,6 @@ const Page = () => {
         </div>
         {products?.length > 0 && (
           <div className="flex flex-col md:flex-row md:gap-4">
-            <div className="flex md:hidden">
-              <MobileProductFilters
-                dynamicFilters={dynamicFilters}
-                totalCount={totalCount}
-                setSubTitle={setSubTitle}
-                colorOptions={colorOptions}
-              />
-            </div>
             <div className="hidden md:flex flex-none md:w-64">
               <ProductFilters
                 dynamicFilters={dynamicFilters}
@@ -86,14 +81,15 @@ const Page = () => {
               <ProductCollectionDisplay
                 products={products}
                 title="Most Popular"
-                subMenus={getProductDisplaySubMenus(
-                  dynamicFilters,
-                  slug,
-                  products
-                ).filter((menu) => menu !== null)}
+                subMenus={subMenus.filter(
+                  (menu: { link: string; value: string }) => menu !== null
+                )}
                 subTitle={subTitle}
                 setSubTitle={setSubTitle}
                 colorOptions={colorOptions}
+                showMobileFilters={true}
+                dynamicFilters={dynamicFilters}
+                totalCount={totalCount}
               />
               {/* <ProductTileList products={filteredProducts} /> */}
 

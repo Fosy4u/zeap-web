@@ -2,6 +2,7 @@ import { ProductInterface } from "@/interface/interface";
 import pluralize from "pluralize";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
+import { MobileProductFilters } from "./MobileProductFilters";
 
 const ProductCollectionDisplay = ({
   products,
@@ -10,6 +11,9 @@ const ProductCollectionDisplay = ({
   subTitle,
   setSubTitle,
   colorOptions,
+  showMobileFilters = false,
+  dynamicFilters,
+  totalCount,
 }: {
   products: ProductInterface[];
   title?: string;
@@ -17,10 +21,17 @@ const ProductCollectionDisplay = ({
   subTitle?: string;
   setSubTitle: (value: string) => void;
   colorOptions: { name: string; hex?: string; background?: string }[];
+  showMobileFilters?: boolean;
+  dynamicFilters: {
+    name: string;
+    type: string;
+    options: Record<string, { value: string }>;
+  }[];
+  totalCount: number;
 }) => {
   console.log("subTitle", subTitle);
   return (
-    <div className=" min-h-[70vh] max-h-[100vh] flex flex-col gap-4 overflow-auto ">
+    <div className=" min-h-[70vh]  flex flex-col gap-4 overflow-auto ">
       <span className="flex gap-2 items-center">
         {title && (
           <p className="text-lg font-semibold text-gray-800 mb-4">{title}</p>
@@ -42,7 +53,17 @@ const ProductCollectionDisplay = ({
           </Link>
         ))}
       </div>
-      <div className="grid gap-1 md:gap-4 grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 ">
+      {showMobileFilters && (
+        <div className="flex md:hidden">
+          <MobileProductFilters
+            dynamicFilters={dynamicFilters}
+            totalCount={totalCount}
+            setSubTitle={setSubTitle}
+            colorOptions={colorOptions}
+          />
+        </div>
+      )}
+      <div className="grid gap-1 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5">
         {products.map((item) => (
           <ProductCard
             product={item}

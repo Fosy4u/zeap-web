@@ -5,11 +5,12 @@ import { globalSelectors } from "@/redux/services/global.slice";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../loading";
 import MeasurementTemplate from "@/components/bodyMeasurementTemplate/MeasurementTemplate";
 import { BodyMeasurementTemplateInterface } from "@/interface/interface";
+import { SignInSignUpDrawer } from "@/authentication/SignInSignUpDrawer";
 
 const drawerTheme = {
   root: {
@@ -35,6 +36,7 @@ const drawerTheme = {
     },
   },
 };
+
 
 type measurementField = {
   field: string;
@@ -63,6 +65,7 @@ export function ExistingBodyMeasurements({
   // handleInputChange: (value:string,name: string, field: string) => void;
 }) {
   const { user } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
   const token = useSelector(globalSelectors.selectAuthToken);
   const getBodyMeasurementTemplatesQuery =
     zeapApiSlice.useGetBodyMeasurementTemplatesQuery({}, { skip: !token });
@@ -100,10 +103,10 @@ export function ExistingBodyMeasurements({
       position="bottom"
     >
       <DrawerHeader title="Existing Measurements" />
-      <DrawerItems>
+      <DrawerItems className="flex flex-col gap-4 mt-10 min-h-[70vh] items-center w-full">
         {isLoading && <Loading />}
         {templates?.length === 0 && (
-          <div className="flex flex-col items-center justify-center gap-4 p-4 bg-grey7 ">
+          <div className=" flex flex-col items-center justify-center gap-4 p-4 bg-grey7 ">
             <div className="flex flex-col items-center gap-1 bg-blue-100 p-4  rounded-lg">
               <span className="font-medium">
                 Your saved measurement templates list is empty.
@@ -128,21 +131,43 @@ export function ExistingBodyMeasurements({
                 </span>
               </div>
 
-              <ButtonPrimary>Log In / Sign Up</ButtonPrimary>
+              <ButtonPrimary
+                onClick={() => {
+                  if (!user || user?.isGuest) {
+                    return setIsOpen(true);
+                  }
+                  return;
+                }}
+              >
+                Log In / Sign Up
+              </ButtonPrimary>
             </div>
           ))}
-        <div className="flex flex-col gap-4 p-4">
+        <div className="flex flex-col gap-4 p-4 w-full">
           {templates?.length > 0 &&
             templates.map((template: BodyMeasurementTemplateInterface) => (
               <div
                 key={template.templateName}
                 onClick={() => handleSelect(template)}
-                className="flex flex-col gap-2 p-4 bg-grey7 rounded-lg cursor-pointer hover:bg-lightSuccess transition duration-200 ease-in-out"
+                className="flex flex-col gap-2 p-4 bg-grey7 rounded-lg cursor-pointer hover:bg-lightSuccess transition duration-200 ease-in-out w-full"
               >
                 <MeasurementTemplate template={template} showButton={true} />
               </div>
             ))}
         </div>
+        {isOpen && (
+          <Drawer
+            theme={drawerTheme}
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+           position="bottom"
+          >
+            <DrawerHeader />
+            <DrawerItems>
+              <SignInSignUpDrawer callBack={handleClose} />{" "}
+            </DrawerItems>
+          </Drawer>
+        )}
       </DrawerItems>
     </Drawer>
   );
