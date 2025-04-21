@@ -22,6 +22,7 @@ import { ThemeContext } from "@/contexts/themeContext";
 import { useRouter } from "next/navigation";
 import { HiHandThumbUp, HiScissors, HiShoppingBag } from "react-icons/hi2";
 import Image from "next/image";
+import Link from "next/link";
 
 const drawerTheme = {
   root: {
@@ -171,7 +172,7 @@ export function UserMenuBar() {
             >
               Reviews & Ratings
             </ListItem>
-        
+
             <ListItem
               className="hover:bg-slate-100 p-2 rounded-md cursor-pointer"
               icon={() => <HiInbox className="text-info mr-3" />}
@@ -210,11 +211,14 @@ export function UserMenuBar() {
             <hr className="border-b border-slate-300 w-full mb-2" />
           </div>
         )}
-        <div className="flex w-full p-2 justify-center ">
-          <span className="hidden xl:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm w-full text-center">
+        <Link
+          href={!user || user?.isGuest ? "/account/login" : "/sell-on-zeap"}
+          className="flex w-full p-2 justify-center mt-6"
+        >
+          <span className="block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm w-full text-center">
             Sell on Zeap
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   );

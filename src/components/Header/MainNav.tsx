@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // import { NavLinks } from '@/data/content';
 import Logo from "@/shared/Logo/Logo";
@@ -12,16 +12,22 @@ import CartMenuBar from "./CartMenuBar";
 import WishMenuBar from "./WishMenuBar";
 import { UserMenuBar } from "./UserMenuBar";
 import { MobileUserMenuBar } from "./MobileUserMenuBar";
+import Link from "next/link";
+import { AuthContext } from "@/contexts/authContext";
 
 const MainNav = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="flex flex-col gap-0">
       <div className="p-2 flex items-center justify-between">
         <div className="flex-1 flex items-center gap-4">
           <Logo className="hidden xl:block" />
-          <span className="hidden xl:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm">
+          <Link
+            href={!user || user?.isGuest ? "/account/login" : "/sell-on-zeap"}
+            className="hidden xl:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm"
+          >
             Sell on Zeap
-          </span>
+          </Link>
         </div>
 
         <div className=" flex-1   justify-end gap-7 flex items-center">
