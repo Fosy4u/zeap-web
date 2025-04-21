@@ -4,8 +4,6 @@ import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
-
-import { MobileProductFilters } from "@/components/products/MobileProductFilters";
 import ProductFilters from "@/components/products/ProductFilters";
 
 import ProductCollectionDisplay from "@/components/products/ProductCollectionDisplay";
@@ -84,14 +82,7 @@ const Collection = ({ formatLink }: { formatLink: string }) => {
       </div>
       {products?.length > 0 && (
         <div className="flex flex-col md:flex-row md:gap-4">
-          <div className="flex md:hidden">
-            <MobileProductFilters
-              dynamicFilters={dynamicFilters}
-              totalCount={totalCount}
-              setSubTitle={setSubTitle}
-              colorOptions={colorOptions}
-            />
-          </div>
+          
           <div className="hidden md:flex flex-none md:w-64">
             <ProductFilters
               dynamicFilters={dynamicFilters}
@@ -117,6 +108,9 @@ const Collection = ({ formatLink }: { formatLink: string }) => {
               subTitle={subTitle}
               setSubTitle={setSubTitle}
               colorOptions={colorOptions}
+              showMobileFilters={true}
+              dynamicFilters={dynamicFilters}
+              totalCount={totalCount}
             />
             {/* <ProductTileList products={filteredProducts} /> */}
 
