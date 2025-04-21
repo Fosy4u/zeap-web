@@ -11,7 +11,7 @@ const SectionCategory = () => {
         <Link
           key={item.title}
           href={`${item.link}`}
-          className="relative mt-4 md:mt-0 flex h-[130px] md:h-[170px] 2xl:h-[240px] w-full items-center justify-center rounded-2xl bg-secondary hover:bg-lightGold transition-all duration-300 ease-in-out cursor-pointer"
+          className="relative mt-10 md:mt-0 flex h-[130px] md:h-[170px] 2xl:h-[240px] w-full items-center justify-center rounded-2xl bg-secondary hover:bg-lightGold transition-all duration-300 ease-in-out cursor-pointer"
         >
           <Image
             src={item.coverImage}
