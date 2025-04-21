@@ -11,7 +11,6 @@ import {
   HiUserCircle,
 } from "react-icons/hi";
 
-
 import { useContext } from "react";
 import { AuthContext } from "@/contexts/authContext";
 import { HiHandThumbUp } from "react-icons/hi2";
@@ -26,7 +25,9 @@ const MobileAccountNavBar = () => {
         <div className="flex w-full p-2 ">
           <List className="w-full flex flex-col gap-4 ">
             <Link
-              href="/account/dashboard"
+              href={
+                !user || user?.isGuest ? "/account/login" : "/account/dashboard"
+              }
               className="flex items-center justify-between w-full"
             >
               <ListItem
@@ -39,7 +40,9 @@ const MobileAccountNavBar = () => {
               <HiChevronRight className="text-info mr-3 text-xl" />
             </Link>
             <Link
-              href="/account/profile"
+              href={
+                !user || user?.isGuest ? "/account/login" : "/account/profile"
+              }
               className="flex items-center justify-between w-full"
             >
               <ListItem
@@ -51,7 +54,9 @@ const MobileAccountNavBar = () => {
               <HiChevronRight className="text-info mr-3 text-xl" />
             </Link>
             <Link
-              href="/account/orders"
+              href={
+                !user || user?.isGuest ? "/account/login" : "/account/orders"
+              }
               className="flex items-center justify-between w-full"
             >
               <ListItem
@@ -63,7 +68,11 @@ const MobileAccountNavBar = () => {
               <HiChevronRight className="text-info mr-3 text-xl" />
             </Link>
             <Link
-              href="/account/measurements"
+              href={
+                !user || user?.isGuest
+                  ? "/account/login"
+                  : "/account/measurements"
+              }
               className="flex items-center justify-between w-full"
             >
               <ListItem
@@ -75,7 +84,9 @@ const MobileAccountNavBar = () => {
               <HiChevronRight className="text-info mr-3 text-xl" />
             </Link>
             <Link
-              href="/account/reviews"
+              href={
+                !user || user?.isGuest ? "/account/login" : "/account/reviews"
+              }
               className="flex items-center justify-between w-full"
             >
               <ListItem
@@ -88,7 +99,11 @@ const MobileAccountNavBar = () => {
             </Link>
 
             <Link
-              href="/account/notifications"
+              href={
+                !user || user?.isGuest
+                  ? "/account/login"
+                  : "/account/notifications"
+              }
               className="flex items-center justify-between w-full"
             >
               <ListItem
@@ -100,7 +115,11 @@ const MobileAccountNavBar = () => {
               <HiChevronRight className="text-info mr-3 text-xl" />
             </Link>
             <Link
-              href="/account/points-vouchers"
+              href={
+                !user || user?.isGuest
+                  ? "/account/login"
+                  : "/account/points-vouchers"
+              }
               className="flex items-center justify-between w-full"
             >
               <ListItem
@@ -114,8 +133,10 @@ const MobileAccountNavBar = () => {
           </List>
         </div>
         {user && !user?.isGuest && (
-          <div onClick={logout ? () => logout() : undefined}  // Ensure logout is called
-             className="flex flex-col w-full ">
+          <div
+            onClick={logout ? () => logout() : undefined} // Ensure logout is called
+            className="flex flex-col w-full "
+          >
             <hr className="border-b border-slate-300 w-full my-2" />
             <ListItem
               className="hover:bg-slate-100 p-2 rounded-md cursor-pointer text-danger"
@@ -126,11 +147,14 @@ const MobileAccountNavBar = () => {
             <hr className="border-b border-slate-300 w-full mb-2" />
           </div>
         )}
-        <div className="flex w-full p-2 justify-center mt-6">
+        <Link
+          href={!user || user?.isGuest ? "/account/login" : "/sell-on-zeap"}
+          className="flex w-full p-2 justify-center mt-6"
+        >
           <span className="block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm w-full text-center">
             Sell on Zeap
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   );

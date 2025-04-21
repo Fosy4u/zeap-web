@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { AuthContext } from "@/contexts/authContext";
 import { HiHandThumbUp } from "react-icons/hi2";
+import Link from "next/link";
 
 const AccountNavBar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -100,11 +101,14 @@ const AccountNavBar = () => {
             <hr className="border-b border-slate-300 w-full mb-2" />
           </div>
         )}
-        <div className="hidden md:flex w-full p-2 justify-center ">
-          <span className="hidden xl:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm w-full text-center">
+        <Link
+          href={!user || user?.isGuest ? "/account/login" : "/sell-on-zeap"}
+          className="flex w-full p-2 justify-center mt-6"
+        >
+          <span className="block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm w-full text-center">
             Sell on Zeap
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   );

@@ -61,9 +61,9 @@ export function MobileUserMenuBar() {
         type="button"
         className="relative inline-flex items-center p-3 text-sm  text-center  rounded-full hover:bg-slate-200  focus:outline-none"
         onClick={() => {
-          if (!user || user?.isGuest) {
-            return setIsOpen(true);
-          }
+          // if (!user || user?.isGuest) {
+          //   return setIsOpen(true);
+          // }
           router.push("/account/mobile");
         }}
       >
