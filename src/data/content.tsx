@@ -414,11 +414,7 @@ export const footerData = {
   ],
 };
 
-export const newsletter = {
-  heading: "Newsletter",
-  description:
-    "Get the latest news about us and sign up and get 20% off today. Never miss a single promo",
-};
+
 
 export const sizes = ["XS", "S", "M", "L", "XL"];
 

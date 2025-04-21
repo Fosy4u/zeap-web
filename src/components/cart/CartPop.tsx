@@ -65,7 +65,11 @@ const CartPop = ({
           )}
           <div className="flex   justify-between">
             <ButtonPrimary
-              onClick={() => {
+              onClick={(e?: React.MouseEvent<HTMLButtonElement>) => {
+                if (e) {
+                  e.stopPropagation();
+                  e.preventDefault();
+                }
                 handleClose();
                 router.push("/products/newest-arrival");
               }}
@@ -74,11 +78,15 @@ const CartPop = ({
             </ButtonPrimary>
             {isGuest && (
               <ButtonSecondary
-                onClick={() => {
+                onClick={(e?: React.MouseEvent<HTMLButtonElement>) => {
+                  if (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }
                   handleClose();
-                  router.push("/login");
+                  router.push("/account/login");
                 }}
-                className="w-1/2 bg-slate-600 text-white hover:bg-slate-700"
+                className="w-1/2 bg-gold"
               >
                 Sign In
               </ButtonSecondary>

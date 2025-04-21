@@ -22,7 +22,7 @@ const ProductDescription = ({ description }: { description: string }) => {
           aria-expanded="true"
           aria-controls="accordion-flush-body-1"
         >
-          <div className="bg-neutral-100 p-2">
+          <div className=" p-2">
             <span className="text-lg ">Product Description</span>
           </div>
           <svg

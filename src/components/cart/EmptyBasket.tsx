@@ -9,7 +9,7 @@ const EmptyBasket = () => {
   console.log("user in basket", user);
   const router = useRouter();
   return (
-    <div className="bg-slate-100 h-[20rem] flex flex-col justify-center items-center px-6 w-full md:w-[30rem]">
+    <div className="bg-slate-100 h-[20rem] flex flex-col justify-center items-center px-6 w-full md:w-[40rem]">
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-center ">
           <p className="text-md text-center text-info">Your cart is empty</p>
@@ -29,7 +29,12 @@ const EmptyBasket = () => {
         }  mt-4 gap-2 w-full`}
       >
         <ButtonPrimary
-          onClick={() => {
+          onClick={(e?: React.MouseEvent<HTMLButtonElement>) => {
+            if (e) {
+              e.stopPropagation();
+              e.preventDefault();
+            }
+
             router.push("/products/newest-arrival");
           }}
           className="md:w-1/2 "
@@ -38,11 +43,14 @@ const EmptyBasket = () => {
         </ButtonPrimary>
         {(!user || user?.isGuest) && (
           <ButtonSecondary
-            onClick={() => {
-              // handleClose();
-              // router.push("/login");
+            onClick={(e?: React.MouseEvent<HTMLButtonElement>) => {
+              if (e) {
+                e.stopPropagation();
+                e.preventDefault();
+              }
+              router.push("/account/login");
             }}
-            className="md:w-1/2 "
+            className="md:w-1/2 bg-gold"
           >
             Sign In
           </ButtonSecondary>

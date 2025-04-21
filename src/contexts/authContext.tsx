@@ -108,13 +108,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const accessToken = await getToken();
         if (accessToken) {
           if (currentUser.isAnonymous) {
-  
             setIsGuest(true);
             localStorage.setItem("guestUid", currentUser.uid);
             return creatGuestUser({})
               .unwrap()
               .then((res) => {
-       
                 const newuser = res?.data;
 
                 setUser(newuser);
@@ -143,7 +141,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               await getToken();
 
               setIsGuest(true);
- 
             }
             // ...
           })
@@ -155,6 +152,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           });
       }
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -188,7 +186,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             mergePasswordLogin({ payload })
               .unwrap()
               .then((result) => {
-           
                 const userData = result.data;
                 setUser(userData);
                 localStorage.removeItem("guestUid");
@@ -243,7 +240,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       .then(async (userCredential) => {
         const googleCurrentUser = userCredential.user;
 
-      
         if (googleCurrentUser) {
           await getToken();
           setIsAuthenticated(true);
@@ -251,7 +247,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           setLoading(false);
 
           const guestUid = localStorage.getItem("guestUid");
-     
+
           if (guestUid) {
             const payload = {
               guestUid,
@@ -259,7 +255,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             mergeGoogleAppleLogin({ payload })
               .unwrap()
               .then((result) => {
-             
                 const userData = result.data;
                 setUser(userData);
                 localStorage.removeItem("guestUid");
