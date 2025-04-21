@@ -71,7 +71,7 @@ const ProductDetailInfo = ({
         aria-labelledby="accordion-flush-heading-1"
       >
         {productId && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               ID
             </span>
@@ -82,7 +82,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {productGroup && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Group
             </span>
@@ -93,7 +93,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {accessoryType && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Accessory
             </span>
@@ -105,7 +105,7 @@ const ProductDetailInfo = ({
         )}
 
         {main?.length > 0 && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Main
             </span>
@@ -116,7 +116,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {design?.length > 0 && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Design
             </span>
@@ -127,7 +127,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {style?.length > 0 && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Style
             </span>
@@ -138,7 +138,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {occasion?.length > 0 && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Occasion
             </span>
@@ -149,7 +149,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {fit?.length > 0 && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Fit
             </span>
@@ -160,7 +160,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {sleeveLength && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Sleeve
             </span>
@@ -171,7 +171,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {fastening?.length > 0 && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Fastening
             </span>
@@ -182,7 +182,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {heelType && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Heel Type
             </span>
@@ -191,7 +191,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {heelHeight && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Heel Height
             </span>
@@ -202,7 +202,7 @@ const ProductDetailInfo = ({
           </div>
         )}
         {brand && (
-          <div className="inline-flex gap-2">
+          <div className="inline-flex gap-8">
             <span className="text-gray-500 dark:text-gray-400 font-semibold w-12">
               Brand
             </span>

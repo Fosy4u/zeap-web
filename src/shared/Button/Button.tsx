@@ -14,7 +14,7 @@ export interface ButtonProps {
   disabled?: boolean;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   href?: Route;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
 }
 
@@ -28,7 +28,9 @@ const Button: FC<ButtonProps> = ({
   children,
   type,
   loading,
-  onClick = () => {},
+  onClick = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
+  }
 }) => {
   const CLASSES = `relative h-auto inline-flex items-center justify-center rounded-full transition-colors
    ${fontSize} ${sizeClass} ${translate} ${className}`;
@@ -60,7 +62,7 @@ const Button: FC<ButtonProps> = ({
 
   if (href) {
     return (
-      <Link href={href} className={`${CLASSES}`} onClick={onClick}>
+      <Link href={href} className={`${CLASSES}`}>
         {children || `This is Link`}
       </Link>
     );

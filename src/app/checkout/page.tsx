@@ -318,26 +318,28 @@ const CheckoutPage = () => {
           />
         </div>
         {serverError && <Alert color="failure">{serverError}</Alert>}
-        <ButtonPrimary
-          className="mt-8 w-full"
-          onClick={handlePayment}
-          disabled={
-            isLoading ||
-            !email ||
+        {email && (
+          <ButtonPrimary
+            className="mt-8 w-full"
+            onClick={handlePayment}
+            disabled={
+              isLoading ||
+              !email ||
+              getReferenceTriggerStatus.isLoading ||
+              verifyPaymentStatus.isLoading
+            }
+            // onClick={handleTest}
+          >
+            {" "}
+            {isLoading ||
             getReferenceTriggerStatus.isLoading ||
-            verifyPaymentStatus.isLoading
-          }
-          // onClick={handleTest}
-        >
-          {" "}
-          {isLoading ||
-          getReferenceTriggerStatus.isLoading ||
-          verifyPaymentStatus.isLoading ? (
-            <LoadingDots />
-          ) : (
-            "Proceed to payment"
-          )}
-        </ButtonPrimary>
+            verifyPaymentStatus.isLoading ? (
+              <LoadingDots />
+            ) : (
+              "Proceed to payment"
+            )}
+          </ButtonPrimary>
+        )}
 
         {/* <div id="PaymentMethod" className="scroll-mt-24">
           <PaymentMethod

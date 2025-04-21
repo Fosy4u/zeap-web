@@ -1,22 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { newsletter } from '@/data/content';
-import ButtonPrimary from '@/shared/Button/ButtonPrimary';
-import Input from '@/shared/Input/Input';
-
-
+import ButtonPrimary from "@/shared/Button/ButtonPrimary";
+import Input from "@/shared/Input/Input";
 
 const Subscribe = () => {
   return (
     <div className="space-y-5">
       <h1
         className="text-4xl font-semibold md:text-[80px]"
-        style={{ lineHeight: '1em' }}
+        style={{ lineHeight: "1em" }}
       >
-        {newsletter.heading}
+        Newsletter
       </h1>
       <p className="w-[80%] text-sm text-neutral-200">
-        {newsletter.description}
+        Get the latest news about us. Never
+        miss a single promotion or discount. 
       </p>
 
       <div className="flex items-center rounded-full border border-neutral-500">
