@@ -12,6 +12,7 @@ import ProductPagination from "@/components/products/ProductPagination";
 import { getProductDisplaySubMenus } from "@/utils/helpers";
 import { useState } from "react";
 import NoProduct from "@/components/products/NoProduct";
+import MyRecommendedProducts from "@/components/products/MyRecommendedProducts";
 
 interface ColInterface {
   name: string;
@@ -55,7 +56,7 @@ const Page = () => {
     options?.readyMadeClothes?.colorEnums || [];
 
   return (
-    <>
+    <div className="p-1 md:p-0 py-6 lg:pb-28">
       {" "}
       <hr className="border-neutral-300" />
       <div className="md:p-4 min-h-screen ">
@@ -64,9 +65,8 @@ const Page = () => {
             Array.from({ length: 24 }).map((_, i) => <Skeleton key={i} />)}
         </div>
         {products?.length > 0 && (
-          <div className="flex flex-col md:flex-row md:gap-4">
-           
-            <div className="hidden md:flex flex-none md:w-64">
+          <div className="flex flex-col md:flex-row md:gap-4 ">
+            <div className="hidden md:flex h-[100%] md:w-64">
               <ProductFilters
                 dynamicFilters={dynamicFilters}
                 totalCount={totalCount}
@@ -74,7 +74,7 @@ const Page = () => {
                 colorOptions={colorOptions}
               />
             </div>
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8  ">
               <ProductCollectionDisplay
                 products={products}
                 title="Newest Arrival"
@@ -104,9 +104,11 @@ const Page = () => {
             </div>
           </div>
         )}
+
         {productsQuery.isSuccess && products?.length === 0 && <NoProduct />}
       </div>
-    </>
+      <MyRecommendedProducts />
+    </div>
   );
 };
 

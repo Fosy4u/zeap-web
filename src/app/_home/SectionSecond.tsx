@@ -1,6 +1,6 @@
 import ButtonSecondary from "@/shared/Button/ButtonSecondary";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+
 
 const SectionSecond = () => {
   return (
@@ -13,12 +13,14 @@ const SectionSecond = () => {
         >
           Home of Stunning Fashion
         </div>
-        <Link href={"/products"} className="flex items-center gap-7">
-          <ButtonSecondary className="hover:bg-white hover:text-primary bg-secondary">
-            Shop Now
-            <ArrowRightIcon className="w-5 h-5 ml-2" />
-          </ButtonSecondary>
-        </Link>
+
+        <ButtonSecondary
+          href="/products"
+          className="hover:bg-white hover:text-primary bg-secondary"
+        >
+          Shop Now
+          <ArrowRightIcon className="w-5 h-5 ml-2" />
+        </ButtonSecondary>
       </div>
       <div className="flex basis-[30%] items-end overflow-hidden">
         <video

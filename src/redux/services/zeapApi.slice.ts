@@ -671,7 +671,7 @@ export default createApi({
     getRecentViewedProducts: builder.query({
       query: (arg) => {
         return {
-          url: `recentViews/products`,
+          url: `products/recentViews`,
           params: { ...arg },
         };
       },
@@ -681,6 +681,15 @@ export default createApi({
       query: (arg) => {
         return {
           url: `/products/live/buyAgain`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Products", "Product", "Order"],
+    }),
+    getRecommendedProducts: builder.query({
+      query: (arg) => {
+        return {
+          url: `/products/live/recommended`,
           params: { ...arg },
         };
       },
@@ -1562,10 +1571,10 @@ export default createApi({
       },
     }),
 
-    getOrders: builder.query({
+    getBuyerOrders: builder.query({
       query: (arg) => {
         return {
-          url: `orders/`,
+          url: `orders/authUser/buyer`,
           params: { ...arg },
         };
       },

@@ -18,6 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import NoProduct from "@/components/products/NoProduct";
 import pluralize from "pluralize";
+import MyRecommendedProducts from "@/components/products/MyRecommendedProducts";
 
 interface ColInterface {
   name: string;
@@ -127,6 +128,7 @@ const Collection = ({ formatLink }: { formatLink: string }) => {
       )}
       {productsQuery.isSuccess && products?.length === 0 && <NoProduct />}
     </div>
+    <MyRecommendedProducts />
     </>
   );
 };

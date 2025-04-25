@@ -386,29 +386,24 @@ export const signUpSection = {
 export const footerData = {
   footerLinks: [
     {
-      title: "Main Pages",
+      title: "Company",
       links: [
-        { href: "/home", name: "Home" },
-        { href: "/products", name: "Collections" },
-        { href: "/cart", name: "Cart" },
-        { href: "/checkout", name: "Checkout" },
+        { href: "/about", name: "About" },
+        { href: "/", name: "Sell on Zeap" },
+        { href: "/", name: "Offices" },
         { href: "/blog", name: "Blogs" },
-        {
-          href: "/blog/the-evolution-of-sneaker-culture-a-historical-perspective",
-          name: "Blog Single",
-        },
-        { href: "/collections/yellowLow", name: "Product Single" },
+       
       ],
     },
     {
-      title: "Utility Pages",
+      title: "Get Help",
       links: [
-        { href: "/contact", name: "Contact" },
-        { href: "/forgot-pass", name: "Forgot Password" },
-        { href: "/login", name: "Login" },
-        { href: "/signup", name: "Signup" },
+        { href: "/contact", name: "Contact Us" },
+      
         { href: "/faq", name: "FAQS" },
-        { href: "/rt", name: "Not Found" },
+        { href: "/", name: "Returns" },
+        { href: "/help", name: "Center" },
+      
       ],
     },
   ],

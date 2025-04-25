@@ -31,7 +31,7 @@ const ProductCollectionDisplay = ({
 }) => {
   console.log("subTitle", subTitle);
   return (
-    <div className=" min-h-[70vh]  flex flex-col gap-4 overflow-auto ">
+    <div className="max-h-full md:max-h-[150vh] 2xl:max-h-[200vh] overflow-auto  flex flex-col gap-4  ">
       <span className="flex gap-2 items-center">
         {title && (
           <p className="text-lg font-semibold text-gray-800 mb-4">{title}</p>
@@ -40,7 +40,7 @@ const ProductCollectionDisplay = ({
           <p className="text-md  text-gray-800 mb-4">- {subTitle}</p>
         )}
       </span>
-      <div className="flex overflow-scroll gap-2 w-full ">
+      <div className="flex  gap-2 w-full ">
         {subMenus?.slice(0, 10)?.map((menu, index) => (
           <Link
             href={menu?.link?.replace("&", "%26")}
@@ -63,7 +63,7 @@ const ProductCollectionDisplay = ({
           />
         </div>
       )}
-      <div className="grid gap-1 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5">
+      <div className="grid gap-1 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 ">
         {products.map((item) => (
           <ProductCard
             product={item}

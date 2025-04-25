@@ -108,7 +108,7 @@ const ProductFilters = ({
   };
 
   return (
-    <div className="flex  flex-col h-[90vh] overflow-auto bg-white dark:bg-gray-900   rounded-md overflow-auto">
+    <div className="flex   flex-col h-[150vh] overflow-scroll bg-white w-[16rem] ">
       {getSearchParamsNumber() > 0 && (
         <div
           onClick={() => {
@@ -117,7 +117,7 @@ const ProductFilters = ({
               router.push(currentUrl);
             }
           }}
-          className="flex items-center  mb-2 border rounded-full justify-center w-40 text-md cursor-pointer hover:border-darkGold"
+          className="flex items-center  mb-2 border rounded-full justify-center w-40 text-md cursor-pointer hover:border-darkGold "
         >
           Clear all ({getSearchParamsNumber()})
         </div>

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import SuccessPic from "@/images/success_modal_image.png";
 import Image from "next/image";
-import Reciept from "../orders/Reciept";
+import Reciept from "../../components/orders/Reciept";
 import Loading from "../loading";
 
 const OrderSuccessModal = ({
