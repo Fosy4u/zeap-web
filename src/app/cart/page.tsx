@@ -94,13 +94,7 @@ const CartPage = () => {
                   <span className="font-semibold">Calculated at Checkout</span>
                 </div>
 
-                <div className="flex justify-between pt-4 text-base font-semibold">
-                  <span>Total</span>
-                  <span>
-                    {getCurrencySmallSymbol(cart?.currency)}
-                    {numberWithCommas(cart?.total)}
-                  </span>
-                </div>
+              
               </div>
               <hr className="my-10 border-neutral-300" />
               <ApplyDiscount />

@@ -12,7 +12,6 @@ import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { ProductInterface } from "@/interface/interface";
 import ProductCard from "@/components/products/ProductCard";
 import Skeleton from "@/components/loading/Skeleton";
-import Link from "next/link";
 
 interface ColInterface {
   name: string;
@@ -21,7 +20,6 @@ interface ColInterface {
 }
 
 const SectionProducts = () => {
-
   const token = useSelector(globalSelectors.selectAuthToken);
   const mostPopularProductsQuery = zeapApiSlice.useGetMostPopularProductsQuery(
     {
@@ -42,7 +40,8 @@ const SectionProducts = () => {
   const mostPopularProductData = mostPopularProductsQuery?.data?.data || null;
   const mostPopularProducts = mostPopularProductData?.products || [];
 
-  const newestArrivalProductData = newestArrivalProductsQuery?.data?.data || null;
+  const newestArrivalProductData =
+    newestArrivalProductsQuery?.data?.data || null;
   const newestArrivalProducts = newestArrivalProductData?.products || [];
   const productOptionsQuery = zeapApiSlice.useGetProductsOptionsQuery(
     {},
@@ -59,9 +58,8 @@ const SectionProducts = () => {
           <span className="mb-0 font-bold text-xl text-neutral-900">
             Popular Items
           </span>
-          <Link href={"/products/most-popular"}>
-            <ButtonPrimary>Shop Now</ButtonPrimary>
-          </Link>
+
+          <ButtonPrimary href="/products/most-popular">Shop Now</ButtonPrimary>
         </div>
 
         <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5  ">
@@ -89,9 +87,10 @@ const SectionProducts = () => {
           <span className="mb-0 font-bold text-xl text-neutral-900">
             Newest Arrivals
           </span>
-          <Link href={"/products/newest-arrival"}>
-            <ButtonPrimary>Shop Now</ButtonPrimary>
-          </Link>
+
+          <ButtonPrimary href="/products/newest-arrival">
+            Shop Now
+          </ButtonPrimary>
         </div>
 
         <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 ">

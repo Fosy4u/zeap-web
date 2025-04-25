@@ -6,6 +6,7 @@ import RecentViewCard from "./RecentViewCard";
 import AccountNavBar from "@/components/account/AccountNavBar";
 import WishCard from "./WishCard";
 import BuyAgainListCard from "./BuyAgainListCard";
+import MyRecommendedProducts from "@/components/products/MyRecommendedProducts";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const DashboardPage = () => {
   return (
     <div className="min-h-screen md:px-2 h-full overflow-auto ">
       <div className="grid  grid-cols-1 md:grid-cols-4 p-4 md:p-6 md:px-10">
-        <div className="col-span-1 md:col-span-1">
+        <div className="hidden md:col-span-1 md:block">
           <AccountNavBar />
         </div>
         {user && !user?.isGuest && (
@@ -35,6 +36,7 @@ const DashboardPage = () => {
           </div>
         )}
       </div>
+      <MyRecommendedProducts />
     </div>
   );
 };

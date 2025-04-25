@@ -12,6 +12,7 @@ import ProductPagination from "@/components/products/ProductPagination";
 import { getProductDisplaySubMenus } from "@/utils/helpers";
 import { useState } from "react";
 import NoProduct from "@/components/products/NoProduct";
+import MyRecommendedProducts from "@/components/products/MyRecommendedProducts";
 
 interface ColInterface {
   name: string;
@@ -104,6 +105,7 @@ const Page = () => {
         )}
         {productsQuery.isSuccess && products?.length === 0 && <NoProduct />}
       </div>
+      <MyRecommendedProducts />
     </>
   );
 };

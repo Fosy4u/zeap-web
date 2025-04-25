@@ -8,11 +8,10 @@ import NoPic from "@/images/noPhoto.png";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonSecondary from "@/shared/Button/ButtonSecondary";
-import Link from "next/link";
+
 
 const RecentViewCard = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
- 
 
   const getRecentViewedProductsQuery =
     zeapApiSlice.useGetRecentViewedProductsQuery({}, { skip: !token });
@@ -86,14 +85,12 @@ const RecentViewCard = () => {
           </div>
         )}
         {products?.length > 0 && (
-          <Link href="/products/recent">
-            <ButtonSecondary
-              className="mt-4 w-full bg-lightGold"
-             
-            >
-              View All
-            </ButtonSecondary>
-          </Link>
+          <ButtonSecondary
+            className="mt-4 w-full bg-lightGold"
+            href="/products/recent"
+          >
+            View All
+          </ButtonSecondary>
         )}
       </div>
     </div>

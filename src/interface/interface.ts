@@ -414,8 +414,13 @@ interface OrderInterface {
   user: UserInterface;
   disabled: boolean;
   orderId: string;
-
+  progress:{
+    value: number;
+    max: number;
+    min: number;
+  };
   deliveryAddress: deliveryAddressInterface;
+  deliveryDetails: deliveryAddressInterface;
   payment: PaymentInterface;
   productOrders: ProductOrdersInterface[];
   voucher: VoucherInterface;

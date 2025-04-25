@@ -8,7 +8,7 @@ import NoPic from "@/images/noPhoto.png";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonSecondary from "@/shared/Button/ButtonSecondary";
-import Link from "next/link";
+
 
 const BuyAgainListCard = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
@@ -91,14 +91,14 @@ const BuyAgainListCard = () => {
           </div>
         )}
         {products?.length > 0 && (
-          <Link href="/products/buy-again">
+
             <ButtonSecondary
               className="mt-4 w-full bg-lightGold"
-             
+             href="/products/buy-again"
             >
               View All
             </ButtonSecondary>
-          </Link>
+    
         )}
       </div>
     </div>

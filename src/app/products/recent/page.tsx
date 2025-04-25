@@ -22,8 +22,7 @@ const RecentPage = () => {
   const getRecentViewedProductsQuery =
     zeapApiSlice.useGetRecentViewedProductsQuery({}, { skip: !token });
 
-  
-     const recentViewedProducts = getRecentViewedProductsQuery?.data?.data;
+  const recentViewedProducts = getRecentViewedProductsQuery?.data?.data;
 
   const isLoading = getRecentViewedProductsQuery.isLoading;
   const isFulfilled = getRecentViewedProductsQuery?.status === "fulfilled";
@@ -35,7 +34,7 @@ const RecentPage = () => {
   const colorOptions: ColInterface[] =
     options?.readyMadeClothes?.colorEnums || [];
   return (
-    <div>
+    <div className="p-1  py-6 lg:pb-28">
       <div className="flex justify-between items-center">
         <span className="mb-0 font-bold text-xl text-neutral-900">
           Recently Viewed
