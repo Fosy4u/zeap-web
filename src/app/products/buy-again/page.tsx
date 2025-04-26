@@ -42,7 +42,7 @@ const BuyAgainPage = () => {
           Recently Viewed
         </span>
       </div>
-      <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 ">
+      <div className="grid gap-2 md:gap-4 grid-cols-1 md:grid-cols-4 lg:grid-cols-5 ">
         {isLoading &&
           Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} />)}
       </div>

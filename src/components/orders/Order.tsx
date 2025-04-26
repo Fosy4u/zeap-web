@@ -2,14 +2,14 @@ import { Badge } from "flowbite-react";
 // import Reciept from './Reciept';
 import { OrderInterface, ProductOrdersInterface } from "@/interface/interface";
 import { formatCurrency } from "@/utils/helpers";
+import ProductOrderCard from "./ProductOrderCard";
 
 const Order = ({ order }: { order: OrderInterface }) => {
   const productOrders = order?.productOrders;
   const deliveryDetails = order?.deliveryDetails;
   const isCancelled = order?.cancel?.isCancelled;
   const payment = order?.payment;
- 
- 
+
   return (
     <div className="flex flex-col text-black gap-4">
       <div className="flex flex-col gap-2 shadow-md w-full p-2">
@@ -66,7 +66,6 @@ const Order = ({ order }: { order: OrderInterface }) => {
         <span className="font-bold">Payment</span>
         <span className="text-md ">{payment.reference}</span>
         <div className="flex justify-between p-2 cursor-pointer bg-grey8">
-        
           {payment?.amount && payment?.currency && (
             <span className="text-md ">
               {formatCurrency(payment.amount / 100, payment.currency)}
@@ -78,11 +77,11 @@ const Order = ({ order }: { order: OrderInterface }) => {
         </div>
       </div>
       <div className="flex flex-col gap-2 shadow-md w-full p-2">
-        <span className="font-bold">Sub Product Orders</span>
+        <span className="font-bold">Order Items</span>
         <div className="grid grid-cols-1 gap-4   ">
           {productOrders.map((productOrder: ProductOrdersInterface) => (
             <div key={productOrder?._id}>
-              {/* <ProductOrderCard productOrder={productOrder} /> */}
+              <ProductOrderCard productOrder={productOrder} />
             </div>
           ))}
         </div>

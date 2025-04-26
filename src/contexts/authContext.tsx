@@ -310,6 +310,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           await getToken();
           setIsGuest(true);
         }
+        router.push("/");
         // ...
       })
       .catch((error) => {

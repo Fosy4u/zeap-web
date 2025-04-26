@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
       <div className="z-10">
         <div className=" bg-black text-white">
           <div className="grid gap-10 divide-x divide-neutral-500 lg:grid-cols-2 lg:gap-0">
-            <div className="grid gap-y-10 px-10 pb-5 pt-16 md:grid-cols-3">
+            <div className="grid gap-y-10 px-10 pb-5 pt-16 grid-cols-2 md:grid-cols-3">
               {footerData.footerLinks.map((item) => (
                 <div key={item.title} className="space-y-5">
                   <h4 className="text-2xl font-medium">{item.title}</h4>
@@ -42,7 +42,6 @@ const Footer: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-5">
-              <Link href="/">Terms of service</Link>
               <Link href="/">Privacy Policy</Link>
             </div>
           </div>
