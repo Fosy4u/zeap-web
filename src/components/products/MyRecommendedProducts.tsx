@@ -62,6 +62,7 @@ const MyRecommendedProducts = () => {
   };
   return (
     <div className="bg-lightGold container mt-4">
+        
       {recommendedProducts?.length > 0 && (
         <div className="p-1  py-8 lg:pb-28">
           <div className="flex justify-between items-center">
@@ -69,7 +70,7 @@ const MyRecommendedProducts = () => {
               Picked For You
             </span>
           </div>
-          <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 ">
+          <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 l  g:grid-cols-5 ">
             {isLoading &&
               Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} />)}
           </div>

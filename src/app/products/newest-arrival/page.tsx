@@ -60,7 +60,7 @@ const Page = () => {
       {" "}
       <hr className="border-neutral-300" />
       <div className="md:p-4 min-h-screen ">
-        <div className="grid gap-7 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-7 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
           {isLoading &&
             Array.from({ length: 24 }).map((_, i) => <Skeleton key={i} />)}
         </div>

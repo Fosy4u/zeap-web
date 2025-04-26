@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import {  Drawer } from 'flowbite-react';
-import Order from './Order';
-import { OrderInterface } from '@/interface/interface';
-
+import { Drawer } from "flowbite-react";
+import Order from "./Order";
+import { OrderInterface } from "@/interface/interface";
 
 //import { useSelector } from 'react-redux';
 //import { globalSelectors } from '../../../redux/services/global.slice';
@@ -11,12 +10,12 @@ import { OrderInterface } from '@/interface/interface';
 
 const drawerTheme = {
   root: {
-    base: 'fixed z-50  overflow-y-auto bg-slate-100   p-4 transition-transform ',
+    base: "fixed z-50  overflow-y-auto bg-slate-100   p-4 transition-transform ",
 
     position: {
       right: {
-        on: 'right-0 top-0 h-screen w-screen lg:w-[40vw] transform-none',
-        off: 'right-0 top-0 h-screen w-80 translate-x-full',
+        on: "right-0 top-0 md:top-[7%] h-screen w-screen lg:w-[40vw] transform-none",
+        off: "right-0 top-0 h-screen w-80 translate-x-full",
       },
     },
   },
@@ -25,9 +24,9 @@ const drawerTheme = {
 export function OrderDrawer({
   isOpen,
   setIsOpen,
-order
+  order,
 }: {
-  order: OrderInterface
+  order: OrderInterface;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
@@ -38,7 +37,6 @@ order
   // );
   // const order = orderQuery?.data?.data;
   // const isLoading = orderQuery.isLoading;
- 
 
   const handleClose = () => setIsOpen(false);
 
@@ -49,9 +47,8 @@ order
       position="right"
       theme={drawerTheme}
     >
-      <Drawer.Header title="Parent Order" className="text-darkGold" />
+      <Drawer.Header title="Order" className="text-darkGold" />
       <Drawer.Items>
-      
         {order && (
           <div className="p-4 flex flex-col">
             <Order order={order} />
