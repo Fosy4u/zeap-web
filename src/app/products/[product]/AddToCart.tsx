@@ -70,13 +70,7 @@ const AddToCart = ({
         variation?.size?.toLocaleLowerCase() ===
           selectedSize.toLocaleLowerCase()
     );
-    console.log(
-      "variation",
-      variation,
-      selectedProductColor,
-      selectedSize,
-      variations
-    );
+   
     return variation?.sku;
   };
   useEffect(() => {
