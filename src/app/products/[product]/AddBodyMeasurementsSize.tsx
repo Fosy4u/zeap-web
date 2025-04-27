@@ -2,7 +2,7 @@
 
 import { Alert, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { useContext, useEffect, useRef, useState } from "react";
-import { ExistingBodyMeasurements } from "./ExistingBodyMeasurements";
+import { ExistingBodyMeasurements } from "../../../components/bodyMeasurementTemplate/ExistingBodyMeasurements";
 import SliderDrawer from "@/components/slider/SliderDrawer";
 import { ThemeContext } from "@/contexts/themeContext";
 import { useSelector } from "react-redux";
@@ -250,7 +250,7 @@ export function AddBodyMeasurementsSize({
                   key={measurement.name}
                   className="flex flex-col gap-2 rounded-lg p-2 border border-slate-200 py-4"
                 >
-                  <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">
+                  <span className="text-sm font-bold text-gray-500 dark:text-gray-400">
                     {capitalizeFirstLetter(measurement.name)}
                   </span>
                   <div className="flex flex-col gap-1">

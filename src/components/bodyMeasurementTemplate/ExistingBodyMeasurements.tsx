@@ -7,7 +7,7 @@ import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
-import Loading from "../loading";
+import Loading from "../../app/products/loading";
 import MeasurementTemplate from "@/components/bodyMeasurementTemplate/MeasurementTemplate";
 import { BodyMeasurementTemplateInterface } from "@/interface/interface";
 import { SignInSignUpDrawer } from "@/authentication/SignInSignUpDrawer";
@@ -36,7 +36,6 @@ const drawerTheme = {
     },
   },
 };
-
 
 type measurementField = {
   field: string;
@@ -71,7 +70,7 @@ export function ExistingBodyMeasurements({
     zeapApiSlice.useGetBodyMeasurementTemplatesQuery({}, { skip: !token });
   const templates = getBodyMeasurementTemplatesQuery?.data?.data;
   const isLoading = getBodyMeasurementTemplatesQuery?.isLoading;
-
+  const isFulfilled = getBodyMeasurementTemplatesQuery?.status === "fulfilled";
   const handleClose = () => setOpenExistingBodyMeasurements(false);
   const handleSelect = (template: BodyMeasurementTemplateInterface) => {
     const newBodyMeasurements: bodyMeasurement[] = [];
@@ -105,7 +104,7 @@ export function ExistingBodyMeasurements({
       <DrawerHeader title="Existing Measurements" />
       <DrawerItems className="flex flex-col gap-4 mt-10 min-h-[70vh] items-center w-full">
         {isLoading && <Loading />}
-        {templates?.length === 0 && (
+        {templates?.length === 0 && isFulfilled && (
           <div className=" flex flex-col items-center justify-center gap-4 p-4 bg-grey7 ">
             <div className="flex flex-col items-center gap-1 bg-blue-100 p-4  rounded-lg">
               <span className="font-medium">
@@ -149,9 +148,14 @@ export function ExistingBodyMeasurements({
               <div
                 key={template.templateName}
                 onClick={() => handleSelect(template)}
-                className="flex flex-col gap-2 p-4 bg-grey7 rounded-lg cursor-pointer hover:bg-lightSuccess transition duration-200 ease-in-out w-full"
+                className={`flex flex-col gap-2 p-4  rounded-lg  w-full cursor-pointer hover:bg-lightSuccess transition duration-200 ease-in-out ${
+                  template?.gender === "female" ? "bg-pink-50" : "bg-blue-50"
+                }`}
               >
-                <MeasurementTemplate template={template} showButton={true} />
+                <MeasurementTemplate
+                  template={template}
+                  showSelectButton={true}
+                />
               </div>
             ))}
         </div>
@@ -160,7 +164,7 @@ export function ExistingBodyMeasurements({
             theme={drawerTheme}
             open={isOpen}
             onClose={() => setIsOpen(false)}
-           position="bottom"
+            position="bottom"
           >
             <DrawerHeader />
             <DrawerItems>

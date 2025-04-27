@@ -89,7 +89,7 @@ const AddUpdateBodyMeasurementTemplate = ({
       });
   };
   const handleUpdateTemplate = (name: string) => {
-    console.log("update template");
+ 
     const payload = {
       templateName: name,
       measurements,
