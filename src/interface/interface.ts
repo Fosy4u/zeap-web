@@ -217,7 +217,9 @@ interface BodyMeasurementInterface {
   ];
 }
 interface BodyMeasurementTemplateInterface {
+  _id: string;
   templateName: string;
+  gender: string;
   measurements: [
     {
       field: string;

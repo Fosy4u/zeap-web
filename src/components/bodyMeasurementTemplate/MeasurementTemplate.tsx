@@ -1,14 +1,15 @@
 import { BodyMeasurementTemplateInterface } from "@/interface/interface";
+import { capitalizeFirstLetter } from "@/utils/helpers";
 import { Badge } from "flowbite-react";
 import { useState } from "react";
 
 const MeasurementTemplate = ({
   template,
-  showButton = false,
+  showSelectButton = false,
   buttonLabel = "Select",
 }: {
   template: BodyMeasurementTemplateInterface;
-  showButton?: boolean;
+  showSelectButton?: boolean;
   buttonLabel?: string;
 }) => {
   const [active, setActive] = useState(false);
@@ -32,9 +33,9 @@ const MeasurementTemplate = ({
         >
           <div className="flex items-center gap-1">
             <span className="text-lg font-semibold">
-              {template.templateName}
+              {template.templateName} {template?.gender && `- ${capitalizeFirstLetter(template.gender)}`}
             </span>
-            {showButton && <Badge color="success">{buttonLabel}</Badge>}
+            {showSelectButton && <Badge color="success">{buttonLabel}</Badge>}
           </div>
           <span
             onClick={(e) => {
@@ -65,7 +66,7 @@ const MeasurementTemplate = ({
       </h2>
       <div
         id="accordion-flush-body-1"
-        className={`py-5 border-b border-gray-200 dark:border-gray-700 text-sm flex flex-col  bg-neutral-100 p-2  ${
+        className={`py-5 border-b border-gray-200 dark:border-gray-700 text-sm flex flex-col  bg-white p-2  ${
           active ? "block" : "hidden"
         }`}
         aria-labelledby="accordion-flush-heading-1"
