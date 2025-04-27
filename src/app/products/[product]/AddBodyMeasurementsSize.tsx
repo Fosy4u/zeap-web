@@ -52,6 +52,7 @@ export function AddBodyMeasurementsSize({
   bodyMeasurements,
   setBodyMeasurements,
   sku,
+
   setIsOpen,
 }: {
   openModal: boolean;
@@ -61,6 +62,7 @@ export function AddBodyMeasurementsSize({
   bodyMeasurements: bodyMeasurement[];
   setBodyMeasurements: (bodyMeasurements: bodyMeasurement[]) => void;
   sku: string;
+
   setIsOpen: (open: boolean) => void;
 }) {
   const topDiveRef = useRef<HTMLDivElement>(null);
@@ -92,6 +94,8 @@ export function AddBodyMeasurementsSize({
 
   const measurements =
     getProductBodyMeasurement?.data?.data?.measurements || [];
+  const gender = getProductBodyMeasurement?.data?.data?.gender;
+ 
   useEffect(() => {
     if (
       serverError ||
@@ -383,6 +387,7 @@ export function AddBodyMeasurementsSize({
         {openUpdateBodyMeasurementTemplate && (
           <SliderDrawer direction="bottom">
             <AddUpdateBodyMeasurementTemplate
+              gender={gender}
               showModal={openUpdateBodyMeasurementTemplate}
               setShowModal={setOpenUpdateBodyMeasurementTemplate}
               callBack={() => {

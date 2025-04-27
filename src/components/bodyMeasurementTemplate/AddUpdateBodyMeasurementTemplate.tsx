@@ -33,11 +33,13 @@ const AddUpdateBodyMeasurementTemplate = ({
   showModal,
   setShowModal,
   measurements,
+  gender,
   callBack,
 }: {
   showModal: boolean;
   setShowModal: (show: boolean) => void;
   measurements: measurementField[];
+  gender: string;
   callBack: () => void;
 }) => {
   const token = useSelector(globalSelectors.selectAuthToken);
@@ -93,6 +95,7 @@ const AddUpdateBodyMeasurementTemplate = ({
     const payload = {
       templateName: name,
       measurements,
+      gender
     };
     updateBodyMeasurementTemplate({ payload })
       .unwrap()
