@@ -15,10 +15,13 @@ import { useContext } from "react";
 import { AuthContext } from "@/contexts/authContext";
 import { HiHandThumbUp } from "react-icons/hi2";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const MobileAccountNavBar = () => {
   const { user, logout } = useContext(AuthContext);
+  const router = useRouter();
 
+  const pathname = usePathname();
   return (
     <div className=" text-sm text-gray-500 dark:text-gray-400 flex flex-col gap-2 bg-white mb-4 min-h-screen">
       <div className="flex flex-col items-center gap-2 w-full ">
@@ -145,6 +148,38 @@ const MobileAccountNavBar = () => {
               Logout
             </ListItem>
             <hr className="border-b border-slate-300 w-full mb-2" />
+          </div>
+        )}
+        {(!user || user?.isGuest) && (
+          <div className="flex flex-col gap-1 w-full ">
+            <div className="flex justify-center gap-2 w-full p-2">
+              <span
+                onClick={() => {
+                  if (!user || user?.isGuest) {
+                    localStorage.setItem("redirectSignInPath", pathname);
+                    return router.push("/account/login");
+                  }
+                  return;
+                }}
+                className="font-semibold text-sm border bg-primary text-white px-6 py-2 rounded-full items-center justify-center flex cursor-pointer"
+              >
+                Sign In
+              </span>
+              <span
+                onClick={() => {
+                  if (!user || user?.isGuest) {
+                    // save the current pathname to local storage
+                    localStorage.setItem("redirectSignInPath", pathname);
+                    return router.push("/account/login");
+                  }
+                  return;
+                }}
+                className="font-semibold text-sm border bg-lightGold text-black px-6 py-2 rounded-full items-center justify-center flex cursor-pointer"
+              >
+                Sign Up
+              </span>
+            </div>
+            <hr className="border-b border-slate-300 w-full" />
           </div>
         )}
         <Link

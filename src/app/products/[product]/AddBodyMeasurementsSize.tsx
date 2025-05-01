@@ -12,6 +12,8 @@ import Loading from "../loading";
 import { capitalizeFirstLetter } from "@/utils/helpers";
 import { AuthContext } from "@/contexts/authContext";
 import AddUpdateBodyMeasurementTemplate from "@/components/bodyMeasurementTemplate/AddUpdateBodyMeasurementTemplate";
+import { BodyMeasurementGuideInterface } from "@/interface/interface";
+import BespokeBodyMeasurementGuide from "@/components/bodyMeasurementTemplate/BespokeBodyMeasurementGuide";
 
 const ModalTheme = {
   root: {
@@ -42,6 +44,16 @@ type measurementField = {
 interface bodyMeasurement {
   name: string;
   measurements: measurementField[];
+}
+
+interface BodyMeasurementGuideFieldsInterface {
+  _id: string;
+  field: string;
+  imageUrl: {
+    name: string;
+    link: string;
+  };
+  description: string;
 }
 
 export function AddBodyMeasurementsSize({
@@ -95,7 +107,19 @@ export function AddBodyMeasurementsSize({
   const measurements =
     getProductBodyMeasurement?.data?.data?.measurements || [];
   const gender = getProductBodyMeasurement?.data?.data?.gender;
- 
+  const getBodyMeasurementGuideQuery =
+    zeapApiSlice.useGetBodyMeasurementGuideQuery(
+      {
+        gender,
+      },
+      { skip: !token || !gender }
+    );
+  const bodyMeasurementGuide: BodyMeasurementGuideInterface[] =
+    getBodyMeasurementGuideQuery.data?.data || [];
+  const bodyMeasurementGuideFields: BodyMeasurementGuideFieldsInterface[] =
+    bodyMeasurementGuide.map((item) => item?.fields).flat();
+  
+
   useEffect(() => {
     if (
       serverError ||
@@ -227,9 +251,7 @@ export function AddBodyMeasurementsSize({
             <p className="text-lg font-medium font-semibold text-gray-900 dark:text-white">
               Kindly provide us your measurements
             </p>
-            <p className="text-xs cursor-pointer font-medium text-gray-500 dark:text-gray-400 border-l-2 border-r-2 bg-green-100 p-2 w-fit rounded-full border-green-700 ">
-              View our measurement guide
-            </p>
+          
           </div>
           <div className="flex flex-col gap-2">
             <span
@@ -291,6 +313,18 @@ export function AddBodyMeasurementsSize({
                               {checkInputError(measurement.name, field)}
                             </span>
                           )}
+                        {bodyMeasurementGuideFields?.find(
+                          (item) => item.field === field
+                        ) && (
+                          <BespokeBodyMeasurementGuide
+                            gender={gender}
+                            bodyMeasurementGuideField={
+                              bodyMeasurementGuideFields?.find(
+                                (item) => item.field === field
+                              ) as BodyMeasurementGuideFieldsInterface
+                            }
+                          />
+                        )}
                       </div>
                     ))}
                   </div>

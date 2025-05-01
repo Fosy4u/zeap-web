@@ -48,6 +48,7 @@ const EmptyBasket = () => {
                 e.stopPropagation();
                 e.preventDefault();
               }
+              
               router.push("/account/login");
             }}
             className="md:w-1/2 bg-gold"

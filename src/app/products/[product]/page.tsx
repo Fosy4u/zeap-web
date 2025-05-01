@@ -121,6 +121,7 @@ const ProductPage = () => {
               productType={product.productType}
               setSelectedMaterialColor={setSelectedMaterialColor}
               selectedMaterialColor={selectedMaterialColor}
+              showReadyMadeSizeGuide={product?.showReadyMadeSizeGuide}
             />
           </div>
         )}

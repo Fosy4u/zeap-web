@@ -1,4 +1,9 @@
-import { VariationInterface } from "@/interface/interface";
+import ReadyMadeSizeGuideModal from "@/components/products/ReadyMadeSizeGuideModal";
+import {
+  ProductCategoryInterface,
+  VariationInterface,
+} from "@/interface/interface";
+import { useState } from "react";
 // import { useEffect } from "react";
 
 const SizeSelect = ({
@@ -7,13 +12,24 @@ const SizeSelect = ({
   setSelectedSize,
   variations,
   selectedProductColor,
+  showReadyMadeSizeGuide,
+  categories,
 }: {
   sizes: string[];
   selectedSize: string;
   setSelectedSize: (size: string) => void;
   variations: VariationInterface[];
   selectedProductColor: string;
+  showReadyMadeSizeGuide: boolean;
+  categories: ProductCategoryInterface;
 }) => {
+
+  const gender = categories.gender || [];
+  const defaultGender = gender?.find((gen) => gen === "Female")
+    ? "female"
+    : "male";
+  const main = categories?.main || [];
+  const [openModal, setOpenModal] = useState(false);
   const selectedColorVariations = variations.filter(
     (variation) =>
       variation.colorValue?.toLocaleLowerCase() ===
@@ -28,11 +44,31 @@ const SizeSelect = ({
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [sizes, selectedSize]);
+  const getSizeGuideDefaultTitle = () => {
+    if (main?.includes("Footwear")) {
+      return "footwear";
+    }
+    if (main?.includes("Top")) {
+      return "top";
+    }
+    if (main?.includes("Bottom")) {
+      return "bottom";
+    }
+    return "top";
+  };
+
   return (
     <div className="flex flex-col  gap-4">
       <div className="flex items-center justify-between w-full">
         <span className="text-md font-semibold">Size</span>
-        <span className="underline">View Size guide</span>
+        {showReadyMadeSizeGuide && (
+          <span
+            className="underline cursor-pointer"
+            onClick={() => setOpenModal(true)}
+          >
+            View Size guide
+          </span>
+        )}
       </div>
       <div className="flex items-center gap-3">
         {sizes.map((size) => (
@@ -60,6 +96,14 @@ const SizeSelect = ({
           </button>
         ))}
       </div>
+      {openModal && (
+        <ReadyMadeSizeGuideModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          defaultGender={defaultGender}
+          defaultTitle={getSizeGuideDefaultTitle()}
+        />
+      )}
     </div>
   );
 };
