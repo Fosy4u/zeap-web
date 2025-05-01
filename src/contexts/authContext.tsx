@@ -162,6 +162,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     callBack?: () => void
   ) => {
     try {
+      const redirectSignInPath =
+        localStorage.getItem("redirectSignInPath") || "/";
       setLoginError(null);
       setLoading(true);
 
@@ -189,13 +191,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 const userData = result.data;
                 setUser(userData);
                 localStorage.removeItem("guestUid");
-                return router.push("/");
+                return router.push(redirectSignInPath);
               })
               .catch((err) => {
                 console.log(err);
               });
           }
-          return router.push("/");
+          return router.push(redirectSignInPath);
           // ...
         })
         .catch((e) => {
@@ -230,6 +232,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const loginWithGoogle = async () => {
+    const redirectSignInPath =
+      localStorage.getItem("redirectSignInPath") || "/";
+
     setLoading(true);
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({
@@ -263,7 +268,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 console.log(err);
               });
           }
-          return router.push("/");
+          return router.push(redirectSignInPath);
         }
       })
       .catch((error) => {
@@ -293,7 +298,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           setLoginError("Invalid verification code");
         }
       });
-    return router.push("/");
+    return router.push(redirectSignInPath);
   };
 
   const logout = () => {

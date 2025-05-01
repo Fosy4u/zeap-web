@@ -1954,6 +1954,18 @@ export default createApi({
         responseHandler({}, queryArgs);
       },
     }),
+    getReadyMadeSizeGuide: builder.query({
+      query: (arg) => {
+        return {
+          url: `bodyMeasurementGuide/readyMade`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["BodyMeasurement"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
     getBodyMeasurementGuide: builder.query({
       query: (arg) => {
         return {

@@ -39,6 +39,7 @@ interface SectionProductHeaderProps {
   reviews: ProductReviewInterface[];
   averageRating: number;
   productType: string;
+  showReadyMadeSizeGuide: boolean;
   setSelectedMaterialColor: (color: string) => void;
   selectedMaterialColor: string;
 }
@@ -60,6 +61,7 @@ const ProductDetails: FC<SectionProductHeaderProps> = ({
   productType,
   setSelectedMaterialColor,
   selectedMaterialColor,
+  showReadyMadeSizeGuide
 }) => {
   const router = useRouter();
   const [selectedProductColor, setSelectedProductColor] = useState<string>("");
@@ -162,6 +164,8 @@ const ProductDetails: FC<SectionProductHeaderProps> = ({
             setSelectedSize={setSelectedSize}
             variations={variations}
             selectedProductColor={selectedProductColor}
+            showReadyMadeSizeGuide = {showReadyMadeSizeGuide}
+            categories={categories}
           />
         )}
         {categories?.productGroup === "Bespoke" && (

@@ -31,7 +31,7 @@ const BespokeBodyMeasurementGuide = ({
         }}
         role="button"
         aria-hidden="true"
-        className={`inline-flex items-center gap-1 text-xs cursor-pointer font-medium text-gray-500 dark:text-gray-400 border-l-2 border-r-2  p-2 w-fit rounded-full  ${
+        className={`inline-flex items-center gap-1 text-xs cursor-pointer font-medium text-gray-500 dark:text-gray-400   p-2 w-fit rounded-full  ${
           showGuide
             ? "bg-yellow-50 text-yellow-700 hover:bg-yellow-100 "
             : "bg-green-50 text-green-700 hover:bg-green-100"

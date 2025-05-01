@@ -19,10 +19,11 @@ import {
 import { LuUser2 } from "react-icons/lu";
 import { SignInSignUpDrawer } from "../../authentication/SignInSignUpDrawer";
 import { ThemeContext } from "@/contexts/themeContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { HiHandThumbUp, HiScissors, HiShoppingBag } from "react-icons/hi2";
 import Image from "next/image";
 import Link from "next/link";
+
 
 const drawerTheme = {
   root: {
@@ -39,6 +40,7 @@ const drawerTheme = {
 };
 
 export function UserMenuBar() {
+  const pathname = usePathname()
   const { isAuthenticated, user, logout } = useContext(AuthContext);
   const router = useRouter();
   const { setDimBackground } = useContext(ThemeContext);
@@ -79,6 +81,7 @@ export function UserMenuBar() {
               <span
                 onClick={() => {
                   if (!user || user?.isGuest) {
+                    localStorage.setItem("redirectSignInPath", pathname);
                     return setIsOpen(true);
                   }
                   return;
@@ -90,6 +93,8 @@ export function UserMenuBar() {
               <span
                 onClick={() => {
                   if (!user || user?.isGuest) {
+                    // save the current pathname to local storage
+                    localStorage.setItem("redirectSignInPath", pathname);
                     return setIsOpen(true);
                   }
                   return;

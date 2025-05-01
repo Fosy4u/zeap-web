@@ -6,9 +6,10 @@ export interface RadioProps {
   name: string;
   id: string;
   onChange?: (value: string) => void;
-  defaultChecked?: boolean;
+  checked?: boolean;
   sizeClassName?: string;
   label?: string;
+  defaultChecked?: boolean;
 }
 
 const Radio: FC<RadioProps> = ({
@@ -18,8 +19,10 @@ const Radio: FC<RadioProps> = ({
   onChange,
   label,
   sizeClassName = 'w-6 h-6',
-  defaultChecked,
+  defaultChecked = false,
+  checked,
 }) => {
+  console.log('checked', checked);
   return (
     <div className={`flex items-center text-sm sm:text-base ${className}`}>
       <input
@@ -28,8 +31,9 @@ const Radio: FC<RadioProps> = ({
         type="radio"
         className={`focus:ring-action-primary rounded-full border-neutral-400 bg-transparent text-primary hover:border-neutral-700  focus:ring-primary ${sizeClassName}`}
         onChange={(e) => onChange && onChange(e.target.value)}
-        defaultChecked={defaultChecked}
+        checked={checked}
         value={id}
+        defaultChecked={defaultChecked}
       />
       {label && <div className="block select-none pl-2.5 sm:pl-3">{label}</div>}
     </div>
