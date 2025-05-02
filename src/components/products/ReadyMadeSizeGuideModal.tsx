@@ -222,6 +222,9 @@ const ReadyMadeSizeGuideModal = ({
       Object.keys(item).forEach((key) => {
         if (key === "Size") {
           newObj.Size = item[key];
+        } else if (key === countryCode) {
+          newObj[countryCode as keyof DataInterface] =
+            item[key as keyof DataInterface];
         } else if (key === "Bust") {
           newObj.Bust = item[key];
         } else if (key === "Waist") {
@@ -233,9 +236,6 @@ const ReadyMadeSizeGuideModal = ({
           newObj.Chest = item[key];
         } else if (key === "Foot Length") {
           newObj["Foot Length"] = item[key];
-        } else if (key === countryCode) {
-          newObj[countryCode as keyof DataInterface] =
-            item[key as keyof DataInterface];
         }
       });
       return newObj;
