@@ -57,7 +57,7 @@ const ReadyMadeSizeGuideTable = ({
   return (
     <div className="flex flex-col gap-8 p-1 md:px-4 py-4">
       <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:items-center md:justify-between">
-        <div className="grid grid-cols-3 gap-4 rounded-full border border-gray-300   cursor-pointer divider-x divider-gray-300">
+        <div className="grid grid-cols-3 gap-4 rounded-full border border-gray-300   cursor-pointer divider-x divider-gray-300 my-4">
           {options.map((option) => (
             <div
               key={option.value}
@@ -76,8 +76,11 @@ const ReadyMadeSizeGuideTable = ({
             </div>
           ))}
         </div>
-        <hr className="text-sm font-semibold text-gray-500 dark:text-gray-400" />
-        <div className="flex justify-between gap-4 w-full md:w-fit items-center p-2">
+        {/* <hr className="text-sm font-semibold text-gray-500 dark:text-gray-400" /> */}
+        <div className="flex gap-4 w-full md:w-fit items-center p-2 my-4">
+          <span className="text-sm ">
+            Switch to
+          </span>
           <div className="flex items-center gap-4">
             <ToggleSwitch
               theme={toggleTheme}
@@ -91,7 +94,7 @@ const ReadyMadeSizeGuideTable = ({
             <Dropdown
               label={countryCode || "Select country code"}
               color={gender === "female" ? "pink" : "info"}
-              size="sm"
+              size="xs"
             >
               {countryCodeOptions.map((option) => (
                 <DropdownItem
@@ -113,7 +116,7 @@ const ReadyMadeSizeGuideTable = ({
         </div>
       )}
       {tableData.length > 0 && (
-        <div className="relative overflow-x-auto h-[60rem] mt-12">
+        <div className="relative overflow-x-auto h-[60rem] my-4">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr
