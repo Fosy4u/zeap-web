@@ -1053,7 +1053,7 @@ export default createApi({
     getCanUserReview: builder.query({
       query: (arg) => {
         return {
-          url: `reviews/permission`,
+          url: `review/permission`,
           params: { ...arg },
         };
       },
