@@ -1807,10 +1807,22 @@ export default createApi({
         );
       },
     }),
-    getVouchers: builder.query({
+    getActiveVouchers: builder.query({
       query: (arg) => {
         return {
-          url: `vouchers/`,
+          url: `vouchers/authUser/active`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Voucher", "Basket", "Point", "Order"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
+    getInActiveVouchers: builder.query({
+      query: (arg) => {
+        return {
+          url: `vouchers/authUser/inactive`,
           params: { ...arg },
         };
       },
@@ -1822,7 +1834,7 @@ export default createApi({
     getPoints: builder.query({
       query: (arg) => {
         return {
-          url: `point/user`,
+          url: `point/authUser`,
           params: { ...arg },
         };
       },
@@ -1831,20 +1843,20 @@ export default createApi({
         responseHandler({}, queryArgs);
       },
     }),
-    issueVoucher: builder.mutation({
+    convertPointToVoucher: builder.mutation({
       query: (arg) => {
         const { payload } = arg;
         return {
-          url: `voucher/issue`,
+          url: `point/convert/voucher`,
           method: "POST",
           body: payload,
         };
       },
-      invalidatesTags: ["Voucher", "Basket", "Point", "Order"],
+      invalidatesTags: ["Point", "User", "Voucher"],
       onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
         responseHandler(
           {
-            success: "Voucher Successfully Issued",
+            success: "Point Successfully Converted to Voucher",
             successHandler,
             errorHandler,
           },

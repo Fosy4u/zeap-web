@@ -23,7 +23,7 @@ interface PropInterface {
 }
 
 const ReviewCard = ({ review }: PropInterface) => {
-  console.log("review", review);
+ 
   const router = useRouter();
   const [openReview, setOpenReview] = useState(false);
   const productId = review?.order?.productId;
