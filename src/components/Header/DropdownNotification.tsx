@@ -28,8 +28,7 @@ const DropdownNotification = () => {
   const [deleteNotification, deleteNotificationStatus] =
     zeapApiSlice.useDeleteNotificationMutation();
 
-  const isDeleting =
-    deleteNotificationStatus.isLoading 
+  const isDeleting = deleteNotificationStatus.isLoading;
   const [animate, setAnimate] = useState("");
 
   // Animate Wishlist Number
@@ -81,7 +80,7 @@ const DropdownNotification = () => {
           />
         </svg>
 
-        <span className="sr-only">Wish List</span>
+        <span className="sr-only">Notifications</span>
         {notifications?.length > 0 && (
           <div
             className={`absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900 ${animate}`}
@@ -97,64 +96,78 @@ const DropdownNotification = () => {
             dropdownOpen ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="px-4.5 py-3">
-            <h5 className="text-sm font-medium text-bodydark2">Notification</h5>
-          </div>
-
-          <ul className="flex h-auto flex-col overflow-y-auto">
-            {error && (
-              <div className="p-4 mb-2">
-                <Alert color="failure">Error - {error}</Alert>{" "}
+          {notifications?.length === 0 && (
+            <div className="flex flex-col items-center justify-center gap-4 p-4 bg-grey7 my-16">
+              <div className="flex flex-col items-center gap-1 text-info   rounded-lg">
+                <span className="font-medium">
+                  You have no notifications yet.
+                </span>
               </div>
-            )}
-            {notifications?.map(
-              (notification: {
-                createdAt: Date;
-                title: string;
-                body: string;
-                image: string;
-                _id: string;
-              }) => (
-                <li key={notification._id}>
-                  <div className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4 w-full">
-                    <div className="flex gap-2">
-                      <Image
-                        src={notification?.image || NoPic.src}
-                        alt="notification"
-                        className="h-6 w-6 rounded-full"
-                        width={24}
-                        height={24}
-                      />
-                      <h5 className="text-sm font-bold text-slate-900 dark:text-white">
-                        {notification?.title}
-                      </h5>
-                    </div>
-                    <p className="text-xs">{notification?.body}</p>
-                    <div className="flex justify-between items-center">
-                      <p className="text-xs text-success">
-                        <ReactTimeAgo
-                          date={notification?.createdAt}
-                          locale="en-US"
-                        />
-                      </p>
-                      <div
-                        className="bg-lightDanger p-2 text-danger rounded-full cursor-pointer hover:bg-danger hover:text-white transition duration-200 ease-in-out"
-                        onClick={() => {
-                          handleDelete(notification._id);
-                        }}
-                      >
-                        {isDeleting ? (
-                          <LoadingDots />
-                        ) : (
-                          <HiTrash className="" />
-                        )}
-                      </div>
-                    </div>
+            </div>
+          )}
+          {notifications?.length > 0 && (
+            <>
+              <div className="px-4.5 py-3">
+                <h5 className="text-sm font-medium text-bodydark2">
+                  Notification
+                </h5>
+              </div>
+              <ul className="flex h-auto flex-col overflow-y-auto">
+                {error && (
+                  <div className="p-4 mb-2">
+                    <Alert color="failure">Error - {error}</Alert>{" "}
                   </div>
-                </li>
-              )
-            )}
-          </ul>
+                )}
+                {notifications?.map(
+                  (notification: {
+                    createdAt: Date;
+                    title: string;
+                    body: string;
+                    image: string;
+                    _id: string;
+                  }) => (
+                    <li key={notification._id}>
+                      <div className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4 w-full">
+                        <div className="flex gap-2">
+                          <Image
+                            src={notification?.image || NoPic.src}
+                            alt="notification"
+                            className="h-6 w-6 rounded-full"
+                            width={24}
+                            height={24}
+                          />
+                          <h5 className="text-sm font-bold text-slate-900 dark:text-white">
+                            {notification?.title}
+                          </h5>
+                        </div>
+                        <p className="text-xs">{notification?.body}</p>
+                        <div className="flex justify-between items-center">
+                          <p className="text-xs text-success">
+                            <ReactTimeAgo
+                              date={notification?.createdAt}
+                              locale="en-US"
+                            />
+                          </p>
+                          <div
+                            className="bg-lightDanger p-2 text-danger rounded-full cursor-pointer hover:bg-danger hover:text-white transition duration-200 ease-in-out"
+                            onClick={() => {
+                              handleDelete(notification._id);
+                            }}
+                          >
+                            {isDeleting ? (
+                              <LoadingDots />
+                            ) : (
+                              <HiTrash className="" />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  )
+                )}
+              </ul>
+            </>
+          )}
         </div>
       )}
     </ClickOutside>
