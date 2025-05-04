@@ -1,10 +1,10 @@
 "use client";
 import { List, ListItem } from "flowbite-react";
 import {
+  HiBell,
   HiChevronRight,
   HiDatabase,
   HiGift,
-  HiInbox,
   HiLogout,
   HiScissors,
   HiShoppingBag,
@@ -111,7 +111,7 @@ const MobileAccountNavBar = () => {
             >
               <ListItem
                 className="hover:bg-slate-100 p-2 rounded-md cursor-pointer"
-                icon={() => <HiInbox className="text-info mr-3" />}
+                icon={() => <HiBell className="text-info mr-3" />}
               >
                 Notifications
               </ListItem>

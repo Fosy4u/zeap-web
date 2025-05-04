@@ -2357,10 +2357,10 @@ export default createApi({
       //   );
       // },
     }),
-    getAdminsNotificationInbox: builder.query({
+    getNotifications: builder.query({
       query: (arg) => {
         return {
-          url: `/notification/inbox/admins`,
+          url: `/notification/inbox`,
           params: { ...arg },
         };
       },

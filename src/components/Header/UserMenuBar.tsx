@@ -12,7 +12,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import {
   HiDatabase,
   HiGift,
-  HiInbox,
+  HiBell,
   HiLogout,
   HiUserCircle,
 } from "react-icons/hi";
@@ -23,7 +23,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { HiHandThumbUp, HiScissors, HiShoppingBag } from "react-icons/hi2";
 import Image from "next/image";
 import Link from "next/link";
-
 
 const drawerTheme = {
   root: {
@@ -40,7 +39,7 @@ const drawerTheme = {
 };
 
 export function UserMenuBar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const { isAuthenticated, user, logout } = useContext(AuthContext);
   const router = useRouter();
   const { setDimBackground } = useContext(ThemeContext);
@@ -180,7 +179,7 @@ export function UserMenuBar() {
 
             <ListItem
               className="hover:bg-slate-100 p-2 rounded-md cursor-pointer"
-              icon={() => <HiInbox className="text-info mr-3" />}
+              icon={() => <HiBell className="text-info mr-3" />}
               onClick={() => {
                 if (!user || user?.isGuest) {
                   return setIsOpen(true);
