@@ -185,7 +185,7 @@ const ProductReview = ({
         <AddReview
           open={openReview}
           close={() => setOpenReview(false)}
-          product={product}
+          productId={product?.productId}
         />
       )}
       {reviews?.length === 0 && reviewQuery.status === "fulfilled" && (
@@ -310,7 +310,7 @@ const ProductReview = ({
                         />
                         <div className="flex flex-col">
                           <p className="text-xs ">
-                            {review?.user?.displayName}
+                            {review?.displayName}
                           </p>
 
                           <p className="text-sm text-slate-400 dark:text-gray-400">

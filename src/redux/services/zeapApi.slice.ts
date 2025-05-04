@@ -1050,6 +1050,18 @@ export default createApi({
         responseHandler({}, queryArgs);
       },
     }),
+    getCanUserReview: builder.query({
+      query: (arg) => {
+        return {
+          url: `reviews/permission`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Review"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
     getProductReview: builder.query({
       query: (arg) => {
         return {
