@@ -14,12 +14,13 @@ import { UserMenuBar } from "./UserMenuBar";
 import { MobileUserMenuBar } from "./MobileUserMenuBar";
 import Link from "next/link";
 import { AuthContext } from "@/contexts/authContext";
+import DropdownNotification from "./DropdownNotification";
 
 const MainNav = () => {
   const { user } = useContext(AuthContext);
   return (
     <div className="flex flex-col gap-0">
-      <div className="p-2 flex items-center justify-between">
+      <div className="p-2 flex items-center md:justify-between">
         <div className="flex-1 flex items-center gap-4">
           <Logo className="hidden xl:block" />
           <Link
@@ -30,28 +31,30 @@ const MainNav = () => {
           </Link>
         </div>
 
-        <div className=" flex-1   justify-end gap-7 flex items-center">
-          <SearchHeader />
+        <div className=" flex-1   justify-end gap-1 md:gap-7 flex items-center w-full">
           <div className="hidden lg:flex">
             <UserMenuBar />
           </div>
-          <div className="lg:hidden">
-            <MobileUserMenuBar />
-          </div>
+          <SearchHeader />
           <WishMenuBar />
 
           {/* <CartSideBar /> */}
-          <CartMenuBar />
-        </div>
 
-        <div className="lg:hidden">
-          <MenuBar />
+          <DropdownNotification />
+          <CartMenuBar />
+
+          <div className="lg:hidden flex items-center gap-1 w-full">
+            <MobileUserMenuBar />
+
+            <MenuBar />
+          </div>
         </div>
       </div>
       <div className="hidden items-center gap-4 lg:flex justify-center">
         {/* {NavLinks.map((item) => (
           <NavigationItem key={item.id} menuItem={item} />
         ))} */}
+
         <DesktopMenuBar />
       </div>
     </div>

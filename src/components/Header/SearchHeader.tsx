@@ -202,7 +202,7 @@ const SearchHeader = () => {
       >
         <div
           onClick={() => setIsOpen(true)}
-          className="flex  gap-3 cursor-pointer items-center bg-white dark:bg-gray-800 rounded-full p-2 border shadow-sm hover:shadow-md transition-all duration-200 ease-in-out"
+          className="flex  gap-3 cursor-pointer items-center bg-white dark:bg-gray-800 rounded-full p-2  shadow-sm hover:shadow-md transition-all duration-200 ease-in-out"
         >
           <span className="hidden md:block ">Search</span>
           <RiSearch2Line className="text-2xl" />

@@ -2,7 +2,7 @@ import { List, ListItem } from "flowbite-react";
 import {
   HiDatabase,
   HiGift,
-  HiInbox,
+   HiBell,
   HiLogout,
   HiScissors,
   HiShoppingBag,
@@ -71,7 +71,7 @@ const AccountNavBar = () => {
           
             <ListItem
               className="hover:bg-slate-100 p-2 rounded-md cursor-pointer"
-              icon={() => <HiInbox className="text-info mr-3" />}
+              icon={() => < HiBell className="text-info mr-3" />}
               onClick={() => {
                 router.push("/account/notifications");
               }}
