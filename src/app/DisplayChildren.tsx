@@ -1,4 +1,5 @@
 "use client";
+import Whatsapp from "@/components/contact/Whatsapp";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import { ThemeContext } from "@/contexts/themeContext";
@@ -10,16 +11,18 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
   const { theme, dimBackground, setDimBackground } = useContext(ThemeContext);
   const pathname = usePathname();
   const isAuthPage = pathname.startsWith("/account/login");
-  useEffect(() => {
-    setDimBackground(false);
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  , [pathname]);
+  useEffect(
+    () => {
+      setDimBackground(false);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [pathname]
+  );
   return (
     <div>
       {!isAuthPage && <Header />}
       <div
-      style={{ outline: "1px solid red" }}
+        style={{ outline: "1px solid red" }}
         className={`pt-2 ${theme} 
          ${
            dimBackground &&
@@ -34,6 +37,7 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         <ToastContainer />
+        <Whatsapp />
       </div>
     </div>
   );
