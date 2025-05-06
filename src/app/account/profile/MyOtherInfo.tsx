@@ -18,6 +18,7 @@ const dropDownTheme = {
   inlineWrapper:
     "flex items-center w-full justify-between p-2 rounded-lg bg-white border border-slate-300",
 };
+type TprefferedCurrency = "NGN" | "USD" | "GBP";
 
 const MyOtherInfo = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -26,13 +27,13 @@ const MyOtherInfo = () => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
-  ;
   const [shoeSize, setShoeSize] = useState("");
   const [bestOutfit, setBestOutfit] = useState("");
   const [bestColor, setBestColor] = useState("");
-  const [prefferedCurrency, setPrefferedCurrency] = useState<
-    "NGN" | "USD" | "GBP"
-  >(user?.prefferedCurrency);
+  const [prefferedCurrency, setPrefferedCurrency] =
+    useState<TprefferedCurrency>(
+      (user?.prefferedCurrency as TprefferedCurrency) || "NGN"
+    );
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [updateUser, UpdateUserStatus] = zeapApiSlice.useUpdateUserMutation();
 
@@ -45,7 +46,7 @@ const MyOtherInfo = () => {
       setShoeSize(user.shoeSize);
       setBestOutfit(user.bestOutfit);
       setBestColor(user.bestColor);
-      setPrefferedCurrency(user.prefferedCurrency);
+      setPrefferedCurrency(user.prefferedCurrency as TprefferedCurrency);
     }
   }, [user]);
 

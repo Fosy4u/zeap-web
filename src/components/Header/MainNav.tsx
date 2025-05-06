@@ -15,6 +15,7 @@ import { MobileUserMenuBar } from "./MobileUserMenuBar";
 import Link from "next/link";
 import { AuthContext } from "@/contexts/authContext";
 import DropdownNotification from "./DropdownNotification";
+import CurrencyPrefence from "./CurrencyPrefence";
 
 const MainNav = () => {
   const { user } = useContext(AuthContext);
@@ -30,24 +31,24 @@ const MainNav = () => {
             Sell on Zeap
           </Link>
         </div>
-
-        <div className=" flex-1   justify-end gap-1 md:gap-7 flex items-center w-full">
-          <div className="hidden lg:flex">
-            <UserMenuBar />
-          </div>
+        <div className=" hidden md:flex   flex-1  justify-end gap-1 md:gap-7 items-center w-full lg:px-2">
+          {" "}
           <SearchHeader />
+          <CurrencyPrefence />
           <WishMenuBar />
-
-          {/* <CartSideBar /> */}
-
           <DropdownNotification />
           <CartMenuBar />
+          <UserMenuBar />
+        </div>
 
-          <div className="lg:hidden flex items-center gap-1 w-full">
-            <MobileUserMenuBar />
-
-            <MenuBar />
-          </div>
+        <div className=" flex-1  lg:hidden  h-[3rem]  justify-end gap-1 md:gap-7 flex items-center w-full">
+          <SearchHeader />
+          <CurrencyPrefence />
+          <WishMenuBar />
+          <DropdownNotification />
+          <CartMenuBar />
+          <MobileUserMenuBar />
+          <MenuBar />
         </div>
       </div>
       <div className="hidden items-center gap-4 lg:flex justify-center">

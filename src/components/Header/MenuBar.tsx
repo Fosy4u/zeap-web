@@ -57,11 +57,11 @@ const MenuBar: React.FC<MenuBarProps> = () => {
       <button
         type="button"
         onClick={handleOpenMenu}
-        className="flex items-center justify-center rounded-lg p-2.5 focus:outline-none"
+        className="flex items-center justify-center rounded-lg px-1.5 focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-7 w-7"
+          className="h-6 w-7"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
