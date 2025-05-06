@@ -83,7 +83,7 @@ const DropdownNotification = () => {
         <span className="sr-only">Notifications</span>
         {notifications?.length > 0 && (
           <div
-            className={`absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900 ${animate}`}
+            className={`absolute inline-flex items-center justify-center w-5 h-5 md:w-6 md:w-6 text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900 ${animate}`}
           >
             {notifications?.length}
           </div>

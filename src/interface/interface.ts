@@ -52,6 +52,7 @@ interface UserInterface {
   isAdmin: boolean;
   isGuest: boolean;
   superAdmin: boolean;
+  prefferedCurrency: string;
   social?: SocialInterface;
 }
 interface SighnUpInterface {
@@ -416,7 +417,7 @@ interface OrderInterface {
   user: UserInterface;
   disabled: boolean;
   orderId: string;
-  progress:{
+  progress: {
     value: number;
     max: number;
     min: number;
@@ -577,7 +578,7 @@ interface WishInterface {
   updatedAt: Date;
   __v: number;
   color: string;
-  image : string;
+  image: string;
 }
 export type {
   RouteInterface,
@@ -615,7 +616,5 @@ export type {
   ProductCategoryInterface,
   DeliveryAddressInterface,
   BodyMeasurementTemplateInterface,
-  WishInterface
-
-
+  WishInterface,
 };

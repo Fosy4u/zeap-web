@@ -38,6 +38,7 @@ const AddNewDeliveryAddress = ({
   selectedDeliveryAddress?: DeliveryAddressInterface;
   setDimBackground: (value: boolean) => void;
 }) => {
+  
   const [serverError, setServerError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -71,7 +72,6 @@ const AddNewDeliveryAddress = ({
     [country]
   );
 
-  console.log("regionsData", regionsData);
   useEffect(() => {
     if (country) {
       setRegionFields(regionsData);

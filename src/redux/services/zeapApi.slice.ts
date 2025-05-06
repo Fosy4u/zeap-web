@@ -57,6 +57,19 @@ export default createApi({
       //   responseHandler({}, queryArgs);
       // },
     }),
+    getAuthUserRecommendedCurrency: builder.query({
+      query: (arg) => {
+        const { uid } = arg;
+        return {
+          url: `user/currency/recommended`,
+          params: { uid },
+        };
+      },
+      providesTags: ["User"],
+      // onQueryStarted: async (_, queryArgs) => {
+      //   responseHandler({}, queryArgs);
+      // },
+    }),
     getUsers: builder.query({
       query: () => {
         return {
@@ -168,7 +181,18 @@ export default createApi({
           params: { _id: payload._id },
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: [
+        "User",
+        "Product",
+        "Products",
+        "Promo",
+        "Basket",
+        "Order",
+        "Payment",
+        "Voucher",
+        "Point",
+        "Wish",
+      ],
       onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
         responseHandler(
           {
