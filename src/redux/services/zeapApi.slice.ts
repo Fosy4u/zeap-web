@@ -668,6 +668,18 @@ export default createApi({
         responseHandler({}, queryArgs);
       },
     }),
+    getBespokeProducts: builder.query({
+      query: (arg) => {
+        return {
+          url: `/products/live/bespoke`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Products"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
     getSearchProducts: builder.query({
       query: (arg) => {
         return {

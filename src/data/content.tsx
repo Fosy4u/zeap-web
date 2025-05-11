@@ -382,6 +382,51 @@ export const signUpSection = {
     reviewer: "James Marsden",
   },
 };
+export const ourDifference = [
+  {
+    header: "Global Reach",
+    description: "With Zeap, you can sell to customers around the world.",
+  },
+  {
+    header: "Simple and Efficient",
+    description:
+      "Our platform is easy to use, allowing you to manage your sales and inventory with ease.",
+  },
+  {
+    header: "Dedicated Support",
+    description:
+      "Our team is here to help you every step of the way. Whether you have questions about selling on Zeap or need assistance with your account, we're here for you.",
+  },
+
+  {
+    header: "Join a Community of Sellers",
+    description:
+      "Be part of a community of sellers who are dedicated to success. You'll have access to resources and support to help you grow your business.",
+  },
+];
+export const sellingSimplified = [
+  {
+    header: "Easy Setup",
+    description:
+      "Setting up your store on Zeap is quick and easy. You can start selling in no time.",
+  },
+  {
+    header: "List",
+    description:
+      "List your products and start selling. Our platform is designed to make it easy for you to showcase your products and reach customers.",
+  },
+ 
+  {
+    header: "Sell",
+    description:
+      "Share with millions of customers. Our platform is designed to help you reach a wide audience and increase your sales.",
+  },
+  {
+    header: "Get Paid",
+    description:
+      "Once your products are sold, you can get paid quickly and easily.",
+  }
+];
 
 export const footerData = {
   footerLinks: [
@@ -389,27 +434,23 @@ export const footerData = {
       title: "Company",
       links: [
         { href: "/about", name: "About" },
-        { href: "/", name: "Sell on Zeap" },
+        { href: "/sell-on-zeap", name: "Sell on Zeap" },
         { href: "/", name: "Offices" },
         { href: "/blog", name: "Blogs" },
-       
       ],
     },
     {
       title: "Get Help",
       links: [
         { href: "/contact", name: "Contact Us" },
-      
+
         { href: "/faq", name: "FAQS" },
         { href: "/", name: "Returns" },
         { href: "/help", name: "Center" },
-      
       ],
     },
   ],
 };
-
-
 
 export const sizes = ["XS", "S", "M", "L", "XL"];
 

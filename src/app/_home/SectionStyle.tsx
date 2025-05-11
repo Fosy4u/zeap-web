@@ -4,7 +4,8 @@ import React, { useContext } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 
 import { signUpSection } from "@/data/content";
-import woman from "@/images/black_woman.png";
+import pic from "@/images/black_woman.png";
+
 import ButtonSecondary from "@/shared/Button/ButtonSecondary";
 import Heading from "@/shared/Heading/Heading";
 import { AuthContext } from "@/contexts/authContext";
@@ -53,8 +54,8 @@ const SectionStyle = () => {
         <div className="space-y-10 md:pt-40 lg:pt-0 ">
           <div className="relative flex h-[350px] w-full items-center justify-center rounded-2xl bg-secondary">
             <Image
-              src={woman}
-              alt="woman"
+              src={pic}
+              alt="pic"
               className="absolute bottom-0 mx-auto w-[80%] object-cover md:w-[60%]"
             />
           </div>
