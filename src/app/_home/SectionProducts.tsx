@@ -12,6 +12,7 @@ import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { ProductInterface } from "@/interface/interface";
 import ProductCard from "@/components/products/ProductCard";
 import Skeleton from "@/components/loading/Skeleton";
+import SectionBespoke from "./SectionBespoke";
 
 interface ColInterface {
   name: string;
@@ -75,9 +76,13 @@ const SectionProducts = () => {
                   />
                 ))}
         </div>
+        <div className="md:m-10">
+          <SectionBespoke />
+        </div>
 
         <div className="m-8 h-px w-full bg-neutral-300" />
       </div>
+
       <Heading showDash className="pb-8 pt-8 container ">
         <p className=""> {midText}</p>
       </Heading>
