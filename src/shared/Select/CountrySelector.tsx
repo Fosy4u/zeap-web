@@ -13,7 +13,7 @@ const CountrySelector = ({
   region: string;
   setRegion: (region: string) => void;
 }) => {
-  console.log("country", country);
+ 
   // const options = useMemo(() => countryList().getData(), []);
   const [countryValue, setCountryValue] = useState("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +25,7 @@ const CountrySelector = ({
     [country]
   );
 
-  console.log("regionsData", regionsData);
+ 
   useEffect(() => {
     if (country) {
       setCountryValue(country);

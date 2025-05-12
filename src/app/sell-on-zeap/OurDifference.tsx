@@ -3,7 +3,11 @@ import Pic from "@/images/signage-1.jpg";
 import Image from "next/image";
 import StartSelling from "./StartSelling";
 
-const OurDifference = () => {
+const OurDifference = ({
+  setIsOpen,
+}: {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div className="flex flex-col md:flex-row  gap-4 p-4 w-full flex-col-reverse items-center md:justify-between">
       <div className="flex flex-col gap-2 justify-start items-start w-full">
@@ -19,7 +23,7 @@ const OurDifference = () => {
           ))}
         </div>
         <span className="flex mt-4 w-full">
-          <StartSelling />
+          <StartSelling setIsOpen={setIsOpen} />
         </span>
       </div>
       <div className="flex items-center justify-end w-full ">

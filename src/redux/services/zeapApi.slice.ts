@@ -90,7 +90,16 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: [ "User",
+        "Product",
+        "Products",
+        "Promo",
+        "Basket",
+        "Order",
+        "Payment",
+        "Voucher",
+        "Point",
+        "Wish",],
     }),
     createGoogleAppleUser: builder.mutation({
       query: (arg) => {
@@ -101,7 +110,16 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: [ "User",
+        "Product",
+        "Products",
+        "Promo",
+        "Basket",
+        "Order",
+        "Payment",
+        "Voucher",
+        "Point",
+        "Wish",],
     }),
     createGuestUser: builder.mutation({
       query: (arg) => {
@@ -112,7 +130,16 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: [ "User",
+        "Product",
+        "Products",
+        "Promo",
+        "Basket",
+        "Order",
+        "Payment",
+        "Voucher",
+        "Point",
+        "Wish",],
       // onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
       //   responseHandler(
       //     {
@@ -133,7 +160,16 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: [ "User",
+        "Product",
+        "Products",
+        "Promo",
+        "Basket",
+        "Order",
+        "Payment",
+        "Voucher",
+        "Point",
+        "Wish",],
     }),
     mergeGoogleAppleLoginGuestUser: builder.mutation({
       query: (arg) => {
@@ -144,7 +180,16 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: [ "User",
+        "Product",
+        "Products",
+        "Promo",
+        "Basket",
+        "Order",
+        "Payment",
+        "Voucher",
+        "Point",
+        "Wish",],
     }),
     mergePasswordLoginGuestUser: builder.mutation({
       query: (arg) => {
@@ -155,7 +200,16 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: [ "User",
+        "Product",
+        "Products",
+        "Promo",
+        "Basket",
+        "Order",
+        "Payment",
+        "Voucher",
+        "Point",
+        "Wish",],
     }),
     checkUserEmail: builder.query({
       query: (arg) => {
@@ -2412,7 +2466,7 @@ export default createApi({
           params: { ...arg },
         };
       },
-      providesTags: ["Notification"],
+      providesTags: ["Notification", "User"],
       onQueryStarted: async (_, queryArgs) => {
         responseHandler({}, queryArgs);
       },

@@ -411,11 +411,16 @@ export const sellingSimplified = [
       "Setting up your store on Zeap is quick and easy. You can start selling in no time.",
   },
   {
+    header: "Business Activation",
+    description:
+      "Our admin team will review your application and activate your business.",
+  },
+  {
     header: "List",
     description:
       "List your products and start selling. Our platform is designed to make it easy for you to showcase your products and reach customers.",
   },
- 
+
   {
     header: "Sell",
     description:
@@ -425,7 +430,7 @@ export const sellingSimplified = [
     header: "Get Paid",
     description:
       "Once your products are sold, you can get paid quickly and easily.",
-  }
+  },
 ];
 
 export const footerData = {

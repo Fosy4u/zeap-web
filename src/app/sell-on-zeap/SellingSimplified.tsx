@@ -3,7 +3,11 @@ import Pic from "@/images/sell2.jpg";
 import Image from "next/image";
 import StartSelling from "./StartSelling";
 
-const SellingSimplified = () => {
+const SellingSimplified = ({
+  setIsOpen,
+}: {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div className="flex flex-col md:flex-row  gap-4 p-4 w-full  items-center md:justify-between w-full">
       <div className="flex items-center justify-start w-full ">
@@ -29,7 +33,7 @@ const SellingSimplified = () => {
             </div>
           ))}
           <span className="flex mt-4 w-full">
-            <StartSelling />
+            <StartSelling setIsOpen={setIsOpen} />
           </span>
         </div>
       </div>

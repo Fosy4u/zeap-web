@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
@@ -13,16 +13,18 @@ import LoadingDots from "../loading/LoadingDots";
 import ClickOutside from "@/shared/ClickOutside";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
+import { AuthContext } from "@/contexts/authContext";
 
 TimeAgo.addDefaultLocale(en);
 
 const DropdownNotification = () => {
+   const { user } = useContext(AuthContext);
   const token = useSelector(globalSelectors.selectAuthToken);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [error, setError] = useState<string>("");
   const getNotificationsQuery = zeapApiSlice.useGetNotificationsQuery(
     {},
-    { skip: !token }
+    { skip: !token || !user?._id }
   );
   const notifications = getNotificationsQuery?.data?.data.notifications;
   const [deleteNotification, deleteNotificationStatus] =
