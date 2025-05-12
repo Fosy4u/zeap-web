@@ -23,7 +23,8 @@ interface SocialInterface {
   twitter?: string;
   instagram?: string;
   website?: string;
-  tiktok?: string;
+  tikTok?: string;
+  linkedin?: string;
 }
 
 interface UserInterface {

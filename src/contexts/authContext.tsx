@@ -122,7 +122,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           }
 
           const uid = currentUser.uid;
-          const response = await triggerGetAuthUser({ uid }, true);
+          const response = await triggerGetAuthUser({ uid });
           const userData = response?.data?.data;
           if (userData) {
             setUser(userData);
