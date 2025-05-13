@@ -14,12 +14,12 @@ const MySocialDetails = () => {
     facebook: string;
     instagram: string;
     twitter: string;
-    tiktok: string;
+    tikTok: string;
   }>({
     facebook: user?.social?.facebook || "",
     instagram: user?.social?.instagram || "",
     twitter: user?.social?.twitter || "",
-    tiktok: user?.social?.tiktok || "",
+    tikTok: user?.social?.tikTok || "",
   });
   const [editMode, setEditMode] = useState(false);
 
@@ -202,11 +202,11 @@ const MySocialDetails = () => {
         )}
         {editMode ? (
           <div className="flex flex-col gap-2">
-            <span className="text-sm font-bold">TikTok</span>
+            <span className="text-sm font-bold">tikTok</span>
             <input
               type="text"
-              onChange={(e) => setSocial({ ...social, tiktok: e.target.value })}
-              value={social.tiktok}
+              onChange={(e) => setSocial({ ...social, tikTok: e.target.value })}
+              value={social.tikTok}
               required
               className="p-2 rounded-lg bg-white border border-slate-300"
             />
@@ -219,18 +219,18 @@ const MySocialDetails = () => {
               </span>
               <div className="flex flex-col  w-full">
                 <span className="w-full text-sm font-bold">
-                  {user?.social?.tiktok ? "TikTok" : "Add TikTok +"}
+                  {user?.social?.tikTok ? "tikTok" : "Add tikTok +"}
                 </span>
-                {user?.social?.tiktok && (
+                {user?.social?.tikTok && (
                   <span className="text-sm text-slate-500">
-                    {user?.social?.tiktok}
+                    {user?.social?.tikTok}
                   </span>
                 )}
               </div>
             </div>
 
             <span className="text-sm text-slate-500">
-              {!user?.social?.tiktok && (
+              {!user?.social?.tikTok && (
                 <HiPlusCircle
                   className="h-5 w-5 text-success"
                   onClick={() => {
