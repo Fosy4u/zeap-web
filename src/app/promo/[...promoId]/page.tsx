@@ -65,7 +65,7 @@ const Page = () => {
       </div>
       {products?.length > 0 && (
         <div className="flex flex-col md:flex-row md:gap-4">
-          <div className="hidden md:flex flex-none md:w-64">
+          <div className="hidden lg:flex flex-none md:w-64">
             <ProductFilters
               dynamicFilters={dynamicFilters}
               totalCount={totalCount}

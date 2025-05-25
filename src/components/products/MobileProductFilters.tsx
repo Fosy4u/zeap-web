@@ -22,7 +22,7 @@ const drawerTmem = {
         off: "right-0 top-0 h-screen w-80 translate-x-full",
       },
       bottom: {
-        on: "bottom-0 left-0 right-0 w-full transform-none h-[70vh] md:h-full overflow-y-scroll",
+        on: "bottom-0 left-0 right-0 w-full transform-none h-[70vh]  overflow-y-scroll",
         off: "bottom-0 left-0 right-0 w-full translate-y-full",
       },
       left: {
@@ -143,7 +143,7 @@ export function MobileProductFilters({
             setIsOpen(!isOpen);
             setSubTitle("");
           }}
-          className="inline-flex items-center  w-full h-8 px-4 text-sm  md:hidden"
+          className="inline-flex items-center  w-full h-8 px-4 text-sm "
         >
           <span className="flex items-center gap-2">
             <HiAdjustments className="text-lg" />

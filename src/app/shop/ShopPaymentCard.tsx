@@ -1,4 +1,6 @@
 import ReactTimeAgo from "react-time-ago";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 import NoPic from "@/images/noPhoto.png";
 
 import { Badge } from "flowbite-react";
@@ -10,6 +12,8 @@ import {
   numberWithCommas,
 } from "@/utils/helpers";
 import Image from "next/image";
+
+TimeAgo.addDefaultLocale(en);
 
 const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
   const productOrder_id = payment?.productOrder_id;
@@ -48,6 +52,8 @@ const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
             onError={(e) => {
               e.currentTarget.src = NoPic.src;
             }}
+            width={64}
+            height={64}
           />
         </span>
         <span className="flex flex-col gap-1">

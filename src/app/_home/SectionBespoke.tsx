@@ -6,7 +6,7 @@ import Image from "next/image";
 const SectionBespoke = () => {
   
   return (
-    <div className="items-stretch justify-between bg-green-50 flex py-2 flex-col-reverse md:flex-row">
+    <div className="items-stretch justify-between bg-green-50 flex py-2 flex-col-reverse lg:flex-row">
       <div className="basis-[50%] space-y-6  md:space-y-10 py-10 pl-2 text-primary md:pl-10">
         <p className="text-lg md:text-2xl font-medium">Clothes made to fit you, not the other way around</p>
         <div

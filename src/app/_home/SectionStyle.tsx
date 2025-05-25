@@ -16,14 +16,15 @@ const SectionStyle = () => {
 
   return (
     <div className="container ">
-      <Heading className="mb-5 max-w-3xl" showDash>
+      <Heading className="lg:mb-5 max-w-3xl" showDash>
         {signUpSection.heading}
       </Heading>
+
       <div className="grid gap-5 lg:grid-cols-2">
         {!user || user?.isGuest ? (
           <div className="items-stretch gap-5 md:flex">
             <div className="basis-[60%]">
-              <div className="h-5 w-full md:h-[250px]" />
+              <div className="h-5 w-full lg:h-[250px]" />
 
               <div className="space-y-5 rounded-2xl bg-primary p-5 text-white">
                 <Link href="/account/login">
@@ -38,9 +39,9 @@ const SectionStyle = () => {
             </div>
           </div>
         ) : (
-          <div className="items-stretch gap-5 md:flex">
+          <div className="items-stretch gap-5 lg:flex text-center">
             <div className="basis-[60%]">
-              <div className="h-5 w-full md:h-[250px]" />
+              <div className="h-5 w-full lg:h-[250px]" />
 
               <div className="space-y-5 rounded-2xl bg-primary p-5 text-white">
                 <h2 className="text-3xl font-medium">

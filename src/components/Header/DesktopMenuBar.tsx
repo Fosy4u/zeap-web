@@ -103,7 +103,7 @@ const DesktopMenuBar = () => {
       }}
     >
       {/* <hr className="text-primary"/> */}
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-4 w-full">
         {menuLinks.map((menu) => (
           <React.Fragment key={menu.link}>
             {productTypes.includes(menu.link) && (
@@ -169,7 +169,7 @@ const MenuItem = ({
       {" "}
       <Link
         href={`/products/collections/${link}`}
-        className={`p-1 text-xs text-slate-800 font-[510] text-center   w-[11rem] ${
+        className={`p-1 text-xs text-slate-800 font-[510] text-center   xl:w-[11rem] ${
           selectedMenu === link ? " bg-slate-200 " : ""
         }`}
         onClick={() => {
