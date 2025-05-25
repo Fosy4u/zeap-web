@@ -23,7 +23,7 @@ const MainNav = () => {
       <div className="p-2 flex items-center md:justify-between">
         <div className="flex-1 flex items-center gap-4">
           <Logo className="hidden xl:block" />
-          { !user?.shopId && (
+          {!user?.shopId && (
             <Link
               href={"/sell-on-zeap"}
               className="hidden xl:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm"
@@ -34,7 +34,7 @@ const MainNav = () => {
           {user?.shopId && (
             <Link
               href="/shop"
-              className="hidden xl:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm"
+              className="hidden md:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm"
             >
               My Shop
             </Link>
@@ -50,7 +50,7 @@ const MainNav = () => {
           <UserMenuBar />
         </div>
 
-        <div className=" flex-1  lg:hidden  h-[3rem]  justify-end gap-1 md:gap-7 flex items-center w-full">
+        <div className=" flex-1  md:hidden  h-[3rem]  justify-end gap-1 md:gap-7 flex items-center w-full">
           <SearchHeader />
           <CurrencyPrefence />
           <WishMenuBar />
@@ -60,7 +60,7 @@ const MainNav = () => {
           <MenuBar />
         </div>
       </div>
-      <div className="hidden items-center gap-4 lg:flex justify-center">
+      <div className="hidden items-center gap-4 md:flex justify-center">
         {/* {NavLinks.map((item) => (
           <NavigationItem key={item.id} menuItem={item} />
         ))} */}

@@ -54,7 +54,7 @@ const ProductCollectionDisplay = ({
         ))}
       </div>
       {showMobileFilters && (
-        <div className="flex md:hidden">
+        <div className="flex lg:hidden">
           <MobileProductFilters
             dynamicFilters={dynamicFilters}
             totalCount={totalCount}
@@ -63,7 +63,7 @@ const ProductCollectionDisplay = ({
           />
         </div>
       )}
-      <div className="grid gap-1 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 ">
+      <div className="grid gap-1 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 ">
         {products.map((item) => (
           <ProductCard
             product={item}

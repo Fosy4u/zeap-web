@@ -62,7 +62,6 @@ const MyRecommendedProducts = () => {
   };
   return (
     <div className="bg-lightGold container mt-4">
-        
       {recommendedProducts?.length > 0 && (
         <div className="p-1  py-8 lg:pb-28">
           <div className="flex justify-between items-center">
@@ -70,7 +69,7 @@ const MyRecommendedProducts = () => {
               Picked For You
             </span>
           </div>
-          <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 l  g:grid-cols-5 ">
+          <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4   lg:grid-cols-5 ">
             {isLoading &&
               Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} />)}
           </div>
@@ -90,7 +89,7 @@ const MyRecommendedProducts = () => {
                   {getGroupedProducts(5).map((group, index) => (
                     <div
                       key={index}
-                      className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 "
+                      className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 "
                     >
                       {group.map((product: ProductInterface) => (
                         <ProductCard
@@ -103,12 +102,30 @@ const MyRecommendedProducts = () => {
                   ))}
                 </Carousel>
               </div>
-              <div className=" hidden md:flex 2xl:hidden h-[35rem] w-full  items-center justify-center">
+              <div className=" hidden lg:flex 2xl:hidden h-[35rem] w-full  items-center justify-center">
                 <Carousel theme={caruselTheme} slide={false} className="w-full">
                   {getGroupedProducts(4).map((group, index) => (
                     <div
                       key={index}
-                      className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 "
+                      className="grid gap-2 md:gap-4 grid-cols-2  lg:grid-cols-4 2xl:grid-cols-5 "
+                    >
+                      {group.map((product: ProductInterface) => (
+                        <ProductCard
+                          key={product.productId}
+                          product={product}
+                          colorOptions={colorOptions}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
+              <div className=" hidden md:flex lg:hidden 2xl:hidden h-[35rem] w-full  items-center justify-center">
+                <Carousel theme={caruselTheme} slide={false} className="w-full">
+                  {getGroupedProducts(2).map((group, index) => (
+                    <div
+                      key={index}
+                      className="grid gap-2 md:gap-4 grid-cols-2   "
                     >
                       {group.map((product: ProductInterface) => (
                         <ProductCard
@@ -122,11 +139,15 @@ const MyRecommendedProducts = () => {
                 </Carousel>
               </div>
               <div className=" flex md:hidden h-[35rem] w-full  items-center justify-center">
-                <Carousel theme={caruselTheme} slide={false} className="w-full">
+                <Carousel
+                  theme={caruselTheme}
+                  slide={false}
+                  className="w-full "
+                >
                   {getGroupedProducts(2).map((group, index) => (
                     <div
                       key={index}
-                      className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 "
+                      className="grid gap-2 lg:gap-4 grid-cols-2  lg:grid-cols-4 2xl:grid-cols-5 "
                     >
                       {group.map((product: ProductInterface) => (
                         <ProductCard
