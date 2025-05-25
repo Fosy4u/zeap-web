@@ -226,3 +226,12 @@ export const convertCamelToNormal = (text: string) => {
   const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
   return finalResult;
 };
+
+export const checkIfHtml = (text: string) => {
+  const htmlRegex = /<[^>]+>/;
+  return htmlRegex.test(text);
+}
+export const convertStringToHtml = (text: string) => {
+  const htmlString = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  return htmlString;
+}

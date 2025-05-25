@@ -169,6 +169,7 @@ interface ProductInterface {
   status: string;
   currentStep: number;
   sizes: string[];
+  sizeStandard?: string;
   colors: ColorInterface[];
   postedBy: UserInterface;
   shop: ShopInterface;
@@ -178,6 +179,10 @@ interface ProductInterface {
   promo?: {
     promoId: string;
     discountPercentage: number;
+  };
+  autoPriceAdjustment: {
+    isAdjustable: boolean;
+    adjustmentPercentage: number;
   };
   currency: CurrencyInterface;
   _id: string;
@@ -453,6 +458,7 @@ interface WishlistInterface {
   __v: number;
 }
 interface ShopPaymentInterface {
+  _id: string;
   productOrder_id: string;
   buyerPaid: {
     currency: string;

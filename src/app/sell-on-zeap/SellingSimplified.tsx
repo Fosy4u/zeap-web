@@ -1,7 +1,7 @@
 import { sellingSimplified } from "@/data/content";
 import Pic from "@/images/sell2.jpg";
 import Image from "next/image";
-import StartSelling from "./StartSelling";
+import StartSelling from "../../components/shop/StartSelling";
 
 const SellingSimplified = ({
   setIsOpen,

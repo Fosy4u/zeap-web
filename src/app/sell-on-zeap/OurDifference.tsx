@@ -1,7 +1,7 @@
 import { ourDifference } from "@/data/content";
 import Pic from "@/images/signage-1.jpg";
 import Image from "next/image";
-import StartSelling from "./StartSelling";
+import StartSelling from "../../components/shop/StartSelling";
 
 const OurDifference = ({
   setIsOpen,

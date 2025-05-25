@@ -8,6 +8,7 @@ import { ProductInterface } from "@/interface/interface";
 import {
   capitalizeFirstLetter,
   getCurrencySmallSymbol,
+  getStatusBg,
   numberWithCommas,
 } from "@/utils/helpers";
 import HeartSolid from "./HeartSolidIcon";
@@ -21,10 +22,15 @@ import { globalSelectors } from "@/redux/services/global.slice";
 const ProductCard = ({
   product,
   colorOptions = [],
+  showStatus = false,
+  disableLink = false,
+  href,
 }: {
   product: ProductInterface;
   showStatus?: boolean;
+  disableLink?: boolean;
   colorOptions?: { name: string; hex?: string; background?: string }[];
+  href?: string;
 }) => {
   const router = useRouter();
   const [clickedColor, setClickedColor] = useState<string>("");
@@ -153,13 +159,19 @@ const ProductCard = ({
       <div className="relative overflow-hidden mb-1 w-full">
         <div>
           <div
-            className="w-full cursor-pointer"
+            className={`w-full ${
+              disableLink ? "cursor-not-allowed" : "cursor-pointer"
+            }  `}
             onClick={() => {
+              if (disableLink) return;
               localStorage.setItem("selectedProductId", product?.productId);
               localStorage.setItem(
                 "selectedProductColor",
                 clickedColor || getDefaultColor()
               );
+              if (href) {
+                return router.push(href);
+              }
               router.push(
                 `/products/${product?.title
                   .replace(/ /g, "-")
@@ -168,7 +180,7 @@ const ProductCard = ({
               );
             }}
           >
-            <div className=" flex md:hidden flex-col  bg-slate-100 gap-2  my-2 cursor-pointer rounded-lg  duration-300 hover:scale-105 transform overflow-hidden  ">
+            <div className=" flex md:hidden flex-col  bg-slate-100 gap-2  my-2  rounded-lg  duration-300 hover:scale-105 transform overflow-hidden  ">
               <Image
                 src={
                   getClickedColorImage(product) ||
@@ -198,7 +210,7 @@ const ProductCard = ({
                 {/* {isWLHovered || alreadyWishlisted ? <HeartSolid /> : <Heart />} */}
               </button>
             </div>
-            <div className="w-72 hidden md:block  mt-2   overflow-hidden rounded-lg cursor-pointer">
+            <div className="w-72 hidden md:block  mt-2   overflow-hidden rounded-lg ">
               <Image
                 className=" w-72 h-80  object-contain transition-transform transform hover:scale-110 duration-1000"
                 src={
@@ -285,6 +297,17 @@ const ProductCard = ({
                 )}
               </span>
             </div>
+            {showStatus && (
+              <div className="absolute right-0 top-0 h-16 w-16 ">
+                <div
+                  className={`absolute transform rotate-45 ${getStatusBg(
+                    product?.status
+                  )} text-center  font-semibold py-1 right-[-35px] top-[32px] w-[170px]`}
+                >
+                  {product?.status}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

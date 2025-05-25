@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/contexts/themeContext";
 import Loading from "@/components/loading/Loading";
 import DisplayChildren from "./DisplayChildren";
 import { WebSocketProvider } from "@/contexts/webSocketContext";
+import FlowBiteTheme from "@/contexts/FlowBiteTheme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,17 +36,19 @@ export default function RootLayout({
       <StoreProvider>
         <AuthProvider>
           <ThemeProvider>
-            <html lang="en">
-              <body
-                className={` ${geistSans.variable} ${geistMono.variable} antialiased `}
-              >
-                <Suspense fallback={<Loading />}>
-                  <div className="fixed h-full w-full overflow-x-hidden top-0 left-0 ">
-                    <DisplayChildren>{children}</DisplayChildren>
-                  </div>
-                </Suspense>
-              </body>
-            </html>
+            <FlowBiteTheme>
+              <html lang="en">
+                <body
+                  className={` ${geistSans.variable} ${geistMono.variable} antialiased `}
+                >
+                  <Suspense fallback={<Loading />}>
+                    <div className="fixed h-full w-full overflow-x-hidden top-0 left-0 ">
+                      <DisplayChildren>{children}</DisplayChildren>
+                    </div>
+                  </Suspense>
+                </body>
+              </html>
+            </FlowBiteTheme>
           </ThemeProvider>
         </AuthProvider>
       </StoreProvider>

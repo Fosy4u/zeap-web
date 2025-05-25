@@ -11,11 +11,11 @@ import { Alert } from "flowbite-react";
 import { globalSelectors } from "@/redux/services/global.slice";
 import LoadingDots from "../loading/LoadingDots";
 import ClickOutside from "@/shared/ClickOutside";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
+// import TimeAgo from "javascript-time-ago";
+// import en from "javascript-time-ago/locale/en";
 import { AuthContext } from "@/contexts/authContext";
 
-TimeAgo.addDefaultLocale(en);
+// TimeAgo.addDefaultLocale(en);
 
 const DropdownNotification = () => {
    const { user } = useContext(AuthContext);

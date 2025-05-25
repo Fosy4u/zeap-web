@@ -70,7 +70,7 @@ const ProductFilters = ({
     }
     const params = new URLSearchParams(searchParams.toString());
     const exist = params.get(key);
-    console.log("exist", exist);
+   
 
     // join the values with comma if exist
     if (exist) {

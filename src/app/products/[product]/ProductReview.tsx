@@ -7,18 +7,18 @@ import {
   ProductReviewInterface,
 } from "../../../interface/interface";
 import { useContext, useEffect, useState } from "react";
-import en from "javascript-time-ago/locale/en";
+// import en from "javascript-time-ago/locale/en";
 import NoProfilePic from "@/images/noProfilePic.png";
 import ReactTimeAgo from "react-time-ago";
 import { HiThumbDown, HiThumbUp } from "react-icons/hi";
 import { AuthContext } from "../../../contexts/authContext";
 import AddReview from "./AddReview";
 import Skeleton from "@/components/loading/Skeleton";
-import TimeAgo from "javascript-time-ago";
+// import TimeAgo from "javascript-time-ago";
 import { allStars } from "@/data/content";
 import ImageMatchChart from "./ImageMatchChart";
 
-TimeAgo.addDefaultLocale(en);
+// TimeAgo.addDefaultLocale(en);
 
 const advanceRatingTheme = {
   base: "flex items-center justify-between w-full",
@@ -36,8 +36,8 @@ const ProductReview = ({
   setAverageRating,
 }: {
   product: ProductInterface;
-  setReviews: (reviews: ProductReviewInterface[]) => void;
-  setAverageRating: (rating: number) => void;
+  setReviews?: (reviews: ProductReviewInterface[]) => void;
+  setAverageRating?: (rating: number) => void;
 }) => {
   const { productId } = product;
   const { user } = useContext(AuthContext);
@@ -79,7 +79,7 @@ const ProductReview = ({
   const no = imageMatch?.false || 0;
 
   useEffect(() => {
-    if (reviews) {
+    if (reviews && setAverageRating && setReviews) {
       setReviews(reviews);
       setAverageRating(averageRating);
     }
@@ -195,19 +195,27 @@ const ProductReview = ({
               <p className="text-md font-bold text-gray-500 dark:text-gray-400">
                 No reviews yet
               </p>
+              {user?.shopId !== product?.shopId ? (
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
                 Be the first to review this product
-              </p>
+              </p>) : (
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  You will see reviews for this product once customers start
+                  reviewing it. 
+                </p>
+              )}
             </div>
-            <div>
-              <Button
-                color="success"
-                onClick={() => setOpenReview(true)}
-                size="xs"
-              >
-                Write Review
-              </Button>
-            </div>
+            {user?.shopId !== product?.shopId && (
+              <div>
+                <Button
+                  color="success"
+                  onClick={() => setOpenReview(true)}
+                  size="xs"
+                >
+                  Write Review
+                </Button>
+              </div>
+            )}
           </div>
         </Alert>
       )}
@@ -309,9 +317,7 @@ const ProductReview = ({
                           rounded
                         />
                         <div className="flex flex-col">
-                          <p className="text-xs ">
-                            {review?.displayName}
-                          </p>
+                          <p className="text-xs ">{review?.displayName}</p>
 
                           <p className="text-sm text-slate-400 dark:text-gray-400">
                             <ReactTimeAgo date={new Date(review.createdAt)} />-{" "}

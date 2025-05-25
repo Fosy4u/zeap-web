@@ -1,7 +1,7 @@
 
 
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
-import ButtonSecondary from "@/shared/Button/ButtonSecondary";
+
 
 const NotFound = () => {
   return (
@@ -18,13 +18,13 @@ const NotFound = () => {
           The page you are looking for doesn&apos;t exist or has been moved.
         </p>
         <div className="flex items-center justify-center gap-5">
-          <ButtonPrimary sizeClass="px-5 py-4">Get Started</ButtonPrimary>
-          <ButtonSecondary
+         
+          <ButtonPrimary
             href="/"
             className="border-2 border-primary text-primary"
           >
             Go Home
-          </ButtonSecondary>
+          </ButtonPrimary>
         </div>
       </div>
     </div>
