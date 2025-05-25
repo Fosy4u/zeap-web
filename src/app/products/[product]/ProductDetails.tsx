@@ -89,7 +89,7 @@ const ProductDetails: FC<SectionProductHeaderProps> = ({
   return (
     <div
       // className=" justify-between space-y-10 lg:flex lg:space-y-0"
-      className="grid grid-cols-1 gap-10 lg:grid-cols-2"
+      className="grid grid-cols-1 gap-10 md:grid-cols-2"
     >
       {/* <div className="basis-[47%]">
         <ImageShowCase shots={shots} />

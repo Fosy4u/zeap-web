@@ -22,7 +22,7 @@ const SectionStyle = () => {
 
       <div className="grid gap-5 lg:grid-cols-2">
         {!user || user?.isGuest ? (
-          <div className="items-stretch gap-5 md:flex">
+          <div className="items-stretch gap-5 lg:flex">
             <div className="basis-[60%]">
               <div className="h-5 w-full lg:h-[250px]" />
 
@@ -32,7 +32,7 @@ const SectionStyle = () => {
                     Sign Up
                   </ButtonSecondary>
                 </Link>
-                <h2 className="text-3xl font-medium">
+                <h2 className="text-2xl md:text-4xl font-medium">
                   {signUpSection.promoTitle}
                 </h2>
               </div>

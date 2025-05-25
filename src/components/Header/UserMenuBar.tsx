@@ -72,8 +72,8 @@ export function UserMenuBar() {
   }, [isAuthenticated, user?.isGuest, handleClose]);
 
   const content = (
-    <div className="w-64 text-sm text-gray-500 dark:text-gray-400 flex flex-col gap-2 bg-white">
-      <div className="flex flex-col items-center gap-2 w-full ">
+    <div className="w-64 text-sm text-gray-500 dark:text-gray-400 flex flex-col gap-2 bg-white overflow-y-auto max-h-[calc(100vh-8rem)]">
+      <div className="flex flex-col items-center gap-2 w-full overflow-y-auto">
         {(!user || user?.isGuest) && (
           <div className="flex flex-col gap-1 w-full bg-grey7">
             <div className="flex justify-center gap-2 w-full p-2">
@@ -115,7 +115,7 @@ export function UserMenuBar() {
         )}
 
         <div className="flex w-full p-2 ">
-          <List className="w-full flex flex-col gap-4">
+          <List className="w-full flex flex-col gap-4 overflow-y-auto ">
             <ListItem
               className="hover:bg-slate-100 p-2 rounded-md cursor-pointer"
               icon={() => <HiDatabase className="text-info mr-3" />}
