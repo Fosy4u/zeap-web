@@ -77,7 +77,7 @@ const OrderSuccessModal = ({
                   onClick={() => {
                     setOpenReciept(true);
                   }}
-                  className="w-full rounded-lg h-[3rem] "
+                  className="w-full rounded-lg h-[3rem] bg-lightSuccess text-primary"
                 >
                   View Reciept
                 </ButtonSecondary>
@@ -89,7 +89,7 @@ const OrderSuccessModal = ({
                     setDimBackground(false);
                     router.push("/account/orders");
                   }}
-                  className="w-full rounded-lg h-[3rem] text-primary "
+                  className="w-full rounded-lg h-[3rem] text-primary bg-lightGold "
                 >
                   View Orders
                 </ButtonSecondary>
