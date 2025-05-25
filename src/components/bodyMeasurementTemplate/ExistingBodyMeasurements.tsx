@@ -90,7 +90,9 @@ export function ExistingBodyMeasurements({
       });
       newBodyMeasurements.push(newObj);
     });
+
     setBodyMeasurements(newBodyMeasurements);
+
     setOpenExistingBodyMeasurements(false);
   };
 

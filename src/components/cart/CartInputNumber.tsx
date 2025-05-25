@@ -11,7 +11,7 @@ export interface InputNumberProps {
   onChange?: (value: number) => void;
   label?: string;
   desc?: string;
-  sku?: string;
+  _id?: string;
   setServerError: (value: string) => void;
   setIsLoading: (value: boolean) => void;
 }
@@ -23,7 +23,7 @@ const CartInputNumber: FC<InputNumberProps> = ({
   max = 99,
   label,
   desc,
-  sku,
+  _id,
   setServerError,
   setIsLoading,
 }) => {
@@ -41,7 +41,7 @@ const CartInputNumber: FC<InputNumberProps> = ({
 
   const handleClickDecrement = () => {
     const payload = {
-      sku,
+      _id,
     };
     decreaseQuantity({ payload })
       .unwrap()
@@ -57,7 +57,7 @@ const CartInputNumber: FC<InputNumberProps> = ({
   };
   const handleClickIncrement = () => {
     const payload = {
-      sku,
+      _id,
     };
     increaseQuantity({ payload })
       .unwrap()

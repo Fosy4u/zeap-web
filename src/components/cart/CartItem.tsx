@@ -7,6 +7,19 @@ import { useRouter } from "next/navigation";
 import CartInputNumber from "./CartInputNumber";
 import { AiOutlineDelete } from "react-icons/ai";
 import NoPic from "@/images/noPhoto.png";
+import { useSelector } from "react-redux";
+import { globalSelectors } from "@/redux/services/global.slice";
+import { useState } from "react";
+import { AddBodyMeasurementsSize } from "@/app/products/[product]/AddBodyMeasurementsSize";
+
+type measurementField = {
+  field: string;
+  value: number;
+};
+interface bodyMeasurement {
+  name: string;
+  measurements: measurementField[];
+}
 
 const CartItem = ({
   item,
@@ -22,14 +35,22 @@ const CartItem = ({
   colorOptions: { name: string; hex?: string; background?: string }[];
 }) => {
   const router = useRouter();
-
+  const isBespoke = item?.size === "Custom";
+  const [openModal, setOpenModal] = useState(false);
+  const [bodyMeasurements, setBodyMeasurements] = useState<bodyMeasurement[]>(
+    item.bodyMeasurements || []
+  );
+  const [addProductToWishList] = zeapApiSlice.useAddProductToWishListMutation();
+  const [removeProductFromWishList] =
+    zeapApiSlice.useRemoveProductFromWishListMutation();
+  const wishList = useSelector(globalSelectors.selectWishList);
   const [removeProductFromBasket] =
     zeapApiSlice.useRemoveProductFromBasketMutation();
 
-  const handleRemoval = (sku: string) => {
+  const handleRemoval = (_id: string) => {
     setIsLoading(true);
     const payload = {
-      sku,
+      _id,
     };
     removeProductFromBasket({ payload })
       .unwrap()
@@ -50,6 +71,38 @@ const CartItem = ({
       return "radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(204,23,195,0.09147408963585435) 4%, rgba(205,64,138,0.5172443977591037) 25%, rgba(207,136,39,1) 37%, rgba(13,15,25,1) 44%, rgba(32,37,4,1) 45%, rgba(72,84,9,0.4472163865546218) 100%)";
     const color = colorOptions.find((color) => color.name === value);
     return color?.hex || color?.background;
+  };
+
+  const getAlreadyWishlisted = () => {
+    return wishList?.find(
+      (wish) =>
+        wish?.product?.productId === item?.productId &&
+        wish?.color === item.color
+    );
+  };
+  const alreadyWishlisted = getAlreadyWishlisted();
+
+  const handleAddWishlist = async () => {
+    const payload = {
+      productId: item?.productId,
+      color: item.color,
+    };
+    addProductToWishList({ payload }).unwrap();
+  };
+  const removeWishlist = async () => {
+    const payload = {
+      wish_id: alreadyWishlisted?._id,
+    };
+    removeProductFromWishList({ payload }).unwrap();
+  };
+  const handleWishClick = () => {
+    if (!item) return;
+    if (!item?.productId) return;
+    if (alreadyWishlisted) {
+      removeWishlist();
+    } else {
+      handleAddWishlist();
+    }
   };
 
   return (
@@ -98,8 +151,8 @@ const CartItem = ({
             >
               <h3 className="font-medium ">{item.title}</h3>
             </div>
-            <div className="flex items-center justify-between">
-              <label className="ml-2 text-sm text-gray-900 dark:text-white items-center inline-flex gap-2 cursor-pointer">
+            <div className="flex flex-col md:flex-row md:items-center justify-between">
+              <label className="md:ml-2 text-sm text-gray-900 dark:text-white items-center inline-flex gap-2 cursor-pointer">
                 <div
                   className="w-4 h-4 rounded-full border  border-slate-200"
                   style={{ background: getBg(item.color) }}
@@ -107,9 +160,24 @@ const CartItem = ({
 
                 {item.color}
               </label>
-              <div className="flex items-center gap-3 text-sm">
-                Size : <span className="font-semibold">{item.size}</span>
-              </div>
+              {!isBespoke && (
+                <div className="flex items-center gap-3 text-sm">
+                  Size : <span className="font-semibold">{item.size}</span>
+                </div>
+              )}
+              {isBespoke && (
+                <div className="flex items-center gap-3 text-sm">
+                  Size :{" "}
+                  <span
+                    onClick={() => {
+                      setOpenModal(true);
+                    }}
+                    className="font-semibold underline text-info cursor-pointer"
+                  >
+                    {item.size}
+                  </span>
+                </div>
+              )}
             </div>
             <div className="flex items-center gap-3 text-sm">
               {item?.discountedAmount && (
@@ -134,9 +202,12 @@ const CartItem = ({
         </div>
         <div className="flex w-full items-end justify-between text-sm">
           <div className="flex items-center gap-3">
-            <LikeButton />
+            <LikeButton
+              isLiked={!!alreadyWishlisted}
+              onClick={handleWishClick}
+            />
             <AiOutlineDelete
-              onClick={() => handleRemoval(item.sku)}
+              onClick={() => handleRemoval(item._id)}
               className="text-2xl cursor-pointer"
             />
           </div>
@@ -144,12 +215,26 @@ const CartItem = ({
             <CartInputNumber
               value={item.quantity}
               setServerError={setServerError}
-              sku={item.sku}
+              _id={item._id}
               setIsLoading={setIsLoading}
             />
           </div>
         </div>
       </div>
+      {isBespoke && item.bodyMeasurements && openModal && (
+        <AddBodyMeasurementsSize
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          productId={item.productId}
+          selectedMaterialColor={item.bespokeColor}
+          bodyMeasurements={bodyMeasurements}
+          setBodyMeasurements={setBodyMeasurements}
+          sku={item.sku}
+          _id={item._id}
+          mode="update"
+          defaultBespokeInstruction={item.bespokeInstruction || ""}
+        />
+      )}
     </div>
   );
 };

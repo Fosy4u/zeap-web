@@ -5,7 +5,6 @@ import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 import { globalSelectors } from "@/redux/services/global.slice";
 import { useSelector } from "react-redux";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
-import Skeleton from "@/components/loading/Skeleton";
 import CartItem from "@/components/cart/CartItem";
 import { useState } from "react";
 import { Alert } from "flowbite-react";
@@ -14,6 +13,7 @@ import { getCurrencySmallSymbol, numberWithCommas } from "@/utils/helpers";
 import ApplyDiscount from "@/components/cart/ApplyDiscount";
 import EmptyBasket from "@/components/cart/EmptyBasket";
 import { useRouter } from "next/navigation";
+import LoadingImageBars from "@/components/loading/LoadingImageBars";
 
 interface ColInterface {
   name: string;
@@ -41,13 +41,6 @@ const CartPage = () => {
 
   return (
     <div>
-      {(cartQuery.isLoading || productOptionsQuery.isLoading) && (
-        <div className="grid gap-7 md:grid-cols-3 lg:grid-cols-4">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <Skeleton key={i} />
-          ))}
-        </div>
-      )}
       <main className="container py-6 lg:pb-28  ">
         <div className="mb-7">
           <h2 className="block text-2xl font-medium sm:text-3xl lg:text-4xl">
@@ -61,6 +54,13 @@ const CartPage = () => {
           {serverError && <Alert color="failure">{serverError}</Alert>}
 
           <div className="w-full divide-y divide-neutral-300 lg:w-[60%] xl:w-[55%]">
+            {(cartQuery.isLoading || productOptionsQuery.isLoading) && (
+              <div className="grid grid-cols-1 gap-4">
+                {Array.from({ length: 24 }).map((_, i) => (
+                  <LoadingImageBars key={i} />
+                ))}
+              </div>
+            )}
             {isFulfilled && basketItems?.length === 0 && <EmptyBasket />}
             {basketItems?.length > 0 &&
               [...basketItems]
@@ -81,6 +81,13 @@ const CartPage = () => {
             <div className="sticky top-28">
               <h3 className="text-2xl font-semibold">Summary</h3>
               <div className="mt-7 divide-y divide-neutral-300 text-sm">
+                {(cartQuery.isLoading || productOptionsQuery.isLoading) && (
+                  <div className="grid grid-cols-1 gap-4">
+                    {Array.from({ length: 24 }).map((_, i) => (
+                      <LoadingImageBars key={i} showImage={false} />
+                    ))}
+                  </div>
+                )}
                 <div className="flex justify-between pb-4">
                   <span>Subtotal</span>
 

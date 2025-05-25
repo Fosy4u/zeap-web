@@ -6,6 +6,9 @@ import { ThemeContext } from "@/contexts/themeContext";
 import ToastContainer from "@/shared/toast";
 import { usePathname } from "next/navigation";
 import React, { useContext, useEffect } from "react";
+import en from "javascript-time-ago/locale/en";
+import TimeAgo from "javascript-time-ago";
+TimeAgo.addDefaultLocale(en);
 
 const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
   const { theme, dimBackground, setDimBackground } = useContext(ThemeContext);

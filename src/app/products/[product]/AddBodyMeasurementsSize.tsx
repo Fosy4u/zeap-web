@@ -64,18 +64,22 @@ export function AddBodyMeasurementsSize({
   bodyMeasurements,
   setBodyMeasurements,
   sku,
-
   setIsOpen,
+  mode = "add",
+  _id,
+  defaultBespokeInstruction = "",
 }: {
   openModal: boolean;
   setOpenModal: (open: boolean) => void;
   productId: string;
-  selectedMaterialColor: string;
+  selectedMaterialColor?: string;
   bodyMeasurements: bodyMeasurement[];
   setBodyMeasurements: (bodyMeasurements: bodyMeasurement[]) => void;
   sku: string;
-
-  setIsOpen: (open: boolean) => void;
+  setIsOpen?: (open: boolean) => void;
+  mode?: "add" | "update";
+  _id?: string;
+  defaultBespokeInstruction?: string;
 }) {
   const topDiveRef = useRef<HTMLDivElement>(null);
   const { user } = useContext(AuthContext);
@@ -88,11 +92,14 @@ export function AddBodyMeasurementsSize({
     openUpdateBodyMeasurementTemplate,
     setOpenUpdateBodyMeasurementTemplate,
   ] = useState(false);
-  const [bespokeInstruction, setBespokeInstruction] = useState("");
+  const [bespokeInstruction, setBespokeInstruction] = useState(
+    defaultBespokeInstruction
+  );
   const [inputError, setInputError] = useState<{ [key: string]: string }>({});
   const [saveMeasurementFornextTime, setSaveMeasurementFornextTime] =
     useState(false);
   const [addToCart] = zeapApiSlice.useAddProductToCartMutation();
+  const [updateCartItem] = zeapApiSlice.useUpdateCartItemMutation();
 
   const [serverError, setServerError] = useState("");
 
@@ -118,7 +125,15 @@ export function AddBodyMeasurementsSize({
     getBodyMeasurementGuideQuery.data?.data || [];
   const bodyMeasurementGuideFields: BodyMeasurementGuideFieldsInterface[] =
     bodyMeasurementGuide.map((item) => item?.fields).flat();
-  
+
+  useEffect(() => {
+    if (openModal) {
+      setDimBackground(true);
+    } else {
+      setDimBackground(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openModal]);
 
   useEffect(() => {
     if (
@@ -159,8 +174,18 @@ export function AddBodyMeasurementsSize({
     if (!isValid) {
       return;
     }
-    setIsOpen(true);
-    const payload = {
+    if (setIsOpen) {
+      setIsOpen(true);
+    }
+    const payload: {
+      productId: string;
+      bespokeColor?: string;
+      bodyMeasurements: bodyMeasurement[];
+      bespokeInstruction: string;
+      quantity: number;
+      sku: string;
+      _id?: string;
+    } = {
       productId: productId?.toString(),
       bespokeColor: selectedMaterialColor,
       bodyMeasurements,
@@ -168,6 +193,21 @@ export function AddBodyMeasurementsSize({
       quantity: 1,
       sku: sku,
     };
+    if (mode === "update" && _id) {
+      payload._id = _id;
+      return updateCartItem({ payload })
+        .unwrap()
+        .then(() => {
+          setServerError("");
+          onCloseModal();
+        })
+        .catch((err) => {
+          setServerError(err.data.error);
+          setTimeout(() => {
+            setServerError("");
+          }, 5000);
+        });
+    }
     addToCart({ payload })
       .unwrap()
       .then(() => {
@@ -189,8 +229,10 @@ export function AddBodyMeasurementsSize({
     );
     if (found) {
       const measurement = found.measurements.find(
-        (item: measurementField) => item.field === field
+        (item: measurementField) =>
+          item.field?.toLowerCase() === field.toLowerCase()
       );
+
       return measurement?.value;
     }
     return "";
@@ -203,14 +245,30 @@ export function AddBodyMeasurementsSize({
   const handleInputChange = (value: string, name: string, field: string) => {
     const currentBodyMeasurements = [...bodyMeasurements];
     const found = currentBodyMeasurements.find(
-      (item: bodyMeasurement) => item.name === name
+      (item: bodyMeasurement) => item.name.toLowerCase() === name.toLowerCase()
     );
     if (found) {
       const measurement = found.measurements.find(
-        (item: measurementField) => item.field === field
+        (item: measurementField) =>
+          item.field.toLowerCase() === field.toLowerCase()
       );
       if (measurement) {
-        measurement.value = Number(value) || 0;
+        const newMeasurementObj = {
+          ...measurement,
+          value: Number(value) || 0,
+        };
+        const newMeasurements = [...found.measurements].filter(
+          (item: measurementField) => item.field !== field
+        );
+        newMeasurements.push(newMeasurementObj);
+        const updatedBodyMeasurement = {
+          ...found,
+          measurements: newMeasurements,
+        };
+        const index = currentBodyMeasurements.findIndex(
+          (item: bodyMeasurement) => item.name === name
+        );
+        currentBodyMeasurements[index] = updatedBodyMeasurement;
       } else {
         found.measurements.push({ field, value: Number(value) });
       }
@@ -220,6 +278,7 @@ export function AddBodyMeasurementsSize({
         measurements: [{ field, value: Number(value) }],
       });
     }
+
     setBodyMeasurements(currentBodyMeasurements);
   };
   const checkAllInputIsFilled = () => {
@@ -249,9 +308,10 @@ export function AddBodyMeasurementsSize({
         <div className="space-y-6">
           <div className="flex flex-col gap-2" ref={topDiveRef}>
             <p className="text-lg font-medium font-semibold text-gray-900 dark:text-white">
-              Kindly provide us your measurements
+              {mode === "update"
+                ? "Update Body Measurements"
+                : "Kindly provide us your measurements"}
             </p>
-          
           </div>
           <div className="flex flex-col gap-2">
             <span
@@ -389,7 +449,7 @@ export function AddBodyMeasurementsSize({
                 onClick={handleAddToCart}
                 className="flex justify-center bg-primary text-white p-2 rounded-lg cursor-pointer gap-2"
               >
-                Proceed{" "}
+                {mode === "update" ? "Update" : "Add to Cart"}{" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -18,7 +18,7 @@ import { AuthContext } from "@/contexts/authContext";
 // TimeAgo.addDefaultLocale(en);
 
 const DropdownNotification = () => {
-   const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const token = useSelector(globalSelectors.selectAuthToken);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [error, setError] = useState<string>("");
@@ -29,8 +29,12 @@ const DropdownNotification = () => {
   const notifications = getNotificationsQuery?.data?.data.notifications;
   const [deleteNotification, deleteNotificationStatus] =
     zeapApiSlice.useDeleteNotificationMutation();
+  const [deleteAllNotifications, deleteAllNotificationsStatus] =
+    zeapApiSlice.useDeleteAllNotificationsMutation();
 
-  const isDeleting = deleteNotificationStatus.isLoading;
+  const isDeleting =
+    deleteNotificationStatus.isLoading ||
+    deleteAllNotificationsStatus.isLoading;
   const [animate, setAnimate] = useState("");
 
   // Animate Wishlist Number
@@ -51,6 +55,19 @@ const DropdownNotification = () => {
     deleteNotification({ payload })
       .unwrap()
       .then(() => {})
+      .catch((err) => {
+        setError(err.data.error);
+        setTimeout(() => {
+          setError("");
+        }, 5000);
+      });
+  };
+  const handleDeleteAll = () => {
+    deleteAllNotifications({})
+      .unwrap()
+      .then(() => {
+        setDropdownOpen(false);
+      })
       .catch((err) => {
         setError(err.data.error);
         setTimeout(() => {
@@ -85,7 +102,7 @@ const DropdownNotification = () => {
         <span className="sr-only">Notifications</span>
         {notifications?.length > 0 && (
           <div
-            className={`absolute inline-flex items-center justify-center w-5 h-5 md:w-6 md:w-6 text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900 ${animate}`}
+            className={`absolute inline-flex items-center justify-center w-fit p-1 h-5  text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full -top-0 -end-0 dark:border-gray-900 ${animate}`}
           >
             {notifications?.length}
           </div>
@@ -109,10 +126,18 @@ const DropdownNotification = () => {
           )}
           {notifications?.length > 0 && (
             <>
-              <div className="px-4.5 py-3">
+              <div className="px-4.5 py-3 flex justify-between items-center ">
                 <h5 className="text-sm font-medium text-bodydark2">
                   Notification
                 </h5>
+                <button
+                  className="text-xs text-danger hover:underline"
+                  onClick={() => {
+                    handleDeleteAll();
+                  }}
+                >
+                  Clear All
+                </button>
               </div>
               <ul className="flex h-auto flex-col overflow-y-auto">
                 {error && (

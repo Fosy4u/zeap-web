@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import { getCurrencySmallSymbol, numberWithCommas } from "@/utils/helpers";
 import ApplyDiscount from "@/components/cart/ApplyDiscount";
-import Skeleton from "@/components/loading/Skeleton";
 import MobileCheckoutSummary from "./MobileCheckoutSummary";
 import { Alert } from "flowbite-react";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
@@ -20,11 +19,24 @@ import { AuthContext } from "@/contexts/authContext";
 import OrderSuccessModal from "./OrderSuccessModal";
 import Loading from "../loading";
 import EmptyBasket from "@/components/cart/EmptyBasket";
+import LoadingImageBars from "@/components/loading/LoadingImageBars";
+import DeliveryMethod from "./DeliveryMethod";
 
 interface ColInterface {
   name: string;
   hex?: string;
   background?: string;
+}
+type ExpectedDeliveryDaysType = {
+  min: number;
+  max: number;
+};
+interface ExpectDeliveryDateByMethodInterface {
+  standardDeliveryDate: ExpectedDeliveryDaysType;
+  expressDeliveryDate?: ExpectedDeliveryDaysType;
+  sku: string;
+  country: string;
+  method: string;
 }
 
 const CheckoutPage = () => {
@@ -32,7 +44,7 @@ const CheckoutPage = () => {
   const lastChildDiv = useRef<HTMLDivElement>(null);
   const [listDivISFocused, setListDivIsFocused] = useState(false);
   const [tabActive, setTabActive] = useState<
-    "ContactInfo" | "ShippingAddress" | "PaymentMethod"
+    "ContactInfo" | "ShippingAddress" | "PaymentMethod" | "DeliveryMethod"
   >("ShippingAddress");
   const token = useSelector(globalSelectors.selectAuthToken);
   const [showOrderSuccessModal, setShowOrderSuccessModal] = useState(false);
@@ -48,9 +60,10 @@ const CheckoutPage = () => {
   );
   const [address, setAddress] = useState("");
   const [region, setRegion] = useState("");
-  const [country, setCountry] = useState("Nigeria");
+  const [country, setCountry] = useState(user?.country || "Nigeria");
   const [postCode, setPostCode] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [method, setMethod] = useState("standard");
   const [shippingErrors, setErrors] = useState<{
     firstName?: string;
     lastName?: string;
@@ -69,17 +82,22 @@ const CheckoutPage = () => {
   const isFulfilled = cartQuery?.status === "fulfilled";
   const cart = cartQuery?.data?.data;
   const basketItems = cart?.basketItems || [];
-  // const deliveryFee = cart?.deliveryFee === 0 ? "Free" : cart?.deliveryFee;
-  // const subTotal = cart?.subTotal;
-  // const total = cart?.total;
+  const getBasketDeliveryDatesQuery =
+    zeapApiSlice.useGetBasketDeliveryDatesQuery(
+      { country, method },
+      { skip: !token || !country || !method || !cart?.basketItems?.length }
+    );
+  const basketDeliveryDates: ExpectDeliveryDateByMethodInterface[] =
+    getBasketDeliveryDatesQuery?.data?.data || [];
+
   const getBasketTotalQuery = zeapApiSlice.useGetBasketTotalQuery(
-    { country },
-    { skip: !token || !country }
+    { country, method },
+    { skip: !token || !country || !method || !cart?.basketItems?.length }
   );
   const basketCalc = getBasketTotalQuery?.data?.data;
 
   const deliveryFee =
-    basketCalc?.deliveryFee === 0 ? "Free" : basketCalc?.deliveryFee;
+    basketCalc?.deliveryFee == (0 || 0.0) ? "Free" : basketCalc?.deliveryFee;
   const subTotal = basketCalc?.subTotal;
   const appliedVoucherAmount = basketCalc?.appliedVoucherAmount;
   const total = basketCalc?.total;
@@ -90,12 +108,16 @@ const CheckoutPage = () => {
   useEffect(() => {
     const loadPaystack = async () => {
       const paystackPayment = await import("react-paystack");
-      console.log("initializePayment", paystackPayment);
 
       setPaystackPayment(() => paystackPayment.usePaystackPayment);
     };
     loadPaystack();
   }, []);
+  useEffect(() => {
+    if (country.toLowerCase() === "nigeria") {
+      setMethod("standard");
+    }
+  }, [country]);
 
   const [getReferenceTrigger, getReferenceTriggerStatus] =
     zeapApiSlice.useLazyGetPaymentReferenceQuery();
@@ -179,6 +201,7 @@ const CheckoutPage = () => {
   // you can call this function anything
   const onSuccess = (paymentRef: string) => {
     setShowOrderSuccessModal(true);
+
     // Implementation for whatever you want to do with reference and after success call.
     const payload = {
       reference: paymentRef,
@@ -224,6 +247,7 @@ const CheckoutPage = () => {
         country,
         postCode,
         phoneNumber,
+        method,
       }
       // true
     )
@@ -245,6 +269,7 @@ const CheckoutPage = () => {
           publicKey: "pk_test_4f90ef116c7a9b4fece9328bb19f57ded43a9a0c",
         };
         const initializePayment = paystackPayment(config);
+
         // pass reference to initializePayment onSucess
         initializePayment({
           onSuccess: () => onSuccess(data?.reference),
@@ -265,6 +290,23 @@ const CheckoutPage = () => {
           setServerError("");
         }, 5000);
       });
+  };
+
+  const getEstimatedDeliveryDates = (sku: string, method: string) => {
+    const deliveryDate = basketDeliveryDates.find((date) => date.sku === sku);
+    if (!deliveryDate) return null;
+
+    const deliveryDays =
+      deliveryDate[method as keyof ExpectDeliveryDateByMethodInterface];
+    if (!deliveryDays) return null;
+    if (
+      typeof deliveryDays === "object" &&
+      "min" in deliveryDays &&
+      "max" in deliveryDays
+    ) {
+      return `${deliveryDays.min} - ${deliveryDays.max} working days`;
+    }
+    return null;
   };
 
   const renderLeft = () => {
@@ -296,8 +338,8 @@ const CheckoutPage = () => {
               handleScrollToEl("ShippingAddress");
             }}
             onCloseActive={() => {
-              setTabActive("PaymentMethod");
-              handleScrollToEl("PaymentMethod");
+              setTabActive("DeliveryMethod");
+              handleScrollToEl("DeliveryMethod");
             }}
             firstName={firstName}
             setFirstName={setFirstName}
@@ -315,6 +357,13 @@ const CheckoutPage = () => {
             setPhoneNumber={setPhoneNumber}
             errors={shippingErrors}
             validateShipping={validateShipping}
+          />
+        </div>
+        <div id="DeliveryMethod" className="scroll-mt-24">
+          <DeliveryMethod
+            method={method}
+            setMethod={setMethod}
+            country={country}
           />
         </div>
         {serverError && <Alert color="failure">{serverError}</Alert>}
@@ -360,8 +409,7 @@ const CheckoutPage = () => {
   return (
     <div className="nc-CheckoutPage">
       {verifyPaymentStatus.isLoading && <Loading />}
-      {cartQuery.isLoading &&
-        Array.from({ length: 24 }).map((_, i) => <Skeleton key={i} />)}
+
       {isFulfilled && basketItems?.length === 0 && (
         <div className="flex flex-col items-center justify-center h-[50vh]">
           {" "}
@@ -383,6 +431,7 @@ const CheckoutPage = () => {
                   setIsLoading={setIsLoading}
                   setServerError={setServerError}
                   colorOptions={colorOptions}
+                  getEstimatedDeliveryDates={getEstimatedDeliveryDates}
                 />
               </div>
 
@@ -392,34 +441,74 @@ const CheckoutPage = () => {
                 <div className="my-10 shrink-0 border-t border-neutral-300 lg:mx-10 lg:my-0 lg:border-l lg:border-t-0 xl:lg:mx-14 2xl:mx-16 " />
               </div>
             </div>
-            <div className="w-full lg:w-[36%] ">
+            <div className="w-full lg:w-[40%] ">
               {/* <h3 className="text-md font-semibold">Order summary</h3> */}
+              {(cartQuery.isLoading || productOptionsQuery.isLoading) && (
+                <div className="grid grid-cols-1 gap-4">
+                  {Array.from({ length: 24 }).map((_, i) => (
+                    <LoadingImageBars key={i} />
+                  ))}
+                </div>
+              )}
               <div className="hidden md:block md:relative  md:max-h-[500px] overflow-y-auto">
                 <div
-                  className=" divide-y divide-neutral-300 "
+                  //  className=" divide-y divide-neutral-300 "
+                  // className="gap-2 flex flex-col "
                   onWheel={() => setListDivIsFocused(true)}
                   onMouseLeave={() => setListDivIsFocused(false)}
                 >
                   {basketItems?.length > 0 &&
-                    [...basketItems]
-                      .reverse()
-                      .map((item) => (
+                    [...basketItems].reverse().map((item, index) => (
+                      <div
+                        key={item._id}
+                        className="flex flex-col  py-5 last:pb-0 rounded-md "
+                      >
                         <CartItem
-                          key={item._id}
                           item={item}
                           cart={cart}
                           setServerError={setServerError}
                           setIsLoading={setIsLoading}
                           colorOptions={colorOptions}
                         />
-                      ))}
+                        {/* display for the two methods */}
+                        <div className="flex flex-col gap-0 text-sm text-info">
+                          {getEstimatedDeliveryDates(
+                            item.sku,
+                            "standardDeliveryDate"
+                          ) && (
+                            <div className="text-xs text-gray-500 flex justify-end ">
+                              Estimated Standard Delivery:{" "}
+                              {getEstimatedDeliveryDates(
+                                item.sku,
+                                "standardDeliveryDate"
+                              )}
+                            </div>
+                          )}
+                          {getEstimatedDeliveryDates(
+                            item.sku,
+                            "expressDeliveryDate"
+                          ) && (
+                            <div className="text-xs text-gray-500 flex justify-end mr-2">
+                              Estimated Express Delivery:{" "}
+                              {getEstimatedDeliveryDates(
+                                item.sku,
+                                "expressDeliveryDate"
+                              )}
+                            </div>
+                          )}
+                        </div>
+                        {index !== basketItems.length - 1 && (
+                          <hr className="my-4 border-neutral-300" />
+                        )}
+                      </div>
+                    ))}
                   <div ref={lastChildDiv}></div>
                 </div>
                 {!isLastItemVisible &&
                   !listDivISFocused &&
-                  basketItems?.length > 0 && (
+                  basketItems?.length > 2 && (
                     <div className="sticky bottom-2 left[20%]  ">
-                      <div className="flex justify-center w-[200px] mx-auto text-center p-4 bg-slate-400 text-white z-50 w-full rounded-full items-center">
+                      <div className="flex justify-center  mx-auto text-center p-2 bg-slate-400 text-white z-50 w-full rounded-full items-center text-xs">
                         Scroll for more{" "}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

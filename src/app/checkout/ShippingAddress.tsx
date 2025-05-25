@@ -143,7 +143,7 @@ const ShippingAddress: FC<Props> = ({
   return (
     <div
       className={`rounded-xl border border-neutral-300 ${
-        isActive ? "shadow-xl" : "opacity-50"
+        isActive ? "" : "opacity-50"
       }`}
     >
       {deliveryAddresses?.length > 0 && (
