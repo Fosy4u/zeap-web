@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const SizeSelect = ({
   sizes,
+  sizeStandard,
   selectedSize,
   setSelectedSize,
   variations,
@@ -17,6 +18,7 @@ const SizeSelect = ({
 }: {
   sizes: string[];
   selectedSize: string;
+  sizeStandard: string;
   setSelectedSize: (size: string) => void;
   variations: VariationInterface[];
   selectedProductColor: string;
@@ -60,7 +62,7 @@ const SizeSelect = ({
   return (
     <div className="flex flex-col  gap-4">
       <div className="flex items-center justify-between w-full">
-        <span className="text-md font-semibold">Size</span>
+        <span className="text-md font-semibold">Size {sizeStandard && `(${sizeStandard})`}</span>
         {showReadyMadeSizeGuide && (
           <span
             className="underline cursor-pointer"

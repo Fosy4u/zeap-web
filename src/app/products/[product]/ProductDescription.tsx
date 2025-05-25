@@ -1,10 +1,20 @@
-import React from "react";
+import { checkIfHtml } from "@/utils/helpers";
+import React, { useEffect } from "react";
 
 const ProductDescription = ({ description }: { description: string }) => {
+  const descriptionHtmlRef = React.useRef<HTMLDivElement>(null);
   const [active, setActive] = React.useState(false);
   const handleClick = () => {
     setActive(!active);
   };
+  useEffect(() => {
+    if (descriptionHtmlRef.current) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(description, "text/html");
+      descriptionHtmlRef.current.innerHTML = doc.body.innerHTML;
+    }
+  }
+  , [description]);
 
   return (
     <div
@@ -50,7 +60,17 @@ const ProductDescription = ({ description }: { description: string }) => {
         }`}
         aria-labelledby="accordion-flush-heading-1"
       >
-        <p className="text-lg text-neutral-500">{description}</p>
+        {checkIfHtml(description) ? (
+          <div ref={descriptionHtmlRef} className="px-5 py-2">
+
+          </div>
+        ) : (
+          <div className="px-5 py-2">
+            <p className="mb-2 text-gray-500 dark:text-gray-400">
+              {description}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

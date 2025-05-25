@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import StartSelling from "./StartSelling";
+import StartSelling from "../../components/shop/StartSelling";
 import OurDifference from "./OurDifference";
 import SellingSimplified from "./SellingSimplified";
 import SellingProducts from "./SellingProducts";
@@ -25,7 +25,7 @@ const drawerTheme = {
 const SellPage = () => {
   const { user, isAuthenticated } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  console.log("isOpen", isOpen);
+
   const handleClose = useCallback(() => {
     document.body.classList.remove("overflow-y-hidden");
     setIsOpen(false);

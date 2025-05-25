@@ -628,3 +628,33 @@ export const productsCollection = {
   description:
     "Lorem ipsum dolor sit amet consectetur adipiscing elit facilisi pellentesque cursus eget morbi sagittis sagittis.",
 };
+
+export const productTypeOptions = [
+  {
+    name: 'Ready Made Cloth',
+    value: 'readyMadeCloth',
+    slug: 'ready-made-cloth',
+  },
+  {
+    name: 'Ready Made Shoe',
+    value: 'readyMadeShoe',
+    slug: 'ready-made-footwear',
+  },
+  {
+    name: 'Accessory',
+    value: 'accessory',
+    slug: 'accessories',
+  },
+  {
+    name: 'Bespoke Cloth',
+    value: 'bespokeCloth',
+    slug: 'bespoke-cloth',
+  },
+  {
+    name: 'Bespoke Shoe',
+    value: 'bespokeShoe',
+    slug: 'bespoke-footwear',
+  },
+];
+
+

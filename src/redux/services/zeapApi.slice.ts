@@ -90,7 +90,8 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: [ "User",
+      invalidatesTags: [
+        "User",
         "Product",
         "Products",
         "Promo",
@@ -99,7 +100,8 @@ export default createApi({
         "Payment",
         "Voucher",
         "Point",
-        "Wish",],
+        "Wish",
+      ],
     }),
     createGoogleAppleUser: builder.mutation({
       query: (arg) => {
@@ -110,7 +112,8 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: [ "User",
+      invalidatesTags: [
+        "User",
         "Product",
         "Products",
         "Promo",
@@ -119,7 +122,8 @@ export default createApi({
         "Payment",
         "Voucher",
         "Point",
-        "Wish",],
+        "Wish",
+      ],
     }),
     createGuestUser: builder.mutation({
       query: (arg) => {
@@ -130,7 +134,8 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: [ "User",
+      invalidatesTags: [
+        "User",
         "Product",
         "Products",
         "Promo",
@@ -139,7 +144,8 @@ export default createApi({
         "Payment",
         "Voucher",
         "Point",
-        "Wish",],
+        "Wish",
+      ],
       // onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
       //   responseHandler(
       //     {
@@ -160,7 +166,8 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: [ "User",
+      invalidatesTags: [
+        "User",
         "Product",
         "Products",
         "Promo",
@@ -169,7 +176,8 @@ export default createApi({
         "Payment",
         "Voucher",
         "Point",
-        "Wish",],
+        "Wish",
+      ],
     }),
     mergeGoogleAppleLoginGuestUser: builder.mutation({
       query: (arg) => {
@@ -180,7 +188,8 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: [ "User",
+      invalidatesTags: [
+        "User",
         "Product",
         "Products",
         "Promo",
@@ -189,7 +198,8 @@ export default createApi({
         "Payment",
         "Voucher",
         "Point",
-        "Wish",],
+        "Wish",
+      ],
     }),
     mergePasswordLoginGuestUser: builder.mutation({
       query: (arg) => {
@@ -200,7 +210,8 @@ export default createApi({
           body: payload,
         };
       },
-      invalidatesTags: [ "User",
+      invalidatesTags: [
+        "User",
         "Product",
         "Products",
         "Promo",
@@ -209,7 +220,8 @@ export default createApi({
         "Payment",
         "Voucher",
         "Point",
-        "Wish",],
+        "Wish",
+      ],
     }),
     checkUserEmail: builder.query({
       query: (arg) => {
@@ -545,7 +557,7 @@ export default createApi({
     getShop: builder.query({
       query: (arg) => {
         return {
-          url: `shop/`,
+          url: `shop/auth`,
           params: { ...arg },
         };
       },
@@ -682,6 +694,18 @@ export default createApi({
         };
       },
       providesTags: ["Products"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
+    getShopProducts: builder.query({
+      query: (arg) => {
+        return {
+          url: `products/auth/shop`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Products", "Shop", "Product", "User"],
       onQueryStarted: async (_, queryArgs) => {
         responseHandler({}, queryArgs);
       },
@@ -847,6 +871,28 @@ export default createApi({
         const { payload } = arg;
         return {
           url: `product/update`,
+          method: "PUT",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["Products", "Product"],
+      onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
+        responseHandler(
+          {
+            success: "Product Successfully Updated",
+            successHandler,
+            errorHandler,
+          },
+          queryArgs
+        );
+      },
+    }),
+
+    updateAutoPriceAdjustment: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `product/update/autoPriceAdjustment`,
           method: "PUT",
           body: payload,
         };
@@ -1655,7 +1701,7 @@ export default createApi({
       query: (arg) => {
         const { payload } = arg;
         return {
-          url: `bodyMeasurement/add`,
+          url: `product/bodyMeasurement/add`,
           method: "POST",
           body: payload,
         };

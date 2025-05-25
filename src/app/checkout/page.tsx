@@ -77,7 +77,7 @@ const CheckoutPage = () => {
     { skip: !token || !country }
   );
   const basketCalc = getBasketTotalQuery?.data?.data;
-  console.log("basketCalc", basketCalc);
+
   const deliveryFee =
     basketCalc?.deliveryFee === 0 ? "Free" : basketCalc?.deliveryFee;
   const subTotal = basketCalc?.subTotal;

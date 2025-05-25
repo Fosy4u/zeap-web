@@ -1,3 +1,4 @@
+"use client";
 import zeapApiSlice from "../../../redux/services/zeapApi.slice";
 import { useContext, useEffect, useState } from "react";
 import {

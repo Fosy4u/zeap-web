@@ -49,7 +49,6 @@ const ProductPage = () => {
   const isLoading = productQuery.isLoading || productOptionsQuery.isLoading;
   const product = productQuery?.data?.data;
 
-
   const [images, setImages] = useState<string[]>([]);
   const [reviews, setReviews] = useState<ProductReviewInterface[]>([]);
   const [averageRating, setAverageRating] = useState(0);
@@ -122,6 +121,7 @@ const ProductPage = () => {
               setSelectedMaterialColor={setSelectedMaterialColor}
               selectedMaterialColor={selectedMaterialColor}
               showReadyMadeSizeGuide={product?.showReadyMadeSizeGuide}
+              sizeStandard={product?.sizeStandard}
             />
           </div>
         )}
