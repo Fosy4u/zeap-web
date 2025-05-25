@@ -1569,16 +1569,16 @@ export default createApi({
         };
       },
       invalidatesTags: ["Basket"],
-      onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
-        responseHandler(
-          {
-            success: "Product Successfully Added to Basket",
-            successHandler,
-            errorHandler,
-          },
-          queryArgs
-        );
-      },
+      // onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
+      //   responseHandler(
+      //     {
+      //       success: "Product Successfully Added to Basket",
+      //       successHandler,
+      //       errorHandler,
+      //     },
+      //     queryArgs
+      //   );
+      // },
     }),
     getCart: builder.query({
       query: (arg) => {

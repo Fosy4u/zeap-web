@@ -65,9 +65,9 @@ const CartPage = () => {
             {basketItems?.length > 0 &&
               [...basketItems]
                 .reverse()
-                .map((item) => (
+                .map((item, index) => (
                   <CartItem
-                    key={item.sku}
+                    key={index}
                     item={item}
                     cart={cart}
                     setServerError={setServerError}
@@ -93,8 +93,6 @@ const CartPage = () => {
                   <span>Estimated Delivery & Handling</span>
                   <span className="font-semibold">Calculated at Checkout</span>
                 </div>
-
-              
               </div>
               <hr className="my-10 border-neutral-300" />
               <ApplyDiscount />
