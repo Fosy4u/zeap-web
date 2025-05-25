@@ -277,6 +277,20 @@ interface BasketItemIterface {
   originalAmount: number;
   actualAmount: number;
   currency: string;
+  bespokeInstruction?: string;
+  bespokeColor?: string;
+  bodyMeasurements?: [
+    {
+      name: string;
+      measurements: [
+        {
+          field: string;
+          value: number;
+          unit: string;
+        }
+      ];
+    }
+  ];
 }
 interface BasketInterface {
   user: UserInterface;

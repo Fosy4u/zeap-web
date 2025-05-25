@@ -1569,16 +1569,17 @@ export default createApi({
         };
       },
       invalidatesTags: ["Basket"],
-      // onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
-      //   responseHandler(
-      //     {
-      //       success: "Product Successfully Added to Basket",
-      //       successHandler,
-      //       errorHandler,
-      //     },
-      //     queryArgs
-      //   );
-      // },
+    }),
+    updateCartItem: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `basket/product/update`,
+          method: "PUT",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["Basket"],
     }),
     getCart: builder.query({
       query: (arg) => {
@@ -1605,6 +1606,30 @@ export default createApi({
       query: (arg) => {
         return {
           url: `basket/total`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Basket"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
+    getBasketDeliveryDates: builder.query({
+      query: (arg) => {
+        return {
+          url: `basket/deliveryDates`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Basket"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
+    getBasketDeliveryFees: builder.query({
+      query: (arg) => {
+        return {
+          url: `basket/deliveryFees`,
           params: { ...arg },
         };
       },
@@ -2527,16 +2552,17 @@ export default createApi({
         };
       },
       invalidatesTags: ["Notification"],
-      onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
-        responseHandler(
-          {
-            success: "Notification Successfully Deleted",
-            successHandler,
-            errorHandler,
-          },
-          queryArgs
-        );
+    }),
+    deleteAllNotifications: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `/notification/inbox/all/delete`,
+          method: "PUT",
+          body: payload,
+        };
       },
+      invalidatesTags: ["Notification"],
     }),
     getEmailTemplate: builder.query({
       query: (arg) => {

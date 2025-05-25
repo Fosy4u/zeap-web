@@ -8,11 +8,13 @@ const MobileCheckoutSummary = ({
   colorOptions,
   setServerError,
   setIsLoading,
+  getEstimatedDeliveryDates,
 }: {
   setServerError: (value: string) => void;
   cart: BasketInterface;
   setIsLoading: (value: boolean) => void;
   colorOptions: { name: string; hex?: string; background?: string }[];
+  getEstimatedDeliveryDates: (sku: string, method: string) => string | null;
 }) => {
   const basketItems = cart?.basketItems || [];
   const [active, setActive] = React.useState(false);
@@ -65,18 +67,47 @@ const MobileCheckoutSummary = ({
       >
         <div className=" divide-y divide-neutral-300 ">
           {basketItems?.length > 0 &&
-            [...basketItems]
-              .reverse()
-              .map((item) => (
+            [...basketItems].reverse().map((item) => (
+              <div
+                key={item._id}
+                className="flex flex-col mb-2 "
+              >
                 <CartItem
-                  key={item._id}
                   item={item}
                   cart={cart}
                   setServerError={setServerError}
                   setIsLoading={setIsLoading}
                   colorOptions={colorOptions}
                 />
-              ))}
+
+                <div className="flex flex-col gap-0 text-sm text-info">
+                  {getEstimatedDeliveryDates(
+                    item.sku,
+                    "standardDeliveryDate"
+                  ) && (
+                    <div className="text-xs text-gray-500 flex justify-end ">
+                      Estimated Standard Delivery:{" "}
+                      {getEstimatedDeliveryDates(
+                        item.sku,
+                        "standardDeliveryDate"
+                      )}
+                    </div>
+                  )}
+                  {getEstimatedDeliveryDates(
+                    item.sku,
+                    "expressDeliveryDate"
+                  ) && (
+                    <div className="text-xs text-gray-500 flex justify-end mr-2">
+                      Estimated Express Delivery:{" "}
+                      {getEstimatedDeliveryDates(
+                        item.sku,
+                        "expressDeliveryDate"
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>
