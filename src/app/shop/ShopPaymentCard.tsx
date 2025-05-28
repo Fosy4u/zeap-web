@@ -1,11 +1,10 @@
 import ReactTimeAgo from "react-time-ago";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
+
 import NoPic from "@/images/noPhoto.png";
 
 import { Badge } from "flowbite-react";
 import { ShopPaymentInterface } from "@/interface/interface";
-import Link from "next/link";
+
 import {
   capitalizeFirstLetter,
   getCurrencySmallSymbol,
@@ -13,10 +12,9 @@ import {
 } from "@/utils/helpers";
 import Image from "next/image";
 
-TimeAgo.addDefaultLocale(en);
+
 
 const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
-  const productOrder_id = payment?.productOrder_id;
   const purchasedProduct = payment?.purchasedProduct;
   const imageLink =
     purchasedProduct?.images.map((image) => image.link)[0] || NoPic;
@@ -39,9 +37,8 @@ const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
     }
   };
   return (
-    <Link
-      href={`/orders/product-order/${productOrder_id}`}
-      className="flex flex-col gap-4 shadow-md w-full p-3 bg-grey8 rounded-lg dark:bg-slate-700 dark:text-white"
+    <div
+      className="flex flex-col gap-4  w-full p-3 bg-neutral-100 rounded-lg dark:bg-slate-700 dark:text-white"
     >
       <div className="flex gap-2">
         <span>
@@ -91,7 +88,7 @@ const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -2,9 +2,7 @@ import { Avatar, Timeline } from "flowbite-react";
 import { HiCalendar } from "react-icons/hi";
 import NoPic from "@/images/noProfilePic.png";
 import ReactTimeAgo from "react-time-ago";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
-TimeAgo.addDefaultLocale(en);
+
 import { TimelineInterface } from "@/interface/interface";
 
 const ShopProductTimeline = ({

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import ReactTimeAgo from "react-time-ago";
-// import TimeAgo from "javascript-time-ago";
-// import en from "javascript-time-ago/locale/en";
+
 import { VoucherInterface } from "@/interface/interface";
 import VoucherLeftImage from "@/images/voucherLeft.png";
 import VoucherRightImage from "@/images/voucherRight.png";
@@ -12,7 +11,7 @@ import { Alert, Badge, Modal, ModalBody, ModalHeader } from "flowbite-react";
 import { ThemeContext } from "@/contexts/themeContext";
 import { FaCopy } from "react-icons/fa";
 
-// TimeAgo.addDefaultLocale(en);
+
 
 const VoucherCard = ({ voucher }: { voucher: VoucherInterface }) => {
   const { setDimBackground } = useContext(ThemeContext);

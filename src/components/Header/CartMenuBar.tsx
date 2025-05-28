@@ -102,17 +102,19 @@ const CartMenuBar = () => {
           </div>
         )}
       </button>
-      {isOpen && (
-        <CartPop
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          setShowPopover={setShowPopover}
-          cart={cart}
-          colorOptions={colorOptions}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-        />
-      )}
+      <div className="hidden md:block">
+        {isOpen && (
+          <CartPop
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            setShowPopover={setShowPopover}
+            cart={cart}
+            colorOptions={colorOptions}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
+        )}
+      </div>
     </div>
   );
 };

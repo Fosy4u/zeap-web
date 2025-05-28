@@ -17,7 +17,6 @@ type DeliveryFeesType = {
   method: string;
 };
 
-
 const DeliveryMethod: FC<Props> = ({ method, setMethod, country }) => {
   const token = useSelector(globalSelectors.selectAuthToken);
   const getBasketDeliveryFeesQuery = zeapApiSlice.useGetBasketDeliveryFeesQuery(
@@ -29,7 +28,6 @@ const DeliveryMethod: FC<Props> = ({ method, setMethod, country }) => {
     getBasketDeliveryFeesQuery?.data?.data?.deliveryFees || [];
   const [open, setOpen] = useState(false);
 
-  
   return (
     <div className={`rounded-xl border border-neutral-300  `}>
       <div className="flex flex-col items-start p-6 sm:flex-row">
@@ -62,6 +60,14 @@ const DeliveryMethod: FC<Props> = ({ method, setMethod, country }) => {
         }`}
       >
         <div className="flex flex-col my-4">
+          <p className="hidden md:block text-sm text-info mb-2">
+            Check the expecetd delivery duration for each item under order
+            sumary at the right side of the page.
+          </p>
+          <p className="md:hidden text-sm text-info mb-2">
+            Check the expected delivery duration for each item under order
+            summary at the top of the page.
+          </p>
           {deliveryFees.map((option) => (
             <div key={option.method} className="mb-2 w-full h-full">
               <div className="flex justify-between items-center mb-2">
@@ -84,7 +90,6 @@ const DeliveryMethod: FC<Props> = ({ method, setMethod, country }) => {
                     {numberWithCommas(Number(option.fee))}
                   </span>
                 )}
-             
               </div>
             </div>
           ))}

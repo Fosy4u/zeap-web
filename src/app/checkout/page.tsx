@@ -471,12 +471,12 @@ const CheckoutPage = () => {
                           colorOptions={colorOptions}
                         />
                         {/* display for the two methods */}
-                        <div className="flex flex-col gap-0 text-sm text-info">
+                        <div className="flex flex-col gap-0 text-sm text-info pl-8">
                           {getEstimatedDeliveryDates(
                             item.sku,
                             "standardDeliveryDate"
                           ) && (
-                            <div className="text-xs text-gray-500 flex justify-end ">
+                            <div className="text-xs text-gray-500 flex  ">
                               Estimated Standard Delivery:{" "}
                               {getEstimatedDeliveryDates(
                                 item.sku,
@@ -488,7 +488,7 @@ const CheckoutPage = () => {
                             item.sku,
                             "expressDeliveryDate"
                           ) && (
-                            <div className="text-xs text-gray-500 flex justify-end mr-2">
+                            <div className="text-xs text-gray-500 flex ">
                               Estimated Express Delivery:{" "}
                               {getEstimatedDeliveryDates(
                                 item.sku,
