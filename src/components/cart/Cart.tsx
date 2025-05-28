@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Alert } from "flowbite-react";
 import LoadingDots from "../loading/LoadingDots";
 import CartItem from "./CartItem";
+import { useRouter } from "next/navigation";
 
 const Cart = ({
   cart,
@@ -23,6 +24,7 @@ const Cart = ({
   setIsLoading: (value: boolean) => void;
   setIsOpen: (value: boolean) => void;
 }) => {
+  const router = useRouter();
   const [serverError, setServerError] = useState("");
   const cartItems = cart?.basketItems;
 
@@ -75,16 +77,30 @@ const Cart = ({
               </p>
               <div className="mt-5 flex items-center gap-5">
                 <ButtonPrimary
-                  href="/checkout"
-                  className={`w-full flex-1 transition delay-700 duration-300 ease-in-out ${
+                  onClick={(e?: React.MouseEvent<HTMLButtonElement>) => {
+                    if (e) {
+                      e.stopPropagation();
+                      e.preventDefault();
+                    }
+
+                    router.push("/checkout");
+                  }}
+                  className={`w-full flex-1 transition delay-700 duration-300 ease-in-out cursor-pointer ${
                     isLoading && "bg-white border-2 border-primary"
                   }`}
                 >
                   {isLoading ? <LoadingDots /> : "Checkout"}
                 </ButtonPrimary>
                 <ButtonSecondary
-                  href="/cart"
-                  className="w-full flex-1 border-2 border-primary text-primary "
+                  onClick={(e?: React.MouseEvent<HTMLButtonElement>) => {
+                    if (e) {
+                      e.stopPropagation();
+                      e.preventDefault();
+                    }
+
+                    router.push("/cart");
+                  }}
+                  className="w-full flex-1 border-2 border-primary text-primary cursor-pointer"
                 >
                   View cart
                 </ButtonSecondary>

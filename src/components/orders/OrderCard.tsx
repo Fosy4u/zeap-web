@@ -1,9 +1,8 @@
 import ReactTimeAgo from "react-time-ago";
 import { OrderInterface } from "@/interface/interface";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 
-TimeAgo.addDefaultLocale(en);
+
+
 
 const OrderCard = ({ order }: { order: OrderInterface }) => {
   const productOrders = order?.productOrders;

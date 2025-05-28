@@ -1,6 +1,7 @@
 "use client";
 import { AuthContext } from "@/contexts/authContext";
 import {
+  Avatar,
   Drawer,
   DrawerHeader,
   DrawerItems,
@@ -16,7 +17,6 @@ import {
   HiLogout,
   HiUserCircle,
 } from "react-icons/hi";
-import { LuUser2 } from "react-icons/lu";
 import { SignInSignUpDrawer } from "../../authentication/SignInSignUpDrawer";
 import { ThemeContext } from "@/contexts/themeContext";
 import { usePathname, useRouter } from "next/navigation";
@@ -260,7 +260,21 @@ export function UserMenuBar() {
               />
             </span>
           ) : (
-            <LuUser2 className="text-2xl" />
+            <>
+              {" "}
+              {user?.firstName ? (
+                <Avatar
+                  placeholderInitials={user?.firstName?.charAt(0).toUpperCase()}
+                  rounded
+                  className="bg-primary text-white w-9 h-9 rounded-full"
+                />
+              ) : (
+                <Avatar
+                  rounded
+                  className="bg-primary text-white w-9 h-9 rounded-full"
+                />
+              )}
+            </>
           )}
         </button>
       </Popover>

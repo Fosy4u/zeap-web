@@ -11,14 +11,12 @@ import { HiTrash } from "react-icons/hi";
 import NoPic from "@/images/noPhoto.png";
 import { Alert } from "flowbite-react";
 import ReactTimeAgo from "react-time-ago";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 import Image from "next/image";
 import LoadingDots from "@/components/loading/LoadingDots";
 import MyRecommendedProducts from "@/components/products/MyRecommendedProducts";
 
 
-TimeAgo.addDefaultLocale(en);
+
 
 const MeasurementTemplatesPage = () => {
   const router = useRouter();

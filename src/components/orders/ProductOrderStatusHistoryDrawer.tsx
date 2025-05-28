@@ -11,12 +11,11 @@ import { IoMdClose } from "react-icons/io";
 import { globalSelectors } from "@/redux/services/global.slice";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import Loading from "../loading/Loading";
-import { capitalizeFirstLetter } from "@/utils/helpers";
 import ProductOrderCancellation from "./ProductOrderCancellation";
-
-//import { useSelector } from 'react-redux';
-//import { globalSelectors } from '../../../redux/services/global.slice';
-// import { numberWithCommas } from '../../../utils/helpers';
+import ProductOrderUpdateStatus from "./ProductOrderUpdateStatus";
+import { useContext, useState } from "react";
+import { ThemeContext } from "@/contexts/themeContext";
+import { capitalizeFirstLetter } from "@/utils/helpers";
 
 const drawerTheme = {
   root: {
@@ -53,17 +52,30 @@ const timelineTheme = {
   },
 };
 
+const vendorActionStatusList = [
+  "order placed",
+  "order confirmed",
+  "order processing",
+];
+
 export function ProductOrderStatusHistoryDrawer({
   isOpen,
   setIsOpen,
   productOrder_id,
+  isOtherUserOrder = false,
+  isMyShopOrder = false,
 }: {
   productOrder_id: string;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  isOtherUserOrder: boolean;
+  isMyShopOrder: boolean;
 }) {
+  const { setDimBackground } = useContext(ThemeContext);
   const token = useSelector(globalSelectors.selectAuthToken);
-
+  const [serverError, setServerError] = useState("");
+  // const [openRevertModal, setOpenRevertModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const productOrderStatusHistoryQuery =
     zeapApiSlice.useGetProductOrderStatusHistoryQuery(
       { productOrder_id },
@@ -72,9 +84,34 @@ export function ProductOrderStatusHistoryDrawer({
   const history = productOrderStatusHistoryQuery?.data?.data.statusHistory;
   const currentStatus =
     productOrderStatusHistoryQuery?.data?.data.currentStatus;
-  const isLoading = productOrderStatusHistoryQuery.isLoading;
+  const nextStatus = productOrderStatusHistoryQuery?.data?.data.nextStatus;
+  const [updateProductOrderStatus, updateProductOrderStatusStatus] =
+    zeapApiSlice.useUpdateProductOrderStatusMutation();
+  const isLoading =
+    productOrderStatusHistoryQuery.isLoading ||
+    updateProductOrderStatusStatus.isLoading;
 
   const handleClose = () => setIsOpen(false);
+  const handleUpdateStatus = (status: string) => {
+    const payload = {
+      status,
+      productOrder_id,
+    };
+    updateProductOrderStatus({ payload })
+      .unwrap()
+      .then(() => {
+        setServerError("");
+        setDimBackground(false);
+        // setOpenRevertModal(false);
+        setOpenModal(false);
+      })
+      .catch((err) => {
+        setServerError(err.data.error);
+        setTimeout(() => {
+          setServerError("");
+        }, 5000);
+      });
+  };
 
   return (
     <Drawer
@@ -118,19 +155,47 @@ export function ProductOrderStatusHistoryDrawer({
                     }`}
                   >
                     {capitalizeFirstLetter(status?.name)}
+                    {/*{status?.value !== currentStatus?.value &&
+                      isMyShopOrder && (
+                        <ProductOrderUpdateStatus
+                          status={status}
+                          handleUpdateStatus={handleUpdateStatus}
+                          serverError={serverError}
+                          setServerError={setServerError}
+                          openModal={openRevertModal}
+                          setOpenModal={setOpenRevertModal}
+                          setDimBackground={setDimBackground}
+                        />
+                      )} */}
                   </Timeline.Body>
                 </Timeline.Content>
               </Timeline.Item>
             )
           )}
         </Timeline>
-
-        <div className="flex justify-center items-center gap-2 mt-6">
-          <ProductOrderCancellation
-            productOrder_id={productOrder_id}
-            currentStatus={currentStatus}
-          />
-        </div>
+        {nextStatus &&
+          isMyShopOrder &&
+          vendorActionStatusList.includes(currentStatus.value) && (
+            <div className="flex justify-center items-center gap-2 mt-6">
+              <ProductOrderUpdateStatus
+                nextStatus={nextStatus}
+                handleUpdateStatus={handleUpdateStatus}
+                serverError={serverError}
+                setServerError={setServerError}
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                setDimBackground={setDimBackground}
+              />
+            </div>
+          )}
+        {!isOtherUserOrder && (
+          <div className="flex justify-center items-center gap-2 mt-6">
+            <ProductOrderCancellation
+              productOrder_id={productOrder_id}
+              currentStatus={currentStatus}
+            />
+          </div>
+        )}
       </Drawer.Items>
     </Drawer>
   );

@@ -1,3 +1,5 @@
+import { capitalizeFirstLetter } from "@/utils/helpers";
+
 const ProductOrderBodyMeasurementDisplay = ({
   bodyMeasurements,
 }: {
@@ -9,9 +11,9 @@ const ProductOrderBodyMeasurementDisplay = ({
           field: string;
           value: number;
           unit: string;
-        },
+        }
       ];
-    },
+    }
   ];
 }) => {
   return (
@@ -20,16 +22,16 @@ const ProductOrderBodyMeasurementDisplay = ({
         return (
           <div
             key={measurement.name}
-            className="flex flex-col shadow-md bg-white p-4 rounded-md dark:bg-boxdark"
+            className="flex flex-col  bg-white  rounded-md dark:bg-boxdark"
           >
-            <h3 className="text-darkGold">{measurement.name}</h3>
+            <h5 className="font-semibold text-info">{capitalizeFirstLetter(measurement.name)}</h5>
             <ul>
               {measurement.measurements.map((item) => {
                 return (
                   <li key={item.field} className="mb-2">
                     <span className="flex justify-between">
                       <span>{item.field}</span>
-                      <span>
+                      <span className="font-semibold">
                         {item.value} {item.unit}
                       </span>
                     </span>
