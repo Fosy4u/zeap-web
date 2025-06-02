@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Alert, Button } from "flowbite-react";
+import { Alert } from "flowbite-react";
 import { globalSelectors } from "@/redux/services/global.slice";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import Loading from "../loading";
@@ -20,17 +20,18 @@ const ShopPayments = ({ shopId }: { shopId: string }) => {
     <div className="w-full max-w-md p-4 bg-white border border-gray-200 text-black rounded-lg shadow sm:p-8 dark:bg-slate-800 dark:text-white dark:border-gray-700">
       <div className="flex items-center justify-between mb-4">
         {isLoading && <Loading />}
-        <h5 className="text-xl font-bold text-darkGold">
+        <h5 className="text-xl font-bold text-primary">
           Shop Payments ({shopPayments?.length})
         </h5>
-        <Button
+        <button
+          type="button"
           color="primary"
-          size="xs"
+          className="text-sm font-medium text-info hover:underline cursor-pointer disabled:opacity-50"
           onClick={() => setLimit(limit === 3 ? shopPayments?.length : 3)}
           disabled={isLoading || !shopPayments || shopPayments.length < 3}
         >
-          {limit < shopPayments?.length ? "View Less" : "View All"}
-        </Button>
+          {limit < shopPayments?.length ? "View All" : "View Less"}
+        </button>
       </div>
       {shopPaymentsQuery?.status === "fulfilled" &&
         shopPayments.length === 0 && (

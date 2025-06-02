@@ -51,8 +51,6 @@ const AutoPriceAdjustment = ({
 }: {
   product: ProductInterface;
   setServerError: (error: string | null) => void;
-  productId: string;
-  nextAction: () => void;
   serverError: string | null;
 }) => {
   const { setDimBackground } = useContext(ThemeContext);

@@ -12,8 +12,6 @@ import {
 } from "@/utils/helpers";
 import Image from "next/image";
 
-
-
 const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
   const purchasedProduct = payment?.purchasedProduct;
   const imageLink =
@@ -37,9 +35,7 @@ const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
     }
   };
   return (
-    <div
-      className="flex flex-col gap-4  w-full p-3 bg-neutral-100 rounded-lg dark:bg-slate-700 dark:text-white"
-    >
+    <div className="flex flex-col gap-4  w-full p-3 bg-neutral-100 rounded-lg dark:bg-slate-700 dark:text-white">
       <div className="flex gap-2">
         <span>
           <Image
@@ -63,19 +59,21 @@ const ShopPaymentCard = ({ payment }: { payment: ShopPaymentInterface }) => {
           </span>
         </span>
       </div>
-      <div className="flex justify-between text-xs md:text-[11px]">
-        <span>
-          Customer Paid: {getCurrencySmallSymbol(buyerPaid?.currency)}
-          {numberWithCommas(buyerPaid?.value)}
-        </span>
-        <span>
-          Vendor receieved:{" "}
-          <span className="text-success">
-            {getCurrencySmallSymbol(shopRevenue?.currency)}
-            {numberWithCommas(shopRevenue?.value)}
+      {status !== "cancelled" && (
+        <div className="flex justify-between text-xs md:text-[11px]">
+          <span>
+            Customer Paid: {getCurrencySmallSymbol(buyerPaid?.currency)}
+            {numberWithCommas(buyerPaid?.value)}
           </span>
-        </span>
-      </div>
+          <span>
+            {status === "paid"? "Vendor Received" : "Vendor Revenue"}:{" "}
+            <span className="text-success">
+              {getCurrencySmallSymbol(shopRevenue?.currency)}
+              {numberWithCommas(shopRevenue?.value)}
+            </span>
+          </span>
+        </div>
+      )}
       <div>
         {status && (
           <div className="flex justify-end">

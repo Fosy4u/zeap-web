@@ -1,13 +1,14 @@
 import { ShopAnaliticsInterface, ShopInterface } from "@/interface/interface";
-import NoPic from "@/images/noPhoto.png";
+// import NoPic from "@/images/noPhoto.png";
 import {
   capitalizeFirstLetter,
   getCurrencySmallSymbol,
   numberWithCommas,
 } from "@/utils/helpers";
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+// import Image from "next/image";
+
+import ShopQuickLinks from "@/components/shop/ShopQuickLinks";
 
 const TopSection = ({
   shop,
@@ -16,19 +17,18 @@ const TopSection = ({
   shop: ShopInterface;
   shopAnalytics: ShopAnaliticsInterface;
 }) => {
-  const router = useRouter();
   const shopRevenuesByPaymentStatus = shopAnalytics.shopRevenuesByPaymentStatus;
   const paid = shopRevenuesByPaymentStatus?.paid;
 
   return (
     <div className="bg-lightGreen text-black dark:text-white dark:bg-baseGreen  opacity-100 rounded-b-3xl p-2">
       <div className="flex flex-col gap-0.5">
-        <Image
+        {/* <Image
           data-tooltip-target="tooltip-jese"
           className="w-10 h-10 rounded"
           src={shop?.imageUrl?.link || NoPic}
           alt="Medium avatar"
-        />
+        /> */}
         <p className=" text-md font-bold">{shop?.shopName}</p>
         <p className=" text-sm text-grey-700 dark:text-slate-400 ">
           {capitalizeFirstLetter(shop?.address) || "No address"}
@@ -62,9 +62,9 @@ const TopSection = ({
             </span>
           )}
         </div>
-        <div className="my-3 w-full flex  flex-1 justify-between">
-          <div className=" bg-success  text-white  rounded-2xl p-2  ">
-            <p className=" text-xs md:text-sm text-lightSuccess ">
+        <div className="my-2 w-full flex flex-col md:flex-row flex-1 justify-between  md:items-end">
+          <div className=" bg-white flex flex-col  text-green-800  rounded-xl p-2 w-fit ">
+            <p className=" w-[6rem] text-xs md:text-sm text-success font-bold">
               Paid Revenue
             </p>
             <p className=" text-md font-bold">
@@ -72,27 +72,9 @@ const TopSection = ({
               {numberWithCommas(paid?.value)}
             </p>
           </div>
-
-          <button
-            onClick={() => router.push(`shop/add-product`)}
-            className="flex  w-fit h-fit items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-primary rounded-md hover:bg-opacity-90"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              />
-            </svg>
-            Add Product
-          </button>
+          <div className="flex  md:justify-end w-full mt-4">
+            <ShopQuickLinks shopId={shop?.shopId} />
+          </div>
         </div>
       </div>
     </div>

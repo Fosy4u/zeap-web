@@ -31,7 +31,7 @@ const ProductOrderCard = ({
         onClick={() => {
           router.push(`/account/orders/${productOrder?._id}`);
         }}
-        className="flex relative gap-4 bg-white p-4 rounded-lg "
+        className="flex relative gap-4 bg-white p-4 rounded-lg"
       >
         <div className="relative  w-40 shrink-0 overflow-hidden rounded-xl">
           <Image
@@ -54,11 +54,11 @@ const ProductOrderCard = ({
         <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-1">
             <span className="text-sm font-bold">No {productOrder?.itemNo}</span>
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-slate-500 w-[8rem] md:w-[9rem] lg:w-[11.5rem] overflow-hidden  truncate text-ellipsis">
               {productOrder?.product?.title}
             </span>
             <span
-              className={`text-xs w-[100px] text-center border p-1 rounded-md ${getProductOrderStatusBg(
+              className={`text-xs w-[100px] text-center border p-1 rounded-md  ${getProductOrderStatusBg(
                 status?.value
               )}`}
             >
@@ -66,7 +66,7 @@ const ProductOrderCard = ({
             </span>
           </div>
         </div>
-        <div className="absolute flex gap-4 right-4 bottom-4 text-xs text-info hover:text-info/80 underline">
+        <div className="absolute flex gap-4 right-2 bottom-4 text-xs text-info hover:text-info/80 underline ">
           <Link href={`/account/orders/${productOrder?._id}`}>
             {" "}
             view details

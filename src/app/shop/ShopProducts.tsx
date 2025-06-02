@@ -55,6 +55,8 @@ const ShopProducts = ({ shopId }: { shopId: string }) => {
                   onClick={() => {
                     setLimit(limit === 6 ? totalCount : 6);
                   }}
+                  className="text-primary"
+                  outline
                   disabled={
                     isLoading ||
                     !products ||
@@ -75,14 +77,15 @@ const ShopProducts = ({ shopId }: { shopId: string }) => {
                     key={product?.productId}
                     className="flex flex-col items-center justify-center mb-6"
                   >
-                    <ProductCard
-                      product={product}
-                      showStatus
-                      colorOptions={colorOptions}
-                      disableLink
-                    />
+                   <ProductCard
+                    product={product}
+                    showStatus
+                    colorOptions={colorOptions}
+                    // disableLink
+                    href = {`/shop/${shopId}/products/product/${product?.productId.replaceAll("/", "-")}`}
+                  />
                     <Link
-                      href={`/shop/${shopId}/products/${product?.productId.replaceAll("/", "-")}`}
+                      href={`/shop/${shopId}/products/product/${product?.productId.replaceAll("/", "-")}`}
                       className="text-center text-xs text-white bg-primary cursor-pointer p-2 rounded-full"
                     >
                       Manage Product
@@ -104,10 +107,10 @@ const ShopProducts = ({ shopId }: { shopId: string }) => {
                     showStatus
                     colorOptions={colorOptions}
                     // disableLink
-                    href = {`/shop/${shopId}/products/${product?.productId.replaceAll("/", "-")}`}
+                    href = {`/shop/${shopId}/products/product/${product?.productId.replaceAll("/", "-")}`}
                   />
                   <Link
-                    href={`/shop/${shopId}/products/${product?.productId.replaceAll("/", "-")}`}
+                    href={`/shop/${shopId}/products/product/${product?.productId.replaceAll("/", "-")}`}
                     className="text-center text-xs text-white bg-primary cursor-pointer p-2 rounded-full"
                   >
                     Manage Product
@@ -129,9 +132,10 @@ const ShopProducts = ({ shopId }: { shopId: string }) => {
                 onClick={() => {
                   setLimit(limit + 6);
                 }}
-                className="m-4"
+                className="m-4 text-primary"
                 color="primary"
                 size="xs"
+                outline
               >
                 Load More
               </Button>

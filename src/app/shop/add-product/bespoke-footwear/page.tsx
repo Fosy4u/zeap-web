@@ -1069,12 +1069,10 @@ const AddBespokeShoePage = () => {
           {stage === 6 && (
             <AutoPriceAdjustment
               serverError={serverError}
-              productId={productId}
               setServerError={(error: string | null) =>
                 setServerError(error || "")
               }
               product={product}
-              nextAction={nextStep}
             />
           )}
         </div>
