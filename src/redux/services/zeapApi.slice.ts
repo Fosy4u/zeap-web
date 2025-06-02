@@ -1812,6 +1812,18 @@ export default createApi({
         );
       },
     }),
+    getAuthShopOrders: builder.query({
+      query: (arg) => {
+        return {
+          url: `/orders/authUser/vendor`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Basket", "Order", "Shop","User"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
     getProductOrders: builder.query({
       query: (arg) => {
         return {

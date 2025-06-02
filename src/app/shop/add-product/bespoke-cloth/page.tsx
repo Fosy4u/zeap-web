@@ -1139,13 +1139,13 @@ const AddBespokeClothPage = () => {
           )}
           {stage === 6 && (
             <AutoPriceAdjustment
-              productId={productId}
+             
               setServerError={(error: string | null) =>
                 setServerError(error || "")
               }
               serverError={serverError}
               product={product}
-              nextAction={nextStep}
+           
             />
           )}
         </div>

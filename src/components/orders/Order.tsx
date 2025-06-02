@@ -6,6 +6,7 @@ import ProductOrderCard from "./ProductOrderCard";
 
 const Order = ({ order }: { order: OrderInterface }) => {
   const productOrders = order?.productOrders;
+  
   const deliveryDetails = order?.deliveryDetails;
   const isCancelled = order?.cancel?.isCancelled;
   const payment = order?.payment;

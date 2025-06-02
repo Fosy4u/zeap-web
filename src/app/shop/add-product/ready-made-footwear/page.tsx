@@ -1075,12 +1075,12 @@ const AddReadyMadeShoePage = () => {
           )}
           {stage === 6 && (
             <AutoPriceAdjustment
-              productId={productId}
+              
               setServerError={(error: string | null) =>
                 setServerError(error || "")
               }
               product={product}
-              nextAction={nextStep}
+            
               serverError={serverError}
             />
           )}

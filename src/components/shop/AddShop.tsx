@@ -78,11 +78,7 @@ export function AddShop({
   const isLoading = createShopStatus.isLoading || editShopStatus.isLoading;
 
   useEffect(() => {
-    if (openModal) {
-      setDimBackground(true);
-    } else {
-      setDimBackground(false);
-    }
+    setDimBackground(openModal);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModal]);
 
@@ -105,10 +101,11 @@ export function AddShop({
   }
 
   const validateForm = () => {
-    if (!shopName) {
-      setError("Please enter your business name");
-      return false;
-    }
+    console.log("shopName", shopName);
+    // if (!shopName) {
+    //   setError("Please enter your business name");
+    //   return false;
+    // }
     if (!email) {
       setError("Please enter your email");
       return false;
@@ -132,21 +129,21 @@ export function AddShop({
     return true;
   };
   // call handle save on enter key
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        handleSave();
-      }
-    };
-    if (openModal) {
-      window.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openModal]);
+  // useEffect(() => {
+  //   const handleKeyDown = (event: KeyboardEvent) => {
+  //     if (event.key === "Enter") {
+  //       event.preventDefault();
+  //       handleSave();
+  //     }
+  //   };
+  //   if (openModal) {
+  //     window.addEventListener("keydown", handleKeyDown);
+  //   }
+  //   return () => {
+  //     window.removeEventListener("keydown", handleKeyDown);
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [openModal]);
 
   const handleSave = async () => {
     setError("");
@@ -176,7 +173,7 @@ export function AddShop({
         isShoeMaker,
       };
 
-     await createShop({ payload })
+      await createShop({ payload })
         .unwrap()
         .then(async () => {
           setShopName("");
@@ -185,10 +182,12 @@ export function AddShop({
           const response = await triggerGetAuthUser({ uid });
 
           const userData = response?.data?.data;
-          console.log("userData", userData);
 
           if (userData) {
+            setDimBackground(false);
+
             setUser(userData);
+
             setShowOrderSuccessModal(true);
           }
         })
@@ -213,6 +212,7 @@ export function AddShop({
       editShop({ payload })
         .unwrap()
         .then(() => {
+          setDimBackground(false);
           setOpenModal(false);
         })
         .catch((err) => {
@@ -222,17 +222,7 @@ export function AddShop({
   };
   return (
     <>
-      <Modal
-        theme={{
-          content: {
-            base: "bg-darkGold w-3/4",
-          },
-        }}
-        show={openModal}
-        size="md"
-        onClose={onCloseModal}
-        popup
-      >
+      <Modal show={openModal} size="md" onClose={onCloseModal} popup>
         <Modal.Header />
         <Modal.Body>
           {isLoading && <Loading />}

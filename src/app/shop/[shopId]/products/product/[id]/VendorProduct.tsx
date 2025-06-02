@@ -16,6 +16,8 @@ import ShopProductTimeline from "@/components/shop/ShopProductTimeline";
 import ProductActions from "@/components/shop/ProductActions";
 import { useSearchParams } from "next/navigation";
 import ProductDescription from "@/app/products/[product]/ProductDescription";
+import { ManageVariationDrawer } from "@/components/shop/ManageVariationDrawer";
+import { ManageAutoPriceDrawer } from "@/components/shop/ManageAutoPriceDrawer";
 
 interface ColInterface {
   name: string;
@@ -29,6 +31,10 @@ const VendorProduct = ({ id }: { id: string }) => {
   const color = searchParams.get("color");
   const urlParams = new URLSearchParams(searchParams.toString());
   const currency = useSelector(globalSelectors.selectCurrency);
+  const [openManageVariation, setOpenManageVariation] =
+    useState<boolean>(false);
+  const [openManageAutoPrice, setOpenManageAutoPrice] =
+    useState<boolean>(false);
   const productQuery = zeapApiSlice.useGetProductQuery(
     { productId: id, currency: "NGN" },
     { skip: !token }
@@ -42,6 +48,7 @@ const VendorProduct = ({ id }: { id: string }) => {
   const options = productOptionsQuery?.data?.data;
   const colors: ColInterface[] = options?.readyMadeClothes?.colorEnums;
   const isLoading = productQuery.isLoading || productOptionsQuery.isLoading;
+  const isBeskope = categories?.productGroup === "Bespoke";
   const variations = product?.variations;
   const bespokeVariation = variations?.find(
     (variation: VariationInterface) => variation.colorValue === "Bespoke"
@@ -415,7 +422,7 @@ const VendorProduct = ({ id }: { id: string }) => {
                   <span className="text-darkGold text-lg font-semibold ">
                     Variation
                   </span>
-                  <div>
+                  <div className="flex gap-2">
                     <Button
                       onClick={() => {
                         setNumberOfShownVariations(
@@ -429,7 +436,27 @@ const VendorProduct = ({ id }: { id: string }) => {
                     >
                       {numberOfShownVariations === 5 ? "View All" : "View Less"}
                     </Button>
+                    {!isBeskope && (
+                      <Button
+                        className="text-primary"
+                        color="primary"
+                        size="xs"
+                        outline
+                        onClick={() => {
+                          setOpenManageVariation(!openManageVariation);
+                        }}
+                      >
+                        Manage Variations
+                      </Button>
+                    )}
                   </div>
+                  {openManageVariation && (
+                    <ManageVariationDrawer
+                      isOpen={openManageVariation}
+                      setIsOpen={setOpenManageVariation}
+                      product={product}
+                    />
+                  )}
                 </div>
                 <div className="hidden md:block  mb-4 w-inherit overflow-x-auto">
                   <Table striped>
@@ -481,6 +508,27 @@ const VendorProduct = ({ id }: { id: string }) => {
                     </Table.Body>
                   </Table>
                   <div className="flex flex-col  rounded-md p-4 gap-2 bg-white my-4">
+                    <div className="flex justify-end">
+                      {" "}
+                      <Button
+                        className="text-primary"
+                        color="primary"
+                        size="xs"
+                        outline
+                        onClick={() => {
+                          setOpenManageAutoPrice(!openManageAutoPrice);
+                        }}
+                      >
+                        Manage Auto Price Adjustment
+                      </Button>
+                      {openManageAutoPrice && (
+                        <ManageAutoPriceDrawer
+                          isOpen={openManageAutoPrice}
+                          setIsOpen={setOpenManageAutoPrice}
+                          product={product}
+                        />
+                      )}
+                    </div>
                     <div className="flex justify-between">
                       <span className="font-semibold">
                         {" "}

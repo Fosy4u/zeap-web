@@ -236,7 +236,7 @@ const ProductCard = ({
               </button>
             </div>
           </div>
-          <div className="p-4 h-25 xl:h-35 md:w-72">
+          <div className="p-4 h-25 xl:h-[7rem] md:w-72">
             <p className=" text-sm   text-gray-900 h-10 overflow-auto truncate ">
               {capitalizeFirstLetter(product?.title?.toLowerCase())}-
               {getColorNameFromLink(

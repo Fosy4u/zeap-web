@@ -1,19 +1,24 @@
-import { ThemeContext } from '@/contexts/themeContext';
-import { ProductInterface } from '@/interface/interface';
-import { globalSelectors } from '@/redux/services/global.slice';
-import zeapApiSlice from '@/redux/services/zeapApi.slice';
-import { useContext, useState } from 'react';
-import { useSelector } from 'react-redux';
-import Loading from '../loading/Loading';
-import Link from 'next/link';
-import ProductDeleteRestore from './ProductDeleteRestore';
-import JoinPromoModal from '../promo/JoinPromoModal';
-import LeavePromoModal from '../promo/LeavePromoModal';
-
+import { ThemeContext } from "@/contexts/themeContext";
+import { ProductInterface } from "@/interface/interface";
+import { globalSelectors } from "@/redux/services/global.slice";
+import zeapApiSlice from "@/redux/services/zeapApi.slice";
+import { useContext, useState } from "react";
+import { useSelector } from "react-redux";
+import Loading from "../loading/Loading";
+import ProductDeleteRestore from "./ProductDeleteRestore";
+import JoinPromoModal from "../promo/JoinPromoModal";
+import LeavePromoModal from "../promo/LeavePromoModal";
+import { MdPayments } from "react-icons/md";
+import { FaRegObjectGroup } from "react-icons/fa";
+import { ManageAutoPriceDrawer } from "./ManageAutoPriceDrawer";
+import { ManageVariationDrawer } from "./ManageVariationDrawer";
+import { productTypeOptions } from "@/data/content";
+import { useRouter } from "next/navigation";
 
 const buttonClass =
-  'w-[56px] h-[56px] text-gray-500 rounded-full border border-gray-200 dark:border-gray-600 hover:text-white shadow-sm dark:hover:text-white bg-emerald-100 dark:text-gray-400 hover:bg-emerald-500  dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400';
+  "w-[56px] h-[56px] text-gray-500 rounded-full border border-gray-200 dark:border-gray-600 hover:text-white shadow-sm dark:hover:text-white bg-emerald-100 dark:text-gray-400 hover:bg-emerald-500  dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400";
 const ProductActions = ({ product }: { product: ProductInterface }) => {
+  const router = useRouter();
   const { setDimBackground } = useContext(ThemeContext);
   const token = useSelector(globalSelectors.selectAuthToken);
   const [open, setOpen] = useState(false);
@@ -21,13 +26,25 @@ const ProductActions = ({ product }: { product: ProductInterface }) => {
   const [openEnable, setOpenEnable] = useState(false);
   const [openJoinPromoModal, setOpenJoinPromoModal] = useState(false);
   const [openLeavePromoModal, setOpenLeavePromoModal] = useState(false);
+  const [openManageVariation, setOpenManageVariation] =
+    useState<boolean>(false);
+  const [openManageAutoPrice, setOpenManageAutoPrice] =
+    useState<boolean>(false);
   const promoProductsQuery = zeapApiSlice.useGetProductPromoQuery(
     { productId: product?.productId },
-    { skip: !token || !product?.productId },
+    { skip: !token || !product?.productId }
   );
   const isLoading = promoProductsQuery.isLoading;
   const data = promoProductsQuery?.data?.data;
   const promo = data?.promo;
+
+  const getProductTypeSlug = (type: string) => {
+    const found = productTypeOptions.find((option) => option.value === type);
+    if (found) {
+      return found.slug;
+    }
+    return "";
+  };
 
   return (
     <>
@@ -41,34 +58,40 @@ const ProductActions = ({ product }: { product: ProductInterface }) => {
       >
         <div
           id="speed-dial-menu-text-outside-button-square"
-          className={`flex flex-col items-center mb-4 space-y-2  ${!open && 'hidden'}`}
+          className={`flex flex-col items-center mb-4 space-y-2  ${
+            !open && "hidden"
+          }`}
         >
-          <Link
-            href={`/products/${product?.shopId}/add-product/${product?.productType}/${product?._id}`}
-          >
-            <button type="button" className={buttonClass}>
-              <svg
-                className="w-4 h-4 mx-auto mb-1 text-darkGold"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="square"
-                  strokeLinejoin="round"
-                  strokeWidth="1.9"
-                  d="M7 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h1m4-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm7.441 1.559a1.907 1.907 0 0 1 0 2.698l-6.069 6.069L10 19l.674-3.372 6.07-6.07a1.907 1.907 0 0 1 2.697 0Z"
-                />
-              </svg>
+          <button 
+            onClick={() =>
+              router.push(
+                `/shop/add-product/${getProductTypeSlug(
+                  product?.productType
+                )}?id=${product?.productId}`
+              )
+            }
+          type="button" className={buttonClass}>
+            <svg
+              className="w-4 h-4 mx-auto mb-1 text-darkGold"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="square"
+                strokeLinejoin="round"
+                strokeWidth="1.9"
+                d="M7 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h1m4-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm7.441 1.559a1.907 1.907 0 0 1 0 2.698l-6.069 6.069L10 19l.674-3.372 6.07-6.07a1.907 1.907 0 0 1 2.697 0Z"
+              />
+            </svg>
 
-              <span className="block mb-px text-xs font-medium ">Edit</span>
-            </button>
-          </Link>
-       
+            <span className="block mb-px text-[9px] font-medium ">Edit</span>
+          </button>
+
           {product?.promo?.promoId ? (
             <button
               onClick={() => setOpenLeavePromoModal(true)}
@@ -126,6 +149,26 @@ const ProductActions = ({ product }: { product: ProductInterface }) => {
               </span>
             </button>
           )}
+          <button
+            onClick={() => setOpenManageVariation(true)}
+            type="button"
+            className={buttonClass}
+          >
+            <FaRegObjectGroup className="w-4 h-4 mx-auto mb-1 text-darkGold" />
+            <span className="block mb-px text-[9px] font-medium">
+              Variations
+            </span>
+          </button>
+          <button
+            onClick={() => setOpenManageAutoPrice(true)}
+            type="button"
+            className={buttonClass}
+          >
+            <MdPayments className="w-4 h-4 mx-auto mb-1 text-darkGold" />
+            <span className="block mb-px text-[9px] font-medium">
+              Auto Price
+            </span>
+          </button>
 
           {product?.disabled && (
             <button
@@ -184,10 +227,11 @@ const ProductActions = ({ product }: { product: ProductInterface }) => {
                 />
               </svg>
 
-              <span className="block mb-px text-xs font-medium">Disable</span>
+              <span className="block mb-px text-[9px] font-medium">
+                Disable
+              </span>
             </button>
           )}
-       
         </div>
         <button
           type="button"
@@ -238,8 +282,7 @@ const ProductActions = ({ product }: { product: ProductInterface }) => {
           open={openEnable}
         />
       )}
-     
-      
+
       {openJoinPromoModal && (
         <JoinPromoModal
           productId={product?.productId}
@@ -253,6 +296,20 @@ const ProductActions = ({ product }: { product: ProductInterface }) => {
           openModal={openLeavePromoModal}
           setOpenModal={setOpenLeavePromoModal}
           productId={product?.productId}
+        />
+      )}
+      {openManageVariation && (
+        <ManageVariationDrawer
+          isOpen={openManageVariation}
+          setIsOpen={setOpenManageVariation}
+          product={product}
+        />
+      )}
+      {openManageAutoPrice && (
+        <ManageAutoPriceDrawer
+          isOpen={openManageAutoPrice}
+          setIsOpen={setOpenManageAutoPrice}
+          product={product}
         />
       )}
     </>
