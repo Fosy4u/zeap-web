@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { BiSupport } from "react-icons/bi";
-import { FiTruck } from "react-icons/fi";
-import { TiClipboard } from "react-icons/ti";
+import { FaSquareWhatsapp } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md"
 import heroImage from "@/images/hero.png";
 import shoeImage from "@/images/category_shoe.png";
 import bagImage from "@/images/category_bag.png";
@@ -440,8 +440,7 @@ export const footerData = {
       links: [
         { href: "/about", name: "About" },
         { href: "/sell-on-zeap", name: "Sell on Zeap" },
-        { href: "/", name: "Offices" },
-        { href: "/blog", name: "Blogs" },
+        { href: "/blog", name: "Blog" },
       ],
     },
     {
@@ -451,7 +450,7 @@ export const footerData = {
 
         { href: "/faq", name: "FAQS" },
         { href: "/", name: "Returns" },
-        { href: "/help", name: "Center" },
+       
       ],
     },
   ],
@@ -466,31 +465,39 @@ export const contactSection = {
   title: "contact us",
   heading: "How may we help you",
   description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis quis phasellus eleifend tellus orci ornare.",
+    "You can find answers to most questions here in our Help Centre, where you’ll find help with any issues around 🔍 buying, 🔍 selling, and your 🔍 account.",
+  subDescription:
+    "If you can’t find the answer you’re looking for, you can contact us directly via below options. We’re here to help!",
   directContactInfo: [
     {
-      icon: <BiSupport className="text-3xl" />,
-      title: "Order",
-      contactLink: {
-        href: "mailto:order@luxloom.com",
-        title: "order@luxloom.com",
-      },
+      icon: <BiSupport className="text-3xl text-info" />,
+      title: "Call",
+      contactLinks: [
+        {
+          href: "tel:+447518465207",
+          title: "+447518465207",
+        },
+      ],
     },
     {
-      icon: <FiTruck className="text-3xl" />,
-      title: "Start a Return",
-      contactLink: {
-        href: "mailto:return@luxloom.com",
-        title: "return@luxloom.com",
-      },
+      icon: <FaSquareWhatsapp className="text-3xl text-success" />,
+      title: "WhatsApp",
+      contactLinks: [
+        {
+          href: "https://wa.me/447518465207",
+          title: "+447518465207",
+        },
+      ],
     },
     {
-      icon: <TiClipboard className="text-3xl" />,
-      title: "Sizing and Product Info",
-      contactLink: {
-        href: "mailto:products@luxloom.com",
-        title: "products@luxloom.com",
-      },
+      icon: <MdEmail className="text-3xl text-primary" />,
+      title: "Email",
+      contactLinks: [
+        {
+          href: "mailto:admin@zeaper.com",
+          title: "Admin@zeaper.com",
+        },
+      ],
     },
   ],
 };
@@ -631,30 +638,28 @@ export const productsCollection = {
 
 export const productTypeOptions = [
   {
-    name: 'Ready Made Cloth',
-    value: 'readyMadeCloth',
-    slug: 'ready-made-cloth',
+    name: "Ready Made Cloth",
+    value: "readyMadeCloth",
+    slug: "ready-made-cloth",
   },
   {
-    name: 'Ready Made Shoe',
-    value: 'readyMadeShoe',
-    slug: 'ready-made-footwear',
+    name: "Ready Made Shoe",
+    value: "readyMadeShoe",
+    slug: "ready-made-footwear",
   },
   {
-    name: 'Accessory',
-    value: 'accessory',
-    slug: 'accessories',
+    name: "Accessory",
+    value: "accessory",
+    slug: "accessories",
   },
   {
-    name: 'Bespoke Cloth',
-    value: 'bespokeCloth',
-    slug: 'bespoke-cloth',
+    name: "Bespoke Cloth",
+    value: "bespokeCloth",
+    slug: "bespoke-cloth",
   },
   {
-    name: 'Bespoke Shoe',
-    value: 'bespokeShoe',
-    slug: 'bespoke-footwear',
+    name: "Bespoke Shoe",
+    value: "bespokeShoe",
+    slug: "bespoke-footwear",
   },
 ];
-
-
