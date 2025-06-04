@@ -262,7 +262,7 @@ export function UserMenuBar() {
           ) : (
             <>
               {" "}
-              {user?.firstName ? (
+              {!user?.isGuest && user?.firstName ? (
                 <Avatar
                   placeholderInitials={user?.firstName?.charAt(0).toUpperCase()}
                   rounded
