@@ -184,7 +184,7 @@ const MobileAccountNavBar = () => {
         )}
         { !user?.shopId && (
           <Link
-            href={!user || user?.isGuest ? "/account/login" : "/sell-on-zeap"}
+            href={"/sell-on-zeap"}
             className="flex w-full p-2 justify-center mt-6"
           >
             <span className="block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm w-full text-center">
