@@ -194,6 +194,7 @@ const MenuItemChildren = ({
   const excludedOptions = ["Other", "None"];
   const link = menuChildren[0]?.link;
   const fields = menuChildren[0]?.fields || [];
+ 
   // const sortFieldsValueByCount = (fields: ProductTypeFilter[]) => {
   //   return fields.sort((a, b) => {
   //     return b.options[0].count - a.options[0].count;
@@ -201,6 +202,8 @@ const MenuItemChildren = ({
   // };
   const allowedFields = fields.filter(
     (field) =>
+      field.name.toLowerCase() === "gender" ||
+      field.name.toLowerCase() === "age group" ||
       field.name.toLowerCase() === "main" ||
       field.name.toLowerCase() === "style" ||
       field.name.toLowerCase() === "design" ||
@@ -217,7 +220,7 @@ const MenuItemChildren = ({
       .slice(0, 10);
   };
   return (
-    <div className="flex gap-2   flex-wrap w-[80vw]">
+    <div className="flex    flex-wrap w-[80vw]">
       {allowedFields?.length > 0 &&
         allowedFields.map((field: ProductTypeFilter) => {
           const formattedFields = getFormattedFields(field);

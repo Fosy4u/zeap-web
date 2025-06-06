@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { BiSupport } from "react-icons/bi";
 import { FaSquareWhatsapp } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md"
+import { MdEmail } from "react-icons/md";
 import heroImage from "@/images/hero.png";
 import shoeImage from "@/images/category_shoe.png";
 import bagImage from "@/images/category_bag.png";
@@ -138,21 +138,20 @@ export const NavLinks: NavItemType[] = [
 ];
 export const menuLinks = [
   {
-    link: "Ready Made Cloth",
-    image: readyMadeClothImage,
-  },
-  {
     link: "Bespoke Cloth",
     image: bespokeClothImage,
   },
   {
-    link: "Ready Made Shoe",
-    image: readyMadeShoeImage,
-  },
-
-  {
     link: "Bespoke Shoe",
     image: bespokeShoeImage,
+  },
+  {
+    link: "Ready Made Cloth",
+    image: readyMadeClothImage,
+  },
+  {
+    link: "Ready Made Shoe",
+    image: readyMadeShoeImage,
   },
 
   {
@@ -450,7 +449,6 @@ export const footerData = {
 
         { href: "/faq", name: "FAQS" },
         { href: "/", name: "Returns" },
-       
       ],
     },
   ],
