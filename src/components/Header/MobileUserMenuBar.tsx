@@ -1,9 +1,7 @@
 "use client";
 import { AuthContext } from "@/contexts/authContext";
-import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
+import { Avatar, Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
 import { useCallback, useContext, useEffect, useState } from "react";
-
-import { LuUser2 } from "react-icons/lu";
 import { SignInSignUpDrawer } from "../../authentication/SignInSignUpDrawer";
 import { ThemeContext } from "@/contexts/themeContext";
 import { useRouter } from "next/navigation";
@@ -68,18 +66,32 @@ export function MobileUserMenuBar() {
         }}
       >
         {user?.imageUrl?.link ? (
-          <span className="w-6 h-6   rounded-full overflow-hidden">
-            <Image
-              src={user?.imageUrl?.link}
-              alt="user image"
-              width={100}
-              height={100}
-              className="object-cover w-full h-full rounded-full"
-            />
-          </span>
-        ) : (
-          <LuUser2 className="text-2xl" />
-        )}
+                    <span className="w-9 h-9 rounded-full overflow-hidden">
+                      <Image
+                        src={user?.imageUrl?.link}
+                        alt="user image"
+                        width={100}
+                        height={100}
+                        className="object-cover w-full h-full rounded-full"
+                      />
+                    </span>
+                  ) : (
+                    <>
+                      {" "}
+                      {!user?.isGuest && user?.firstName ? (
+                        <Avatar
+                          placeholderInitials={user?.firstName?.charAt(0).toUpperCase()}
+                          rounded
+                          className="bg-primary text-white w-9 h-9 rounded-full"
+                        />
+                      ) : (
+                        <Avatar
+                          rounded
+                          className="bg-primary text-white w-9 h-9 rounded-full"
+                        />
+                      )}
+                    </>
+                  )}
       </button>
 
       {isOpen && (

@@ -5,7 +5,7 @@ import FormItem from "@/shared/FormItem";
 import Input from "@/shared/Input/Input";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import LoadingDots from "../components/loading/LoadingDots";
-// import CryptoJS from "crypto-js";
+import CryptoJS from "crypto-js";
 import { AuthContext } from "@/contexts/authContext";
 import { useRouter } from "next/navigation";
 
@@ -52,9 +52,8 @@ const PasswordSignUP = ({
 
   const validateForm = useCallback(() => {
     setError(null);
-    console.log("lastName is", lastName);
+
     if (!firstName) {
-      console.log("firstName is", firstName);
       setError("First name is required");
       return false;
     }
@@ -99,7 +98,6 @@ const PasswordSignUP = ({
     convert({ payload })
       .unwrap()
       .then((res) => {
-        console.log("res", res);
         const newuser = res?.data?.data;
         setCheckedUser(newuser);
         passwordLogin(email, password);
