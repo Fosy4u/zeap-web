@@ -3,10 +3,10 @@ import { AuthContext } from "@/contexts/authContext";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 import FormItem from "@/shared/FormItem";
 import Input from "@/shared/Input/Input";
-import Link from "next/link";
 import { useContext, useState } from "react";
 import LoadingDots from "../components/loading/LoadingDots";
 import { Alert } from "flowbite-react";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 
 const PasswordLogin = ({
   password,
@@ -33,6 +33,8 @@ const PasswordLogin = ({
   const { passwordLogin, loginError, loading } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<string>("");
+  const [openForgotPasswordModal, setOpenForgotPasswordModal] =
+    useState<boolean>(false);
 
   const handleLogin = () => {
     setPasswordError("");
@@ -113,12 +115,12 @@ const PasswordLogin = ({
               )}
             </FormItem>
             <div className="flex flex-col items-center justify-center gap-2">
-              <Link
-                href="/forgot-pass"
-                className="text-sm text-primary underline"
+              <span
+                onClick={() => setOpenForgotPasswordModal(true)}
+                className="text-sm text-primary underline cursor-pointer hover:text-primary/80"
               >
                 Forgot password
-              </Link>
+              </span>
             </div>
             <ButtonPrimary
               disabled={loading}
@@ -129,6 +131,12 @@ const PasswordLogin = ({
             </ButtonPrimary>
           </div>
         </div>
+        {openForgotPasswordModal && (
+          <ForgotPasswordModal
+            openModal={openForgotPasswordModal}
+            setOpenModal={setOpenForgotPasswordModal}
+          />
+        )}
       </div>
     </div>
   );

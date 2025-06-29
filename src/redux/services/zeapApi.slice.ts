@@ -29,6 +29,7 @@ export default createApi({
     "Notification",
     "PushToken",
     "EmailTemplate",
+    "Help",
   ],
   endpoints: (builder) => ({
     getUser: builder.query({
@@ -1819,7 +1820,7 @@ export default createApi({
           params: { ...arg },
         };
       },
-      providesTags: ["Basket", "Order", "Shop","User"],
+      providesTags: ["Basket", "Order", "Shop", "User"],
       onQueryStarted: async (_, queryArgs) => {
         responseHandler({}, queryArgs);
       },
@@ -2608,6 +2609,50 @@ export default createApi({
           queryArgs
         );
       },
+    }),
+    getHelpArticles: builder.query({
+      query: (arg) => {
+        return {
+          url: `/help/articles`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Help"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
+    getPopularTopicsByCategory: builder.query({
+      query: (arg) => {
+        return {
+          url: `/help/articles/popular`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Help"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
+    getHelpArticle: builder.query({
+      query: (arg) => {
+        return {
+          url: `/help/article`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Help"],
+    }),
+    markHelpArticleHelpful: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `/help/article/update/markHelpful`,
+          method: "PUT",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["Help"],
     }),
   }),
 });

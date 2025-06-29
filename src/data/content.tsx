@@ -447,8 +447,11 @@ export const footerData = {
       links: [
         { href: "/contact", name: "Contact Us" },
 
-        { href: "/faq", name: "FAQS" },
-        { href: "/", name: "Returns" },
+        { href: "/help", name: "Help Center" },
+        {
+          href: "/help/article?category=customer&subcategory=returnsAndRefunds",
+          name: "Returns",
+        },
       ],
     },
   ],

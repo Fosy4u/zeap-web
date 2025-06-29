@@ -601,6 +601,22 @@ interface WishInterface {
   color: string;
   image: string;
 }
+
+interface HelpArticleInterface {
+  articleId: string;
+  _id: string;
+  title: string;
+  category: string;
+  subCategory: string;
+  content: string;
+  tags: string[];
+  createdBy: UserInterface;
+  isPopular: boolean;
+  markedIsHelpful: boolean;
+  markedIsNotHelpful: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
 export type {
   RouteInterface,
   DocumentWithFullscreen,
@@ -638,4 +654,5 @@ export type {
   DeliveryAddressInterface,
   BodyMeasurementTemplateInterface,
   WishInterface,
+  HelpArticleInterface,
 };
