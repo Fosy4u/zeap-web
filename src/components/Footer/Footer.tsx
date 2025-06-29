@@ -42,7 +42,9 @@ const Footer: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-5">
-              <Link href="/">Privacy Policy</Link>
+              <Link href="/help/article?category=account&subcategory=privacy">
+                Privacy Policy
+              </Link>
             </div>
           </div>
         </div>
