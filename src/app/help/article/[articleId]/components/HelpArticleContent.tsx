@@ -15,6 +15,7 @@ import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import MarkArticleHelpful from "./MarkArticleHelpful";
 import NeedMoreHelp from "./NeedMoreHelp";
+import RelatedArticles from "./RelatedArticles";
 
 const HelpArticleContent = ({ articleId }: { articleId: string }) => {
   const token = useSelector(globalSelectors.selectAuthToken);
@@ -117,6 +118,7 @@ const HelpArticleContent = ({ articleId }: { articleId: string }) => {
               )}
             </div>
           )}
+          {article && <RelatedArticles articleId={article.articleId} />}
         </div>
       </div>
     </>
