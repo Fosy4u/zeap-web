@@ -1,14 +1,13 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from "react";
 
-
-
-import { Button, Modal, Progress } from 'flowbite-react';
-import { HiCloudDownload } from 'react-icons/hi';
-import { SocketContext } from '@/contexts/webSocketContext';
+import { Button, Modal, Progress } from "flowbite-react";
+import { HiCloudDownload } from "react-icons/hi";
+import { SocketContext } from "@/contexts/webSocketContext";
+import LoadingDots from "@/components/loading/LoadingDots";
 
 const modalTheme = {
   root: {
-    base: 'fixed inset-x-0 top-0 z-999999 w-screen h-screen overflow-y-auto overflow-x-auto ',
+    base: "fixed inset-x-0 top-0 z-999999 w-screen h-screen overflow-y-auto overflow-x-auto ",
   },
 };
 
@@ -18,7 +17,7 @@ const FileDownloadProgressCardDIsplay = ({
   title,
   thisSessionId,
   progress,
-  progressStatus = 'pending',
+  progressStatus = "pending",
   setProgress,
   setProgressStatus,
 }: {
@@ -34,7 +33,7 @@ const FileDownloadProgressCardDIsplay = ({
   const webSocket = useContext(SocketContext);
   const socket = webSocket?.socket;
 
-  console.log('progressStatus', progressStatus);
+  console.log("progressStatus", progressStatus);
 
   interface DownloadProgressData {
     progress: number;
@@ -48,29 +47,29 @@ const FileDownloadProgressCardDIsplay = ({
       setProgressStatus(newData.status);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    []
   );
 
   useEffect(() => {
-    socket.emit('connectInit', thisSessionId);
+    socket.emit("connectInit", thisSessionId);
 
     // receiving data from server
-    socket.on('downloadProgress', (data: DownloadProgressData) => {
-      console.log('data', data);
+    socket.on("downloadProgress", (data: DownloadProgressData) => {
+      console.log("data", data);
       updateState(data);
     });
 
     return () => {
-      socket.off('downloadProgress');
+      socket.off("downloadProgress");
     };
   }, [socket, thisSessionId, updateState]);
 
   const getPrpgressVariant = () => {
-    if (progress < 10) return 'red';
-    else if (progress < 20) return 'yellow';
-    else if (progress < 70) return 'cyan';
-    else if (progress > 80) return 'gold';
-    else if (progress > 85) return 'green';
+    if (progress < 10) return "red";
+    else if (progress < 20) return "yellow";
+    else if (progress < 70) return "cyan";
+    else if (progress > 80) return "gold";
+    else if (progress > 85) return "green";
   };
 
   return (
@@ -83,9 +82,9 @@ const FileDownloadProgressCardDIsplay = ({
     >
       <Modal.Header>
         <div className="text-sm md:text-lg font-bold flex text-center items-center">
-          {' '}
+          {" "}
           <HiCloudDownload className="me-2" />
-          {title ? title : 'Progress'}
+          {title ? title : "Progress"}
         </div>
       </Modal.Header>
 
@@ -95,6 +94,7 @@ const FileDownloadProgressCardDIsplay = ({
             <h5 className="mt-2 mb-2">
               {progressStatus.charAt(0).toUpperCase() + progressStatus.slice(1)}
             </h5>
+            <LoadingDots />
             <div className="d-flex justify-content-center align-items-center w-full">
               <Progress
                 progress={progress}
@@ -113,7 +113,7 @@ const FileDownloadProgressCardDIsplay = ({
             setShowModal(false);
           }}
         >
-          Close{' '}
+          Close{" "}
         </Button>
       </Modal.Footer>
     </Modal>
