@@ -87,8 +87,11 @@ const CheckoutPage = () => {
       { country, method },
       { skip: !token || !country || !method || !cart?.basketItems?.length }
     );
-  const basketDeliveryDates: ExpectDeliveryDateByMethodInterface[] =
-    getBasketDeliveryDatesQuery?.data?.data || [];
+
+  const basketDeliveryDates: ExpectDeliveryDateByMethodInterface[] | [] =
+    getBasketDeliveryDatesQuery?.data?.data?.length > 0
+      ? getBasketDeliveryDatesQuery?.data?.data
+      : [];
 
   const getBasketTotalQuery = zeapApiSlice.useGetBasketTotalQuery(
     { country, method },
@@ -293,7 +296,17 @@ const CheckoutPage = () => {
   };
 
   const getEstimatedDeliveryDates = (sku: string, method: string) => {
-    const deliveryDate = basketDeliveryDates.find((date) => date.sku === sku);
+    console.log("basketDeliveryDates", basketDeliveryDates);
+    if (
+      !basketDeliveryDates ||
+      !sku ||
+      !method ||
+      basketDeliveryDates?.length === 0
+    ) {
+      return null;
+    }
+
+    const deliveryDate = basketDeliveryDates?.find((date) => date.sku === sku);
     if (!deliveryDate) return null;
 
     const deliveryDays =
