@@ -2618,9 +2618,6 @@ export default createApi({
         };
       },
       providesTags: ["Help"],
-      onQueryStarted: async (_, queryArgs) => {
-        responseHandler({}, queryArgs);
-      },
     }),
     getPopularTopicsByCategory: builder.query({
       query: (arg) => {
@@ -2630,9 +2627,6 @@ export default createApi({
         };
       },
       providesTags: ["Help"],
-      onQueryStarted: async (_, queryArgs) => {
-        responseHandler({}, queryArgs);
-      },
     }),
     getHelpArticle: builder.query({
       query: (arg) => {
