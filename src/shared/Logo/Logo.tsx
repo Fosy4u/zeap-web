@@ -21,7 +21,7 @@ const Logo: FC<LogoProps> = ({ className = "" }) => {
         width={50}
         height={50}
       />
-      <span className={`${className} text-2xl font-bold`}>Zeap Fashion</span>
+      <span className={`${className} text-2xl font-bold`}>Zeaper</span>
     </Link>
   );
 };

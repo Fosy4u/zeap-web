@@ -22,6 +22,7 @@ import EmptyBasket from "@/components/cart/EmptyBasket";
 import LoadingImageBars from "@/components/loading/LoadingImageBars";
 import DeliveryMethod from "./DeliveryMethod";
 
+
 interface ColInterface {
   name: string;
   hex?: string;
@@ -49,6 +50,7 @@ const CheckoutPage = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
   const [showOrderSuccessModal, setShowOrderSuccessModal] = useState(false);
   const [orderId, setOrderId] = useState("");
+  const [gainedPoints, setGainedPoints] = useState<number | null>(null);
   const [serverError, setServerError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLastItemVisible, setIsLastItemVisible] = useState(false);
@@ -215,6 +217,7 @@ const CheckoutPage = () => {
         const data = result?.data;
 
         setOrderId(data?.order?.orderId);
+        setGainedPoints(data?.order?.gainedPoints || null);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -261,6 +264,7 @@ const CheckoutPage = () => {
 
         if (paymentStatus === "success") {
           setOrderId(data?.orderId);
+          setGainedPoints(data?.order?.gainedPoints || null);
           setIsLoading(false);
           setShowOrderSuccessModal(true);
           return;
@@ -590,6 +594,7 @@ const CheckoutPage = () => {
       {showOrderSuccessModal && (
         <OrderSuccessModal
           orderId={orderId}
+          gainedPoints={gainedPoints}
           showOrderSuccessModal={showOrderSuccessModal}
           setShowOrderSuccessModal={setShowOrderSuccessModal}
           isLoading={isLoading}

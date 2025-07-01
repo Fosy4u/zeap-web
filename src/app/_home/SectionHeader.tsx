@@ -24,26 +24,26 @@ const SectionHeader = () => {
   const isLoading = promosQuery.isLoading;
 
   return (
-    <div className="bg-primary">
+    <div className="bg-primary ">
       {isLoading ? (
         <div className="grid gap-7 md:grid-cols-3 lg:grid-cols-4">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="h-56 md:h-[75vh] hidden lg:block">
-            <Carousel>
+          <div className="h-full hidden lg:block">
+            <Carousel slideInterval={5000}>
               {promos?.map((promo: PromoInterface) => (
                 <Link
                   key={promo?.promoId}
                   href={`/promo/${promo?.promoId}`}
                   className="relative h-full"
                 >
-                  <div className="">
+                  {/* <div className="">
                     <div className="text-white bg-primary text-xl font-bold absolute bottom-10 left-10 border-2 border-white px-5 py-2 hover:bg-white hover:text-primary cursor-pointer rounded-md z-10">
                       Shop Now
                     </div>
-                  </div>
+                  </div> */}
                   {promo?.largeScreenImageUrl?.type === "image" ? (
                     <Image
                       key={promo?.promoId}
@@ -69,19 +69,19 @@ const SectionHeader = () => {
               ))}
             </Carousel>
           </div>
-          <div className="h-56 md:h-[75vh] block lg:hidden">
-            <Carousel>
+          <div className="h-screen block lg:hidden">
+            <Carousel slideInterval={5000}>
               {promos?.map((promo: PromoInterface) => (
                 <Link
                   key={promo?.promoId}
                   href={`/promo/${promo?.promoId}`}
                   className="relative h-full"
                 >
-                  <div className="">
+                  {/* <div className="">
                     <div className="text-white z-50 bg-transparent text-sm font-bold absolute bottom-2 left-1 border-2 border-white px-5 py-2 hover:bg-white hover:text-primary cursor-pointer rounded-md">
                       Shop Now
                     </div>
-                  </div>
+                  </div> */}
                   {promo?.smallScreenImageUrl?.type === "image" ? (
                     <Image
                       key={promo?.promoId}

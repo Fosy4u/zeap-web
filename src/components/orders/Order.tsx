@@ -1,4 +1,4 @@
-import { Badge } from "flowbite-react";
+import { Alert, Badge } from "flowbite-react";
 // import Reciept from './Reciept';
 import { OrderInterface, ProductOrdersInterface } from "@/interface/interface";
 import { formatCurrency } from "@/utils/helpers";
@@ -6,7 +6,7 @@ import ProductOrderCard from "./ProductOrderCard";
 
 const Order = ({ order }: { order: OrderInterface }) => {
   const productOrders = order?.productOrders;
-  
+  const gainedPoints = order?.gainedPoints || null;
   const deliveryDetails = order?.deliveryDetails;
   const isCancelled = order?.cancel?.isCancelled;
   const payment = order?.payment;
@@ -30,6 +30,14 @@ const Order = ({ order }: { order: OrderInterface }) => {
                 {order?.progress?.value}%
               </progress>
             </div>
+            {gainedPoints && (
+              <Alert className="mt-2" color="info">
+                <span className="text-xs">
+                  You have gained <strong>{gainedPoints}</strong> points from
+                  this order.
+                </span>
+              </Alert>
+            )}
           </div>
           {/* <Reciept order={order} /> */}
         </div>
