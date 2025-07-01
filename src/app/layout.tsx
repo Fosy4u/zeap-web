@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bodoni_Moda } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/redux/store/StoreProvider";
 import { AuthProvider } from "@/contexts/authContext";
@@ -11,14 +12,20 @@ import DisplayChildren from "./DisplayChildren";
 import { WebSocketProvider } from "@/contexts/webSocketContext";
 import FlowBiteTheme from "@/contexts/FlowBiteTheme";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+const getBodoniFont = Bodoni_Moda({
+  variable: "--font-bodoni",
+  weight: ["900", "900"],
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -38,9 +45,7 @@ export default function RootLayout({
           <ThemeProvider>
             <FlowBiteTheme>
               <html lang="en">
-                <body
-                  className={` ${geistSans.variable} ${geistMono.variable} antialiased `}
-                >
+                <body className={` ${getBodoniFont.variable}  antialiased `}>
                   <Suspense fallback={<Loading />}>
                     <div className="fixed h-full w-full overflow-x-hidden top-0 left-0 ">
                       <DisplayChildren>{children}</DisplayChildren>

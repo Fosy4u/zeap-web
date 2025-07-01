@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"); */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-* {
+
+/* * {
   font-family: " Nunito Sans", serif;
 } */
 
@@ -46,11 +46,11 @@
 }
 
 .transitionEffect {
-    transition: all 0.3s ease-in-out;
-    transition-delay: 0.15s;
-  }
-  .transitionEffect:hover {
-    transform: translateY(-0.25rem) scale(0.95);
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.15s;
+}
+.transitionEffect:hover {
+  transform: translateY(-0.25rem) scale(0.95);
 }
 
 html {
@@ -146,8 +146,7 @@ html {
   );
 }
 
-
 /* Rich Text Editor */
-.editor{
+.editor {
   height: 200;
 }

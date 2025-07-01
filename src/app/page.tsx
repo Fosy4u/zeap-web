@@ -6,7 +6,7 @@ import SectionStyle from "./_home/SectionStyle";
 
 const page = () => {
   return (
-    <div>
+    <>
       <div className="">
         <SectionHeader />
       </div>
@@ -14,7 +14,6 @@ const page = () => {
         <SectionCategory />
       </div>
 
-     
       <div>
         <SectionSecond />
       </div>
@@ -26,7 +25,7 @@ const page = () => {
       <div className="pb-24">
         <SectionStyle />
       </div>
-    </div>
+    </>
   );
 };
 

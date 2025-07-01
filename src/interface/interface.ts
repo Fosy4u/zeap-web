@@ -447,6 +447,7 @@ interface OrderInterface {
   payment: PaymentInterface;
   productOrders: ProductOrdersInterface[];
   voucher: VoucherInterface;
+  gainedPoints: number;
   cancel: {
     isCancelled: boolean;
     reason: string;

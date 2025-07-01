@@ -15,12 +15,14 @@ const OrderSuccessModal = ({
   setShowOrderSuccessModal,
   serverError,
   isLoading,
+  gainedPoints,
 }: {
   orderId: string;
   showOrderSuccessModal: boolean;
   setShowOrderSuccessModal: (value: boolean) => void;
   serverError: string;
   isLoading: boolean;
+  gainedPoints?: number | null;
 }) => {
   const { setDimBackground } = useContext(ThemeContext);
   const router = useRouter();
@@ -66,8 +68,15 @@ const OrderSuccessModal = ({
             </h2>
             <p className="text-center mt-4">
               Your order has been placed successfully. Your order ID is{" "}
-              <span className="font-semibold">{orderId}</span>
+              <span className="font-semibold text-info">{orderId}</span>
             </p>
+            {gainedPoints && (
+              <p className="text-center mt-4">
+                You have gained{" "}
+                <span className="font-semibold">{gainedPoints}</span> points
+                from this order.
+              </p>
+            )}
             <p className="text-center mt-4">
               Take note of your order ID as it might be required for collection.
             </p>

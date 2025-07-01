@@ -23,6 +23,9 @@ const MainNav = () => {
       <div className="p-2 flex items-center md:justify-between">
         <div className="flex-1 flex items-center gap-4">
           <Logo className="hidden xl:block" />
+        </div>
+        <div className=" hidden md:flex   flex-1  justify-end gap-1 md:gap-2 items-center w-full lg:px-2">
+          {" "}
           {!user?.shopId && (
             <Link
               href={"/sell-on-zeap"}
@@ -39,9 +42,6 @@ const MainNav = () => {
               My Shop
             </Link>
           )}
-        </div>
-        <div className=" hidden md:flex   flex-1  justify-end gap-1 md:gap-7 items-center w-full lg:px-2">
-          {" "}
           <SearchHeader />
           <CurrencyPrefence />
           <WishMenuBar />
