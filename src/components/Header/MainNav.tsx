@@ -21,10 +21,10 @@ const MainNav = () => {
   return (
     <div className="flex flex-col gap-0">
       <div className="p-2 flex items-center md:justify-between">
-        <div className="flex-1 flex items-center gap-4">
+        <div className=" flex items-center gap-4">
           <Logo className="hidden xl:block" />
         </div>
-        <div className=" hidden md:flex   flex-1  justify-end gap-1 md:gap-2 items-center w-full lg:px-2">
+        <div className=" hidden md:flex     justify-end gap-1 md:gap-2 items-center w-full lg:px-2">
           {" "}
           {!user?.shopId && (
             <Link
@@ -37,7 +37,7 @@ const MainNav = () => {
           {user?.shopId && (
             <Link
               href="/shop"
-              className="hidden md:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm"
+              className="hidden md:block  font-semibold bg-lightSuccess  p-2 rounded-md cursor-pointer text-sm "
             >
               My Shop
             </Link>

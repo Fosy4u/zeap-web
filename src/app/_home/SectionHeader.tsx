@@ -31,7 +31,7 @@ const SectionHeader = () => {
         </div>
       ) : (
         <>
-          <div className="h-full hidden lg:block">
+          <div className="h-full hidden md:block">
             <Carousel slideInterval={5000}>
               {promos?.map((promo: PromoInterface) => (
                 <Link
@@ -69,7 +69,7 @@ const SectionHeader = () => {
               ))}
             </Carousel>
           </div>
-          <div className="h-screen block lg:hidden">
+          <div className="h-screen block md:hidden">
             <Carousel slideInterval={5000}>
               {promos?.map((promo: PromoInterface) => (
                 <Link
