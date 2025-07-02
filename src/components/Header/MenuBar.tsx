@@ -20,7 +20,7 @@ const MenuBar: React.FC<MenuBarProps> = () => {
           className="fixed inset-0 z-50 overflow-y-auto"
           onClose={handleCloseMenu}
         >
-          <div className="z-max fixed inset-y-0 left-0 w-full max-w-md outline-none focus:outline-none md:w-auto">
+          <div className="z-max fixed inset-y-0 left-0 w-full  outline-none focus:outline-none ">
             <Transition.Child
               as={Fragment}
               enter="transition duration-100 transform"

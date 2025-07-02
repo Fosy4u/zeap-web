@@ -66,32 +66,32 @@ export function MobileUserMenuBar() {
         }}
       >
         {user?.imageUrl?.link ? (
-                    <span className="w-9 h-9 rounded-full overflow-hidden">
-                      <Image
-                        src={user?.imageUrl?.link}
-                        alt="user image"
-                        width={100}
-                        height={100}
-                        className="object-cover w-full h-full rounded-full"
-                      />
-                    </span>
-                  ) : (
-                    <>
-                      {" "}
-                      {!user?.isGuest && user?.firstName ? (
-                        <Avatar
-                          placeholderInitials={user?.firstName?.charAt(0).toUpperCase()}
-                          rounded
-                          className="bg-primary text-white w-9 h-9 rounded-full"
-                        />
-                      ) : (
-                        <Avatar
-                          rounded
-                          className="bg-primary text-white w-9 h-9 rounded-full"
-                        />
-                      )}
-                    </>
-                  )}
+          <span className="w-9 h-9 rounded-full overflow-hidden">
+            <Image
+              src={user?.imageUrl?.link}
+              alt="user image"
+              width={100}
+              height={100}
+              className="object-cover w-full h-full rounded-full"
+            />
+          </span>
+        ) : (
+          <>
+            {" "}
+            {!user?.isGuest && user?.firstName ? (
+              <Avatar
+                placeholderInitials={user?.firstName?.charAt(0).toUpperCase()}
+                rounded
+                className="bg-primary text-white w-9 h-9 rounded-full"
+              />
+            ) : (
+              <Avatar
+                rounded
+                className="bg-primary text-white w-9 h-9 rounded-full"
+              />
+            )}
+          </>
+        )}
       </button>
 
       {isOpen && (

@@ -210,7 +210,38 @@ const ProductCard = ({
                 {/* {isWLHovered || alreadyWishlisted ? <HeartSolid /> : <Heart />} */}
               </button>
             </div>
-            <div className="w-72 hidden md:block  mt-2   overflow-hidden rounded-lg ">
+            <div className=" flex hidden md:block lg:hidden flex-col  bg-slate-100 gap-2  my-2  rounded-lg  duration-300 hover:scale-105 transform overflow-hidden  ">
+              <Image
+                src={
+                  getClickedColorImage(product) ||
+                  getDefaultImageLink(product) ||
+                  String(NoPic.src)
+                }
+                alt={product?.title || "product"}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{
+                  width: "full",
+                  height: "37rem",
+                }}
+               
+                className="w-full  object-contain object-cover"
+              />
+
+              <button
+                type="button"
+                className="absolute top-2 right-2 p-1 rounded-full"
+                aria-label="Wishlist"
+                onClick={handleWishClick}
+                onMouseOver={() => setIsWLHovered(true)}
+                onMouseLeave={() => setIsWLHovered(false)}
+              >
+                {getWishIcon()}
+                {/* {isWLHovered || alreadyWishlisted ? <HeartSolid /> : <Heart />} */}
+              </button>
+            </div>
+            <div className="w-72 hidden lg:block  mt-2   overflow-hidden rounded-lg ">
               <Image
                 className=" w-72 h-80  object-contain transition-transform transform hover:scale-110 duration-1000"
                 src={
@@ -237,7 +268,7 @@ const ProductCard = ({
             </div>
           </div>
           <div className="p-4 h-25 xl:h-[7rem] md:w-72">
-            <p className=" text-sm   text-gray-900 h-10 overflow-auto truncate ">
+            <p className=" text-sm   text-gray-900 overflow-auto truncate ">
               {capitalizeFirstLetter(product?.title?.toLowerCase())}-
               {getColorNameFromLink(
                 getClickedColorImage(product) ||
@@ -245,28 +276,6 @@ const ProductCard = ({
                   String(NoPic.src)
               )}
             </p>
-            {colorOptions?.length > 0 && product?.colors?.length > 1 && (
-              <div className="flex gap-2">
-                {product?.colors?.map((color) => (
-                  <div
-                    onClick={(e) => {
-                      e.preventDefault();
-                      localStorage.setItem("selectedProductColor", color.value);
-                      setClickedColor(color.value);
-                    }}
-                    key={color.value}
-                    className={`w-4 h-4 rounded-full cursor-pointer border  border-slate-200 ring hover:ring-primary
-                    ${
-                      color.value === clickedColor
-                        ? "ring-primary  ring-offset-1"
-                        : "ring-transparent"
-                    }
-                    `}
-                    style={{ background: getBg(color.value) }}
-                  ></div>
-                ))}
-              </div>
-            )}
 
             <div className="flex  justify-between">
               <span className="flex flex-col">
@@ -297,6 +306,28 @@ const ProductCard = ({
                 )}
               </span>
             </div>
+            {colorOptions?.length > 0 && product?.colors?.length > 1 && (
+              <div className="flex gap-2">
+                {product?.colors?.map((color) => (
+                  <div
+                    onClick={(e) => {
+                      e.preventDefault();
+                      localStorage.setItem("selectedProductColor", color.value);
+                      setClickedColor(color.value);
+                    }}
+                    key={color.value}
+                    className={`w-4 h-4 rounded-full cursor-pointer border  border-slate-200 ring hover:ring-primary
+                    ${
+                      color.value === clickedColor
+                        ? "ring-primary  ring-offset-1"
+                        : "ring-transparent"
+                    }
+                    `}
+                    style={{ background: getBg(color.value) }}
+                  ></div>
+                ))}
+              </div>
+            )}
             {showStatus && (
               <div className="absolute right-0 top-0 h-16 w-16 ">
                 <div

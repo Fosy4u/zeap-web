@@ -69,7 +69,7 @@ const SectionHeader = () => {
               ))}
             </Carousel>
           </div>
-          <div className="h-screen block md:hidden">
+          <div className="h-[70vh] block md:hidden">
             <Carousel slideInterval={5000}>
               {promos?.map((promo: PromoInterface) => (
                 <Link
