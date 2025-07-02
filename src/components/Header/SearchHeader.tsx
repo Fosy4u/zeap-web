@@ -42,7 +42,7 @@ const drawerTheme = {
     base: "fixed z-50 overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800 overflow-auto",
     position: {
       top: {
-        on: "left-0 right-0 top-0 w-screen md:w-[55%] md:left-[35%]  h-[52rem] lg:h-[55rem] transform-none overflow-auto z-50",
+        on: "left-0 right-0 top-0 w-screen lg:w-[55%] lg:left-[35%]  h-[52rem] lg:h-[55rem] transform-none overflow-auto z-50",
         off: "left-0 right-0 top-0 w-full   -translate-y-full",
       },
     },
@@ -307,7 +307,7 @@ const SearchHeader = () => {
           {isLoading && <Loading />}
           {products?.length > 0 && (
             <div
-              className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-4 overflow-auto "
+              className="grid gap-2 lg:gap-4 grid-cols-2  lg:grid-cols-4 lg:grid-cols-4 overflow-auto "
               onClick={handleClose}
             >
               {products.slice(0, 4).map((item: ProductInterface) => (
