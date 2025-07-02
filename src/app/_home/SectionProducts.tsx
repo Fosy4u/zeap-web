@@ -63,7 +63,7 @@ const SectionProducts = () => {
           <ButtonPrimary href="/products/most-popular">Shop Now</ButtonPrimary>
         </div>
 
-        <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  ">
+        <div className="grid gap-2 md:gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  ">
           {mostPopularProductsQuery.isLoading
             ? Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} />)
             : mostPopularProducts
@@ -98,7 +98,7 @@ const SectionProducts = () => {
           </ButtonPrimary>
         </div>
 
-        <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 ">
+        <div className="grid gap-2 md:gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 ">
           {newestArrivalProductsQuery.isLoading
             ? Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} />)
             : newestArrivalProducts

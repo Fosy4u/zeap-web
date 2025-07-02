@@ -24,7 +24,7 @@ const MainNav = () => {
         <div className=" flex items-center gap-4">
           <Logo className="hidden xl:block" />
         </div>
-        <div className=" hidden md:flex     justify-end gap-1 md:gap-2 items-center w-full lg:px-2">
+        <div className=" hidden lg:flex     justify-end gap-1 md:gap-2 items-center w-full lg:px-2">
           {" "}
           {!user?.shopId && (
             <Link
@@ -50,7 +50,7 @@ const MainNav = () => {
           <UserMenuBar />
         </div>
 
-        <div className=" flex-1  md:hidden  h-[3rem]  justify-end gap-1 md:gap-7 flex items-center w-full">
+        <div className=" flex-1  lg:hidden  h-[3rem]  justify-end gap-1 md:gap-7 flex items-center w-full">
           <SearchHeader />
           <CurrencyPrefence />
           <WishMenuBar />
@@ -60,7 +60,7 @@ const MainNav = () => {
           <MenuBar />
         </div>
       </div>
-      <div className="hidden items-center gap-4 md:flex justify-center">
+      <div className="hidden items-center gap-4 lg:flex justify-center">
         {/* {NavLinks.map((item) => (
           <NavigationItem key={item.id} menuItem={item} />
         ))} */}

@@ -74,61 +74,60 @@ const Collection = ({ formatLink }: { formatLink: string }) => {
   }, [linkSubTitle]);
   return (
     <>
-    {" "}
-    <hr className="border-neutral-300" />
-    <div className="md:p-4 min-h-screen">
-      <div className="grid gap-7 md:grid-cols-3 lg:grid-cols-4">
-        {isLoading &&
-          Array.from({ length: 24 }).map((_, i) => <Skeleton key={i} />)}
-      </div>
-      {products?.length > 0 && (
-        <div className="flex flex-col md:flex-row md:gap-4">
-          
-          <div className="hidden lg:flex flex-none md:w-64">
-            <ProductFilters
-              dynamicFilters={dynamicFilters}
-              totalCount={totalCount}
-              setSubTitle={setSubTitle}
-              colorOptions={colorOptions}
-            />
-          </div>
-          <div className="flex flex-col gap-8">
-            <ProductCollectionDisplay
-              products={products}
-              title={
-                capitalizeFirstLetter(
-                  pluralize(convertCamelToNormal(formatLink || ""))
-                ) || "Collections"
-              }
-              subMenus={getProductDisplaySubMenus(
-                dynamicFilters,
-                slug,
-                slugUrl,
-                products
-              ).filter((menu) => menu !== null)}
-              subTitle={subTitle}
-              setSubTitle={setSubTitle}
-              colorOptions={colorOptions}
-              showMobileFilters={true}
-              dynamicFilters={dynamicFilters}
-              totalCount={totalCount}
-            />
-            {/* <ProductTileList products={filteredProducts} /> */}
-
-            <div className="flex overflow-x-auto justify-center">
-              <ProductPagination
-                pageNumber={pageNumber ? parseInt(pageNumber) : 1}
+      {" "}
+      <hr className="border-neutral-300" />
+      <div className="md:p-4 min-h-screen">
+        <div className="grid gap-7 md:grid-cols-3 lg:grid-cols-4">
+          {isLoading &&
+            Array.from({ length: 24 }).map((_, i) => <Skeleton key={i} />)}
+        </div>
+        {products?.length > 0 && (
+          <div className="flex flex-col lg:flex-row lg:gap-4">
+            <div className="hidden lg:flex flex-none md:w-64">
+              <ProductFilters
+                dynamicFilters={dynamicFilters}
                 totalCount={totalCount}
-                limit={limit}
-                showIcons
+                setSubTitle={setSubTitle}
+                colorOptions={colorOptions}
               />
             </div>
+            <div className="flex flex-col gap-8">
+              <ProductCollectionDisplay
+                products={products}
+                title={
+                  capitalizeFirstLetter(
+                    pluralize(convertCamelToNormal(formatLink || ""))
+                  ) || "Collections"
+                }
+                subMenus={getProductDisplaySubMenus(
+                  dynamicFilters,
+                  slug,
+                  slugUrl,
+                  products
+                ).filter((menu) => menu !== null)}
+                subTitle={subTitle}
+                setSubTitle={setSubTitle}
+                colorOptions={colorOptions}
+                showMobileFilters={true}
+                dynamicFilters={dynamicFilters}
+                totalCount={totalCount}
+              />
+              {/* <ProductTileList products={filteredProducts} /> */}
+
+              <div className="flex overflow-x-auto justify-center">
+                <ProductPagination
+                  pageNumber={pageNumber ? parseInt(pageNumber) : 1}
+                  totalCount={totalCount}
+                  limit={limit}
+                  showIcons
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      )}
-      {productsQuery.isSuccess && products?.length === 0 && <NoProduct />}
-    </div>
-    <MyRecommendedProducts />
+        )}
+        {productsQuery.isSuccess && products?.length === 0 && <NoProduct />}
+      </div>
+      <MyRecommendedProducts />
     </>
   );
 };
