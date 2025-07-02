@@ -47,7 +47,7 @@ const SimilarProducts = ({ productId }: { productId: string }) => {
               Array.from({ length: 24 }).map((_, i) => <Skeleton key={i} />)}
           </div>
 
-          <div className="grid gap-2 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+          <div className="grid gap-2 md:gap-4 grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 ">
             {products.map((item: ProductInterface) => (
               <ProductCard
                 product={item}
