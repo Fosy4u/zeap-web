@@ -2,14 +2,27 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
- 
- 
- 
+
   images: {
     domains: [
       "storage.googleapis.com",
       "images.unsplash.com",
       "flowbite.s3.amazonaws.com",
+      "www.shutterstock.com",
+      "i.etsystatic.com",
+      "images.squarespace-cdn.com",
+      "cdn-koibn.nitrocdn.com",
+      "danddclothing.com",
+      "iwearafrican.storage.googleapis.com",
+      "www.fashiongonerogue.com",
+      "cdn.shopify.com",
+      "africantraditionalhair.com",
+      "cdn.sanity.io",
+      "static.vecteezy.com",
+      "i.pinimg.com",
+      "t4.ftcdn.net",
+      "img.freepik.com",
+      "ae-pic-a1.aliexpress-media.com",
     ],
     minimumCacheTTL: 1500000,
   },

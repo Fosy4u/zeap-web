@@ -72,7 +72,7 @@ export function UserMenuBar() {
   }, [isAuthenticated, user?.isGuest, handleClose]);
 
   const content = (
-    <div className="w-64 text-sm text-gray-500 dark:text-gray-400 flex flex-col gap-2 bg-white overflow-y-auto max-h-[calc(100vh-8rem)]">
+    <div className="w-64 text-sm text-gray-500 dark:text-gray-400 flex flex-col gap-2 bg-white overflow-y-auto max-h-[calc(100vh-4rem)]">
       <div className="flex flex-col items-center gap-2 w-full overflow-y-auto">
         {(!user || user?.isGuest) && (
           <div className="flex flex-col gap-1 w-full bg-grey7">

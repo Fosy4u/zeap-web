@@ -22,7 +22,7 @@ interface ColInterface {
 const Page = () => {
   const [search, setSearch] = useState<string>("");
   const token = useSelector(globalSelectors.selectAuthToken);
-  const [subTitle, setSubTitle] = useState<string>("");
+
   //const limit = 4;
   const limit = 100;
   const slug = "search";
@@ -75,7 +75,7 @@ const Page = () => {
               <ProductFilters
                 dynamicFilters={dynamicFilters}
                 totalCount={totalCount}
-                setSubTitle={setSubTitle}
+                
                 colorOptions={colorOptions}
               />
             </div>
@@ -89,8 +89,7 @@ const Page = () => {
                   undefined,
                   products
                 ).filter((menu) => menu !== null)}
-                subTitle={subTitle}
-                setSubTitle={setSubTitle}
+            
                 colorOptions={colorOptions}
                 showMobileFilters={true}
                 dynamicFilters={dynamicFilters}

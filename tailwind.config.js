@@ -34,10 +34,20 @@ module.exports = {
         lightDanger: "#FFEAEA",
         gold: "#D5B07B",
         midGold: "#C7A16E",
-        success: '#219653',
-        danger: '#C53A30',
-        warning: '#E4A01C',
-        info: '#3461B9',
+        success: "#219653",
+        danger: "#C53A30",
+        warning: "#E4A01C",
+        info: "#3461B9",
+      },
+      animation: {
+        "infinite-scroll": "infinite-scroll 100s linear infinite",
+        
+      },
+      keyframes: {
+        "infinite-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-50% - 20px))" },
+        },
       },
     },
   },

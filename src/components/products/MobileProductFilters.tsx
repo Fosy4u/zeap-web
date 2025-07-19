@@ -53,7 +53,7 @@ const drawerTmem = {
 export function MobileProductFilters({
   dynamicFilters,
   totalCount,
-  setSubTitle,
+  // setSubTitle,
   colorOptions,
 }: {
   dynamicFilters: {
@@ -62,12 +62,9 @@ export function MobileProductFilters({
     options: Record<string, { value: string }>;
   }[];
   totalCount: number;
-  setSubTitle: (value: string) => void;
+  // setSubTitle: (value: string) => void;
   colorOptions: { name: string; hex?: string; background?: string }[];
 }) {
-  const currentUrl =
-    typeof window !== "undefined" ? window.location.pathname : "";
-
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
@@ -120,13 +117,40 @@ export function MobileProductFilters({
     router.push(`?${params.toString()}`);
   };
   const getSearchParamsNumber = () => {
-    let count = 0;
-    searchParams.forEach((value) => {
-      if (value) {
-        count += value.split(",").length;
-      }
+    const excludeKeys = [
+      "page",
+      "sort",
+      "limit",
+      "productGroupPage",
+      "subProductGroupPage",
+      "collectionTitle",
+      "superTitle"
+    ];
+    const allsearchParamsKey = Array.from(searchParams.keys());
+   
+    return allsearchParamsKey.filter((key) => !excludeKeys.includes(key))
+      .length;
+  };
+  const clearAllAppliedFilters = () => {
+    const excludeKeys = [
+      "page",
+      "sort",
+      "limit",
+      "productGroupPage",
+      "subProductGroupPage",
+      "collectionTitle",
+    ];
+    const allsearchParamsKey = Array.from(searchParams.keys()).filter(
+      (key) => !excludeKeys.includes(key)
+    );
+  
+    const params = new URLSearchParams(searchParams.toString());
+    allsearchParamsKey.forEach((key) => {
+      params.delete(key);
     });
-    return count;
+    // setSubTitle("");
+
+    router.push(`?${params.toString()}`);
   };
   const handleClose = () => setIsOpen(false);
   const getBg = (value: string) => {
@@ -141,7 +165,7 @@ export function MobileProductFilters({
         <div
           onClick={() => {
             setIsOpen(!isOpen);
-            setSubTitle("");
+            // setSubTitle("");
           }}
           className="inline-flex items-center  w-full h-8 px-4 text-sm "
         >
@@ -183,15 +207,7 @@ export function MobileProductFilters({
                 <span
                   className="text-xs border border-darkGold rounded-full cursor-pointer p-1 mt-6 mb-2 "
                   onClick={() => {
-                    // const params = new URLSearchParams(searchParams.toString());
-                    // params.forEach((_, key) => {
-                    //   params.delete(key);
-                    // });
-                    setSubTitle("");
-                    if (typeof window !== "undefined") {
-                      router.push(currentUrl);
-                    }
-                    // router.push(`?${params.toString()}`);
+                    clearAllAppliedFilters();
                   }}
                 >
                   Clear all ({getSearchParamsNumber()})

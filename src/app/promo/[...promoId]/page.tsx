@@ -10,7 +10,7 @@ import ProductCollectionDisplay from "@/components/products/ProductCollectionDis
 import Skeleton from "@/components/loading/Skeleton";
 import ProductPagination from "@/components/products/ProductPagination";
 import { getProductDisplaySubMenus } from "@/utils/helpers";
-import { useState } from "react";
+
 import NoProduct from "@/components/products/NoProduct";
 
 interface ColInterface {
@@ -21,7 +21,7 @@ interface ColInterface {
 
 const Page = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
-  const [subTitle, setSubTitle] = useState<string>("");
+
   //const limit = 4;
   const limit = 100;
   const slug = "promo";
@@ -69,7 +69,7 @@ const Page = () => {
             <ProductFilters
               dynamicFilters={dynamicFilters}
               totalCount={totalCount}
-              setSubTitle={setSubTitle}
+             
               colorOptions={colorOptions}
             />
           </div>
@@ -83,8 +83,7 @@ const Page = () => {
                 undefined,
                 products
               ).filter((menu) => menu !== null)}
-              subTitle={subTitle}
-              setSubTitle={setSubTitle}
+             
               colorOptions={colorOptions}
               showMobileFilters={true}
               dynamicFilters={dynamicFilters}

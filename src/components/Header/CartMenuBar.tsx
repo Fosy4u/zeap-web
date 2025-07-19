@@ -76,7 +76,7 @@ const CartMenuBar = () => {
     >
       <button
         type="button"
-        className="relative inline-flex items-center p-3 text-sm  text-center  rounded-full hover:bg-slate-200  focus:outline-none "
+        className="relative inline-flex items-center p-2 text-sm  text-center  rounded-full hover:bg-slate-200  focus:outline-none "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

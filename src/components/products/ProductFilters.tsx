@@ -12,18 +12,16 @@ interface ProductFiltersProps {
     options: Record<string, { value: string }>;
   }[];
   totalCount: number;
-  setSubTitle: (value: string) => void;
+  // setSubTitle: (value: string) => void;
   colorOptions: { name: string; hex?: string; background?: string }[];
 }
 
 const ProductFilters = ({
   dynamicFilters,
   totalCount,
-  setSubTitle,
+  // setSubTitle,
   colorOptions,
 }: ProductFiltersProps) => {
-  const currentUrl =
-    typeof window !== "undefined" ? window.location.pathname : "";
   const router = useRouter();
   const [showOptionsList, setShowOptionsList] = useState<string[]>(
     // dynamicFilters.map((filter) => filter?.name)
@@ -33,6 +31,7 @@ const ProductFilters = ({
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
+    console.log("params", params);
     const keys = Array.from(params.keys());
     const newShowOptionsList: string[] = ["Color", "Style", "Size"];
     keys.forEach((key) => {
@@ -70,7 +69,6 @@ const ProductFilters = ({
     }
     const params = new URLSearchParams(searchParams.toString());
     const exist = params.get(key);
-   
 
     // join the values with comma if exist
     if (exist) {
@@ -91,13 +89,39 @@ const ProductFilters = ({
     router.push(`?${params.toString()}`);
   };
   const getSearchParamsNumber = () => {
-    let count = 0;
-    searchParams.forEach((value) => {
-      if (value) {
-        count += value.split(",").length;
-      }
+    const excludeKeys = [
+      "page",
+      "sort",
+      "limit",
+      "productGroupPage",
+      "subProductGroupPage",
+      "collectionTitle",
+      "superTitle",
+    ];
+    const allsearchParamsKey = Array.from(searchParams.keys());
+    return allsearchParamsKey.filter((key) => !excludeKeys.includes(key))
+      .length;
+  };
+  const clearAllAppliedFilters = () => {
+    const excludeKeys = [
+      "page",
+      "sort",
+      "limit",
+      "productGroupPage",
+      "subProductGroupPage",
+      "collectionTitle",
+    ];
+    const allsearchParamsKey = Array.from(searchParams.keys()).filter(
+      (key) => !excludeKeys.includes(key)
+    );
+    console.log("allsearchParamsKey", allsearchParamsKey);
+    const params = new URLSearchParams(searchParams.toString());
+    allsearchParamsKey.forEach((key) => {
+      params.delete(key);
     });
-    return count;
+    // setSubTitle("");
+
+    router.push(`?${params.toString()}`);
   };
 
   const getBg = (value: string) => {
@@ -111,12 +135,7 @@ const ProductFilters = ({
     <div className="flex   flex-col h-[150vh] overflow-scroll bg-white w-[16rem] ">
       {getSearchParamsNumber() > 0 && (
         <div
-          onClick={() => {
-            setSubTitle("");
-            if (typeof window !== "undefined") {
-              router.push(currentUrl);
-            }
-          }}
+          onClick={clearAllAppliedFilters}
           className="flex items-center  mb-2 border rounded-full justify-center w-40 text-md cursor-pointer hover:border-darkGold "
         >
           Clear all ({getSearchParamsNumber()})

@@ -2,7 +2,7 @@ const Skeleton = () => {
   return (
     <div
       role="status"
-      className=" h-[484px] max-w-sm p-4 bg-slate-400 rounded-sm shadow-sm animate-pulse md:p-6 dark:border-gray-700"
+      className=" min-h-[484px] w-full p-4 bg-slate-400 rounded-sm shadow-sm animate-pulse md:p-6 dark:border-gray-700"
     >
       <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-sm dark:bg-gray-700">
         <svg

@@ -723,6 +723,18 @@ export default createApi({
         responseHandler({}, queryArgs);
       },
     }),
+    getProductBrands: builder.query({
+      query: (arg) => {
+        return {
+          url: `products/live/brand`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Products"],
+      onQueryStarted: async (_, queryArgs) => {
+        responseHandler({}, queryArgs);
+      },
+    }),
     getMostPopularProducts: builder.query({
       query: (arg) => {
         return {

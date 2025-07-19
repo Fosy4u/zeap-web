@@ -12,6 +12,10 @@ import readyMadeShoeImage from "@/images/readyMadeShoe.webp";
 import bespokeShoeImage from "@/images/customShoe.jpg";
 import bespokeClothImage from "@/images/bespokeCloth.webp";
 import accesoriesImage from "@/images/accesories.webp";
+import homeLogo from "@/images/zeap-text-logo.png";
+import bespokeLogo from "@/images/Zeaper_Bespoke.jpg";
+import readyToWearLogo from "@/images/Zeaper_rtw.jpg";
+import accessoriesLogo from "@/images/Zeaper_Accessories.jpg";
 
 type NavItemType = {
   id: string;
@@ -136,6 +140,7 @@ export const NavLinks: NavItemType[] = [
     href: "/contact",
   },
 ];
+
 export const menuLinks = [
   {
     link: "Bespoke Cloth",
@@ -662,5 +667,478 @@ export const productTypeOptions = [
     name: "Bespoke Shoe",
     value: "bespokeShoe",
     slug: "bespoke-footwear",
+  },
+];
+
+export const productGroupNavOptions = [
+  {
+    label: "HOME",
+    href: "/",
+    logo: homeLogo,
+  },
+  { label: "BESPOKE", href: "/bespoke", logo: bespokeLogo },
+  {
+    label: "READY TO WEAR",
+    href: "/ready-to-wear",
+    logo: readyToWearLogo,
+  },
+  {
+    label: "ACCESSORIES",
+    href: "/accessories",
+    logo: accessoriesLogo,
+  },
+];
+export const subNavPrimaryData = [
+  {
+    label: "WOMEN",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/gender=Female/ageGroup=Adults",
+    params: {
+      gender: "Female",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL WOMEN'S CLOTHINGS",
+  },
+  {
+    label: "WOMEN",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/gender=Female/ageGroup=Adults/isBespoke=true/productType=bespokeCloth,bespokeShoe",
+    params: {
+      gender: "Female",
+      ageGroup: "Adults",
+      isBespoke: true,
+    },
+    collectionTitle: "ALL WOMEN'S BESPOKE CLOTHINGS",
+  },
+  {
+    label: "WOMEN",
+    productGroupNav: "READY TO WEAR",
+    matchedHref:
+      "/collections/gender=Female/ageGroup=Adults/isReadyMade=true/productType=readyMadeCloth,readyMadeShoe",
+    params: {
+      gender: "Female",
+      ageGroup: "Adults",
+      isReadyMade: true,
+    },
+    collectionTitle: "ALL WOMEN'S READY TO WEAR CLOTHINGS",
+  },
+  {
+    label: "WOMEN",
+    productGroupNav: "ACCESSORIES",
+    matchedHref:
+      "/collections/gender=Female/ageGroup=Adults/productType=Accessories",
+    params: {
+      gender: "Female",
+      ageGroup: "Adults",
+      productType: "Accessories",
+    },
+    collectionTitle: "ALL WOMEN'S ACCESSORIES",
+  },
+  {
+    label: "MEN",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/gender=Male/ageGroup=Adults",
+    params: {
+      gender: "Male",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL MEN CLOTHINGS",
+  },
+  {
+    label: "MEN",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/gender=Male/ageGroup=Adults/isBespoke=true/productType=bespokeCloth,bespokeShoe",
+    params: {
+      gender: "Male",
+      ageGroup: "Adults",
+      isBespoke: true,
+    },
+    collectionTitle: "ALL MEN'S BESPOKE CLOTHINGS",
+  },
+  {
+    label: "MEN",
+    productGroupNav: "READY TO WEAR",
+    matchedHref:
+      "/collections/gender=Male/ageGroup=Adults/isReadyMade=true/productType=readyMadeCloth,readyMadeShoe",
+    params: {
+      gender: "Male",
+      ageGroup: "Adults",
+      isReadyMade: true,
+    },
+    collectionTitle: "ALL MEN'S READY TO WEAR CLOTHINGS",
+  },
+  {
+    label: "MEN",
+    productGroupNav: "ACCESSORIES",
+    matchedHref:
+      "/collections/gender=Male/ageGroup=Adults/productType=Accessories",
+    params: {
+      gender: "Male",
+      ageGroup: "Adults",
+      productType: "Accessories",
+    },
+    collectionTitle: "ALL MEN'S ACCESSORIES",
+  },
+  {
+    label: "KIDS",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Kids",
+    params: {
+      ageGroup: "Kids",
+    },
+    collectionTitle: "ALL KIDS CLOTHINGS",
+  },
+  {
+    label: "KIDS",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/ageGroup=Kids/isBespoke=true/productType=bespokeCloth,bespokeShoe",
+    params: {
+      ageGroup: "Kids",
+      isBespoke: true,
+    },
+    collectionTitle: "ALL KIDS BESPOKE CLOTHINGS",
+  },
+  {
+    label: "KIDS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref:
+      "/collections/ageGroup=Kids/isReadyMade=true/productType=readyMadeCloth,readyMadeShoe",
+    params: {
+      ageGroup: "Kids",
+      isReadyMade: true,
+    },
+    collectionTitle: "ALL KIDS READY TO WEAR CLOTHINGS",
+  },
+  {
+    label: "KIDS",
+    productGroupNav: "ACCESSORIES",
+    matchedHref: "/collections/ageGroup=Kids/productType=Accessories",
+    params: {
+      ageGroup: "Kids",
+      productType: "Accessories",
+    },
+    collectionTitle: "ALL KIDS ACCESSORIES",
+  },
+  {
+    label: "CLOTHINGS",
+    productGroupNav: "HOME",
+    matchedHref:
+      "/collections/ageGroup=Adults/productType=bespokeCloth,bespokeShoe,readyMadeCloth,readyMadeShoe",
+    params: {
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL CLOTHINGS",
+  },
+  {
+    label: "CLOTHINGS",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/ageGroup=Adults/isBespoke=true/productType=bespokeCloth,bespokeShoe",
+    params: {
+      isBespoke: true,
+      ageGroup: "Adults",
+      productType: "bespokeCloth,bespokeShoe",
+    },
+    collectionTitle: "ALL BESPOKE CLOTHINGS",
+  },
+  {
+    label: "CLOTHINGS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref:
+      "/collections/ageGroup=Adults/isReadyMade=true/productType=readyMadeCloth,readyMadeShoe",
+    params: {
+      isReadyMade: true,
+      ageGroup: "Adults",
+      productType: "readyMadeCloth,readyMadeShoe",
+    },
+    collectionTitle: "ALL READY TO WEAR CLOTHINGS",
+  },
+  {
+    label: "SHOES",
+    productGroupNav: "HOME",
+    matchedHref:
+      "/collections/ageGroup=Adults/productType=bespokeShoe,readyMadeShoe",
+    params: {},
+    collectionTitle: "ALL SHOES",
+  },
+  {
+    label: "SHOES",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/ageGroup=Adults/isBespoke=true/productType=bespokeShoe",
+    params: {
+      isBespoke: true,
+      ageGroup: "Adults",
+      productType: "bespokeShoe",
+    },
+    collectionTitle: "ALL BESPOKE SHOES",
+  },
+  {
+    label: "SHOES",
+    matchedHref:
+      "/collections/ageGroup=Adults/isReadyMade=true/productType=readyMadeShoe",
+    productGroupNav: "READY TO WEAR",
+    params: {
+      isReadyMade: true,
+      ageGroup: "Adults",
+      productType: "readyMadeShoe",
+    },
+    collectionTitle: "ALL READY TO WEAR SHOES",
+  },
+  {
+    label: "ACCESSORIES",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Adults/productType=Accessory",
+    params: {
+      productType: "Accessory",
+    },
+    collectionTitle: "ALL ACCESSORIES",
+  },
+  {
+    label: "ACCESSORIES",
+    productGroupNav: "ACCESSORIES",
+    matchedHref: "/collections/ageGroup=Adults/productType=Accessory",
+    params: {
+      productType: "Accessory",
+    },
+    collectionTitle: "ALL ACCESSORIES",
+  },
+
+  {
+    label: "DRESSES",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Adults/main=Dress",
+    params: {
+      main: "Dress",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL DRESSES",
+  },
+  {
+    label: "DRESSES",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/ageGroup=Adults/isBespoke=true/main=Dress/productType=bespokeCloth",
+    params: {
+      isBespoke: true,
+      main: "Dress",
+      ageGroup: "Adults",
+      productType: "bespokeCloth",
+    },
+    collectionTitle: "ALL BESPOKE DRESSES",
+  },
+  {
+    label: "DRESSES",
+    productGroupNav: "READY TO WEAR",
+    matchedHref:
+      "/collections/ageGroup=Adults/gender=Female/isReadyMade=true/main=Dress/productType=readyMadeCloth",
+    params: {
+      isReadyMade: true,
+      main: "Dress",
+      ageGroup: "Adults",
+      productType: "readyMadeCloth",
+      gender: "Female",
+    },
+    collectionTitle: "ALL READY TO WEAR DRESSES",
+  },
+  {
+    label: "BAGS",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Adults/accessoryType=Bag",
+    params: {
+      accessoryType: "Bag",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL BAGS",
+  },
+  {
+    label: "BAGS",
+    productGroupNav: "ACCESSORIES",
+    matchedHref: "/collections/ageGroup=Adults/accessoryType=Bag",
+    params: {
+      accessoryType: "Bag",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL BAGS",
+  },
+  {
+    label: "WEDDINGS",
+    productGroupNav: "HOME",
+    matchedHref:
+      "/collections/ageGroup=Adults/occasion=Wedding,Bride,Bridesmaid,Bride Shower,Groom,Groomsman",
+    params: {
+      ageGroup: "Adults",
+      occasion: "Wedding,Bride,Bridesmaid,Bride Shower,Groom,Groomsman",
+    },
+    collectionTitle: "ALL WEDDINGS",
+  },
+  {
+    label: "WEDDINGS",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/ageGroup=Adults/isBespoke=true/occasion=Wedding,Bride,Bridesmaid,Bride Shower,Groom,Groomsman",
+    params: {
+      isBespoke: true,
+      ageGroup: "Adults",
+      occasion: "Wedding,Bride,Bridesmaid,Bride Shower,Groom,Groomsman",
+    },
+    collectionTitle: "ALL BESPOKE WEDDINGS",
+  },
+  {
+    label: "WEDDINGS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref:
+      "/collections/ageGroup=Adults/isReadyMade=true/occasion=Wedding,Bride,Bridesmaid,Bride Shower,Groom,Groomsman",
+    params: {
+      isReadyMade: true,
+      ageGroup: "Adults",
+      occasion: "Wedding,Bride,Bridesmaid,Bride Shower,Groom,Groomsman",
+    },
+    collectionTitle: "ALL READY TO WEAR WEDDINGS",
+  },
+  {
+    label: "WEDDING",
+    productGroupNav: "ACCESSORIES",
+    matchedHref: "/accessories",
+    params: {},
+    collectionTitle: "ALL WEDDING ACCESSORIES",
+  },
+  {
+    label: "TOPS",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Adults/main=Top",
+    params: {
+      main: "Top",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL TOPS",
+  },
+  {
+    label: "TOPS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref: "/collections/ageGroup=Adults/isReadyMade=true/main=Top",
+    params: {
+      isReadyMade: true,
+      main: "Top",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL READY TO WEAR TOPS",
+  },
+  {
+    label: "TOPS",
+    productGroupNav: "BESPOKE",
+    matchedHref: "/collections/ageGroup=Adults/isBespoke=true/main=Top",
+    params: {
+      isBespoke: true,
+      main: "Top",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL BESPOKE TOPS",
+  },
+  {
+    label: "BOTTOMS",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Adults/main=Bottom",
+    params: {
+      main: "Bottom",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL BOTTOMS",
+  },
+
+  {
+    label: "BOTTOMS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref: "/collections/ageGroup=Adults/isReadyMade=true/main=Bottom",
+    params: {},
+    collectionTitle: "ALL BOTTOMS",
+  },
+  {
+    label: "BOTTOM",
+    productGroupNav: "BESPOKE",
+    matchedHref: "/collections/ageGroup=Adults/isBespoke=true/main=Bottom",
+    params: {
+      isBespoke: true,
+      main: "Bottom",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL BESPOKE BOTTOMS",
+  },
+  {
+    label: "MATCHING SETS",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Adults/main=Matching Set",
+    params: {
+      main: "Matching Set",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL MATCHING SETS",
+  },
+  {
+    label: "MATCHING SETS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref:
+      "/collections/ageGroup=Adults/isReadyMade=true/main=Matching Set",
+    params: {
+      isReadyMade: true,
+      main: "Matching Set",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL READY TO WEAR MATCHING SETS",
+  },
+  {
+    label: "MATCHING SETS",
+    productGroupNav: "BESPOKE",
+    matchedHref:
+      "/collections/ageGroup=Adults/isBespoke=true/main=Matching Set",
+    params: {
+      isBespoke: true,
+      main: "Matching Set",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL BESPOKE MATCHING SETS",
+  },
+  {
+    label: "JEANS",
+    productGroupNav: "HOME",
+    matchedHref: "/collections/ageGroup=Adults/style=Jean",
+    params: {
+      style: "Jean",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL JEANS",
+  },
+
+  {
+    label: "JEANS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref: "/collections/ageGroup=Adults/isReadyMade=true/style=Jean",
+    params: {
+      isReadyMade: true,
+      style: "Jean",
+      ageGroup: "Adults",
+    },
+    collectionTitle: "ALL READY TO WEAR JEANS",
+  },
+
+  {
+    label: "BRANDS",
+    productGroupNav: "HOME",
+    matchedHref: "/brand",
+    params: {},
+    collectionTitle: "ALL BRANDS",
+  },
+
+  {
+    label: "BRANDS",
+    productGroupNav: "READY TO WEAR",
+    matchedHref: "/brand",
+    params: {
+      isReadyMade: true,
+    },
+    collectionTitle: "ALL READY TO WEAR BRANDS",
   },
 ];

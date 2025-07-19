@@ -147,13 +147,13 @@ interface Menu {
   name: string;
   options: MenuOption[];
 }
-export function toCamelCaseWithoutSpaces(str: string) {
+export const toCamelCaseWithoutSpaces = (str: string) => {
   return str
     .replace(/\s+/g, "")
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (match, index) {
       return index === 0 ? match.toLowerCase() : match.toUpperCase();
     });
-}
+};
 
 export const getProductDisplaySubMenus = (
   menus: Menu[],
@@ -161,6 +161,8 @@ export const getProductDisplaySubMenus = (
   slugUrl?: string,
   products: ProductInterface[] = []
 ) => {
+  console.log("slugUrl", slugUrl);
+  console.log("slug", slug);
   let subMenus = [];
   const getSlugLink = (item: string, menu: string) => {
     const slugLink = slug ? `${slug}?${menu}=${item}` : `?${menu}=${item}`;
@@ -170,16 +172,18 @@ export const getProductDisplaySubMenus = (
     .find((menu) => menu.name === "Product Type")
     ?.options?.map((opt: { value: string; count: number }) => opt.value);
   if (productTypes && productTypes.length > 4) {
-    
     subMenus = (productTypes ?? []).map((item: string) => {
-      const productExist = products.find(
+      const productExist = products.findLast(
         (product) => product.productType === toCamelCaseWithoutSpaces(item)
       );
-     
+
       if (!productExist) return null;
       return {
         value: item,
-        link: slugUrl ? `${slugUrl}?productType=${item}` : getSlugLink(item, "productType"),
+        link: slugUrl
+          ? `${slugUrl}?productType=${item}`
+          : getSlugLink(item, "productType"),
+        exampleProduct: productExist,
       };
     });
     return subMenus;
@@ -188,9 +192,9 @@ export const getProductDisplaySubMenus = (
     .find((menu) => menu.name === "Main")
     ?.options?.map((opt: { value: string; count: number }) => opt.value);
   if (main && main.length > 6) {
-
     subMenus = main.map((item: string) => {
-      const productExist = products.find((product) => {
+      if (item === "Other") return null;
+      const productExist = products.findLast((product) => {
         const main = product.categories?.main || [];
         return main.includes(item);
       });
@@ -198,6 +202,7 @@ export const getProductDisplaySubMenus = (
       return {
         value: item,
         link: slugUrl ? `${slugUrl}?main=${item}` : getSlugLink(item, "main"),
+        exampleProduct: productExist,
       };
     });
     return subMenus;
@@ -205,20 +210,26 @@ export const getProductDisplaySubMenus = (
   const style = menus
     .find((menu) => menu.name === "Style")
     ?.options?.map((opt: { value: string; count: number }) => opt.value);
+  if (style && style.length > 4) {
+    subMenus = (style ?? []).map((item: string) => {
+      if (item === "Other") return null;
+      const productExist = products.findLast((product) => {
+        const styles = product.categories?.style || [];
 
-  subMenus = (style ?? []).map((item: string) => {
-    const productExist = products.find((product) => {
-      const styles = product.categories?.style || [];
-
-      return styles.includes(item);
+        return styles.includes(item);
+      });
+      if (!productExist) return null;
+      
+      return {
+        value: item,
+        link: slugUrl ? `${slugUrl}?style=${item}` : getSlugLink(item, "style"),
+        exampleProduct: productExist,
+      };
     });
-    if (!productExist) return null;
-    return {
-      value: item,
-      link: slugUrl ? `${slugUrl}?style=${item}` : getSlugLink(item, "style"),
-    };
-  });
-  return subMenus;
+
+    return subMenus;
+  }
+  return [];
 };
 
 export const convertCamelToNormal = (text: string) => {
@@ -230,8 +241,8 @@ export const convertCamelToNormal = (text: string) => {
 export const checkIfHtml = (text: string) => {
   const htmlRegex = /<[^>]+>/;
   return htmlRegex.test(text);
-}
+};
 export const convertStringToHtml = (text: string) => {
   const htmlString = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
   return htmlString;
-}
+};

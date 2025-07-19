@@ -5,19 +5,15 @@ import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import ProductFilters from "@/components/products/ProductFilters";
-
 import ProductCollectionDisplay from "@/components/products/ProductCollectionDisplay";
 import Skeleton from "@/components/loading/Skeleton";
 import ProductPagination from "@/components/products/ProductPagination";
 import {
-  capitalizeFirstLetter,
   convertCamelToNormal,
   getProductDisplaySubMenus,
   toCamelCaseWithoutSpaces,
 } from "@/utils/helpers";
-import { useEffect, useState } from "react";
 import NoProduct from "@/components/products/NoProduct";
-import pluralize from "pluralize";
 import MyRecommendedProducts from "@/components/products/MyRecommendedProducts";
 
 interface ColInterface {
@@ -27,18 +23,18 @@ interface ColInterface {
 }
 
 const Collection = ({ formatLink }: { formatLink: string }) => {
-  const linkSubTitle =
-    typeof window !== "undefined" && localStorage.getItem("selectedMenuChild");
+  const searchParams = useSearchParams();
+  const collectTionTitle = searchParams.get("collectionTitle");
+  // const linkSubTitle =
+  //   typeof window !== "undefined" && localStorage.getItem("selectedMenuChild");
   const token = useSelector(globalSelectors.selectAuthToken);
-  const [subTitle, setSubTitle] = useState<string>("");
+  // const [subTitle, setSubTitle] = useState<string>("");
   //const limit = 4;
   const limit = 100;
   const slug = "";
-  console.log("formatLink", formatLink);
   const slugUrl = `/products/collections/${convertCamelToNormal(
     formatLink.trimStart() || ""
   )}`;
-  const searchParams = useSearchParams();
   const pageNumber = searchParams.get("pageNumber");
   const param: { [key: string]: string } = {};
   searchParams.forEach((value, key) => {
@@ -49,7 +45,12 @@ const Collection = ({ formatLink }: { formatLink: string }) => {
       limit,
       pageNumber: pageNumber ? parseInt(pageNumber) : 1,
       ...param,
-      productType: toCamelCaseWithoutSpaces(formatLink || ""),
+      // productType: toCamelCaseWithoutSpaces(formatLink || ""),
+      ...(formatLink !== "All"
+        ? {
+            productType: toCamelCaseWithoutSpaces(formatLink.trimStart() || ""),
+          }
+        : {}),
     },
     {
       skip: !token || !formatLink,
@@ -67,11 +68,7 @@ const Collection = ({ formatLink }: { formatLink: string }) => {
   const options = productOptionsQuery?.data?.data;
   const colorOptions: ColInterface[] =
     options?.readyMadeClothes?.colorEnums || [];
-  useEffect(() => {
-    if (linkSubTitle) {
-      setSubTitle(linkSubTitle);
-    }
-  }, [linkSubTitle]);
+
   return (
     <>
       {" "}
@@ -87,26 +84,22 @@ const Collection = ({ formatLink }: { formatLink: string }) => {
               <ProductFilters
                 dynamicFilters={dynamicFilters}
                 totalCount={totalCount}
-                setSubTitle={setSubTitle}
+                // setSubTitle={setSubTitle}
                 colorOptions={colorOptions}
               />
             </div>
             <div className="flex flex-col gap-8">
               <ProductCollectionDisplay
                 products={products}
-                title={
-                  capitalizeFirstLetter(
-                    pluralize(convertCamelToNormal(formatLink || ""))
-                  ) || "Collections"
-                }
+                title={collectTionTitle || "Collections"}
                 subMenus={getProductDisplaySubMenus(
                   dynamicFilters,
                   slug,
                   slugUrl,
                   products
                 ).filter((menu) => menu !== null)}
-                subTitle={subTitle}
-                setSubTitle={setSubTitle}
+                // subTitle={subTitle}
+                // setSubTitle={setSubTitle}
                 colorOptions={colorOptions}
                 showMobileFilters={true}
                 dynamicFilters={dynamicFilters}

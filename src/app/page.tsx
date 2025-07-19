@@ -7,8 +7,10 @@ import SectionStyle from "./_home/SectionStyle";
 const page = () => {
   return (
     <>
+
       <div className="">
         <SectionHeader />
+        
       </div>
       <div className="py-10">
         <SectionCategory />
