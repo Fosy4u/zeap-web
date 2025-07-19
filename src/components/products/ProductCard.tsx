@@ -281,7 +281,7 @@ const ProductCard = ({
               <span className="flex flex-col">
                 {variation?.price ? (
                   <p
-                    className={`mr-2 text-sm font-semibold text-gray-900 dark:text-white ${
+                    className={`mr-2 text-xs font-semibold text-gray-900 dark:text-white ${
                       variation?.discount && "line-through"
                     }`}
                   >
@@ -299,7 +299,7 @@ const ProductCard = ({
               </span>
               <span>
                 {variation?.discount && (
-                  <p className="text-base  font-medium text-gray-500  dark:text-gray-300">
+                  <p className="text-xs  font-bold text-gray-500  dark:text-gray-300">
                     {getCurrencySmallSymbol(variation?.currency)}
                     {numberWithCommas(variation?.discount)}
                   </p>

@@ -136,7 +136,7 @@ const CurrencyPrefence = () => {
         </div>
       }
     >
-      <div className=" text-2xl cursor-pointer flex items-center justify-center w-fit p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600">
+      <div className=" text-2xl cursor-pointer flex items-center justify-center w-fit p-2 rounded-full  hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600">
         <ReactCountryFlag countryCode={preferedCountryCode} />
       </div>
     </Popover>

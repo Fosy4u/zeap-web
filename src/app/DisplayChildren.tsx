@@ -26,7 +26,7 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
       {!isAuthPage && <Header />}
       <div
         style={{ outline: "1px solid red" }}
-        className={`pt-2 ${theme} 
+        className={` ${theme} 
          ${
            dimBackground &&
            "brightness-[20%] bg-neutral-50 blur-sm transition-all duration-300 ease-in-out"

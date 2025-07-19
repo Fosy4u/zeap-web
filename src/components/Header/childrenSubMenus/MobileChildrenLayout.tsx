@@ -1,0 +1,137 @@
+import AccessoryChildrenSubMenus from "./AccessoryChildrenSubMenus";
+import BagsChildrenSubMenus from "./BagsChildrenSubMenus";
+import BottomsChildrenSubMenus from "./BottomsChildrenSubMenus";
+import BrandsChildrenSubMenus from "./BrandsChildrenSubMenus";
+import ClothingChildrenSubMenus from "./ClothingChildrenSubMenus";
+import DressesChildrenSubMenus from "./DressesChildrenSubMenus";
+import JeansChildrenSubMenus from "./JeansChildrenSubMenus";
+import KidsChildrenSubMenus from "./KidsChildrenSubMenus";
+import MatchingSetsChildrenSubMenus from "./MatchingSetChildrenSubMenus";
+import MenChildrenSubMenus from "./MenChildrenSubMenus";
+import SalesChildrenSubMenus from "./SalesChildrenSubMenus";
+import ShoeChildrenSubMenus from "./ShoesChildrenSubMenus";
+import TopsChildrenSubMenus from "./TopsChildrenSubMenus";
+import WeddingChildrenSubMenus from "./WeddingChildrenSubMenus";
+import WomenChildrenSubMenus from "./WomenChildrenSubMenus";
+
+const MobileChildrenLayout = ({
+  hovered,
+  setHovered,
+  setIsVisable,
+}: {
+  hovered: string | undefined;
+  setHovered: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setIsVisable: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const setIsOpen = () => {
+    setIsVisable(false);
+    setHovered(undefined);
+  };
+  return (
+    <div className="flex flex-col gap-4 w-[100vw] h-[calc(100vh-8rem)] mb-8 z-60  overflow-auto lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2 ">
+      {hovered && (
+        <div
+          className="inline-flex gap-2    transition-all duration-300 ease-in-out p-1 px-2 items-center cursor-pointer"
+          onClick={() => setHovered(undefined)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-8 font-extrabold text-slate-900 "
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5l-6-6 6-6"
+            />
+          </svg>
+          <span className="text-2xl font-extrabold text-slate-900">
+            {hovered}
+          </span>
+        </div>
+      )}
+      <>
+        {hovered === "WOMEN" && (
+          <WomenChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "MEN" && (
+          <MenChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+        )}
+        {hovered === "KIDS" && (
+          <KidsChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+        )}
+        {hovered === "BAGS" && (
+          <BagsChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+        )}
+        {hovered === "ACCESSORIES" && (
+          <AccessoryChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "DRESSES" && (
+          <DressesChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "CLOTHINGS" && (
+          <ClothingChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "SHOES" && (
+          <ShoeChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+        )}
+        {hovered === "WEDDINGS" && (
+          <WeddingChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "JEANS" && (
+          <JeansChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "TOPS" && (
+          <TopsChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+        )}
+        {hovered === "BOTTOMS" && (
+          <BottomsChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "MATCHING SETS" && (
+          <MatchingSetsChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "BRANDS" && (
+          <BrandsChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {hovered === "SALES" && (
+          <SalesChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+          />
+        )}
+      </>
+    </div>
+  );
+};
+
+export default MobileChildrenLayout;

@@ -45,7 +45,7 @@ export default function RootLayout({
           <ThemeProvider>
             <FlowBiteTheme>
               <html lang="en">
-                <body className={` ${getBodoniFont.variable}  antialiased `}>
+                <body className={` ${getBodoniFont.variable}  antialiased h-full`}>
                   <Suspense fallback={<Loading />}>
                     <div className="fixed h-full w-full overflow-x-hidden top-0 left-0 ">
                       <DisplayChildren>{children}</DisplayChildren>

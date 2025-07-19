@@ -1,79 +1,55 @@
-'use client';
+"use client";
 
-import { Dialog, Transition } from '@headlessui/react';
-import React, { Fragment, useState } from 'react';
-
-import NavMobile from './NavMobile';
-
-export type MenuBarProps = object;
-const MenuBar: React.FC<MenuBarProps> = () => {
-  const [isVisable, setIsVisable] = useState(false);
-
-  const handleOpenMenu = () => setIsVisable(true);
-  const handleCloseMenu = () => setIsVisable(false);
-
-  const renderContent = () => {
-    return (
-      <Transition appear show={isVisable} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-50 overflow-y-auto"
-          onClose={handleCloseMenu}
-        >
-          <div className="z-max fixed inset-y-0 left-0 w-full  outline-none focus:outline-none ">
-            <Transition.Child
-              as={Fragment}
-              enter="transition duration-100 transform"
-              enterFrom="opacity-0 -translate-x-14"
-              enterTo="opacity-100 translate-x-0"
-              leave="transition duration-150 transform"
-              leaveFrom="opacity-100 translate-x-0"
-              leaveTo="opacity-0 -translate-x-14"
-            >
-              <div className="relative z-20">
-                <NavMobile onClickClose={handleCloseMenu} />
-              </div>
-            </Transition.Child>
-
-            <Transition.Child
-              as={Fragment}
-              enter=" duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave=" duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Dialog.Overlay className="fixed inset-0 bg-neutral-900/60" />
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
-    );
-  };
+export interface MenuBarProps {
+  isVisable: boolean;
+  setIsVisable: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const MenuBar: React.FC<MenuBarProps> = ({ isVisable, setIsVisable }) => {
+  const toggleMenu = () => setIsVisable(!isVisable);
 
   return (
     <>
-      <button
-        type="button"
-        onClick={handleOpenMenu}
-        className="flex items-center justify-center rounded-lg px-1.5 focus:outline-none"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-7"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </button>
+      <div>
+        <button className="relative group" onClick={toggleMenu}>
+          <div className="relative flex overflow-hidden items-center justify-center w-[50px] h-[50px] transform transition-all  duration-200">
+            <div className="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
+              <div
+                className={`bg-slate-900 h-[2px] w-7 transform transition-all duration-300 origin-left ${
+                  isVisable ? "translate-x-10" : "translate-x-0"
+                } delay-75`}
+              ></div>
+              <div
+                className={`bg-slate-900 h-[2px] w-3 rounded transform transition-all duration-300 ${
+                  isVisable ? "translate-x-10" : "translate-x-0"
+                } delay-75`}
+              ></div>
+              <div
+                className={`bg-slate-900 h-[2px] w-7 transform transition-all duration-300 origin-left ${
+                  isVisable ? "translate-x-10" : "translate-x-0"
+                } delay-150`}
+              ></div>
+            </div>
+            <div
+              className={`flex flex-col items-center justify-between transform transition-all duration-500  -translate-x-10 ${
+                isVisable ? "translate-x-0" : "translate-x-10"
+              } delay-300`}
+            >
+              <div
+                className={`absolute bg-slate-900 h-[2px] w-7 transform transition-all duration-500 rotate-0 delay-300 ${
+                  isVisable ? "rotate-45" : ""
+                }`}
+              ></div>
+              <div
+                className={`absolute bg-slate-900 h-[2px] w-7 transform transition-all duration-500 -rotate-0 delay-300 ${
+                  isVisable ? "-rotate-45" : ""
+                }`}
+              ></div>
+            </div>
+          </div>
+        </button>
+      </div>
 
-      {renderContent()}
+      {/* {renderContent()} */}
     </>
   );
 };

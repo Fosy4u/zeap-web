@@ -1,0 +1,80 @@
+"use client";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
+import SaleSubNAv from "./SaleSubNAv";
+import { subNavPrimaryData } from "@/data/content";
+
+
+const SubProductPrimaryNav = ({
+  hovered,
+  setHovered,
+  setIsOpen,
+}: {
+  hovered: string;
+  setHovered: (label: string) => void;
+  setIsOpen: (value: boolean) => void;
+}) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const productGroupPage = searchParams.get("productGroupPage") || "HOME";
+  const getFilteredSubNavData = () => {
+    if (!productGroupPage) {
+      return subNavPrimaryData.filter(
+        (item) => item.productGroupNav === "HOME"
+      );
+    }
+    const navData =
+      subNavPrimaryData.filter(
+        (item) =>
+          item.productGroupNav === productGroupPage ||
+          item.matchedHref === pathname
+      ) || [];
+    //ensure no duplicate labels
+    const uniqueLabels = new Set();
+    return navData.filter((item) => {
+      if (uniqueLabels.has(item.label)) {
+        return false;
+      }
+      uniqueLabels.add(item.label);
+      return true;
+    });
+  };
+
+  const filteredSubNavData = getFilteredSubNavData();
+
+  return (
+    <div className="flex gap-4 w-[100vw] overflow-auto lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2 no-scrollbar">
+      {filteredSubNavData?.length > 0 &&
+        filteredSubNavData.map((item) => (
+          <Link
+            key={item.label + item.productGroupNav}
+            href={{
+              pathname: item.matchedHref,
+              query: {
+                productGroupPage: item.productGroupNav,
+                subProductGroupPage: item.label,
+                collectionTitle: item.collectionTitle,
+              },
+            }}
+            onClick={() => {
+              setHovered("");
+              setIsOpen(false);
+            }}
+            onMouseEnter={() => setHovered(item.label)}
+            className={`text-xs font-extrabold text-slate-900 lg:text-white  transition-all duration-300 ease-in-out p-1 lg:px-2 ${
+              hovered === item.label ? "bg-primary text-white  rounded-md" : ""
+            }`}
+          >
+            {item.label}
+          </Link>
+        ))}
+      <SaleSubNAv
+        hovered={hovered}
+        setHovered={setHovered}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+};
+
+export default SubProductPrimaryNav;

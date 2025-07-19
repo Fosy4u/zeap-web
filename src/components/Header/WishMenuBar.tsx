@@ -8,13 +8,16 @@ import { useRouter } from "next/navigation";
 import { AuthContext } from "@/contexts/authContext";
 
 const WishMenuBar = () => {
-   const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const router = useRouter();
   const dispatch = useDispatch();
   const token = useSelector(globalSelectors.selectAuthToken);
   const [animate, setAnimate] = useState("");
 
-  const wishListQuery = zeapApiSlice.useGetWishListQuery({}, { skip: !token || !user?._id});
+  const wishListQuery = zeapApiSlice.useGetWishListQuery(
+    {},
+    { skip: !token || !user?._id }
+  );
   const wishList = wishListQuery?.data?.data;
   const totalItems = wishList?.length || 0;
 
@@ -54,7 +57,7 @@ const WishMenuBar = () => {
     >
       <button
         type="button"
-        className="relative inline-flex items-center p-3 text-sm  text-center  rounded-full hover:bg-slate-200  focus:outline-none"
+        className="relative inline-flex items-center p-2 text-sm  text-center  rounded-full hover:bg-slate-200  focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
