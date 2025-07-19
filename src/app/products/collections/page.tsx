@@ -23,7 +23,7 @@ const CollectionPage = () => {
   const collectTionTitle = searchParams.get("collectionTitle");
 
   const token = useSelector(globalSelectors.selectAuthToken);
-  // const [subTitle, setSubTitle] = useState<string>("");
+
   //const limit = 4;
   const limit = 100;
   const slug = "";
@@ -76,7 +76,6 @@ const CollectionPage = () => {
               <ProductFilters
                 dynamicFilters={dynamicFilters}
                 totalCount={totalCount}
-                // setSubTitle={setSubTitle}
                 colorOptions={colorOptions}
               />
             </div>
@@ -90,8 +89,6 @@ const CollectionPage = () => {
                   slugUrl,
                   products
                 ).filter((menu) => menu !== null)}
-                // subTitle={subTitle}
-                // setSubTitle={setSubTitle}
                 colorOptions={colorOptions}
                 showMobileFilters={true}
                 dynamicFilters={dynamicFilters}
