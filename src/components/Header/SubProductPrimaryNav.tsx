@@ -4,14 +4,15 @@ import { usePathname, useSearchParams } from "next/navigation";
 import SaleSubNAv from "./SaleSubNAv";
 import { subNavPrimaryData } from "@/data/content";
 
-
 const SubProductPrimaryNav = ({
   hovered,
   setHovered,
   setIsOpen,
+  setIsVisable,
 }: {
   hovered: string;
   setHovered: (label: string) => void;
+  setIsVisable?: React.Dispatch<React.SetStateAction<boolean>>;
   setIsOpen: (value: boolean) => void;
 }) => {
   const pathname = usePathname();
@@ -59,6 +60,7 @@ const SubProductPrimaryNav = ({
             onClick={() => {
               setHovered("");
               setIsOpen(false);
+              if (setIsVisable) setIsVisable(false);
             }}
             onMouseEnter={() => setHovered(item.label)}
             className={`text-xs font-extrabold text-slate-900 lg:text-white  transition-all duration-300 ease-in-out p-1 lg:px-2 ${
