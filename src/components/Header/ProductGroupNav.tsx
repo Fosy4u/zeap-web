@@ -23,7 +23,7 @@ const ProductGroupNav = () => {
     return false;
   };
   return (
-    <div className="flex gap-4 md:gap-8 lg:gap-4 w-full ">
+    <div className="flex justify-center gap-4 md:gap-8 lg:gap-4 w-full ">
       {productGroupNavOptions.map((option) => (
         <Link
           key={option.label}
