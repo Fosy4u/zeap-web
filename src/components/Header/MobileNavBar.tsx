@@ -20,7 +20,7 @@ const MobileNavBar = ({ isVisable, setIsVisable }: { isVisable: boolean; setIsVi
             : "-translate-x-full h-0"
         }`}
       >
-        <MobileSubProductPrimaryNav setHovered={setHovered} setIsVisable={setIsVisable}/>
+        <MobileSubProductPrimaryNav setIsVisable={setIsVisable} />
       </div>
       <div
         // slide in and out from right

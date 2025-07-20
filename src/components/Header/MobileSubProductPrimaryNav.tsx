@@ -8,10 +8,8 @@ import Link from "next/link";
 import MobileNotification from "./MobileNotification";
 import MobileCurrencyPreference from "./MobileCurrencyPreference";
 const MobileSubProductPrimaryNav = ({
-  setHovered,
   setIsVisable,
 }: {
-  setHovered: React.Dispatch<React.SetStateAction<string | undefined>>;
   setIsVisable: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { user } = useContext(AuthContext);
@@ -48,9 +46,7 @@ const MobileSubProductPrimaryNav = ({
     <div className="flex flex-col gap-4 w-[100vw] h-[calc(100vh-8rem)] mb-8 z-60  overflow-y-scroll lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2  ">
       <div
         className={`text-sm font-bold text-success transition-all duration-300 ease-in-out p-1 px-2 cursor-pointer `}
-        onClick={() => {
-          setHovered("SALES");
-        }}
+        
       >
         <div className="flex  justify-between">
           <span>SALES</span>
@@ -75,9 +71,7 @@ const MobileSubProductPrimaryNav = ({
         filteredSubNavData.map((item) => (
           <div
             key={item.label + item.productGroupNav}
-            onClick={() => {
-              setHovered(item.label);
-            }}
+           
             className={`flex flex-col text-sm font-extrabold text-slate-900 lg:text-white  transition-all duration-300 ease-in-out p-1 px-2  `}
           >
             <div className="flex  justify-between">
