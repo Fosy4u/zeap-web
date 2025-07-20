@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SectionBespoke from "../_home/SectionBespoke";
 import BespokeLatest from "./BespokeLatest";
 import BespokeOccassions from "./BespokeOccassions";
@@ -13,7 +14,8 @@ const backGroundVideoUrl =
 const BespokePage = () => {
   return (
     <>
-      <div
+      <Link
+        href="/collections/isBespoke=true?productGroupPage=BESPOKE&collectionTitle=Bespoke Collection"
         className="relative flex h-screen  w-full items-center justify-center bg-black"
         style={{
           backgroundImage: `url(${backGroundVideoUrl})`,
@@ -42,7 +44,7 @@ const BespokePage = () => {
             Explore Now
           </button>
         </div>
-      </div>
+      </Link>
 
       <BespokeSecondSection />
       <MenCategory />

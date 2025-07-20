@@ -59,7 +59,7 @@ const BespokePromo = () => {
               <div className="flex flex-col p-4 text-white min-w-[40rem]">
                 {promo?.largeScreenImageUrl?.type && (
                   <>
-                    <div className="hidden md:block">
+                    <div>
                       {promo?.largeScreenImageUrl?.type === "image" ? (
                         <Image
                           src={promo?.largeScreenImageUrl?.link}
@@ -83,7 +83,7 @@ const BespokePromo = () => {
                         />
                       )}
                     </div>
-                    <div className="md:hidden">
+                    {/* <div className="md:hidden">
                       {promo?.smallScreenImageUrl?.type === "image" ? (
                         <Image
                           src={promo?.smallScreenImageUrl?.link}
@@ -106,7 +106,7 @@ const BespokePromo = () => {
                           style={{ objectFit: "cover" }}
                         />
                       )}
-                    </div>
+                    </div> */}
                     {!promo?.largeScreenImageUrl?.type && (
                       // displate title and subtitle
                       <div className="flex flex-col items-center">

@@ -94,10 +94,7 @@ const MobileNotification = () => {
           <div>
             <span className="inline-flex items-center gap-2">
               {" "}
-              <button
-                type="button"
-                className="relative inline-flex items-center p-2 text-sm  text-center  rounded-full hover:bg-slate-200  focus:outline-none"
-              >
+              <span className="relative inline-flex items-center p-2 text-sm  text-center  rounded-full hover:bg-slate-200  focus:outline-none">
                 <svg
                   className="fill-current duration-700 ease-in-out"
                   width="18"
@@ -120,7 +117,7 @@ const MobileNotification = () => {
                     {notifications?.length}
                   </div>
                 )}
-              </button>{" "}
+              </span>{" "}
               Notifications
             </span>
           </div>
