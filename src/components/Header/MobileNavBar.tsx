@@ -20,22 +20,24 @@ const MobileNavBar = ({ isVisable, setIsVisable }: { isVisable: boolean; setIsVi
             : "-translate-x-full h-0"
         }`}
       >
-        <MobileSubProductPrimaryNav setIsVisable={setIsVisable} />
+        <MobileSubProductPrimaryNav setIsVisable={setIsVisable} setHovered={setHovered} />
       </div>
-      <div
-        // slide in and out from right
-        className={`absolute right-0 w-full bg-white z-50 transition-transform duration-300 ${
-          isVisable && hovered ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <MobileChildrenLayout hovered={hovered} setHovered={setHovered} setIsVisable={setIsVisable}/>
-      </div>
+      {isVisable && (
+        <div
+          // slide in and out from right
+          className={`absolute right-0 w-full bg-white z-50 transition-transform duration-300 ${
+            hovered ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <MobileChildrenLayout hovered={hovered} setHovered={setHovered} setIsVisable={setIsVisable} />
+        </div>
+      )}
       <div
         className={`flex transition-opacity duration-300 ${
           isVisable ? "opacity-0" : "opacity-100"
         }`}
       >
-        <SubMenu />
+        <SubMenu setIsVisable={setIsVisable}/>
       </div>
     </div>
   );
