@@ -44,9 +44,9 @@ const CollectionFilter = ({
 
 
   return (
-    <div>
+    <>
       <DisplayCollections paramObj={paramsObj} />
-    </div>
+    </>
   );
 };
 

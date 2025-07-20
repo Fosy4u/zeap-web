@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";

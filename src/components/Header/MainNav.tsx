@@ -1,4 +1,4 @@
-// import { NavLinks } from '@/data/content';
+"use client";
 import Logo from "@/shared/Logo/Logo";
 
 // import CartSideBar from "../CartSideBar";

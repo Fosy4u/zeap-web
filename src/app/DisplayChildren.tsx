@@ -22,17 +22,17 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
     [pathname]
   );
   return (
-    <div>
-      {!isAuthPage && <Header />}
-      <div
+    <>
+      {/* {!isAuthPage && <Header />} */}
+      {/* <div
         style={{ outline: "1px solid red" }}
-        className={` ${theme} 
+        className={`flex-grow ${theme} 
          ${
            dimBackground &&
            "brightness-[20%] bg-neutral-50 blur-sm transition-all duration-300 ease-in-out"
          }`}
       >
-        <div className={`flex flex-col flex-grow h-full w-full overflow-x-hidden`}>
+        <div className={`flex flex-col h-full w-full overflow-x-hidden`}>
           <div className="mb-8">{children}</div>
           <div className="relative flex flex-col w-full h-full overflow-x-hidden">
             <Footer />
@@ -41,8 +41,22 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
 
         <ToastContainer />
         <Whatsapp />
+      </div> */}
+      {!isAuthPage && <Header />}
+
+      <div
+        className={`flex-grow ${theme} 
+         ${
+           dimBackground &&
+           "brightness-[20%] bg-neutral-50 blur-sm transition-all duration-300 ease-in-out"
+         }`}
+      >
+        {children}
       </div>
-    </div>
+      <Footer />
+      <ToastContainer />
+      <Whatsapp />
+    </>
   );
 };
 

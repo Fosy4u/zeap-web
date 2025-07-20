@@ -1,3 +1,4 @@
+"use client";
 import { AuthContext } from "@/contexts/authContext";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { Alert, Popover } from "flowbite-react";

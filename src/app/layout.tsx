@@ -48,9 +48,17 @@ export default function RootLayout({
                 <body
                   className={` ${getBodoniFont.variable}  antialiased h-full`}
                 >
-                  <Suspense fallback={<Loading />}>
+                  {/* <Suspense fallback={<Loading />}>
                     <div className="flex flex-col h-full w-full overflow-x-hidden">
                       <DisplayChildren>{children}</DisplayChildren>
+                    </div>
+                  </Suspense> */}
+                  <Suspense fallback={<Loading />}>
+                    <div className="">
+                      {/* <Header /> */}
+                      <div className="flex flex-col min-h-screen">
+                        <DisplayChildren>{children}</DisplayChildren>
+                      </div>
                     </div>
                   </Suspense>
                 </body>
