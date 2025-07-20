@@ -3,7 +3,13 @@ import MobileSubProductPrimaryNav from "./MobileSubProductPrimaryNav";
 import { useEffect, useState } from "react";
 import MobileChildrenLayout from "./childrenSubMenus/MobileChildrenLayout";
 
-const MobileNavBar = ({ isVisable, setIsVisable }: { isVisable: boolean; setIsVisable: React.Dispatch<React.SetStateAction<boolean>>; }) => {
+const MobileNavBar = ({
+  isVisable,
+  setIsVisable,
+}: {
+  isVisable: boolean;
+  setIsVisable: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [hovered, setHovered] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -20,16 +26,25 @@ const MobileNavBar = ({ isVisable, setIsVisable }: { isVisable: boolean; setIsVi
             : "-translate-x-full h-0"
         }`}
       >
-        <MobileSubProductPrimaryNav setIsVisable={setIsVisable} setHovered={setHovered} />
+        <MobileSubProductPrimaryNav
+          setIsVisable={setIsVisable}
+          setHovered={setHovered}
+        />
       </div>
       {isVisable && (
         <div
           // slide in and out from right
           className={`absolute right-0 w-full bg-white z-50 transition-transform duration-300 ${
-            hovered ? "translate-x-0" : "translate-x-full"
+            hovered && hovered !== undefined
+              ? "translate-x-0"
+              : "translate-x-full"
           }`}
         >
-          <MobileChildrenLayout hovered={hovered} setHovered={setHovered} setIsVisable={setIsVisable} />
+          <MobileChildrenLayout
+            hovered={hovered}
+            setHovered={setHovered}
+            setIsVisable={setIsVisable}
+          />
         </div>
       )}
       <div
@@ -37,7 +52,7 @@ const MobileNavBar = ({ isVisable, setIsVisable }: { isVisable: boolean; setIsVi
           isVisable ? "opacity-0" : "opacity-100"
         }`}
       >
-        <SubMenu setIsVisable={setIsVisable}/>
+        <SubMenu setIsVisable={setIsVisable} />
       </div>
     </div>
   );
