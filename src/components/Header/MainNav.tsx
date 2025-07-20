@@ -95,7 +95,14 @@ const MainNav = () => {
           <MenuBar isVisable={isVisable} setIsVisable={setIsVisable} />
         </div>
       </div>
-      <span className="block lg:hidden w-full p-1 py-2 bg-primary text-white  font-extrabold my-2 md:px-4">
+      <span
+        onClick={() => {
+          if (isVisable) {
+            setIsVisable(false);
+          }
+        }}
+        className="block lg:hidden w-full p-1 py-2 bg-primary text-white  font-extrabold my-2 md:px-4"
+      >
         <ProductGroupNav />
       </span>
       <div className="hidden lg:flex  ">
