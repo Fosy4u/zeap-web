@@ -22,7 +22,7 @@ const Logo: FC<LogoProps> = ({}) => {
   return (
     <div className="flex cursor-pointer items-center gap-2 text-primary">
       <Image
-        className="hover:opacity-80 transition-all w-[8rem] lg:w-[10rem]"
+        className="hover:opacity-80 transition-all w-[8rem] lg:w-[7rem] xl:w-[10rem]"
         src={homeLogo}
         alt="logo"
         width={80}
