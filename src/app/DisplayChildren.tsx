@@ -45,7 +45,7 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
       {!isAuthPage && <Header />}
 
       <div
-        className={`flex-grow ${theme} 
+        className={`flex-grow overflow-hidden ${theme} 
          ${
            dimBackground &&
            "brightness-[20%] bg-neutral-50 blur-sm transition-all duration-300 ease-in-out"

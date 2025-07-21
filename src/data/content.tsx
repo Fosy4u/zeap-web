@@ -697,7 +697,7 @@ export const subNavPrimaryData = [
       gender: "Female",
       ageGroup: "Adults",
     },
-    collectionTitle: "ALL WOMEN'S CLOTHINGS",
+    collectionTitle: "ALL WOMEN'S COLLECTIONS",
   },
   {
     label: "WOMEN",
@@ -709,7 +709,7 @@ export const subNavPrimaryData = [
       ageGroup: "Adults",
       isBespoke: true,
     },
-    collectionTitle: "ALL WOMEN'S BESPOKE CLOTHINGS",
+    collectionTitle: "ALL WOMEN'S BESPOKE COLLECTIONS",
   },
   {
     label: "WOMEN",
@@ -721,7 +721,7 @@ export const subNavPrimaryData = [
       ageGroup: "Adults",
       isReadyMade: true,
     },
-    collectionTitle: "ALL WOMEN'S READY TO WEAR CLOTHINGS",
+    collectionTitle: "ALL WOMEN'S READY TO WEAR COLLECTIONS",
   },
   {
     label: "WOMEN",
@@ -743,7 +743,7 @@ export const subNavPrimaryData = [
       gender: "Male",
       ageGroup: "Adults",
     },
-    collectionTitle: "ALL MEN CLOTHINGS",
+    collectionTitle: "ALL MEN COLLECTIONS",
   },
   {
     label: "MEN",
@@ -755,7 +755,7 @@ export const subNavPrimaryData = [
       ageGroup: "Adults",
       isBespoke: true,
     },
-    collectionTitle: "ALL MEN'S BESPOKE CLOTHINGS",
+    collectionTitle: "ALL MEN'S BESPOKE COLLECTIONS",
   },
   {
     label: "MEN",
@@ -767,7 +767,7 @@ export const subNavPrimaryData = [
       ageGroup: "Adults",
       isReadyMade: true,
     },
-    collectionTitle: "ALL MEN'S READY TO WEAR CLOTHINGS",
+    collectionTitle: "ALL MEN'S READY TO WEAR COLLECTIONS",
   },
   {
     label: "MEN",
@@ -788,7 +788,7 @@ export const subNavPrimaryData = [
     params: {
       ageGroup: "Kids",
     },
-    collectionTitle: "ALL KIDS CLOTHINGS",
+    collectionTitle: "ALL KIDS COLLECTIONS",
   },
   {
     label: "KIDS",
@@ -799,7 +799,7 @@ export const subNavPrimaryData = [
       ageGroup: "Kids",
       isBespoke: true,
     },
-    collectionTitle: "ALL KIDS BESPOKE CLOTHINGS",
+    collectionTitle: "ALL KIDS BESPOKE COLLECTIONS",
   },
   {
     label: "KIDS",
@@ -810,7 +810,7 @@ export const subNavPrimaryData = [
       ageGroup: "Kids",
       isReadyMade: true,
     },
-    collectionTitle: "ALL KIDS READY TO WEAR CLOTHINGS",
+    collectionTitle: "ALL KIDS READY TO WEAR COLLECTIONSS",
   },
   {
     label: "KIDS",

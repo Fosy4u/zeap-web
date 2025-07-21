@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const BespokeData = {
   title: "Bespoke Shoes",
   description:
@@ -38,9 +40,11 @@ const BespokeShoes = () => {
             </div>
           ))}
         </div>
-        <button className="mt-6 bg-primary text-white px-6 py-3 rounded-md hover:bg-secondary transition-colors">
-          Explore Now
-        </button>
+        <Link href="/collections/isBespoke=true/productType=bespokeShoe?productGroupPage=BESPOKE&collectionTitle=Bespoke Shoes">
+          <button className="mt-6 bg-primary text-white px-6 py-3 rounded-md hover:bg-secondary transition-colors">
+            Explore Now
+          </button>
+        </Link>
       </div>
     </div>
   );

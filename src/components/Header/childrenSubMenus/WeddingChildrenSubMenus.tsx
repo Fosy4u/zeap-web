@@ -108,6 +108,7 @@ const WeddingChildrenSubMenus = ({
         ...getQueryParamObject(),
 
         occasion: "Bride",
+        gender: "Female",
       },
       {
         skip:
@@ -122,6 +123,7 @@ const WeddingChildrenSubMenus = ({
       {
         ...getQueryParamObject(),
         occasion: "Bridesmaid",
+        gender: "Female",
       },
       {
         skip:
@@ -136,6 +138,7 @@ const WeddingChildrenSubMenus = ({
       {
         ...getQueryParamObject(),
         occasion: "Groom",
+        gender: "Male",
       },
       {
         skip:
@@ -149,6 +152,7 @@ const WeddingChildrenSubMenus = ({
       {
         ...getQueryParamObject(),
         occasion: "Groomsman",
+        gender: "Male",
       },
       {
         skip:
@@ -162,6 +166,7 @@ const WeddingChildrenSubMenus = ({
       {
         ...getQueryParamObject(),
         occasion: "Bride Shower",
+        gender: "Female",
       },
       {
         skip:
@@ -176,6 +181,34 @@ const WeddingChildrenSubMenus = ({
       {
         ...getQueryParamObject(),
         occasion: "Wedding",
+      },
+      {
+        skip:
+          !token ||
+          !pathname ||
+          Object.keys(getQueryParamObject()).length === 0,
+      }
+    );
+  const femaleWeddingProductsDynamicFiltersQuery =
+    zeapApiSlice.useGetProductsDynamicFiltersQuery(
+      {
+        ...getQueryParamObject(),
+        occasion: "Wedding",
+        gender: "Female",
+      },
+      {
+        skip:
+          !token ||
+          !pathname ||
+          Object.keys(getQueryParamObject()).length === 0,
+      }
+    );
+  const maleWeddingProductsDynamicFiltersQuery =
+    zeapApiSlice.useGetProductsDynamicFiltersQuery(
+      {
+        ...getQueryParamObject(),
+        occasion: "Wedding",
+        gender: "Male",
       },
       {
         skip:
@@ -275,13 +308,28 @@ const WeddingChildrenSubMenus = ({
       getAllowedFields(weddingProductsDynamicFiltersQuery?.data?.data)?.length >
       0
     ) {
-      productsDynamicFilters[0].options.push({
-        value: "Wedding",
-        count: weddingProductsDynamicFiltersQuery?.data?.data?.length || 0,
-      });
       productsDynamicFilters[2].options.push({
         value: "Wedding",
         count: weddingProductsDynamicFiltersQuery?.data?.data?.length || 0,
+      });
+    }
+    if (
+      getAllowedFields(maleWeddingProductsDynamicFiltersQuery?.data?.data)
+        ?.length > 0
+    ) {
+      productsDynamicFilters[1].options.push({
+        value: "Wedding",
+        count: maleWeddingProductsDynamicFiltersQuery?.data?.data?.length || 0,
+      });
+    }
+    if (
+      getAllowedFields(femaleWeddingProductsDynamicFiltersQuery?.data?.data)
+        ?.length > 0
+    ) {
+      productsDynamicFilters[0].options.push({
+        value: "Wedding",
+        count:
+          femaleWeddingProductsDynamicFiltersQuery?.data?.data?.length || 0,
       });
     }
     return productsDynamicFilters.filter(
@@ -294,6 +342,8 @@ const WeddingChildrenSubMenus = ({
     groomsmanProductsDynamicFiltersQuery?.data?.data,
     bridalShowerProductsDynamicFiltersQuery?.data?.data,
     weddingProductsDynamicFiltersQuery?.data?.data,
+    maleWeddingProductsDynamicFiltersQuery?.data?.data,
+    femaleWeddingProductsDynamicFiltersQuery?.data?.data,
   ]);
 
   const formatName = (name: string) => {
@@ -307,10 +357,19 @@ const WeddingChildrenSubMenus = ({
     const found = productGroupNavOptions.find(
       (option) => pathname === option.href || productGroupPage === option.label
     );
+    const getNameParam = (name: string) => {
+      if (name === "Women") {
+        return `/gender=Female`;
+      }
+      if (name === "Men") {
+        return `/gender=Male`;
+      }
+      return;
+    };
     const getSubMenuLink = (name: string, value: string) => {
       if (!found) return "";
       const baseLink = found.baseLink || "";
-      return `${baseLink}/occasion=${value}`;
+      return `${baseLink}${getNameParam(name)}/occasion=${value}`;
     };
     if (
       filteredProductsDynamicFilters &&

@@ -195,7 +195,7 @@ const WomenChildrenSubMenus = ({
       src: image,
       link: imageLink,
       label: "",
-      collectionTitle: "ALL WOMEN'S CLOTHINGS",
+      collectionTitle: "ALL WOMEN'S COLLECTIONS",
     };
     if (pathname === "/" || productGroupPage === "HOME") {
       imgaeObj.label = "Shop All Women";

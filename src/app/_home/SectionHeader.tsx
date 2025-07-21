@@ -35,7 +35,7 @@ const SectionHeader = () => {
   const isLoading = promosQuery.isLoading;
 
   return (
-    <div className="h-fit min-h-[30vh] lg:min-h-[70vh] relative">
+    <div className="h-fit min-h-[30vh]  relative">
       {isLoading ? (
         <div className="flex flex-col items-center justify-center min-h-[70vh]">
           <Skeleton />
@@ -51,16 +51,14 @@ const SectionHeader = () => {
                 theme={carouselTheme}
               >
                 {promos?.map((promo: PromoInterface) => (
-                  <Link
-                    key={promo?.promoId}
-                    href={`/promo/${promo?.promoId}?productGroupPage=${productGroupPage}&collectionTitle=${promo?.title}`}
-                    className="relative h-full"
-                  >
-                    <div className="">
+                  <div key={promo?.promoId} className="relative h-full">
+                    <Link
+                      href={`/promo/${promo?.promoId}?productGroupPage=${productGroupPage}&collectionTitle=${promo?.title}`}
+                    >
                       <div className="text-white bg-primary text-xl font-bold absolute bottom-10 left-10 border-2 border-white px-5 py-2 hover:bg-white hover:text-primary cursor-pointer rounded-md z-10">
                         Shop Now
                       </div>
-                    </div>
+                    </Link>
                     {promo?.largeScreenImageUrl?.type === "image" ? (
                       <Image
                         key={promo?.promoId}
@@ -82,20 +80,19 @@ const SectionHeader = () => {
                         className="object-cover w-full h-full"
                       />
                     )}
-                  </Link>
+                  </div>
                 ))}
               </Carousel>
             )}
             {promos?.length === 1 && (
-              <Link
-                href={`/promo/${promos[0]?.promoId}?productGroupPage=${productGroupPage}&collectionTitle=${promos[0]?.title}`}
-                className="relative h-full"
-              >
-                <div className="">
+              <div className="relative h-full">
+                <Link
+                  href={`/promo/${promos[0]?.promoId}?productGroupPage=${productGroupPage}&collectionTitle=${promos[0]?.title}`}
+                >
                   <div className="text-white bg-primary text-xl font-bold absolute bottom-10 left-10 border-2 border-white px-5 py-2 hover:bg-white hover:text-primary cursor-pointer rounded-md z-10">
                     Shop Now
                   </div>
-                </div>
+                </Link>
                 {promos[0]?.largeScreenImageUrl?.type === "image" ? (
                   <Image
                     key={promos[0]?.promoId}
@@ -117,7 +114,7 @@ const SectionHeader = () => {
                     className="object-cover w-full h-full"
                   />
                 )}
-              </Link>
+              </div>
             )}
           </div>
           <div className=" block md:hidden">
@@ -129,16 +126,14 @@ const SectionHeader = () => {
                 rightControl={<span></span>}
               >
                 {promos?.map((promo: PromoInterface) => (
-                  <Link
-                    key={promo?.promoId}
-                    href={`/promo/${promo?.promoId}?productGroupPage=${productGroupPage}&collectionTitle=${promo?.title}`}
-                    className="relative h-full"
-                  >
-                    <div className="">
+                  <div key={promo?.promoId} className="relative h-full">
+                     <Link
+                      href={`/promo/${promo?.promoId}?productGroupPage=${productGroupPage}&collectionTitle=${promo?.title}`}
+                    >
                       <div className="text-white z-50 bg-transparent text-sm font-bold absolute bottom-2 left-1 border-2 border-white px-5 py-2 hover:bg-white hover:text-primary cursor-pointer rounded-md">
                         Shop Now
                       </div>
-                    </div>
+                    </Link>
                     {promo?.smallScreenImageUrl?.type === "image" ? (
                       <Image
                         key={promo?.promoId}
@@ -161,7 +156,7 @@ const SectionHeader = () => {
                         className="object-cover w-full h-full"
                       />
                     )}
-                  </Link>
+                  </div>
                 ))}
               </Carousel>
             )}

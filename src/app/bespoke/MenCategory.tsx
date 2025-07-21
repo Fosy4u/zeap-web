@@ -1,5 +1,6 @@
 import Image from "next/image";
 import MenBespokeBackImage from "@/images/men_bespoke_background.webp";
+import Link from "next/link";
 
 const MenCategory = () => {
   return (
@@ -23,9 +24,11 @@ const MenCategory = () => {
           BESPOKE FOR REAL MEN
         </h3>
         <p className="text-lg md:text-2xl">MEN WITH CLASS</p>
-        <button className="mt-6 bg-primary text-white px-6 py-3 rounded-md hover:bg-secondary transition-colors">
-          Explore Now
-        </button>
+        <Link href="/collections/isBespoke=true/gender=Male?productGroupPage=BESPOKE&collectionTitle=ALL MEN'S BESPOKE COLLECTIONS">
+          <button className="mt-6 bg-primary text-white px-6 py-3 rounded-md hover:bg-secondary transition-colors">
+            Explore Now
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import bespokeOfficeImage from "@/images/men_suit_1.webp";
 
 import casualEventImage from "@/images/casual_1.webp";
 import { useState } from "react";
+import Link from "next/link";
 
 const heading = "Bespoke For Occasions";
 const subHeading = "Tailored for every special moment";
@@ -20,18 +21,21 @@ const BespokeOccassionData = [
     description:
       "Elegant and custom-made wedding dresses for your special day.",
     cta: "Explore More",
+    href: "/collections/isBespoke=true/productType=bespokeCloth/occasion=Wedding,Bridal,Bridesmaid,Bridal Shower,Bride?productGroupPage=BESPOKE&collectionTitle=Bespoke Wedding Dresses",
   },
   {
     title: "Evening Wear",
     image: BespokeEveningImage,
     description: "Sophisticated evening wear tailored to perfection.",
     cta: "Explore More",
+    href: "/collections/isBespoke=true/productType=bespokeCloth/occasion=Evening?productGroupPage=BESPOKE&collectionTitle=Bespoke Evening Wear",
   },
   {
     title: "Gala Events",
     image: BespokeGalaEventImage,
     description: "Stunning gala attire designed to make you stand out.",
     cta: "Explore More",
+    href: "/collections/isBespoke=true/productType=bespokeCloth/occasion=Gala,Party,Date?productGroupPage=BESPOKE&collectionTitle=Bespoke Gala Events",
   },
   {
     title: "Office Attire",
@@ -39,6 +43,7 @@ const BespokeOccassionData = [
     description:
       "Professional and stylish office wear for the modern workplace.",
     cta: "Explore More",
+    href: "/collections/isBespoke=true/productType=bespokeCloth/occasion=Office,Work,Business,Corporate?productGroupPage=BESPOKE&collectionTitle=Bespoke Office Attire",
   },
   {
     title: "Cultural Events",
@@ -46,12 +51,14 @@ const BespokeOccassionData = [
     description:
       "Traditional and contemporary outfits for cultural celebrations.",
     cta: "Explore More",
+    href: "/collections/isBespoke=true/productType=bespokeCloth/occasion=Cultural?productGroupPage=BESPOKE&collectionTitle=Bespoke Cultural Events",
   },
   {
     title: "Casual",
     image: casualEventImage,
     description: "Comfortable and stylish casual wear for everyday occasions.",
     cta: "Explore More",
+    href: "/collections/isBespoke=true/productType=bespokeCloth/occasion=Casual,Smart Casual?productGroupPage=BESPOKE&collectionTitle=Bespoke Casual Wear",
   },
 ];
 
@@ -67,7 +74,8 @@ const BespokeOccassions = () => {
         <p className="text-lg md:text-xl text-center mb-12">{subHeading}</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {BespokeOccassionData.map((item, index) => (
-            <div
+            <Link
+              href={item.href}
               key={index}
               className={`relative group overflow-hidden rounded-lg lg:rounded-full shadow-lg transition-transform transform cursor-pointer ${
                 hoveredIndex !== index
@@ -101,7 +109,7 @@ const BespokeOccassions = () => {
                   </span>
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

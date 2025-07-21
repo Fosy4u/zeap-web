@@ -91,7 +91,7 @@ const MobileNavBar = ({
           isVisable ? "opacity-0" : "opacity-100"
         }`}
       >
-        <div className="flex grow gap-4 w-96   overflow-auto lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2 no-scrollbar">
+        <div className="flex grow gap-4 w-[calc(100vw-2px)]   overflow-auto lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2 no-scrollbar">
           {filteredSubNavData?.length > 0 &&
             filteredSubNavData.map((item) => (
               <Link

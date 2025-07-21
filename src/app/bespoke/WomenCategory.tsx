@@ -1,5 +1,6 @@
 import Image from "next/image";
 import WomenBespokeBackImage from "@/images/women_background.jpg";
+import Link from "next/link";
 
 const WomenCategory = () => {
   return (
@@ -20,12 +21,14 @@ const WomenCategory = () => {
 
       <div className="relative z-10 text-white text-center bg-black bg-opacity-50 p-10 rounded-lg">
         <h3 className="text-2xl md:text-5xl font-bold mb-4">
-        BESPOKE FOR WOMEN
+          BESPOKE FOR WOMEN
         </h3>
         <p className="text-lg md:text-2xl">WOMEN WITH STYLE</p>
-        <button className="mt-6 bg-primary text-white px-6 py-3 rounded-md hover:bg-secondary transition-colors">
-          Explore Now
-        </button>
+        <Link href="/collections/isBespoke=true/gender=Female?productGroupPage=BESPOKE&collectionTitle=ALL WOMEN'S BESPOKE COLLECTIONS">
+          <button className="mt-6 bg-primary text-white px-6 py-3 rounded-md hover:bg-secondary transition-colors">
+            Explore Now
+          </button>
+        </Link>
       </div>
     </div>
   );
