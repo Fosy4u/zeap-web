@@ -8,6 +8,8 @@ interface ThemeContextInterface {
   toggleTheme: () => void;
   dimBackground: boolean;
   setDimBackground: (dim: boolean) => void;
+  isSideBarOpen: boolean;
+  toggleSideBar: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextInterface>({
@@ -15,11 +17,14 @@ export const ThemeContext = createContext<ThemeContextInterface>({
   toggleTheme: () => {},
   dimBackground: false,
   setDimBackground: () => {},
+  isSideBarOpen: false,
+  toggleSideBar: () => {},
 });
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<ThemeContextType>('light');
   const [dimBackground, setDimBackground] = useState(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   useEffect(() => {
     const localTheme = localStorage.getItem('theme');
@@ -37,9 +42,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const toggleSideBar = () => {
+    setIsSideBarOpen(!isSideBarOpen);
+  };
   return (
     <ThemeContext.Provider
-      value={{ theme, toggleTheme, dimBackground, setDimBackground }}
+      value={{ theme, toggleTheme, dimBackground, setDimBackground , isSideBarOpen, toggleSideBar }}
     >
       {children}
     </ThemeContext.Provider>

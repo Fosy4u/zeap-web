@@ -38,7 +38,7 @@ const SalesPage = () => {
   };
 
   return (
-    <div className="  mx-auto px-4 py-8">
+    <div className="  mx-auto  py-8">
       <h1 className="text-2xl font-bold  text-center">{getPageTitle()}</h1>
       <div className="grid grid-cols-1 gap-2  my-6">
         {isLoading &&

@@ -137,7 +137,7 @@ const MobileMenuBar = ({ onClickClose }: { onClickClose: () => void }) => {
             />
           </div> */}
           <Drawer.Items>
-            <div className="flex flex-col gap-4 lg:gap-8 w-full ">
+            <div className="flex flex-col gap-4 xl:gap-8 w-full ">
               <MenuItemChildren
                 onClickClose={onClickClose}
                 menuChildren={

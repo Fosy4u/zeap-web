@@ -47,14 +47,14 @@ const RenderChildrenSubMenus = ({
     return name.toUpperCase();
   };
   return (
-    <div className="flex flex-col lg:flex-row   gap-4 lg:gap-24 p-4 flex-col-reverse lg:flex-row-reverse">
-      <div className="flex flex-col  lg:flex-row  gap-8 lg:gap-24 p-4  ">
+    <div className="flex flex-col xl:flex-row   gap-4 xl:gap-24 p-4 flex-col-reverse xl:flex-row-reverse">
+      <div className="flex flex-col  xl:flex-row  gap-8 xl:gap-24 p-4  ">
         {filteredChildrenSubMenus.map((subMenu, index) => (
           <div key={index} className="flex flex-col">
             <p className="text-xs font-extrabold mb-2">
               {formatName(subMenu.name)}
             </p>
-            <ul className="list-none p-0 m-0  flex flex-col flex-wrap  lg:gap-x-12 infinite-scroll overflow-auto">
+            <ul className="list-none p-0 m-0  flex flex-col flex-wrap  xl:gap-x-12 infinite-scroll overflow-auto">
               {subMenu.options.map((option, idx) => (
                 <li
                   key={idx}
@@ -77,7 +77,7 @@ const RenderChildrenSubMenus = ({
                       {option.label}
                     </Link>
                   )}
-                  <hr className="lg:hidden border-b border-slate-300 mt-2  w-[calc(100vw-4rem)]" />
+                  <hr className="xl:hidden border-b border-slate-300 mt-2  w-[calc(100vw-4rem)]" />
                 </li>
               ))}
             </ul>
