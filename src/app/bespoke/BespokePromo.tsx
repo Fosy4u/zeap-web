@@ -5,6 +5,7 @@ import { PromoInterface } from "@/interface/interface";
 import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import Image from "next/image";
+import Link from "next/link";
 
 const BespokePromo = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
@@ -59,7 +60,9 @@ const BespokePromo = () => {
               <div className="flex flex-col p-4 text-white min-w-[40rem]">
                 {promo?.largeScreenImageUrl?.type && (
                   <>
-                    <div>
+                    <Link
+                      href={`/promo/${promo?.promoId}?productGroupPage=BESPOKE&collectionTitle=${promo?.title}`}
+                    >
                       {promo?.largeScreenImageUrl?.type === "image" ? (
                         <Image
                           src={promo?.largeScreenImageUrl?.link}
@@ -82,7 +85,7 @@ const BespokePromo = () => {
                           style={{ objectFit: "cover" }}
                         />
                       )}
-                    </div>
+                    </Link>
                     {/* <div className="md:hidden">
                       {promo?.smallScreenImageUrl?.type === "image" ? (
                         <Image

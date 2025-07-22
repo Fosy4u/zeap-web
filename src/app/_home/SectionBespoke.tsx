@@ -4,11 +4,12 @@ import pic from "@/images/sell3.jpg";
 import Image from "next/image";
 
 const SectionBespoke = () => {
-  
   return (
     <div className="items-stretch justify-between bg-green-50 flex py-2 flex-col-reverse lg:flex-row">
       <div className="basis-[50%] space-y-6  md:space-y-10 py-10 pl-2 text-primary md:pl-10">
-        <p className="text-lg md:text-2xl font-medium">Clothes made to fit you, not the other way around</p>
+        <p className="text-lg md:text-2xl font-medium">
+          Clothes made to fit you, not the other way around
+        </p>
         <div
           className="flex items-center gap-1 text-[20px] font-bold md:text-[50px]"
           style={{ lineHeight: "1em" }}
@@ -17,7 +18,7 @@ const SectionBespoke = () => {
         </div>
 
         <ButtonSecondary
-          href="/products/bespoke"
+          href="/collections/isBespoke=true?productGroupPage=BESPOKE&collectionTitle=Bespoke Collections"
           className="hover:bg-white hover:text-primary bg-secondary"
         >
           Browse our Bespoke Collection

@@ -15,7 +15,7 @@ const BespokePage = () => {
   return (
     <>
       <Link
-        href="/collections/isBespoke=true?productGroupPage=BESPOKE&collectionTitle=Bespoke Collection"
+        href="/collections/isBespoke=true?productGroupPage=BESPOKE&collectionTitle=Bespoke Collections"
         className="relative flex h-screen  w-full items-center justify-center bg-black"
         style={{
           backgroundImage: `url(${backGroundVideoUrl})`,

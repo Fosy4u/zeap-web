@@ -44,7 +44,7 @@ const SubProductPrimaryNav = ({
   const filteredSubNavData = getFilteredSubNavData();
 
   return (
-    <div className="flex gap-4 w-[100vw] overflow-auto lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2 no-scrollbar">
+    <div className="flex gap-4 w-[100vw] overflow-auto xl:bg-primary xl:justify-start xl:items-center xl:gap-2 xl:px-4 xl:py-2 no-scrollbar">
       {filteredSubNavData?.length > 0 &&
         filteredSubNavData.map((item) => (
           <Link
@@ -63,7 +63,7 @@ const SubProductPrimaryNav = ({
               if (setIsVisable) setIsVisable(false);
             }}
             onMouseEnter={() => setHovered(item.label)}
-            className={`text-xs font-extrabold text-slate-900 lg:text-white  transition-all duration-300 ease-in-out p-1 lg:px-2 ${
+            className={`text-xs text-nowrap font-extrabold text-slate-900 xl:text-white  transition-all duration-300 ease-in-out p-1 xl:px-2 ${
               hovered === item.label ? "bg-primary text-white  rounded-md" : ""
             }`}
           >

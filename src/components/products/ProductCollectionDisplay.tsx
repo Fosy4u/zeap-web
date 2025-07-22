@@ -58,11 +58,11 @@ const ProductCollectionDisplay = ({
   };
 
   return (
-    <div className="max-h-full md:max-h-[150vh] 2xl:max-h-[200vh] overflow-auto  flex flex-col gap-4 w-full ">
-      <div className="flex flex-col gap-2 md:gap-4 p-4 md:p-6 ">
+    <div className="max-h-full md:max-h-[100vh] 2xl:max-h-[150vh]  overflow-auto  flex flex-col gap-4 w-full ">
+      <div className="flex flex-col gap-2 md:gap-4  md:p-6 ">
         <span className="flex gap-2 items-center">
           {title && (
-            <p className="text-sm md:text-lg  font-extrabold text-gray-800 mb-4 overflow-auto">
+            <p className="text-sm md:text-lg px-4 pt-4  font-extrabold text-gray-800 mb-4 overflow-auto">
               {title.toLocaleUpperCase()}
               {superTitle && <span> - {superTitle.toUpperCase()}</span>}
             </p>
@@ -72,7 +72,8 @@ const ProductCollectionDisplay = ({
             <p className="text-md  text-gray-800 mb-4">- {subTitle}</p>
           )} */}
         </span>
-        <div className="flex md:hidden  gap-2 md:gap-4 max-w-[90vw] overflow-x-auto scrollbar-hide">
+
+        <div className="flex md:hidden  gap-2 md:gap-4 w-[calc(100vw-2px)] overflow-x-auto no-scrollbar">
           {subMenus?.slice(0, 10)?.map((menu, index) => (
             <Link
               href={
@@ -83,13 +84,13 @@ const ProductCollectionDisplay = ({
               // href={`/${menu?.link}`}
               // onClick={() => setSubTitle(menu.value)}
             >
-              <div className=" flex md:h-10 min-w-[6rem]  w-full rounded-md border p-1 md:p-2 justify-center text-center items-center bg-slate-100 cursor-pointer hover:bg-slate-200 whitespace-nowrap text-xs">
+              <div className=" flex md:h-10 min-w-[6rem]  w-full rounded-md border p-1 md:p-2 justify-center  items-center bg-slate-100 cursor-pointer hover:bg-slate-200 whitespace-nowrap text-xs">
                 {pluralize(menu?.value || "")}
               </div>
             </Link>
           ))}
         </div>
-        <div className="hidden md:flex gap-2 md:gap-4 max-w-[90vw] overflow-x-auto scrollbar-hide">
+        <div className="hidden md:flex gap-2 md:gap-4  overflow-x-auto scrollbar-hide">
           {subMenus?.slice(0, 10)?.map((menu, index) => (
             <Link
               href={
@@ -99,7 +100,7 @@ const ProductCollectionDisplay = ({
               key={index}
               // onClick={() => setSubTitle(menu.value)}
 
-              className="flex flex-col items-center justify-center cursor-pointer"
+              className="flex flex-col items-center justify-center cursor-pointer w-full"
             >
               <Image
                 src={getDefaultImageLink(menu.exampleProduct)}
@@ -108,7 +109,7 @@ const ProductCollectionDisplay = ({
                 height={200}
                 className="object-contain w-[8rem] h-[8rem]  border p-1 md:p-2 mb-1"
               />
-              <div className="flex items-center justify-center text-xs font-extrabold">
+              <div className="flex w-full items-center justify-center text-xs lg:text-sm font-extrabold text-nowrap">
                 {pluralize(menu?.value || "")}
               </div>
             </Link>
@@ -125,7 +126,7 @@ const ProductCollectionDisplay = ({
           />
         </div>
       )}
-      <div className="grid gap-1 lg:gap-4 grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 w-full">
+      <div className="grid gap-1 lg:gap-4 grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 w-full ">
         {products.map((item) => (
           <ProductCard
             product={item}

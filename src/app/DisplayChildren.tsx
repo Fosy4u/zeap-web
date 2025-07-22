@@ -8,11 +8,19 @@ import { usePathname } from "next/navigation";
 import React, { useContext, useEffect } from "react";
 import en from "javascript-time-ago/locale/en";
 import TimeAgo from "javascript-time-ago";
+import MobileNavBar from "@/components/Header/MobileNavBar";
 TimeAgo.addDefaultLocale(en);
 
 const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
-  const { theme, dimBackground, setDimBackground } = useContext(ThemeContext);
+  const {
+    theme,
+    dimBackground,
+    setDimBackground,
+    isSideBarOpen,
+    toggleSideBar,
+  } = useContext(ThemeContext);
   const pathname = usePathname();
+
   const isAuthPage = pathname.startsWith("/account/login");
   useEffect(
     () => {
@@ -45,7 +53,9 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
       {!isAuthPage && <Header />}
 
       <div
-        className={`flex-grow ${theme} 
+        className={` ${
+          isSideBarOpen ? "hidden" : "flex-grow"
+        } overflow-hidden ${theme} 
          ${
            dimBackground &&
            "brightness-[20%] bg-neutral-50 blur-sm transition-all duration-300 ease-in-out"
@@ -53,6 +63,9 @@ const DisplayChildren = ({ children }: { children: React.ReactNode }) => {
       >
         {children}
       </div>
+
+      <MobileNavBar isVisable={isSideBarOpen} setIsVisable={toggleSideBar} />
+
       <Footer />
       <ToastContainer />
       <Whatsapp />

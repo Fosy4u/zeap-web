@@ -28,7 +28,8 @@ const MobileChildrenLayout = ({
     setHovered(undefined);
   };
   return (
-    <div className="flex flex-col gap-4 w-[100vw] h-[calc(100vh-8rem)] mb-8 z-60  overflow-auto lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2 ">
+    <div className="flex flex-col gap-4 w-[100vw]  mb-8 z-60  overflow-auto  ">
+      
       {hovered && (
         <div
           className="inline-flex gap-2    transition-all duration-300 ease-in-out p-1 px-2 items-center cursor-pointer"

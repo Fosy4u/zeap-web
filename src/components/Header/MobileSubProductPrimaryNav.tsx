@@ -45,7 +45,7 @@ const MobileSubProductPrimaryNav = ({
   const filteredSubNavData = getFilteredSubNavData();
 
   return (
-    <div className="flex flex-col gap-4 w-[100vw] h-[calc(100vh-8rem)] mb-8 z-60  overflow-y-scroll lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2  ">
+    <div className="flex flex-col gap-4  mb-8 z-60  overflow-x-hidden overflow-y-auto no-scrollbar">
       <div
         className={`text-sm font-bold text-success transition-all duration-300 ease-in-out p-1 px-2 cursor-pointer `}
         onClick={() => {
@@ -78,7 +78,7 @@ const MobileSubProductPrimaryNav = ({
             onClick={() => {
               setHovered(item.label);
             }}
-            className={`flex flex-col text-sm font-extrabold text-slate-900 lg:text-white  transition-all duration-300 ease-in-out p-1 px-2  `}
+            className={`flex flex-col text-sm font-extrabold text-slate-900   transition-all duration-300 ease-in-out p-1 px-2  `}
           >
             <div className="flex  justify-between">
               <span>{item.label}</span>

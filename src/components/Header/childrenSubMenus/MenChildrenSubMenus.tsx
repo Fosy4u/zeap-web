@@ -195,7 +195,7 @@ const MenChildrenSubMenus = ({
       src: image,
       link: imageLink,
       label: "",
-      collectionTitle: "ALL MEN'S CLOTHINGS",
+      collectionTitle: "ALL MEN'S COLLECTIONS",
     };
     if (pathname === "/" || productGroupPage === "HOME") {
       imgaeObj.label = "Shop All MEN";

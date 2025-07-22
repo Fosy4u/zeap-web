@@ -22,7 +22,7 @@ const Logo: FC<LogoProps> = ({}) => {
   return (
     <div className="flex cursor-pointer items-center gap-2 text-primary">
       <Image
-        className="hover:opacity-80 transition-all w-[8rem] lg:w-[10rem]"
+        className="hover:opacity-80 transition-all w-[8rem] xl:w-[10rem]"
         src={homeLogo}
         alt="logo"
         width={80}
@@ -38,7 +38,7 @@ const Logo: FC<LogoProps> = ({}) => {
         onClick={() => router.push("/")}
       /> */}
       {/* <span className={`${className} text-2xl font-bold`}>Zeaper</span> */}
-      <span className="hidden lg:block w-full mt-2">
+      <span className="hidden xl:block w-full mt-2">
         <ProductGroupNav />
       </span>
     </div>

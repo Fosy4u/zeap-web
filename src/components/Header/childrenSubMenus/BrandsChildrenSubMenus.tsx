@@ -111,11 +111,11 @@ const BrandsChildrenSubMenus = ({
   return (
     <div className="flex ">
       {productBrands.length > 0 && (
-        <div className="flex   flex-col lg:flex-row gap-4 lg:gap-24 p-4 flex-col-reverse lg:flex-row-reverse ">
+        <div className="flex   flex-col xl:flex-row gap-4 xl:gap-24 p-4 flex-col-reverse xl:flex-row-reverse ">
           <div className="flex flex-col gap-2">
             <span className="text-xs font-extrabold mb-2">BRANDS</span>
 
-            <div className="flex flex-col gap-4 lg:gap-6 lg:flex-wrap lg:max-h-[10rem] ">
+            <div className="flex flex-col gap-4 xl:gap-6 xl:flex-wrap xl:max-h-[10rem] ">
               {productBrands.map((brand) => (
                 <>
                   <Link
@@ -130,7 +130,7 @@ const BrandsChildrenSubMenus = ({
                   >
                     {brand.brand}
                   </Link>
-                  <hr className="lg:hidden border-b border-slate-300 mt-2  w-[calc(100vw-4rem)]" />
+                  <hr className="xl:hidden border-b border-slate-300 mt-2  w-[calc(100vw-4rem)]" />
                 </>
               ))}
             </div>
@@ -152,7 +152,7 @@ const BrandsChildrenSubMenus = ({
                 setIsOpen(false);
               }}
             >
-              <div className="w-[15rem] h-[15rem] rounded-lg bg-primary flex items-center justify-center text-white text-lg font-bold">
+              <div className="w-[15rem] h-[15rem] rounded-lg bg-primary flex items-center justify-center text-white text-xl font-bold">
                 {imageObj.label.toLocaleUpperCase()}
               </div>
               <div className="flex flex-col items-center mt-2">

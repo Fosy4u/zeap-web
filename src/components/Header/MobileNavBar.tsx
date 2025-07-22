@@ -1,9 +1,7 @@
 "use client";
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
-import { subNavPrimaryData } from "@/data/content";
+
 import MobileSubProductPrimaryNav from "./MobileSubProductPrimaryNav";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MobileChildrenLayout from "./childrenSubMenus/MobileChildrenLayout";
 
 const MobileNavBar = ({
@@ -13,56 +11,39 @@ const MobileNavBar = ({
   isVisable: boolean;
   setIsVisable: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const productGroupPage = searchParams.get("productGroupPage") || "HOME";
+  const topRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | undefined>(undefined);
-  const getFilteredSubNavData = () => {
-    if (!productGroupPage) {
-      return subNavPrimaryData.filter(
-        (item) => item.productGroupNav === "HOME"
-      );
-    }
-    const navData =
-      subNavPrimaryData.filter(
-        (item) =>
-          item.productGroupNav === productGroupPage ||
-          item.matchedHref === pathname
-      ) || [];
-    //ensure no duplicate labels
-    const uniqueLabels = new Set();
-    return navData.filter((item) => {
-      if (uniqueLabels.has(item.label)) {
-        return false;
-      }
-      uniqueLabels.add(item.label);
-      return true;
-    });
-  };
-
-  const filteredSubNavData = getFilteredSubNavData();
 
   useEffect(() => {
     if (isVisable) {
       setHovered(undefined);
+      if (topRef.current) {
+        console.log("scrolling to top");
+        topRef?.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [isVisable]);
-  const getSalesLink = () => {
-    if (productGroupPage === "READY TO WEAR") {
-      return "/sales?productGroupPage=READY TO WEAR";
-    } else if (productGroupPage === "BESPOKE") {
-      return "/sales?productGroupPage=BESPOKE";
-    } else {
-      return "/sales";
-    }
-  };
+
   return (
-    <div>
+    <div
+      className={`bg-white  overflow-x-hidden  ${isVisable && "min-h-screen"} `}
+    >
+      {/* {isVisable && !hovered && (
+        <div
+          className={` w-[calc(100vw-2px)] overflow-x-hidden bg-white z-50 transition-transform duration-300 `}
+        >
+          <MobileSubProductPrimaryNav
+            setIsVisable={setIsVisable}
+            setHovered={setHovered}
+          />
+        </div>
+      )} */}
       <div
-        className={`absolute left-0 w-full  bg-white z-50 transition-transform duration-300 ${
+        ref={topRef}
+        className={`w-[calc(100vw-2px)] overflow-x-hidden   transition-transform duration-300 ${
           isVisable && !hovered
-            ? "translate-x-0  overflow-scroll "
-            : "-translate-x-full h-0"
+            ? "translate-x-0 w-[calc(100vw-2px)] overflow-x-hidden  overflow-y-auto h-[100vh] no-scrollbar"
+            : "-translate-x-full h-0  overflow-hidden"
         }`}
       >
         <MobileSubProductPrimaryNav
@@ -73,7 +54,7 @@ const MobileNavBar = ({
       {isVisable && (
         <div
           // slide in and out from right
-          className={`absolute right-0 w-full bg-white z-50 transition-transform duration-300 ${
+          className={`  w-full  transition-transform duration-300 ${
             hovered && hovered !== undefined
               ? "translate-x-0"
               : "translate-x-full"
@@ -86,43 +67,6 @@ const MobileNavBar = ({
           />
         </div>
       )}
-      <div
-        className={`flex  transition-opacity duration-300 ${
-          isVisable ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        <div className="flex grow gap-4 w-96   overflow-auto lg:bg-primary lg:justify-start lg:items-center lg:gap-2 lg:px-4 lg:py-2 no-scrollbar">
-          {filteredSubNavData?.length > 0 &&
-            filteredSubNavData.map((item) => (
-              <Link
-                key={item.label + item.productGroupNav}
-                href={{
-                  pathname: item.matchedHref,
-                  query: {
-                    productGroupPage: item.productGroupNav,
-                    subProductGroupPage: item.label,
-                    collectionTitle: item.collectionTitle,
-                  },
-                }}
-                onClick={() => {
-                  if (setIsVisable) setIsVisable(false);
-                }}
-                className="text-xs font-extrabold text-slate-900 lg:text-white  transition-all duration-300 ease-in-out p-1 lg:px-2 text-nowrap"
-              >
-                {item.label}
-              </Link>
-            ))}
-          <Link
-            href={getSalesLink()}
-            onClick={() => {
-              if (setIsVisable) setIsVisable(false);
-            }}
-            className={`text-xs font-bold text-gold transition-all duration-300 ease-in-out p-1 px-2 cursor-pointer `}
-          >
-            SALES
-          </Link>
-        </div>
-      </div>
     </div>
   );
 };
