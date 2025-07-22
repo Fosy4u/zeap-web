@@ -73,7 +73,7 @@ const ProductCollectionDisplay = ({
           )} */}
         </span>
 
-        <div className="flex md:hidden  gap-2 md:gap-4 w-[calc(100vw-2px)] overflow-x-auto no-scrollbar">
+        <div className="flex xl:hidden  gap-2 md:gap-4 w-[calc(100vw-2px)] overflow-x-auto no-scrollbar">
           {subMenus?.slice(0, 10)?.map((menu, index) => (
             <Link
               href={
@@ -90,7 +90,7 @@ const ProductCollectionDisplay = ({
             </Link>
           ))}
         </div>
-        <div className="hidden md:flex gap-2 md:gap-4  overflow-x-auto scrollbar-hide">
+        <div className="hidden xl:flex gap-2 md:gap-4  overflow-x-auto scrollbar-hide">
           {subMenus?.slice(0, 10)?.map((menu, index) => (
             <Link
               href={
