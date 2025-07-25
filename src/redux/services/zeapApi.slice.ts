@@ -759,6 +759,15 @@ export default createApi({
         responseHandler({}, queryArgs);
       },
     }),
+    getMinProductPrice: builder.query({
+      query: (arg) => {
+        return {
+          url: `/products/live/leastPrice`,
+          params: { ...arg },
+        };
+      },
+      providesTags: ["Products"],
+    }),
     getBespokeProducts: builder.query({
       query: (arg) => {
         return {

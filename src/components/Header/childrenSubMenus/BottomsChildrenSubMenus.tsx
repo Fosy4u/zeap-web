@@ -4,9 +4,8 @@ import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import RenderChildrenSubMenus from "./RenderChildrenSubMenus";
-import BespokeImage from "@/images/ath6.webp";
-import HomeImage from "@/images/dress_1.jpg";
-import ReadyImage from "@/images/dress_2.avif";
+import HomeImage from "@/images/bottom_1.avif";
+import ReadyImage from "@/images/bottom_2.jpg";
 import { usePathname, useSearchParams } from "next/navigation";
 import pluralize from "pluralize";
 const productGroupNavOptions = [
@@ -17,30 +16,27 @@ const productGroupNavOptions = [
     params: {
       ageGroup: "Adults",
       main: "Bottom",
-    
     },
     image: HomeImage,
+
     baseCollectionTitle: "Bottoms",
-    
   },
-  {
-    label: "BESPOKE",
-    href: "/bespoke",
-    imageLink:
-      "/collections/ageGroup=Adults/isBespoke=true/productType=bespokeCloth/main=Bottom",
+  // {
+  //   label: "BESPOKE",
+  //   href: "/bespoke",
+  //   imageLink:
+  //     "/collections/ageGroup=Adults/isBespoke=true/productType=bespokeCloth/main=Bottom",
 
-    params: {
-      isBespoke: true,
-      ageGroup: "Adults",
-      productType: "bespokeCloth",
-      main: "Bottom",
-   
-    },
-    image: BespokeImage,
+  //   params: {
+  //     isBespoke: true,
+  //     ageGroup: "Adults",
+  //     productType: "bespokeCloth",
+  //     main: "Bottom",
+  //   },
+  //   image: BespokeImage,
 
-    baseCollectionTitle: "Bespoke Bottoms",
-    
-  },
+  //   baseCollectionTitle: "Bespoke Bottoms",
+  // },
   {
     label: "READY TO WEAR",
     href: "/ready-to-wear",
@@ -51,15 +47,11 @@ const productGroupNavOptions = [
       ageGroup: "Adults",
       productType: "readyMadeCloth",
       main: "Bottom",
-     
     },
     image: ReadyImage,
     baseCollectionTitle: "Ready to Wear Bottoms",
-    
   },
 ];
-
-
 
 interface SupMenuOption {
   name: string;

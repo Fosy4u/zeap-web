@@ -5,7 +5,9 @@ const BespokeData = {
   description:
     "Custom-made shoes tailored to your specific needs and preferences.",
   BackGroundImage:
-    "https://www.zebel.co.uk/app/uploads/2024/11/Shoes-Banner-1920x650-1.jpg",
+    "/asset/Shoes-Banner.jpg",
+  // BackGroundImage:
+  //   "https://www.zebel.co.uk/app/uploads/2024/11/Shoes-Banner-1920x650-1.jpg",
 
   features: [
     "Handcrafted with premium materials",
