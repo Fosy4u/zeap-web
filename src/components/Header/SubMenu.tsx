@@ -4,9 +4,11 @@ import SubProductPrimaryNav from "./SubProductPrimaryNav";
 import ChildrenLayout from "./childrenSubMenus/ChildrenLayout";
 import { ThemeContext } from "@/contexts/themeContext";
 
-const SubMenu = ({
-  setIsVisable
-}:{setIsVisable?: React.Dispatch<React.SetStateAction<boolean>>;}) => {
+interface SubMenuProps {
+  setIsVisable?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SubMenu: React.FC<SubMenuProps> = ({ setIsVisable }) => {
   const { setDimBackground } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [hovered, setHovered] = useState("");
@@ -27,12 +29,17 @@ const SubMenu = ({
     >
       {" "}
       <div className="  gap-4 ">
-        <SubProductPrimaryNav hovered={hovered} setHovered={setHovered} setIsOpen={setIsOpen} setIsVisable={setIsVisable} />
+        <SubProductPrimaryNav
+          hovered={hovered}
+          setHovered={setHovered}
+          setIsOpen={setIsOpen}
+          setIsVisable={setIsVisable}
+        />
       </div>
       {/* subMenu Children */}
       {isOpen && (
         <div
-          className={`flex w-full ${
+          className={` hidden xl:flex  w-full ${
             isOpen ? "opacity-100 h-[40vh]  " : "opacity-0 h-0 scale-0"
           } transition-all duration-300 ease-in-out`}
           // onClick={() => {
