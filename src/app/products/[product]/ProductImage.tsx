@@ -13,7 +13,7 @@ const ProductImage = ({ images }: { images: string[] }) => {
   }, [images, selectedImage]);
   return (
     <div className="flex flex-col-reverse 2xl:flex-row gap-2">
-      <div className="flex 2xl:flex-col gap-2">
+      <div className="flex 2xl:flex-col gap-2 flex-wrap">
         {images?.map((image, index) => (
           <Image
             width={100}

@@ -1056,17 +1056,17 @@ export const subNavPrimaryData = [
     params: {},
     collectionTitle: "ALL BOTTOMS",
   },
-  {
-    label: "BOTTOM",
-    productGroupNav: "BESPOKE",
-    matchedHref: "/collections/ageGroup=Adults/isBespoke=true/main=Bottom",
-    params: {
-      isBespoke: true,
-      main: "Bottom",
-      ageGroup: "Adults",
-    },
-    collectionTitle: "ALL BESPOKE BOTTOMS",
-  },
+  // {
+  //   label: "BOTTOM",
+  //   productGroupNav: "BESPOKE",
+  //   matchedHref: "/collections/ageGroup=Adults/isBespoke=true/main=Bottom",
+  //   params: {
+  //     isBespoke: true,
+  //     main: "Bottom",
+  //     ageGroup: "Adults",
+  //   },
+  //   collectionTitle: "ALL BESPOKE BOTTOMS",
+  // },
   {
     label: "MATCHING SETS",
     productGroupNav: "HOME",

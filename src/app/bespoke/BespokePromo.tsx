@@ -6,9 +6,11 @@ import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 
 const BespokePromo = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
+  const [startAnimation, setStartAnimation] = useState(false);
   const permittedProductTypes = ["bespokeCloth", "bespokeShoe"];
   const promosQuery = zeapApiSlice.useGetPromosQuery(
     {
@@ -18,7 +20,16 @@ const BespokePromo = () => {
       skip: !token,
     }
   );
-  const promos = promosQuery?.data?.data || [];
+  const promos = useMemo(
+    () => promosQuery?.data?.data || [],
+    [promosQuery?.data?.data]
+  );
+
+  useEffect(() => {
+    if (promos.length > 0) {
+      setStartAnimation(true);
+    }
+  }, [promos]);
 
   const getPromoSubtitle = (promo: PromoInterface) => {
     if (promo.discount.fixedPercentage) {
@@ -51,7 +62,11 @@ const BespokePromo = () => {
         Discover our exclusive bespoke fashion offers
       </p>
       <div className="overflow-hidden  flex">
-        <ul className="flex  gap-10   animate-infinite-scroll py-4 ">
+        <ul
+          className={`flex  gap-10    py-4 ${
+            startAnimation ? "animate-infinite-scroll" : ""
+          }`}
+        >
           {getDuplicate().map((promo: PromoInterface, index: number) => (
             <li
               key={index}
@@ -61,7 +76,7 @@ const BespokePromo = () => {
                 {promo?.largeScreenImageUrl?.type && (
                   <>
                     <Link
-                      href={`/promo/${promo?.promoId}?productGroupPage=BESPOKE&collectionTitle=${promo?.title}`}
+                      href={`/promo/${promo?.promoId}/isBespoke=true?productGroupPage=BESPOKE&collectionTitle=${promo?.title}`}
                     >
                       {promo?.largeScreenImageUrl?.type === "image" ? (
                         <Image
@@ -73,9 +88,12 @@ const BespokePromo = () => {
                           className="w-[60rem] h-auto  rounded-md"
                         />
                       ) : (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: `
                         <video
-                          src={promo?.largeScreenImageUrl?.link}
-                          controls
+                          
+                          src="${promo?.largeScreenImageUrl?.link}"
                           className="w-[60rem] h-auto rounded-md"
                           preload="none"
                           autoPlay
@@ -83,6 +101,9 @@ const BespokePromo = () => {
                           loop
                           playsInline
                           style={{ objectFit: "cover" }}
+                        />
+                      `,
+                          }}
                         />
                       )}
                     </Link>

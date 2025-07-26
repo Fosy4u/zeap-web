@@ -4,9 +4,9 @@ import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import RenderChildrenSubMenus from "./RenderChildrenSubMenus";
-import BespokeImage from "@/images/ath6.webp";
-import HomeImage from "@/images/dress_1.jpg";
-import ReadyImage from "@/images/dress_2.avif";
+import BespokeImage from "@/images/top_3.webp";
+import HomeImage from "@/images/top_1.webp";
+import ReadyImage from "@/images/top_2.jpg";
 import { usePathname, useSearchParams } from "next/navigation";
 import pluralize from "pluralize";
 const productGroupNavOptions = [

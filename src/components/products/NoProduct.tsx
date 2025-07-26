@@ -8,8 +8,8 @@ function Content() {
   return (
     <>
       <div className="mb-4 mt-2 text-sm md:text-lg text-cyan-700 dark:text-cyan-800">
-        No product matching your search criteria or filtering was found. Please
-        try again later or choose another category.
+        No product matching your search criteria. Please
+        try again later 
       </div>
       <div className="flex">
         <button

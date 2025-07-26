@@ -102,7 +102,7 @@ const BrandsChildrenSubMenus = ({
       imgaeObj.label = "Shop All Brands";
     }
     if (pathname === "/ready-to-wear" || productGroupPage === "READY TO WEAR") {
-      imgaeObj.label = "Shop All Ready to Wear Brands";
+      imgaeObj.label = "Ready to Wear Brands";
     }
 
     return imgaeObj;
@@ -152,7 +152,7 @@ const BrandsChildrenSubMenus = ({
                 setIsOpen(false);
               }}
             >
-              <div className="w-[15rem] h-[15rem] rounded-lg bg-primary flex items-center justify-center text-white text-xl font-bold">
+              <div className="min-w-[15rem] h-[15rem] rounded-lg bg-primary flex items-center justify-center text-white text-xl font-bold p-2">
                 {imageObj.label.toLocaleUpperCase()}
               </div>
               <div className="flex flex-col items-center mt-2">
