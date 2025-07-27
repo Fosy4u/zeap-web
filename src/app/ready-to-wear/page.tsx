@@ -1,5 +1,8 @@
 import Link from "next/link";
 import ReadyToWearCategories from "./ReadyToWearCategories";
+import ReadyToWearPromo from "./ReadyToWearPromo";
+import Guarantee from "./Guarantee";
+import ReadyToWearLatest from "./ReadyToWearLatest";
 
 const backGroundVideoUrl =
   "https://v.ftcdn.net/08/55/17/10/700_F_855171022_WdV2T0PBBIHtOEIHTT8wwsl7MFkGsEm5_ST.mp4";
@@ -38,6 +41,9 @@ const ReadyToWearPage = () => {
         </div>
       </Link>
       <ReadyToWearCategories />
+      <Guarantee />
+      <ReadyToWearPromo />
+      <ReadyToWearLatest />
     </>
   );
 };

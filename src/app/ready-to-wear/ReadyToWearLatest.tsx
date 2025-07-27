@@ -15,7 +15,7 @@ interface ColInterface {
   background?: string;
 }
 
-const BespokeLatest = () => {
+const ReadyToWearLatest = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
   const [max, setMax] = useState(8);
   const newestArrivalProductsQuery =
@@ -23,7 +23,7 @@ const BespokeLatest = () => {
       {
         limit: 15,
         pageNumber: 1,
-        isBespoke: true,
+        isReadyMade: true,
       },
       { skip: !token }
     );
@@ -43,15 +43,15 @@ const BespokeLatest = () => {
     <div className="p-2 py-8">
       <div className="flex justify-between items-center mb-4">
         <span className="mb-0 font-extrabold text-xl md:text-2xl lg:text-3xl text-neutral-900">
-          Bespoke Latest Arrivals
+          Ready to Wear Latest Arrivals
         </span>
-        <ButtonPrimary href="/products/newest-arrival/bespoke">
+        <ButtonPrimary href="/products/newest-arrival/readyToWear">
           View All
         </ButtonPrimary>
       </div>
       <div className="grid gap-2 md:gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 ">
         {newestArrivalProductsQuery.isLoading
-          ? Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} />)
+          ? Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
           : newestArrivalProducts
               .slice(0, max)
               .map((product: ProductInterface) => (
@@ -73,4 +73,4 @@ const BespokeLatest = () => {
   );
 };
 
-export default BespokeLatest;
+export default ReadyToWearLatest;

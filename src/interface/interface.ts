@@ -253,6 +253,7 @@ interface PromoInterface {
   description: string;
   discount: PromoDiscountInterface;
   status: string;
+  productsCount: number;
   smallScreenImageUrl: ImageUrlInterface;
   largeScreenImageUrl: ImageUrlInterface;
   startDate: string;

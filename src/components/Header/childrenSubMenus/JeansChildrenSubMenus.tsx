@@ -27,9 +27,9 @@ const productGroupNavOptions = [
     label: "READY TO WEAR",
     href: "/ready-to-wear",
     imageLink:
-      "/collections/ageGroup=Adults/isReadyMade=true/productType=readyMadeCloth/style=Jean",
+      "/collections/ageGroup=Adults/productType=readyMadeCloth/style=Jean",
     params: {
-      isReadyMade: true,
+      
       ageGroup: "Adults",
       productType: "readyMadeCloth",
       style: "Jean",

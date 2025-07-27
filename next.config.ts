@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
       "cdn-img.prettylittlething.com",
       "www.skinnydiplondon.com",
       "assets.digitalcontent.marksandspencer.app",
+      "www.monicasilverjewellery.com",
     ],
     minimumCacheTTL: 1500000,
   },
