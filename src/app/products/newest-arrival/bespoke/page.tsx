@@ -25,7 +25,7 @@ const Page = () => {
 
   //const limit = 4;
   const limit = 100;
-  const slug = "newest-arrival";
+  const slug = "newest-arrival/bespoke";
   const searchParams = useSearchParams();
   const pageNumber = searchParams.get("pageNumber");
   const param: { [key: string]: string } = {};

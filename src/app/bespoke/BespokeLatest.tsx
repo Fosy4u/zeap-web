@@ -21,7 +21,7 @@ const BespokeLatest = () => {
   const newestArrivalProductsQuery =
     zeapApiSlice.useGetNewestArrivalProductsQuery(
       {
-        limit: 15,
+        limit: 100,
         pageNumber: 1,
         isBespoke: true,
       },

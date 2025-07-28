@@ -25,7 +25,7 @@ const Page = () => {
 
   //const limit = 4;
   const limit = 100;
-  const slug = "newest-arrival/readyToWear";
+  const slug = "newest-arrival/accessory";
   const searchParams = useSearchParams();
   const pageNumber = searchParams.get("pageNumber");
   const param: { [key: string]: string } = {};
@@ -36,8 +36,8 @@ const Page = () => {
     {
       limit,
       pageNumber: pageNumber ? parseInt(pageNumber) : 1,
-      isReadyMade: true,
-      productType: "readyMadeCloth, readyMadeShoe",
+
+      productType: "accessory",
       ...param,
     },
     {
@@ -72,21 +72,19 @@ const Page = () => {
               <ProductFilters
                 dynamicFilters={dynamicFilters}
                 totalCount={totalCount}
-           
                 colorOptions={colorOptions}
               />
             </div>
             <div className="flex flex-col gap-8  ">
               <ProductCollectionDisplay
                 products={products}
-                title="Newest Ready to Wear Arrivals"
+                title="Accessories Latest Arrivals"
                 subMenus={getProductDisplaySubMenus(
                   dynamicFilters,
                   slug,
                   undefined,
                   products
                 ).filter((menu) => menu !== null)}
-              
                 colorOptions={colorOptions}
                 showMobileFilters={true}
                 dynamicFilters={dynamicFilters}
