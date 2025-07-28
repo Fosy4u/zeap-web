@@ -12,6 +12,7 @@ import ProductPagination from "@/components/products/ProductPagination";
 import { getProductDisplaySubMenus } from "@/utils/helpers";
 
 import NoProduct from "@/components/products/NoProduct";
+import { useCallback } from "react";
 
 interface ColInterface {
   name: string;
@@ -32,10 +33,32 @@ const Page = () => {
   searchParams.forEach((value, key) => {
     param[key] = value;
   });
+  const getPromoId = useCallback(() => {
+    if (promoId && Array.isArray(promoId)) {
+      return promoId[0];
+    }
+    return promoId;
+  }, [promoId]);
+  const getOtherParamsFromPromoId = useCallback(() => {
+    // remove first item from promoId if it is an array
+    // return rest as object with keys and value split with =
+    if (promoId && Array.isArray(promoId)) {
+      const promoParams = promoId
+        .slice(1)
+        .reduce<Record<string, string>>((acc, item) => {
+          const [key, value] = item.split("%3D");
+          acc[key] = value;
+          return acc;
+        }, {});
+
+      return promoParams;
+    }
+    return {};
+  }, [promoId]);
   const productsQuery = zeapApiSlice.useGetPromoProductsQuery(
     {
-      promoId: promoId as string,
-
+      promoId: getPromoId(),
+      ...getOtherParamsFromPromoId(),
       limit,
       pageNumber: pageNumber ? parseInt(pageNumber) : 1,
     },
@@ -69,7 +92,6 @@ const Page = () => {
             <ProductFilters
               dynamicFilters={dynamicFilters}
               totalCount={totalCount}
-             
               colorOptions={colorOptions}
             />
           </div>
@@ -83,7 +105,6 @@ const Page = () => {
                 undefined,
                 products
               ).filter((menu) => menu !== null)}
-             
               colorOptions={colorOptions}
               showMobileFilters={true}
               dynamicFilters={dynamicFilters}

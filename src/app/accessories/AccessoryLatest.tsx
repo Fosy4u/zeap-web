@@ -15,7 +15,7 @@ interface ColInterface {
   background?: string;
 }
 
-const BespokeLatest = () => {
+const AccessoryLatest = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
   const [max, setMax] = useState(8);
   const newestArrivalProductsQuery =
@@ -23,7 +23,7 @@ const BespokeLatest = () => {
       {
         limit: 100,
         pageNumber: 1,
-        isBespoke: true,
+        productType: "Accessory",
       },
       { skip: !token }
     );
@@ -43,9 +43,9 @@ const BespokeLatest = () => {
     <div className="p-2 py-8">
       <div className="flex justify-between items-center mb-4">
         <span className="mb-0 font-extrabold text-xl md:text-2xl lg:text-3xl text-neutral-900">
-          Bespoke Latest Arrivals
+          Accessories Latest Arrivals
         </span>
-        <ButtonPrimary href="/products/newest-arrival/bespoke">
+        <ButtonPrimary href="/products/newest-arrival/accessory">
           View All
         </ButtonPrimary>
       </div>
@@ -73,4 +73,4 @@ const BespokeLatest = () => {
   );
 };
 
-export default BespokeLatest;
+export default AccessoryLatest;

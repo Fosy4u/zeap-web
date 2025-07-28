@@ -3,13 +3,16 @@
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
+
 import { useMemo } from "react";
 import PromoSlider from "@/components/promo/PromoSlider";
 import { PromoInterface } from "@/interface/interface";
 
-const BespokePromo = () => {
+
+
+const ReadyToWearPromo = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
-  const permittedProductTypes = ["bespokeCloth", "bespokeShoe"];
+  const permittedProductTypes = ["readyMadeCloth", "readyMadeShoe"];
   const promosQuery = zeapApiSlice.useGetPromosQuery(
     {
       permittedProductTypes,
@@ -20,9 +23,7 @@ const BespokePromo = () => {
   );
   const promos = useMemo(
     () =>
-      promosQuery?.data?.data?.filter(
-        (promo: PromoInterface) => promo.productsCount > 0
-      ) || [],
+      promosQuery?.data?.data?.filter((promo: PromoInterface) => promo.productsCount > 0) || [],
     [promosQuery?.data?.data]
   );
 
@@ -31,12 +32,12 @@ const BespokePromo = () => {
       {promos.length > 0 && (
         <PromoSlider
           promos={promos}
-          title="Bespoke Sales"
-          subTitle="Explore our latest sales and promotions on bespoke collections"
+          title="Ready To Wear Sales"
+          subTitle="Discover our latest sales on ready-to-wear collections"
         />
       )}
     </>
   );
 };
 
-export default BespokePromo;
+export default ReadyToWearPromo;

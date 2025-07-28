@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
       "cdn-img.prettylittlething.com",
       "www.skinnydiplondon.com",
       "assets.digitalcontent.marksandspencer.app",
+      "media.theeverygirl.com",
+      "img.freepik.com"
     ],
     minimumCacheTTL: 1500000,
   },

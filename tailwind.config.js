@@ -41,12 +41,22 @@ module.exports = {
       },
       animation: {
         "infinite-scroll": "infinite-scroll 100s linear infinite",
+        "slide-right": "slide-right 0.5s ease-in-out",
+        "slide-left": "slide-left 0.5s ease-in-out",
         
       },
       keyframes: {
         "infinite-scroll": {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(calc(-50% - 20px))" },
+        },
+        "slide-right": {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(0)" },
+        },
+        "slide-left": {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0)" },
         },
       },
     },

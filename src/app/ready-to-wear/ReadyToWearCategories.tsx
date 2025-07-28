@@ -8,7 +8,7 @@ import MatchingSetImage from "@/images/rtw_matching.webp";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import ShoesImage from "@/images/sneakers_1.webp";
@@ -98,7 +98,7 @@ type CategoryType = {
   matchedHref: string;
   minPrice: number;
   currency: string;
-  image: string | StaticImageData;
+  image: StaticImageData;
 };
 
 const ReadyToWearCategories = () => {
@@ -159,34 +159,36 @@ const ReadyToWearCategories = () => {
           <Link
             key={category.id}
             href={category.matchedHref}
-            className="flex flex-col items-center justify-center p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300"
+            className="flex flex-col group items-center justify-center p-4 rounded-lg shadow  transition-shadow duration-300 h-[45rem] relative xl:brightness-95 hover:brightness-105 hover:shadow-lg"
+            style={{
+              backgroundImage: `url(${category.image.src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
-            <Image
+            {/* <Image
               src={category.image}
               alt={category.label}
               width={200}
               height={200}
               loading="lazy"
               className="w-full h-[45rem] object-cover mb-2 rounded"
-            />
-            <span className="absolute top-2 right-2 bg-white text-gray-800 text-xs font-semibold px-2 py-1 rounded">
-              {category.minPrice
-                ? `$${category.minPrice}`
-                : "Price Unavailable"}
-            </span>
-            <span className="text-lg font-bold">{category.label}</span>
-            <Link
-              href={category.matchedHref}
-              className="mt-2 text-success hover:underline"
-            >
-              Shop Now
-            </Link>
-            {category.minPrice && (
-              <span className="text-sm ">
-                Starting at {getCurrencySmallSymbol(category.currency)}
-                {category.minPrice}
+            /> */}
+            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg group-hover:bg-opacity-70  transition-all duration-300">
+              <h3 className="text-white text-lg font-extrabold mb-2">
+                {category.label}
+              </h3>
+              <p className="text-white text-sm">
+                From{" "}
+                <span className="font-bold">
+                  {getCurrencySmallSymbol(category.currency)}
+                  {category.minPrice.toLocaleString()}
+                </span>
+              </p>
+              <span className="opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-white text-xs font-semibold mt-2 bg-primary px-2 py-1 rounded h-[10rem]">
+                Shop Now
               </span>
-            )}
+            </div>
           </Link>
         ))}
       </div>

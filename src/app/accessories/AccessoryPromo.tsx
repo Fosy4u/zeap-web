@@ -7,9 +7,9 @@ import { useMemo } from "react";
 import PromoSlider from "@/components/promo/PromoSlider";
 import { PromoInterface } from "@/interface/interface";
 
-const BespokePromo = () => {
+const AccessoryPromo = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
-  const permittedProductTypes = ["bespokeCloth", "bespokeShoe"];
+  const permittedProductTypes = ["accessory"];
   const promosQuery = zeapApiSlice.useGetPromosQuery(
     {
       permittedProductTypes,
@@ -31,12 +31,12 @@ const BespokePromo = () => {
       {promos.length > 0 && (
         <PromoSlider
           promos={promos}
-          title="Bespoke Sales"
-          subTitle="Explore our latest sales and promotions on bespoke collections"
+          title="Accessory Sales"
+          subTitle="Explore our latest sales and promotions on accessories."
         />
       )}
     </>
   );
 };
 
-export default BespokePromo;
+export default AccessoryPromo;
