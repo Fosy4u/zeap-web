@@ -3,6 +3,7 @@ import HairCareImage from "@/images/golden-haircare.webp";
 import MakeupImage from "@/images/golden-makeup.webp";
 import SkinCareImage from "@/images/golden-skincare.webp";
 import Image from "next/image";
+import Link from "next/link";
 
 const categories = [
   {
@@ -37,9 +38,10 @@ const BeautySelection = () => {
       <h2 className="text-2xl font-bold mb-4 px-2"> Our Beauty Collections</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {categories.map((category) => (
-          <div
+          <Link
+            href={category.href}
             key={category.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden"
+            className="bg-white rounded-lg shadow-xs overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
           >
             <Image
               width={300}
@@ -50,11 +52,8 @@ const BeautySelection = () => {
             />
             <div className="p-4">
               <h3 className="text-lg font-semibold">{category.name}</h3>
-              <a href={category.href} className="text-primary hover:underline">
-                Shop Now
-              </a>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
