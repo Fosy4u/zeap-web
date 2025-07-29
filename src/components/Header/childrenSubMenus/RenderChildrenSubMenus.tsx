@@ -25,6 +25,7 @@ const RenderChildrenSubMenus = ({
   setIsOpen,
   subProductGroupPage,
   productGroupPage,
+  slideAnimate,
 }: {
   childrenSubMenus: SupMenuOption[] | [];
   imageObj: imageObjectType;
@@ -32,6 +33,7 @@ const RenderChildrenSubMenus = ({
   setIsOpen: (value: boolean) => void;
   subProductGroupPage: string;
   productGroupPage: string;
+  slideAnimate: "animate-slide-right" | "animate-slide-left" | "";
 }) => {
   const filteredChildrenSubMenus =
     childrenSubMenus.filter((subMenu) => subMenu.options.length > 0) || [];
@@ -47,7 +49,7 @@ const RenderChildrenSubMenus = ({
     return name.toUpperCase();
   };
   return (
-    <div className="flex flex-col xl:flex-row   gap-4 xl:gap-24 p-4 flex-col-reverse xl:flex-row-reverse">
+    <div className={`flex flex-col xl:flex-row   gap-4 xl:gap-24 p-4 flex-col-reverse xl:flex-row-reverse ${slideAnimate}`}>
       <div className="flex flex-col  xl:flex-row  gap-8 xl:gap-24 p-4  ">
         {filteredChildrenSubMenus.map((subMenu, index) => (
           <div key={index} className="flex flex-col">

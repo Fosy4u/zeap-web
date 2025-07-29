@@ -23,6 +23,7 @@ const MobileChildrenLayout = ({
   setHovered: React.Dispatch<React.SetStateAction<string | undefined>>;
   setIsVisable: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const slideAnimate ="animate-slide-right";
   const setIsOpen = () => {
     setIsVisable(false);
     setHovered(undefined);
@@ -59,75 +60,105 @@ const MobileChildrenLayout = ({
           <WomenChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "MEN" && (
-          <MenChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+          <MenChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
+          />
         )}
         {hovered === "KIDS" && (
-          <KidsChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+          <KidsChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
+          />
         )}
         {hovered === "BAGS" && (
-          <BagsChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+          <BagsChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
+          />
         )}
         {hovered === "ACCESSORIES" && (
           <AccessoryChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "DRESSES" && (
           <DressesChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "CLOTHINGS" && (
           <ClothingChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "SHOES" && (
-          <ShoeChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+          <ShoeChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
+          />
         )}
         {hovered === "WEDDINGS" && (
           <WeddingChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "JEANS" && (
           <JeansChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "TOPS" && (
-          <TopsChildrenSubMenus setHovered={setHovered} setIsOpen={setIsOpen} />
+          <TopsChildrenSubMenus
+            setHovered={setHovered}
+            setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
+          />
         )}
         {hovered === "BOTTOMS" && (
           <BottomsChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "MATCHING SETS" && (
           <MatchingSetsChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "BRANDS" && (
           <BrandsChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
         {hovered === "SALES" && (
           <SalesChildrenSubMenus
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         )}
       </>

@@ -13,9 +13,9 @@ import bespokeShoeImage from "@/images/customShoe.jpg";
 import bespokeClothImage from "@/images/bespokeCloth.webp";
 import accesoriesImage from "@/images/accesories.webp";
 import homeLogo from "@/images/zeap-text-logo.png";
-import bespokeLogo from "@/images/Zeaper_Bespoke.jpg";
-import readyToWearLogo from "@/images/Zeaper_rtw.jpg";
-import accessoriesLogo from "@/images/Zeaper_Accessories.jpg";
+import bespokeLogo from "@/images/Zeaper_Logo_Bespoke.png";
+import readyToWearLogo from "@/images/Zeaper_logo_rtw.png";
+import accessoriesLogo from "@/images/Zeaper_logo_acc.png";
 
 type NavItemType = {
   id: string;

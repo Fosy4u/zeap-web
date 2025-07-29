@@ -56,9 +56,11 @@ const productGroupNavOptions = [
 const SalesChildrenSubMenus = ({
   setHovered,
   setIsOpen,
+  slideAnimate,
 }: {
   setHovered: (value: string) => void;
   setIsOpen: (value: boolean) => void;
+  slideAnimate: "animate-slide-right" | "animate-slide-left" | "";
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -134,7 +136,7 @@ const SalesChildrenSubMenus = ({
   return (
     <div className="flex ">
       {productSales.length > 0 && (
-        <div className="flex   flex-col xl:flex-row gap-4 xl:gap-24 p-4 flex-col-reverse xl:flex-row-reverse">
+        <div className={`flex   flex-col xl:flex-row gap-4 xl:gap-24 p-4 flex-col-reverse xl:flex-row-reverse ${slideAnimate}`}>
           <div className="flex flex-col gap-2">
             <span className="text-xs font-extrabold mb-2">SALES</span>
 

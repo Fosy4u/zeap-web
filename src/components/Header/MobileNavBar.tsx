@@ -1,7 +1,7 @@
 "use client";
 
 import MobileSubProductPrimaryNav from "./MobileSubProductPrimaryNav";
-import { useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 import MobileChildrenLayout from "./childrenSubMenus/MobileChildrenLayout";
 
 const MobileNavBar = ({
@@ -11,16 +11,16 @@ const MobileNavBar = ({
   isVisable: boolean;
   setIsVisable: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const topRef = useRef<HTMLDivElement>(null);
+  // const topRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (isVisable) {
       setHovered(undefined);
-      if (topRef.current) {
-        console.log("scrolling to top");
-        topRef?.current.scrollIntoView({ behavior: "smooth" });
-      }
+      // if (topRef.current) {
+      //   console.log("scrolling to top");
+      //   topRef?.current.scrollIntoView({ behavior: "smooth" });
+      // }
     }
   }, [isVisable]);
 
@@ -39,7 +39,7 @@ const MobileNavBar = ({
         </div>
       )} */}
       <div
-        ref={topRef}
+        // ref={topRef}
         className={`w-[calc(100vw-2px)] overflow-x-hidden   transition-transform duration-300 ${
           isVisable && !hovered
             ? "translate-x-0 w-[calc(100vw-2px)] overflow-x-hidden  overflow-y-auto h-[100vh] no-scrollbar"

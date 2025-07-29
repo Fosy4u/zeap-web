@@ -9,15 +9,18 @@ const SubProductPrimaryNav = ({
   setHovered,
   setIsOpen,
   setIsVisable,
+  setSlideAnimate,
 }: {
   hovered: string;
   setHovered: (label: string) => void;
   setIsVisable?: React.Dispatch<React.SetStateAction<boolean>>;
   setIsOpen: (value: boolean) => void;
+  setSlideAnimate: React.Dispatch<"animate-slide-right" | "animate-slide-left">;
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const productGroupPage = searchParams.get("productGroupPage") || "HOME";
+
   const getFilteredSubNavData = () => {
     if (!productGroupPage) {
       return subNavPrimaryData.filter(
@@ -43,6 +46,23 @@ const SubProductPrimaryNav = ({
 
   const filteredSubNavData = getFilteredSubNavData();
 
+  const controlAnimate = (label: string) => {
+    if (hovered === label) return;
+    // if (label === "SALES") return setSlideAnimate("animate-slide-left");
+    const data = [...filteredSubNavData, { label: "SALES" }];
+    const labelIndex = data.findIndex((item) => item.label === label);
+    if (labelIndex === -1) return;
+
+    const prevHoveredIndex = data.findIndex((item) => item.label === hovered);
+    if (prevHoveredIndex === -1) return;
+
+    if (labelIndex > prevHoveredIndex) {
+      setSlideAnimate("animate-slide-right");
+    } else {
+      setSlideAnimate("animate-slide-left");
+    }
+  };
+
   return (
     <div className="flex gap-4 w-[100vw] overflow-auto xl:bg-primary xl:justify-start xl:items-center xl:gap-2 xl:px-4 xl:py-2 no-scrollbar">
       {filteredSubNavData?.length > 0 &&
@@ -62,7 +82,10 @@ const SubProductPrimaryNav = ({
               setIsOpen(false);
               if (setIsVisable) setIsVisable(false);
             }}
-            onMouseEnter={() => setHovered(item.label)}
+            onMouseEnter={() => {
+              controlAnimate(item.label);
+              setHovered(item.label);
+            }}
             className={`text-xs text-nowrap font-extrabold text-slate-900 xl:text-white  transition-all duration-300 ease-in-out p-1 xl:px-2 ${
               hovered === item.label ? "bg-primary text-white  rounded-md" : ""
             }`}
