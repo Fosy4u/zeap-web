@@ -174,7 +174,7 @@ const ReadyToWearCategories = () => {
               loading="lazy"
               className="w-full h-[45rem] object-cover mb-2 rounded"
             /> */}
-            <div className="absolute  bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg group-hover:bg-opacity-70  transition-all duration-300 ease-in-out h-fit">
+            <div className="absolute  bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg group-hover:bg-opacity-70  transition-all duration-3000 ease-in-out h-[6rem] group-hover:h-[8rem] ">
               <div className="flex flex-col">
                 <h3 className="text-white text-lg font-extrabold mb-2">
                   {category.label}
