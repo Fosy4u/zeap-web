@@ -67,9 +67,11 @@ type productsDynamicFilterType = {
 const DressesChildrenSubMenus = ({
   setHovered,
   setIsOpen,
+  slideAnimate,
 }: {
   setHovered: (value: string) => void;
   setIsOpen: (value: boolean) => void;
+  slideAnimate: "animate-slide-right" | "animate-slide-left" | "";
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -212,6 +214,7 @@ const DressesChildrenSubMenus = ({
           setIsOpen={setIsOpen}
           subProductGroupPage="DRESSES"
           productGroupPage={productGroupPage}
+          slideAnimate={slideAnimate}
         />
       )}
     </div>

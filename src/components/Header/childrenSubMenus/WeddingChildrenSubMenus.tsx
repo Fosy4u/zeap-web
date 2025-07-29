@@ -69,9 +69,11 @@ type productsDynamicFilterType = {
 const WeddingChildrenSubMenus = ({
   setHovered,
   setIsOpen,
+  slideAnimate,
 }: {
   setHovered: (value: string) => void;
   setIsOpen: (value: boolean) => void;
+  slideAnimate: "animate-slide-right" | "animate-slide-left" | "";
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -218,7 +220,7 @@ const WeddingChildrenSubMenus = ({
       }
     );
   const getAllowedFields = (data: productsDynamicFilterType[] = []) => {
-    console.log("data", data);
+    
     if (!data || data.length === 0) return [];
     return data.filter(
       (field: productsDynamicFilterType) =>
@@ -441,6 +443,7 @@ const WeddingChildrenSubMenus = ({
             )?.subProductGroupPage || "CLOTHINGS"
           }
           productGroupPage={productGroupPage}
+          slideAnimate={slideAnimate}
         />
       )}
     </div>

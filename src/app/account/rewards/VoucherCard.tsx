@@ -16,10 +16,14 @@ import { FaCopy } from "react-icons/fa";
 const VoucherCard = ({ voucher }: { voucher: VoucherInterface }) => {
   const { setDimBackground } = useContext(ThemeContext);
   const [openModal, setOpenModal] = useState(false);
+  const [voucherCodeCopied, setVoucherCodeCopied] = useState(false);
 
   const handleClose = () => {
     setDimBackground(false);
     setOpenModal(false);
+  };
+  const checkSupportForCopyToClipBoard = () => {
+    return navigator.clipboard && window.isSecureContext;
   };
   return (
     <div className="grid grid-cols-4 gap-0 p-4 rounded-md">
@@ -116,8 +120,23 @@ const VoucherCard = ({ voucher }: { voucher: VoucherInterface }) => {
               <span className="text-sm font-semibold text-slate-500">
                 Your voucher code
               </span>
+              {voucherCodeCopied && (
+                <span className="text-xs text-success">
+                  Voucher code copied to clipboard!
+                </span>
+              )}
               <span className="inline-flex text-lg font-semibold text-success items-center justify-center gap-4">
-                {voucher.code} <FaCopy className="text-xs text-primary" />
+                {voucher.code} {checkSupportForCopyToClipBoard() && (
+                  <FaCopy className="text-xs text-primary cursor-pointer" 
+                    onClick={() => {
+                      navigator.clipboard.writeText(voucher.code);
+                      setVoucherCodeCopied(true);
+                      setTimeout(() => {
+                        setVoucherCodeCopied(false);
+                      }, 2000);
+                    }}
+                  />
+                )}
               </span>
             </div>
             <span className="text-xs text-slate-500">

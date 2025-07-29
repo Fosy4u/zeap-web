@@ -12,6 +12,9 @@ const SubMenu: React.FC<SubMenuProps> = ({ setIsVisable }) => {
   const { setDimBackground } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [hovered, setHovered] = useState("");
+  const [slideAnimate, setSlideAnimate] = useState<
+    "animate-slide-right" | "animate-slide-left"|""
+  >("");
 
   useEffect(() => {
     setDimBackground(isOpen);
@@ -34,14 +37,16 @@ const SubMenu: React.FC<SubMenuProps> = ({ setIsVisable }) => {
           setHovered={setHovered}
           setIsOpen={setIsOpen}
           setIsVisable={setIsVisable}
+          setSlideAnimate={setSlideAnimate}
         />
       </div>
       {/* subMenu Children */}
       {isOpen && (
         <div
-          className={` hidden xl:flex  w-full ${
-            isOpen ? "opacity-100 h-[40vh]  " : "opacity-0 h-0 scale-0"
-          } transition-all duration-300 ease-in-out`}
+          className="hidden xl:flex  w-full h-[40vh]"
+          // className={` hidden xl:flex  w-full ${
+          //   isOpen ? "opacity-100 h-[40vh]  " : "opacity-0 h-0 scale-0"
+          // } transition-all duration-300 ease-in-out`}
           // onClick={() => {
           //   setIsOpen(true);
           //   setHovered("");
@@ -54,6 +59,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ setIsVisable }) => {
             hovered={hovered}
             setHovered={setHovered}
             setIsOpen={setIsOpen}
+            slideAnimate={slideAnimate}
           />
         </div>
       )}

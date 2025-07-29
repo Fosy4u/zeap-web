@@ -2048,16 +2048,16 @@ export default createApi({
         };
       },
       invalidatesTags: ["Point", "User", "Voucher"],
-      onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
-        responseHandler(
-          {
-            success: "Point Successfully Converted to Voucher",
-            successHandler,
-            errorHandler,
-          },
-          queryArgs
-        );
-      },
+      // onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
+      //   responseHandler(
+      //     {
+      //       success: "Point Successfully Converted to Voucher",
+      //       successHandler,
+      //       errorHandler,
+      //     },
+      //     queryArgs
+      //   );
+      // },
     }),
     getWishList: builder.query({
       query: (arg) => {

@@ -66,9 +66,11 @@ type productsDynamicFilterType = {
 const ShoeChildrenSubMenus = ({
   setHovered,
   setIsOpen,
+  slideAnimate,
 }: {
   setHovered: (value: string) => void;
   setIsOpen: (value: boolean) => void;
+  slideAnimate: "animate-slide-right" | "animate-slide-left" | "";
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -217,6 +219,7 @@ const ShoeChildrenSubMenus = ({
             )?.subProductGroupPage || "SHOES"
           }
           productGroupPage={productGroupPage}
+          slideAnimate={slideAnimate}
         />
       )}
     </div>

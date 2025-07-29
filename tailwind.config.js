@@ -41,9 +41,8 @@ module.exports = {
       },
       animation: {
         "infinite-scroll": "infinite-scroll 100s linear infinite",
-        "slide-right": "slide-right 0.5s ease-in-out",
-        "slide-left": "slide-left 0.5s ease-in-out",
-        
+        "slide-right": "slide-right 0.8s ease-in-out",
+        "slide-left": "slide-left 0.8s ease-in-out",
       },
       keyframes: {
         "infinite-scroll": {

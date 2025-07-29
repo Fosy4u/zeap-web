@@ -46,9 +46,11 @@ type productsDynamicFilterType = {
 const BagsChildrenSubMenus = ({
   setHovered,
   setIsOpen,
+  slideAnimate
 }: {
   setHovered: (value: string) => void;
   setIsOpen: (value: boolean) => void;
+  slideAnimate: "animate-slide-right" | "animate-slide-left" | "";
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -181,6 +183,7 @@ const BagsChildrenSubMenus = ({
             )?.label || "ACCESSORIES"
           }
           productGroupPage={productGroupPage}
+          slideAnimate={slideAnimate}
         />
       )}
     </div>
