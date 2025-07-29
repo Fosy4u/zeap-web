@@ -141,11 +141,11 @@ const ReadyToWearCategories = () => {
   return (
     <>
       {isLoading && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
           {Array.from({ length: 6 }).map((_, index: number) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center p-4 bg-gray-200 rounded-lg shadow animate-pulse"
+              className="flex flex-col items-center justify-center p-4 bg-gray-200 rounded-lg shadow h-[100vh] animate-pulse"
             >
               <div className="w-full h-48 bg-gray-300 rounded mb-2"></div>
               <div className="w-3/4 h-6 bg-gray-300 rounded mb-2"></div>
@@ -159,7 +159,7 @@ const ReadyToWearCategories = () => {
           <Link
             key={category.id}
             href={category.matchedHref}
-            className="flex flex-col group items-center justify-center p-4 rounded-lg shadow  transition-shadow duration-300 h-[45rem] relative xl:brightness-95 hover:brightness-105 hover:shadow-lg"
+            className="flex flex-col group items-center justify-center p-4 rounded-lg shadow  transition-shadow duration-300 h-[100vh]  relative xl:brightness-95 hover:brightness-105 hover:shadow-lg"
             style={{
               backgroundImage: `url(${category.image.src})`,
               backgroundSize: "cover",
@@ -174,20 +174,22 @@ const ReadyToWearCategories = () => {
               loading="lazy"
               className="w-full h-[45rem] object-cover mb-2 rounded"
             /> */}
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg group-hover:bg-opacity-70  transition-all duration-300">
-              <h3 className="text-white text-lg font-extrabold mb-2">
-                {category.label}
-              </h3>
-              <p className="text-white text-sm">
-                From{" "}
-                <span className="font-bold">
-                  {getCurrencySmallSymbol(category.currency)}
-                  {category.minPrice.toLocaleString()}
+            <div className="absolute  bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg group-hover:bg-opacity-70  transition-all duration-300 ease-in-out h-fit">
+              <div className="flex flex-col">
+                <h3 className="text-white text-lg font-extrabold mb-2">
+                  {category.label}
+                </h3>
+                <p className="text-white text-sm">
+                  From{" "}
+                  <span className="font-bold">
+                    {getCurrencySmallSymbol(category.currency)}
+                    {category.minPrice.toLocaleString()}
+                  </span>
+                </p>
+                <span className="hidden uppercase group-hover:flex justify-center opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-white text-sm font-semibold mt-2 bg-primary px-2 py-1 rounded animate-slide-up ">
+                  Shop Now
                 </span>
-              </p>
-              <span className="opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 text-white text-xs font-semibold mt-2 bg-primary px-2 py-1 rounded h-[10rem]">
-                Shop Now
-              </span>
+              </div>
             </div>
           </Link>
         ))}
