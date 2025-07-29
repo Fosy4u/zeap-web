@@ -43,6 +43,8 @@ module.exports = {
         "infinite-scroll": "infinite-scroll 100s linear infinite",
         "slide-right": "slide-right 0.8s ease-in-out",
         "slide-left": "slide-left 0.8s ease-in-out",
+        "slide-up": "slide-up 0.8s ease-in-out",
+        "slide-down": "slide-down 0.8s ease-in-out",
       },
       keyframes: {
         "infinite-scroll": {
@@ -56,6 +58,14 @@ module.exports = {
         "slide-left": {
           from: { transform: "translateX(100%)" },
           to: { transform: "translateX(0)" },
+        },
+        "slide-up": {
+          from: { transform: "translateY(100%)" },
+          to: { transform: "translateY(0)" },
+        },
+        "slide-down": {
+          from: { transform: "translateY(-100%)" },
+          to: { transform: "translateY(0)" },
         },
       },
     },
