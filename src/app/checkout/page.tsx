@@ -22,7 +22,6 @@ import EmptyBasket from "@/components/cart/EmptyBasket";
 import LoadingImageBars from "@/components/loading/LoadingImageBars";
 import DeliveryMethod from "./DeliveryMethod";
 
-
 interface ColInterface {
   name: string;
   hex?: string;
@@ -83,6 +82,7 @@ const CheckoutPage = () => {
   const cartQuery = zeapApiSlice.useGetCartQuery({}, { skip: !token });
   const isFulfilled = cartQuery?.status === "fulfilled";
   const cart = cartQuery?.data?.data;
+  const voucherCode = cart?.voucher?.code || "";
   const basketItems = cart?.basketItems || [];
   const getBasketDeliveryDatesQuery =
     zeapApiSlice.useGetBasketDeliveryDatesQuery(
@@ -106,7 +106,7 @@ const CheckoutPage = () => {
   const subTotal = basketCalc?.subTotal;
   const appliedVoucherAmount = basketCalc?.appliedVoucherAmount;
   const total = basketCalc?.total;
-
+  const totalWithoutVoucher = basketCalc?.totalWithoutVoucher || total;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [paystackPayment, setPaystackPayment] = useState<any>();
 
@@ -547,7 +547,7 @@ const CheckoutPage = () => {
               </div>
 
               <div className="mt-10 border-t border-neutral-300 pt-6 text-sm">
-                <ApplyDiscount />
+                <ApplyDiscount voucherCode={voucherCode} />
                 {getBasketTotalQuery.isLoading && <Loading />}
                 <div className="mt-4 flex justify-between pb-4">
                   <span>Subtotal</span>
@@ -580,10 +580,19 @@ const CheckoutPage = () => {
                 )}
                 <div className="flex justify-between pt-4 text-base font-semibold">
                   <span>Total</span>
-                  <span>
-                    {" "}
-                    {getCurrencySmallSymbol(cart?.currency)}
-                    {numberWithCommas(total)}
+                  <span className="inline-flex gap-4">
+                    {total !== totalWithoutVoucher && (
+                      <span className="text-red-600">
+                        <del>
+                          {getCurrencySmallSymbol(cart?.currency)}
+                          {numberWithCommas(totalWithoutVoucher)}
+                        </del>
+                      </span>
+                    )}
+                    <span className="text-success font-extrabold">
+                      {getCurrencySmallSymbol(cart?.currency)}
+                      {numberWithCommas(total)}
+                    </span>
                   </span>
                 </div>
               </div>

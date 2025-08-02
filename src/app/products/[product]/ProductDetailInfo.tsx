@@ -1,12 +1,15 @@
 import { ProductCategoryInterface } from "@/interface/interface";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import {  useState } from "react";
 
 const ProductDetailInfo = ({
   categories,
 }: {
   categories: ProductCategoryInterface;
 }) => {
-  const [productId, setProductId] = useState("");
+  const searchParams = useSearchParams();
+   const productId = searchParams.get("productId") || "";
+
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -23,10 +26,7 @@ const ProductDetailInfo = ({
   const heelHeight = categories?.heelHeight || "";
   const brand = categories?.brand || "";
   const accessoryType = categories?.accessoryType || "";
-  useEffect(() => {
-    const localStorageProductId = localStorage.getItem("selectedProductId");
-    setProductId(localStorageProductId || "");
-  }, []);
+ 
 
   return (
     <div

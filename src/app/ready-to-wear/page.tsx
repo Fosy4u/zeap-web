@@ -5,18 +5,15 @@ import Guarantee from "./Guarantee";
 import ReadyToWearLatest from "./ReadyToWearLatest";
 
 const backGroundVideoUrl =
-  "https://v.ftcdn.net/08/55/17/10/700_F_855171022_WdV2T0PBBIHtOEIHTT8wwsl7MFkGsEm5_ST.mp4";
+  "https://firebasestorage.googleapis.com/v0/b/zeap-7de3d.appspot.com/o/video%2FrtwHome.mov?alt=media&token=73c9fa7b-a5cf-4059-b552-cf67f390b578";
+// const backGroundVideoUrl =
+//   "https://v.ftcdn.net/08/55/17/10/700_F_855171022_WdV2T0PBBIHtOEIHTT8wwsl7MFkGsEm5_ST.mp4";
 const ReadyToWearPage = () => {
   return (
     <>
       <Link
         href="/collections/isBespoke=true?productGroupPage=BESPOKE&collectionTitle=Bespoke Collections"
         className="relative flex h-screen  w-full items-center justify-center bg-black"
-        // style={{
-        //   backgroundImage: `url(${backGroundVideoUrl})`,
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        // }}
       >
         <video
           src={backGroundVideoUrl}

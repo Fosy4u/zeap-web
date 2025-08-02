@@ -121,7 +121,7 @@ const MobileAccountNavBar = () => {
               href={
                 !user || user?.isGuest
                   ? "/account/login"
-                  : "/account/points-vouchers"
+                  : "/account/rewards"
               }
               className="flex items-center justify-between w-full"
             >

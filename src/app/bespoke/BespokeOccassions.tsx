@@ -3,11 +3,11 @@ import Image from "next/image";
 import BespokeWeddingImage from "@/images/wedding_dress_1.jpg";
 import culturalEventImage from "@/images/ath6.webp";
 
-import BespokeEveningImage from "@/images/Evening_1.webp";
-import BespokeGalaEventImage from "@/images/gala_1.webp";
+import BespokeEveningImage from "@/images/Evening_bespoke.jpg";
+import BespokeGalaEventImage from "@/images/bespoke_gala.webp";
 import bespokeOfficeImage from "@/images/men_suit_1.webp";
 
-import casualEventImage from "@/images/casual_1.webp";
+import casualEventImage from "@/images/bespoke_casual.webp";
 import { useState } from "react";
 import Link from "next/link";
 

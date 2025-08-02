@@ -168,7 +168,7 @@ export const bespokeTimeLine = [
   {
     title: "Submit Body Measurements / Place Order",
     description: "Submit your body measurements while placing order",
-    buttonLabel: "View Body Measurement Guide",
+    // buttonLabel: "View Body Measurement Guide",
     buttonLink: "/body-measurement-guide",
   },
   {
