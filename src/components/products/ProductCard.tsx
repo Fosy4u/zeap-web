@@ -14,7 +14,7 @@ import {
 import HeartSolid from "./HeartSolidIcon";
 import Heart from "./HeartIcon";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
@@ -33,6 +33,8 @@ const ProductCard = ({
   href?: string;
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+    const productGroupPage = searchParams.get("productGroupPage") || "HOME";
   const [clickedColor, setClickedColor] = useState<string>("");
   const [addProductToWishList] = zeapApiSlice.useAddProductToWishListMutation();
   const [removeProductFromWishList] =
@@ -164,11 +166,7 @@ const ProductCard = ({
             }  `}
             onClick={() => {
               if (disableLink) return;
-              localStorage.setItem("selectedProductId", product?.productId);
-              localStorage.setItem(
-                "selectedProductColor",
-                clickedColor || getDefaultColor()
-              );
+            
               if (href) {
                 return router.push(href);
               }
@@ -176,7 +174,11 @@ const ProductCard = ({
                 `/products/${product?.title
                   .replace(/ /g, "-")
                   .replace(/&/g, "and")
-                  .replace(/\//g, "-")}-${clickedColor || getDefaultColor()}`
+                  .replace(/\//g, "-")}-${
+                  clickedColor || getDefaultColor()
+                }?productId=${
+                  product?.productId
+                }&color=${clickedColor || getDefaultColor()}&productGroupPage=${productGroupPage}`
               );
             }}
           >
@@ -225,7 +227,6 @@ const ProductCard = ({
                   width: "full",
                   height: "37rem",
                 }}
-               
                 className="w-full  object-contain object-cover"
               />
 

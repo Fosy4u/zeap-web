@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdArrowBack } from "react-icons/md";
 
 import ButtonCircle3 from "@/shared/Button/ButtonCircle3";
@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { globalSelectors } from "@/redux/services/global.slice";
 import Skeleton from "@/components/loading/Skeleton";
 import { Alert } from "flowbite-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   ColorInterface,
   ImageUrlInterface,
@@ -28,11 +28,14 @@ interface ColInterface {
 }
 
 const ProductPage = () => {
+  const topRef = useRef<HTMLHRElement>(null);
+
   const router = useRouter();
   const token = useSelector(globalSelectors.selectAuthToken);
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("productId") || "";
+  const color = searchParams.get("color") || "";
 
-  const [color, setColor] = useState<string>("");
-  const [productId, setProductId] = useState<string>("");
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedMaterialColor, setSelectedMaterialColor] =
     useState<string>("");
@@ -52,13 +55,12 @@ const ProductPage = () => {
   const [images, setImages] = useState<string[]>([]);
   const [reviews, setReviews] = useState<ProductReviewInterface[]>([]);
   const [averageRating, setAverageRating] = useState(0);
-
   useEffect(() => {
-    const localStorageColor = localStorage.getItem("selectedProductColor");
-    setColor(localStorageColor || "");
-    const localStorageProductId = localStorage.getItem("selectedProductId");
-    setProductId(localStorageProductId || "");
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, []);
+
   useEffect(() => {
     if (product && !color) {
       setImages(
@@ -83,7 +85,7 @@ const ProductPage = () => {
   }, [product]);
   return (
     <>
-      {" "}
+      <span className="sr-only absolute inset-0 top-0 left-0 w-full h-full" ref={topRef}></span>{" "}
       <hr className="border-neutral-300 mb-1" />
       <div className="container">
         <ButtonCircle3

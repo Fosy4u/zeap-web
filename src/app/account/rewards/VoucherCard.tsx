@@ -25,9 +25,20 @@ const VoucherCard = ({ voucher }: { voucher: VoucherInterface }) => {
   const checkSupportForCopyToClipBoard = () => {
     return navigator.clipboard && window.isSecureContext;
   };
+  const checkExpired = () => {
+   
+    const today = new Date();
+    const expiryDate = new Date(voucher.expiryDate);
+    today.setHours(0, 0, 0, 0);
+    expiryDate.setHours(0, 0, 0, 0);
+    console.log( "Today: ", today.toDateString(), "Expiry Date: ", expiryDate.toDateString());
+    const isExpired = expiryDate < today;
+    console.log("Is Expired: ", isExpired);
+    return isExpired;
+  };
   return (
     <div className="grid grid-cols-4 gap-0 p-4 rounded-md">
-      <div className="flex items-center  col-span-1">
+      <div className="flex items-center  col-span-1 mt-4">
         <Image
           src={VoucherLeftImage}
           alt="Voucher Left"
@@ -44,22 +55,20 @@ const VoucherCard = ({ voucher }: { voucher: VoucherInterface }) => {
           width: "100%",
           height: "100%",
         }}
-        className="relative flex flex-col items-center justify-center col-span-3 gap-2"
+        className="relative flex flex-col items-center justify-center col-span-3 gap-2 my-4"
       >
-        <span className="text-md font-semibold text-success">
+        <span className="text-md font-semibold text-success ">
           {formatCurrency(voucher.amount, voucher.currency)}
         </span>
         <Alert
           className="text-xs"
           color={
-            new Date(voucher.expiryDate).toDateString() <
-            new Date().toDateString()
+            checkExpired()
               ? "failure"
               : "success"
           }
         >
-          {new Date(voucher.expiryDate).toDateString() <
-          new Date().toDateString() ? (
+          {checkExpired() ? (
             <span>
               {" "}
               Expired {""}
@@ -89,14 +98,12 @@ const VoucherCard = ({ voucher }: { voucher: VoucherInterface }) => {
           <Badge
             size="xs"
             color={
-              new Date(voucher.expiryDate).toDateString() <
-              new Date().toDateString()
+              checkExpired()
                 ? "failure"
                 : "success"
             }
           >
-            {new Date(voucher.expiryDate).toDateString() <
-            new Date().toDateString()
+            {checkExpired()
               ? "Expired"
               : "Valid"}
           </Badge>

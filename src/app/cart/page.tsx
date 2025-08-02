@@ -24,6 +24,7 @@ interface ColInterface {
 const CartPage = () => {
   const router = useRouter();
   const token = useSelector(globalSelectors.selectAuthToken);
+
   const [serverError, setServerError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const productOptionsQuery = zeapApiSlice.useGetProductsOptionsQuery(
@@ -38,6 +39,12 @@ const CartPage = () => {
   const isFulfilled = cartQuery?.status === "fulfilled";
 
   const basketItems = cart?.basketItems || [];
+  const voucherCode = cart?.voucher?.code || "";
+  const subTotal = cart?.subTotal || 0;
+
+  const currency = cart?.currency || "NGN";
+  const appliedVoucherAmount = cart?.appliedVoucherAmount || 0;
+  const total = cart?.total || 0;
 
   return (
     <div>
@@ -92,17 +99,33 @@ const CartPage = () => {
                   <span>Subtotal</span>
 
                   <span className="font-semibold">
-                    {getCurrencySmallSymbol(cart?.currency)}
-                    {numberWithCommas(cart?.subTotal)}
+                    {getCurrencySmallSymbol(currency)}
+                    {numberWithCommas(subTotal)}
                   </span>
                 </div>
+                {appliedVoucherAmount > 0 && (
+                  <div className="flex justify-between pb-4">
+                    <span>Voucher Discount</span>
+                    <span className="font-semibold text-red-600">
+                      -{getCurrencySmallSymbol(currency)}
+                      {numberWithCommas(appliedVoucherAmount)}
+                    </span>
+                  </div>
+                )}
                 <div className="flex justify-between py-4">
                   <span>Estimated Delivery & Handling</span>
                   <span className="font-semibold">Calculated at Checkout</span>
                 </div>
               </div>
+              <div className="mt-4 flex justify-between text-xl font-semibold">
+                <span>Total</span>
+                <span>
+                  {getCurrencySmallSymbol(currency)}
+                  {numberWithCommas(total)}
+                </span>
+              </div>
               <hr className="my-10 border-neutral-300" />
-              <ApplyDiscount />
+              <ApplyDiscount voucherCode={voucherCode} />
               <hr className="my-10 border-neutral-300" />
 
               <ButtonPrimary

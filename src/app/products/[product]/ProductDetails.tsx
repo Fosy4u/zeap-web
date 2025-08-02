@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from "react";
+import { useEffect, type FC } from "react";
 import SizeSelect from "@/app/products/[product]/SizeSelect";
 import ProductImage from "./ProductImage";
 import {
@@ -16,7 +16,7 @@ import AddToCart from "./AddToCart";
 import ProductDescription from "./ProductDescription";
 import ProductTimeline from "./ProductTimeline";
 import BespokeMaterialColorSelection from "./BespokeMaterialColorSelection";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface ColInterface {
   name: string;
@@ -66,7 +66,8 @@ const ProductDetails: FC<SectionProductHeaderProps> = ({
   sizeStandard,
 }) => {
   const router = useRouter();
-  const [selectedProductColor, setSelectedProductColor] = useState<string>("");
+  const searchParams = useSearchParams();
+  const selectedProductColor = searchParams.get("color") || "";
   const getBg = (value: string) => {
     if (value.toLocaleLowerCase() === "bespoke")
       return "radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(204,23,195,0.09147408963585435) 4%, rgba(205,64,138,0.5172443977591037) 25%, rgba(207,136,39,1) 37%, rgba(13,15,25,1) 44%, rgba(32,37,4,1) 45%, rgba(72,84,9,0.4472163865546218) 100%)";
@@ -82,10 +83,7 @@ const ProductDetails: FC<SectionProductHeaderProps> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bespokeAvailableColors]);
-  useEffect(() => {
-    const localStorageColor = localStorage.getItem("selectedProductColor");
-    setSelectedProductColor(localStorageColor || "");
-  }, []);
+
   return (
     <div
       // className=" justify-between space-y-10 lg:flex lg:space-y-0"
@@ -137,13 +135,12 @@ const ProductDetails: FC<SectionProductHeaderProps> = ({
                 <div
                   onClick={() => {
                     setImages(color?.images.map((image) => image.link));
-                    localStorage.setItem("selectedProductColor", color?.value);
-                    setSelectedProductColor(color?.value);
+                    
                     router.push(
                       `/products/${title
                         .replace(/ /g, "-")
                         .replace(/&/g, "and")
-                        .replace(/\//g, "-")}-${color?.value}`
+                        .replace(/\//g, "-")}-${color?.value}?productId=${searchParams.get("productId") || ""}&color=${color?.value}`
                     );
                   }}
                   key={index}

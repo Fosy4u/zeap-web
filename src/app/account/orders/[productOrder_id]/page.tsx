@@ -196,16 +196,15 @@ const OrderItemPage = () => {
           <div className="flex justify-between items-center">
             <div
               onClick={() => {
-                localStorage.setItem("selectedProductId", product?.productId);
-                localStorage.setItem(
-                  "selectedProductColor",
-                  color || getDefaultColor()
-                );
                 router.push(
                   `/products/${product?.title
                     .replace(/ /g, "-")
                     .replace(/&/g, "and")
-                    .replace(/\//g, "-")}-${color || getDefaultColor()}`
+                    .replace(/\//g, "-")}-${
+                    color || getDefaultColor()
+                  }?productId=${
+                    product?.productId
+                  }&color=${color || getDefaultColor()}`
                 );
               }}
               className="text-lg font-semibold cursor-pointer underline underline-thickness-thin underline-offset-small text-info hover:text-darkGold"

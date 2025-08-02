@@ -600,16 +600,7 @@ export default createApi({
         };
       },
       invalidatesTags: ["Payment", "Order", "Basket"],
-      onQueryStarted: async ({ successHandler, errorHandler }, queryArgs) => {
-        responseHandler(
-          {
-            success: "Payment Successfully Verified",
-            successHandler,
-            errorHandler,
-          },
-          queryArgs
-        );
-      },
+      
     }),
     updateShop: builder.mutation({
       query: (arg) => {
@@ -2001,6 +1992,30 @@ export default createApi({
           queryArgs
         );
       },
+    }),
+    applyVoucher: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `voucher/apply`,
+          method: "PUT",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["Basket", "Voucher", "Order"],
+     
+    }),
+    removeVoucher: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `voucher/remove`,
+          method: "PUT",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["Basket", "Voucher", "Order"],
+    
     }),
     getActiveVouchers: builder.query({
       query: (arg) => {

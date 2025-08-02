@@ -10,6 +10,7 @@ import { AddBodyMeasurementsSize } from "./AddBodyMeasurementsSize";
 import { ThemeContext } from "@/contexts/themeContext";
 import MobileAddedToCart from "@/components/cart/MobileAddedToCart";
 import LoadingDots from "@/components/loading/LoadingDots";
+import { useSearchParams } from "next/navigation";
 
 interface ColInterface {
   name: string;
@@ -39,6 +40,8 @@ const AddToCart = ({
   selectedProductColor: string;
 }) => {
   const { setDimBackground } = useContext(ThemeContext);
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("productId");
   const token = useSelector(globalSelectors.selectAuthToken);
   const cartQuery = zeapApiSlice.useGetCartQuery({}, { skip: !token });
   const cart = cartQuery?.data?.data;
@@ -56,7 +59,6 @@ const AddToCart = ({
     []
   );
 
-  const [productId, setProductId] = useState<string>("");
   const quantity = 1;
   const [addToCart] = zeapApiSlice.useAddProductToCartMutation();
 
@@ -80,10 +82,7 @@ const AddToCart = ({
       }, 5000);
     }
   }, [isOpen]);
-  useEffect(() => {
-    const localStorageProductId = localStorage.getItem("selectedProductId");
-    setProductId(localStorageProductId || "");
-  }, []);
+ 
   const handleAddToCart = () => {
     setIsLoading(true);
     setIsOpen(true);
@@ -136,7 +135,7 @@ const AddToCart = ({
         <AddBodyMeasurementsSize
           openModal={openModal}
           setOpenModal={setOpenModal}
-          productId={productId}
+          productId={productId || ""}
           selectedMaterialColor={selectedMaterialColor}
           bodyMeasurements={bodyMeasurements}
           setBodyMeasurements={setBodyMeasurements}

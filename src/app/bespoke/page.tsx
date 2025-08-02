@@ -8,8 +8,12 @@ import BespokeShoes from "./BespokeShoes";
 import MenCategory from "./MenCategory";
 import WomenCategory from "./WomenCategory";
 
+
 const backGroundVideoUrl =
-  "https://www.shutterstock.com/shutterstock/videos/1103850547/preview/stock-footage-african-american-tailor-drawing-sketches-in-workshop-preparing-model-and-design-to-craft-fashion.webm";
+  "https://firebasestorage.googleapis.com/v0/b/zeap-7de3d.appspot.com/o/video%2FbespokeHome.mov?alt=media&token=cce17885-309d-4fbc-9897-a394afd08343";
+
+// const backGroundVideoUrl =
+//   "https://www.shutterstock.com/shutterstock/videos/1103850547/preview/stock-footage-african-american-tailor-drawing-sketches-in-workshop-preparing-model-and-design-to-craft-fashion.webm";
 
 const BespokePage = () => {
   return (
@@ -17,14 +21,10 @@ const BespokePage = () => {
       <Link
         href="/collections/isBespoke=true?productGroupPage=BESPOKE&collectionTitle=Bespoke Collections"
         className="relative flex h-screen  w-full items-center justify-center bg-black"
-        style={{
-          backgroundImage: `url(${backGroundVideoUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       >
         <video
-          src="https://www.shutterstock.com/shutterstock/videos/1103850547/preview/stock-footage-african-american-tailor-drawing-sketches-in-workshop-preparing-model-and-design-to-craft-fashion.webm"
+          src={backGroundVideoUrl}
+          // src="https://www.shutterstock.com/shutterstock/videos/1103850547/preview/stock-footage-african-american-tailor-drawing-sketches-in-workshop-preparing-model-and-design-to-craft-fashion.webm"
           autoPlay
           muted
           loop
