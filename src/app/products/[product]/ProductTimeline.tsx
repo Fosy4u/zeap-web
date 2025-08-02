@@ -1,7 +1,7 @@
 import { bespokeTimeLine, readyMadeTimeLine } from "@/data/content";
 import { ProductCategoryInterface } from "@/interface/interface";
 import {
-  Button,
+
   Timeline,
   TimelineBody,
   TimelineContent,
@@ -10,7 +10,7 @@ import {
   TimelineTitle,
 } from "flowbite-react";
 import { useState } from "react";
-import { HiCalendar, HiArrowNarrowRight } from "react-icons/hi";
+import { HiCalendar } from "react-icons/hi";
 
 const timelineTheme = {
   root: {
@@ -126,12 +126,12 @@ const ProductTimeline = ({
               <TimelineContent>
                 <TimelineTitle>{item.title}</TimelineTitle>
                 <TimelineBody>{item.description}</TimelineBody>
-                {item?.buttonLabel && (
+                {/* {item?.buttonLabel && (
                   <Button color="gray">
                     {item.buttonLabel}
                     <HiArrowNarrowRight className="ml-2 h-3 w-3" />
                   </Button>
-                )}
+                )} */}
               </TimelineContent>
             </TimelineItem>
           ))}
