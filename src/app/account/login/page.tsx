@@ -16,7 +16,7 @@ const LoginPage = () => {
           width={100}
           height={100}
         />
-        {/* <span className={` text-2xl font-bold`}>Zeap Fashion</span> */}
+        {/* <span className={` text-2xl font-bold`}>Zeaper Fashion</span> */}
       </div>
       <SignInSignUpDrawer
         callBack={() => {

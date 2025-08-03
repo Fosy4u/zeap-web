@@ -231,7 +231,7 @@ export function AddShop({
               ref={topRef}
               className="text-xl font-bold text-gray-900 dark:text-white"
             >
-              {mode === "create" ? "Join Zeap" : "Edit Shop Details"}
+              {mode === "create" ? "Join Zeaper" : "Edit Shop Details"}
             </h3>
             <div>
               {error && (

@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
           <div className="h-px w-full bg-neutral-500" />
           <div className="flex flex-col items-center justify-between gap-3 px-10 py-5 md:flex-row md:gap-0">
             <div className="flex items-center gap-1 text-sm md:text-base">
-              <MdCopyright /> <span>2025 Zeap. All rights reserved</span>
+              <MdCopyright /> <span>2025 Zeaper. All rights reserved</span>
             </div>
 
             <div className="flex items-center gap-5">

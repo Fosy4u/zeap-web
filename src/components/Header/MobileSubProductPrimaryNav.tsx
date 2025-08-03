@@ -108,7 +108,7 @@ const MobileSubProductPrimaryNav = ({
           href={"/sell-on-zeap"}
           className="flex justify-center font-extrabold bg-lightSuccess   p-2 rounded-md cursor-pointer text-sm"
         >
-          Sell on Zeap
+          Sell on Zeaper
         </Link>
       )}
       {user?.shopId && (
