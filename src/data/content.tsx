@@ -389,7 +389,7 @@ export const signUpSection = {
 export const ourDifference = [
   {
     header: "Global Reach",
-    description: "With Zeap, you can sell to customers around the world.",
+    description: "With Zeaper, you can sell to customers around the world.",
   },
   {
     header: "Simple and Efficient",
@@ -399,7 +399,7 @@ export const ourDifference = [
   {
     header: "Dedicated Support",
     description:
-      "Our team is here to help you every step of the way. Whether you have questions about selling on Zeap or need assistance with your account, we're here for you.",
+      "Our team is here to help you every step of the way. Whether you have questions about selling on Zeaper or need assistance with your account, we're here for you.",
   },
 
   {
@@ -412,7 +412,7 @@ export const sellingSimplified = [
   {
     header: "Easy Setup",
     description:
-      "Setting up your store on Zeap is quick and easy. You can start selling in no time.",
+      "Setting up your store on Zeaper is quick and easy. You can start selling in no time.",
   },
   {
     header: "Business Activation",
@@ -443,7 +443,7 @@ export const footerData = {
       title: "Company",
       links: [
         { href: "/about", name: "About" },
-        { href: "/sell-on-zeap", name: "Sell on Zeap" },
+        { href: "/sell-on-zeap", name: "Sell on Zeaper" },
         { href: "/blog", name: "Blog" },
       ],
     },

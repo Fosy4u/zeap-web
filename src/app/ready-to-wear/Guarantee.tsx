@@ -18,7 +18,7 @@ const Guarantee = () => {
           src={image}
           width={128}
           height={64}
-          alt="Zeap Logo"
+          alt="Zeaper Logo"
           className="mx-auto mb-6 w-32 h-auto"
         />
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">

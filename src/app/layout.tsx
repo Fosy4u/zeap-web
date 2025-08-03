@@ -29,8 +29,8 @@ const getBodoniFont = Bodoni_Moda({
 });
 
 export const metadata: Metadata = {
-  title: "Zeap Fashion",
-  description: "Zeap Fashion is a fashion store",
+  title: "Zeaper Fashion",
+  description: "Zeaper Fashion is a fashion store",
 };
 
 export default function RootLayout({

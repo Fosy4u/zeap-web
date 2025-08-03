@@ -12,7 +12,7 @@ const OurDifference = ({
     <div className="flex flex-col md:flex-row  gap-4 p-4 w-full flex-col-reverse items-center md:justify-between">
       <div className="flex flex-col gap-2 justify-start items-start w-full">
         <span className="text-lg md:text-2xl font-bold ">
-          Why Sell on Zeap?
+          Why Sell on Zeaper?
         </span>
         <div className="flex flex-col gap-5 md:max-w-[27rem]">
           {ourDifference.map((item, index) => (

@@ -10,7 +10,7 @@ const possibleReasons = [
   {
     title: "Shop is not yet approved",
     description:
-      "You just recently created your shop and yet to complete your admission into Zeap. If you have not been contacted by our team within 48 hours, please contact support.",
+      "You just recently created your shop and yet to complete your admission into Zeaper. If you have not been contacted by our team within 48 hours, please contact support.",
   },
   {
     title: "Shop is under review",
