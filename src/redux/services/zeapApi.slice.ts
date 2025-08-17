@@ -600,7 +600,6 @@ export default createApi({
         };
       },
       invalidatesTags: ["Payment", "Order", "Basket"],
-      
     }),
     updateShop: builder.mutation({
       query: (arg) => {
@@ -2003,7 +2002,6 @@ export default createApi({
         };
       },
       invalidatesTags: ["Basket", "Voucher", "Order"],
-     
     }),
     removeVoucher: builder.mutation({
       query: (arg) => {
@@ -2015,7 +2013,6 @@ export default createApi({
         };
       },
       invalidatesTags: ["Basket", "Voucher", "Order"],
-    
     }),
     getActiveVouchers: builder.query({
       query: (arg) => {
@@ -2683,6 +2680,26 @@ export default createApi({
         };
       },
       invalidatesTags: ["Help"],
+    }),
+    addToWaitingList: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `/email/waitlist/add`,
+          method: "POST",
+          body: payload,
+        };
+      },
+    }),
+    addToNewsletter: builder.mutation({
+      query: (arg) => {
+        const { payload } = arg;
+        return {
+          url: `/email/newsletter/add`,
+          method: "POST",
+          body: payload,
+        };
+      },
     }),
   }),
 });
