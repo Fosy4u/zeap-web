@@ -1,7 +1,4 @@
-
-
-
-
+import Link from "next/link";
 
 const NotFound = () => {
   return (
@@ -14,18 +11,9 @@ const NotFound = () => {
           404
         </h1>
         <h4 className="text-4xl font-semibold">Page Not Found</h4>
-        <p className="text-neutral-500">
-          The page you are looking for doesn&apos;t exist or has been moved.
-        </p>
-        <div className="flex items-center justify-center gap-5">
-         
-          <button
-            onClick={() => window.location.href = "/"}
-            className="border-2 border-primary text-primary"
-          >
-            Go Home
-          </button>
-        </div>
+        <Link href="/" className="border-2 border-primary text-primary">
+          Go Home
+        </Link>
       </div>
     </div>
   );

@@ -20,10 +20,15 @@ import Image from "next/image";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
 import LoadingDots from "./LoadingDots";
 
-
 export default function ComingSoon(): React.JSX.Element {
-  const savedJoined = localStorage.getItem("zeaper_waitlist_joined");
-  const savedEmail = localStorage.getItem("zeaper_waitlist_email");
+  const savedJoined =
+    typeof window !== "undefined"
+      ? localStorage.getItem("zeaper_waitlist_joined")
+      : null;
+  const savedEmail =
+    typeof window !== "undefined"
+      ? localStorage.getItem("zeaper_waitlist_email")
+      : null;
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +39,7 @@ export default function ComingSoon(): React.JSX.Element {
   useEffect(() => {
     if (savedJoined === "true") setSubmitted(true);
     if (savedEmail) setEmail(savedEmail);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -50,8 +55,10 @@ export default function ComingSoon(): React.JSX.Element {
     addToWaitingList({ payload })
       .unwrap()
       .then(() => {
-        localStorage.setItem("zeaper_waitlist_email", email);
-        localStorage.setItem("zeaper_waitlist_joined", "true");
+        if (typeof window !== "undefined") {
+          localStorage.setItem("zeaper_waitlist_email", email);
+          localStorage.setItem("zeaper_waitlist_joined", "true");
+        }
         setSubmitted(true);
       })
       .catch((err) => {
@@ -76,7 +83,7 @@ export default function ComingSoon(): React.JSX.Element {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
 
   const features = [
