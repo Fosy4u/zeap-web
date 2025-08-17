@@ -1,6 +1,6 @@
 
 
-import ButtonPrimary from "@/shared/Button/ButtonPrimary";
+
 
 
 const NotFound = () => {
@@ -19,12 +19,12 @@ const NotFound = () => {
         </p>
         <div className="flex items-center justify-center gap-5">
          
-          <ButtonPrimary
-            href="/"
+          <button
+            onClick={() => window.location.href = "/"}
             className="border-2 border-primary text-primary"
           >
             Go Home
-          </ButtonPrimary>
+          </button>
         </div>
       </div>
     </div>
