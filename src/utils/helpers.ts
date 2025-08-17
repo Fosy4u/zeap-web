@@ -246,3 +246,25 @@ export const convertStringToHtml = (text: string) => {
   const htmlString = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
   return htmlString;
 };
+
+export const correctULTagFromQuill = (str: string) => {
+  if (str) {
+    const re = /(<ol><li data-list="bullet">)(.*?)(<\/ol>)/;
+    const strArr = str.split(re);
+
+    while (
+      strArr.findIndex((ele) => ele === '<ol><li data-list="bullet">') !== -1
+    ) {
+      const indx = strArr.findIndex(
+        (ele) => ele === '<ol><li data-list="bullet">',
+      );
+      if (indx) {
+        strArr[indx] = '<ul><li data-list="bullet">';
+        const endTagIndex = strArr.findIndex((ele) => ele === '</ol>');
+        strArr[endTagIndex] = '</ul>';
+      }
+    }
+    return strArr.join('');
+  }
+  return str;
+};
