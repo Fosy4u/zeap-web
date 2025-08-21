@@ -87,6 +87,7 @@ const AddReadyMadeClothPage = () => {
     age: "",
     size: "",
   });
+  
   const [serverError, setServerError] = useState("");
   const [createProduct, creteProductStatus] =
     zeapApiSlice.useCreateProductMutation();

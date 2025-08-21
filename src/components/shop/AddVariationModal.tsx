@@ -206,7 +206,7 @@ const AddVariationModal = ({
             <Label value="Price" />
             <TextInput
               theme={inputTheme}
-              value={price || 0}
+              value={price || ""}
               type="number"
               min={0}
               onChange={(e) => {
@@ -220,7 +220,7 @@ const AddVariationModal = ({
             <Label value="Quantity" />
             <TextInput
               theme={inputTheme}
-              value={quantity || 0}
+              value={quantity || ""}
               type="number"
               min={0}
               onChange={(e) => {

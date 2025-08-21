@@ -59,13 +59,13 @@ const AutoPriceAdjustment = ({
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAdjustable, setIsAdjustable] = useState(false);
-  const [adjustmentPercentage, setAdjustmentPercentage] = useState(0);
+  const [adjustmentPercentage, setAdjustmentPercentage] = useState<string | number>("");
   const [updateAutoPriceAdjustment] =
     zeapApiSlice.useUpdateAutoPriceAdjustmentMutation();
   useEffect(() => {
     if (product.autoPriceAdjustment) {
       setIsAdjustable(product.autoPriceAdjustment.isAdjustable);
-      setAdjustmentPercentage(product.autoPriceAdjustment.adjustmentPercentage);
+      setAdjustmentPercentage(product.autoPriceAdjustment.adjustmentPercentage || "");
     }
   }, [product.autoPriceAdjustment]);
 
