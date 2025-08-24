@@ -67,7 +67,7 @@ const BespokeBodyMeasurementGuide = ({
                 }}
                 className="text-xs cursor-pointer inline-flex items-center gap-1.5 rounded-md border border-solid border-green-700 bg-green-50 p-1 font-semibold text-green-800 shadow transition-colors hover:bg-green-900 hover:text-green-50 focus:bg-green-900 focus:text-green-50"
               >
-                View Image Example
+                View Image Guide
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

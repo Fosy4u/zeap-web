@@ -44,13 +44,13 @@ const AddproductSuccessModal = ({
 
           <h2 className="text-2xl font-semibold text-center">Congratulations</h2>
           <p className="text-center mt-4">
-            You have successfully added a product to your shop.
+            You have successfully added a product to your shop and its currently under review.
           </p>
           <p className="text-center mt-4">
-            It will be reviewed by our team before it goes live.
+            It will go live once approved by our team.
           </p>
           <p className="text-center mt-4">
-            Keep an eye on the product status in your shop dashboard.
+            You can monitor its status in your shop dashboard.
           </p>
           <div className="flex flex:col md:flex-row justify-center mt-4 gap-2">
             <ButtonPrimary

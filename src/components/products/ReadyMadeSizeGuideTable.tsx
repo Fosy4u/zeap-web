@@ -1,13 +1,13 @@
-import { ToggleSwitch, Dropdown, DropdownItem } from "flowbite-react";
-const toggleTheme = {
-  toggle: {
-    base: "relative rounded-full after:absolute after:rounded-full after:border after:bg-white after:transition-all group-focus:ring-4",
-    checked: {
-      on: "after:translate-x-full after:border-transparent rtl:after:-translate-x-full",
-      off: "bg-indigo-400 after:border-gray-300 dark:bg-gray-700",
-    },
-  },
-};
+import {  Dropdown, DropdownItem } from "flowbite-react";
+// const toggleTheme = {
+//   toggle: {
+//     base: "relative rounded-full after:absolute after:rounded-full after:border after:bg-white after:transition-all group-focus:ring-4",
+//     checked: {
+//       on: "after:translate-x-full after:border-transparent rtl:after:-translate-x-full",
+//       off: "bg-indigo-400 after:border-gray-300 dark:bg-gray-700",
+//     },
+//   },
+// };
 
 interface DataInterface {
   Size?: string;
@@ -78,17 +78,47 @@ const ReadyMadeSizeGuideTable = ({
         </div>
         {/* <hr className="text-sm font-semibold text-gray-500 dark:text-gray-400" /> */}
         <div className="flex gap-4 w-full md:w-fit items-center p-2 my-4">
-          <span className="text-sm ">
-            Switch to
-          </span>
+         
           <div className="flex items-center gap-4">
-            <ToggleSwitch
+            {/* <ToggleSwitch
               theme={toggleTheme}
               checked={unit === "cm"}
               onChange={() => setUnit(unit === "cm" ? "inch" : "cm")}
               label={unit === "cm" ? "CM" : "INCH"}
               color="info"
-            />
+            /> */}
+            <div className="flex items-center justify-center py-6">
+      <div
+        className={`relative flex w-32 rounded-full bg-gray-200 cursor-pointer p-1 transition`}
+        onClick={() => setUnit(unit === "cm" ? "inch" : "cm")}
+      >
+        {/* Switch knob */}
+        <div
+          className={`absolute top-1 bottom-1 w-14 rounded-full bg-primary transition-transform duration-300 ${
+            unit === "cm" ? "translate-x-0" : "translate-x-16"
+          }`}
+        />
+
+        {/* Labels */}
+        <div className="flex w-full justify-between text-sm font-medium z-10 px-3">
+          <span
+            className={`transition-colors ${
+              unit === "cm" ? "text-white" : "text-gray-600"
+            }`}
+          >
+            cm
+          </span>
+          <span
+            className={`transition-colors ${
+              unit === "inch" ? "text-white" : "text-gray-600"
+            }`}
+          >
+            inch
+          </span>
+        </div>
+      </div>
+    </div>
+
           </div>
           <div className="flex md:hidden items-center gap-4">
             <Dropdown

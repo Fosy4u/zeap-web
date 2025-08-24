@@ -42,6 +42,7 @@ const OrderItemPage = () => {
   const token = useSelector(globalSelectors.selectAuthToken);
   const { productOrder_id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
+  console.log("open", isOpen);
   const [serverError, setServerError] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const productOrderQuery = zeapApiSlice.useGetProductOrderQuery(
