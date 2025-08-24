@@ -258,6 +258,7 @@ const AddImageToColor = ({
               id="dropzone-file"
               className="hidden"
               multiple
+              accept="image/png, image/jpeg, image/webp, image/jpg"
               onChange={(e) => {
                 // add files to existing selected files
                 if (selectedFiles) {

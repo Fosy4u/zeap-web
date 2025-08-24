@@ -166,7 +166,7 @@ export function AddBodyMeasurementsSize({
     setServerError("Please fill all required fields");
     setTimeout(() => {
       setServerError("");
-    }, 5000);
+    }, 15000);
     return false;
   };
   const handleAddToCart = () => {
@@ -203,9 +203,6 @@ export function AddBodyMeasurementsSize({
         })
         .catch((err) => {
           setServerError(err.data.error);
-          setTimeout(() => {
-            setServerError("");
-          }, 5000);
         });
     }
     addToCart({ payload })
@@ -216,10 +213,6 @@ export function AddBodyMeasurementsSize({
       })
       .catch((err) => {
         setServerError(err.data.error);
-
-        setTimeout(() => {
-          setServerError("");
-        }, 5000);
       });
   };
 

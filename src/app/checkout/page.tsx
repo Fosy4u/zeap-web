@@ -269,11 +269,13 @@ const CheckoutPage = () => {
           setShowOrderSuccessModal(true);
           return;
         }
+        
         const config = {
           reference: data?.reference,
           email,
           amount: data?.amount || total, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
           publicKey: "pk_test_4f90ef116c7a9b4fece9328bb19f57ded43a9a0c",
+          currency: data?.currency || "NGN",
         };
         const initializePayment = paystackPayment(config);
 

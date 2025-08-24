@@ -10,7 +10,7 @@ import {
 import { HelpArticleInterface } from "@/interface/interface";
 import { globalSelectors } from "@/redux/services/global.slice";
 import zeapApiSlice from "@/redux/services/zeapApi.slice";
-import { capitalizeFirstLetter } from "@/utils/helpers";
+import { capitalizeFirstLetter, correctULTagFromQuill } from "@/utils/helpers";
 import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import MarkArticleHelpful from "./MarkArticleHelpful";
@@ -91,7 +91,7 @@ const HelpArticleContent = ({ articleId }: { articleId: string }) => {
                   <h2 className="text-2xl font-bold mb-4">{article.title}</h2>
                   <div className="text-gray-700 dark:text-gray-300">
                     <div
-                      dangerouslySetInnerHTML={{ __html: article.content }}
+                      dangerouslySetInnerHTML={{ __html: correctULTagFromQuill(article.content) }}
                     />
                   </div>
                   <div className="mt-4 text-sm text-gray-500">
