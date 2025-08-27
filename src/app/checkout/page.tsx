@@ -22,6 +22,8 @@ import EmptyBasket from "@/components/cart/EmptyBasket";
 import LoadingImageBars from "@/components/loading/LoadingImageBars";
 import DeliveryMethod from "./DeliveryMethod";
 
+import StripePaymentFormModal from "./StripePaymentFormModal";
+
 interface ColInterface {
   name: string;
   hex?: string;
@@ -42,11 +44,14 @@ interface ExpectDeliveryDateByMethodInterface {
 const CheckoutPage = () => {
   const { user } = useContext(AuthContext);
   const lastChildDiv = useRef<HTMLDivElement>(null);
+  const [clientSecret, setClientSecret] = useState("");
+  const [reference, setReference] = useState("");
   const [listDivISFocused, setListDivIsFocused] = useState(false);
   const [tabActive, setTabActive] = useState<
     "ContactInfo" | "ShippingAddress" | "PaymentMethod" | "DeliveryMethod"
   >("ShippingAddress");
   const token = useSelector(globalSelectors.selectAuthToken);
+  const [showStripeModal, setShowStripeModal] = useState(false);
   const [showOrderSuccessModal, setShowOrderSuccessModal] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [gainedPoints, setGainedPoints] = useState<number | null>(null);
@@ -203,10 +208,8 @@ const CheckoutPage = () => {
     }
     return true;
   };
-  // you can call this function anything
-  const onSuccess = (paymentRef: string) => {
-    setShowOrderSuccessModal(true);
 
+  const handleVerifyPayment = (paymentRef: string) => {
     // Implementation for whatever you want to do with reference and after success call.
     const payload = {
       reference: paymentRef,
@@ -227,6 +230,14 @@ const CheckoutPage = () => {
           setServerError("");
         }, 5000);
       });
+  };
+  // you can call this function anything
+  const onSuccess = (paymentRef: string) => {
+    setShowOrderSuccessModal(true);
+
+    // Implementation for whatever you want to do with reference and after success call.
+
+    handleVerifyPayment(paymentRef);
   };
 
   // you can call this function anything
@@ -269,32 +280,38 @@ const CheckoutPage = () => {
           setShowOrderSuccessModal(true);
           return;
         }
-        
-        const config = {
-          reference: data?.reference,
-          email,
-          amount: data?.amount || total, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-          publicKey: "pk_test_4f90ef116c7a9b4fece9328bb19f57ded43a9a0c",
-          currency: data?.currency || "NGN",
-        };
-        const initializePayment = paystackPayment(config);
+        setReference(data?.reference);
+        if (data?.currency && data?.currency === "NGN") {
+          const config = {
+            reference: data?.reference,
+            email,
+            amount: data?.amount || total, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+            publicKey: "pk_test_4f90ef116c7a9b4fece9328bb19f57ded43a9a0c",
+            currency: data?.currency || "NGN",
+          };
+          const initializePayment = paystackPayment(config);
 
-        // pass reference to initializePayment onSucess
-        initializePayment({
-          onSuccess: () => onSuccess(data?.reference),
-          onClose,
-        });
-        // initializePayment({
-        //   onSuccess,
-        //   onClose,
-        // });
-        // setTimeout(() => {
-        //   initializePayment(onSuccess, onClose);
-        // }, 5000);
+          // pass reference to initializePayment onSucess
+          initializePayment({
+            onSuccess: () => onSuccess(data?.reference),
+            onClose,
+          });
+        }
+        if (data?.stripeClientSecret) {
+          console.log("data?.stripeClientSecret", data?.stripeClientSecret);
+          setClientSecret(data?.stripeClientSecret);
+          return setShowStripeModal(true);
+        }
+        setIsLoading(false);
+        setServerError("Unsupported currency");
+        setTimeout(() => {
+          setServerError("");
+        }, 5000);
       })
       .catch((err) => {
         setServerError(err.data.error);
         setIsLoading(false);
+        setClientSecret("");
         setTimeout(() => {
           setServerError("");
         }, 5000);
@@ -302,7 +319,6 @@ const CheckoutPage = () => {
   };
 
   const getEstimatedDeliveryDates = (sku: string, method: string) => {
-    console.log("basketDeliveryDates", basketDeliveryDates);
     if (
       !basketDeliveryDates ||
       !sku ||
@@ -600,6 +616,19 @@ const CheckoutPage = () => {
               </div>
             </div>
           </div>
+          {clientSecret && showStripeModal && (
+            <StripePaymentFormModal
+              clientSecret={clientSecret}
+              reference={reference}
+              setServerError={setServerError}
+              serverError={serverError}
+              showStripeModal={showStripeModal}
+              setShowStripeModal={setShowStripeModal}
+              setIsLoading={setIsLoading}
+              setShowOrderSuccessModal={setShowOrderSuccessModal}
+              handleVerifyPayment={handleVerifyPayment}
+            />
+          )}
         </main>
       )}
       {showOrderSuccessModal && (
