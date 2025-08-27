@@ -1611,9 +1611,9 @@ export default createApi({
         };
       },
       providesTags: ["Basket"],
-      onQueryStarted: async (_, queryArgs) => {
-        responseHandler({}, queryArgs);
-      },
+      // onQueryStarted: async (_, queryArgs) => {
+      //   responseHandler({}, queryArgs);
+      // },
     }),
     getBasketTotal: builder.query({
       query: (arg) => {
@@ -1623,9 +1623,9 @@ export default createApi({
         };
       },
       providesTags: ["Basket"],
-      onQueryStarted: async (_, queryArgs) => {
-        responseHandler({}, queryArgs);
-      },
+      // onQueryStarted: async (_, queryArgs) => {
+      //   responseHandler({}, queryArgs);
+      // },
     }),
     getBasketDeliveryDates: builder.query({
       query: (arg) => {
@@ -1635,9 +1635,9 @@ export default createApi({
         };
       },
       providesTags: ["Basket"],
-      onQueryStarted: async (_, queryArgs) => {
-        responseHandler({}, queryArgs);
-      },
+      // onQueryStarted: async (_, queryArgs) => {
+      //   responseHandler({}, queryArgs);
+      // },
     }),
     getBasketDeliveryFees: builder.query({
       query: (arg) => {
@@ -1647,9 +1647,9 @@ export default createApi({
         };
       },
       providesTags: ["Basket"],
-      onQueryStarted: async (_, queryArgs) => {
-        responseHandler({}, queryArgs);
-      },
+      // onQueryStarted: async (_, queryArgs) => {
+      //   responseHandler({}, queryArgs);
+      // },
     }),
     addProductToBasket: builder.mutation({
       query: (arg) => {
