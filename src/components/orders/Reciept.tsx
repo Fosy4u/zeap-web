@@ -1,7 +1,7 @@
 import { Alert, Button, Modal } from "flowbite-react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
-import LogoIcon from "@/images/app_logo.png";
+import LogoIcon from "@/images/Zeaper_Green.png";
 import { useReactToPrint } from "react-to-print";
 import { HiDownload, HiPrinter } from "react-icons/hi";
 
@@ -167,7 +167,7 @@ const Reciept = ({
                 </div>
 
                 <div className="text-right">
-                  <p>Zona Empires & Partners LTD .</p>
+                  <p>Zeaper</p>
                   <p className="text-gray-500 text-sm">admin@zeaper.com</p>
                   <p className="text-gray-500 text-sm mt-1">+44-442341232</p>
                 </div>
