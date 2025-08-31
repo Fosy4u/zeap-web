@@ -1,7 +1,7 @@
 import { Alert, Button, Modal } from "flowbite-react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
-import LogoIcon from "@/images/Iconmark_green.png";
+import LogoIcon from "@/images/Zeaper_Main_Logo.png";
 import { useReactToPrint } from "react-to-print";
 import { HiDownload, HiPrinter } from "react-icons/hi";
 
@@ -157,19 +157,14 @@ const Reciept = ({
               id="receipt"
               ref={receiptRef}
             >
-              <div className="flex justify-between items-center w-full overflow-auto ">
-                <div>
+              <div className="flex justify-end items-center w-full overflow-auto ">
+                <div className="flex flex-col ">
                   <Image
                     src={LogoIcon}
                     alt="company-logo"
                     className="object-contain rounded-lg w-24 h-24"
                   />
-                </div>
-
-                <div className="text-right">
-                  <p>Zeaper</p>
                   <p className="text-gray-500 text-sm">admin@zeaper.com</p>
-                  <p className="text-gray-500 text-sm mt-1">+44-442341232</p>
                 </div>
               </div>
 
