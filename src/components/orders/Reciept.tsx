@@ -1,7 +1,7 @@
 import { Alert, Button, Modal } from "flowbite-react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 
-import LogoIcon from "@/images/Zeaper_Green.png";
+import LogoIcon from "@/images/Iconmark_green.png";
 import { useReactToPrint } from "react-to-print";
 import { HiDownload, HiPrinter } from "react-icons/hi";
 
